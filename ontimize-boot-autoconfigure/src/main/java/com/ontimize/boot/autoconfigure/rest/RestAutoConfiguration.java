@@ -45,7 +45,6 @@ public class RestAutoConfiguration extends WebMvcConfigurerAdapter{
 	        corsConfiguration.setMaxAge(1600L);
 
 	        ontimizeJeeCorsConfigurations.put("/**", corsConfiguration);
-
 	        return ontimizeJeeCorsConfigurations;
 	    }
 	    
