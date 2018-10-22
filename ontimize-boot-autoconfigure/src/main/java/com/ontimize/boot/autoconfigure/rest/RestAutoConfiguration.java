@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,55 +26,52 @@ import com.ontimize.jee.server.security.cors.OntimizeJeeCorsFilter;
 @EnableWebMvc
 @Configuration
 @ConditionalOnClass({ ORestController.class })
-public class RestAutoConfiguration extends WebMvcConfigurerAdapter{
+public class RestAutoConfiguration extends WebMvcConfigurerAdapter {
 
-	   @Bean
-	    public OntimizeJeeCorsFilter corsSecurityFilterChain() {
-	        return new OntimizeJeeCorsFilter();
-	    }
+	@Bean
+	public OntimizeJeeCorsFilter corsSecurityFilterChain() {
+		return new OntimizeJeeCorsFilter();
+	}
 
-	    @Bean
-	    public LinkedHashMap<String, CorsConfiguration> ontimizeJeeCorsConfigurations() {
-	        LinkedHashMap<String, CorsConfiguration> ontimizeJeeCorsConfigurations = new LinkedHashMap<>();
+	@Bean
+	public LinkedHashMap<String, CorsConfiguration> ontimizeJeeCorsConfigurations() {
+		LinkedHashMap<String, CorsConfiguration> ontimizeJeeCorsConfigurations = new LinkedHashMap<>();
 
-	        CorsConfiguration corsConfiguration = new CorsConfiguration();
-	        corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
-	        corsConfiguration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "OPTIONS", "DELETE"));
-	        corsConfiguration.setExposedHeaders(Collections.singletonList("X-Auth-Token"));
-	        corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
-	        corsConfiguration.setAllowCredentials(true);
-	        corsConfiguration.setMaxAge(1600L);
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
+		corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
+		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "OPTIONS", "DELETE"));
+		corsConfiguration.setExposedHeaders(Collections.singletonList("X-Auth-Token"));
+		corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
+		corsConfiguration.setAllowCredentials(true);
+		corsConfiguration.setMaxAge(1600L);
 
-	        ontimizeJeeCorsConfigurations.put("/**", corsConfiguration);
-	        return ontimizeJeeCorsConfigurations;
-	    }
-	    
-	    
-	    @Bean
-	    OntimizeMapper ontimizeMapper() {
-	        OntimizeMapper ontiMapper = new OntimizeMapper();
-	        ontiMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-	        return ontiMapper;
-	    }
-	    
-	    
-	    @Bean
-	    @Autowired
-	    public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(ObjectMapper objectMapper) {
-	    	return new MappingJackson2HttpMessageConverter(objectMapper);
-	    }
+		ontimizeJeeCorsConfigurations.put("/**", corsConfiguration);
+		return ontimizeJeeCorsConfigurations;
+	}
 
-	    @Bean
-	    public RequestMappingHandlerMapping handlerMapping() {
-	        RequestMappingHandlerMapping requestMappingHandlerMapping = new RequestMappingHandlerMapping();
-	        requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
-	        return requestMappingHandlerMapping;
-	    }
+	@Bean
+	OntimizeMapper ontimizeMapper() {
+		OntimizeMapper ontiMapper = new OntimizeMapper();
+		ontiMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+		return ontiMapper;
+	}
 
-	    
-	    @Override
-	    public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-	    	converters.add(mappingJackson2HttpMessageConverter(ontimizeMapper()));
-	    }
-	    
+	@Bean
+	public RequestMappingHandlerMapping handlerMapping() {
+		RequestMappingHandlerMapping requestMappingHandlerMapping = new RequestMappingHandlerMapping();
+		requestMappingHandlerMapping.setUseSuffixPatternMatch(false);
+		return requestMappingHandlerMapping;
+	}
+
+	@Override
+	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+		converters.add(mappingJackson2HttpMessageConverter(ontimizeMapper()));
+	}
+
+	@Bean
+	@Autowired
+	public MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter(@Qualifier("ontimizeMapper") ObjectMapper objectMapper) {
+		return new MappingJackson2HttpMessageConverter(objectMapper);
+	}
+
 }
