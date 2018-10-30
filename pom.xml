@@ -29,19 +29,19 @@
 				<artifactId>ontimize-boot-autoconfigure</artifactId>
 				<version>${ontimize.boot.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-starter-core</artifactId>
 				<version>${ontimize.boot.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-starter-jdbc</artifactId>
 				<version>${ontimize.boot.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-starter-rest</artifactId>
@@ -50,4 +50,13 @@
 		</dependencies>
 
 	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
