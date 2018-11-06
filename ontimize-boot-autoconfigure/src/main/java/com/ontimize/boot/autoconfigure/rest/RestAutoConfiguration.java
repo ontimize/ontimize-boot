@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
@@ -29,8 +30,8 @@ import com.ontimize.jee.server.security.cors.OntimizeJeeCorsFilter;
 public class RestAutoConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
-	public OntimizeJeeCorsFilter corsSecurityFilterChain() {
-		return new OntimizeJeeCorsFilter();
+	public OntimizeBootCorsFilter corsSecurityFilterChain() {
+		return new OntimizeBootCorsFilter();
 	}
 
 	@Bean
@@ -47,6 +48,11 @@ public class RestAutoConfiguration extends WebMvcConfigurerAdapter {
 
 		ontimizeJeeCorsConfigurations.put("/**", corsConfiguration);
 		return ontimizeJeeCorsConfigurations;
+	}
+	
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		super.addCorsMappings(registry);
 	}
 
 	@Bean

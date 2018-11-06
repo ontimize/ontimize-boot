@@ -24,6 +24,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserCache;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.ExpressionBasedFilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
@@ -52,6 +53,7 @@ import com.ontimize.jee.server.security.authentication.jwt.JwtAuthenticationMech
 import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizator;
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter;
+import com.ontimize.jee.server.security.cors.OntimizeJeeCorsFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -60,6 +62,7 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private ApplicationContext context;
+	
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -69,6 +72,7 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 				.and().addFilterBefore(preAuthFilterOntimize(), UsernamePasswordAuthenticationFilter.class).addFilter(filterInvocationInterceptor());
 	}
 
+	
 	@Bean
 	public SecurityConfiguration securityConfiguration() {
 		SecurityConfiguration securityConfiguration = new SecurityConfiguration();
