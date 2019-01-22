@@ -3,14 +3,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>com.imatia.ontimize.cloud</groupId>
+		<groupId>com.ontimize.cloud</groupId>
 		<artifactId>ontimize-service-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
+		<version>1.0.1-SNAPSHOT</version>
 	</parent>
 
 	<groupId>com.ontimize.boot</groupId>
 	<artifactId>ontimize-boot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<modules>
@@ -19,7 +19,7 @@
 	</modules>
 
 	<properties>
-		<ontimize.boot.version>0.0.1-SNAPSHOT</ontimize.boot.version>
+		<ontimize.boot.version>0.0.2-SNAPSHOT</ontimize.boot.version>
 	</properties>
 
 	<dependencyManagement>

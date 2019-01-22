@@ -14,9 +14,12 @@ import org.springframework.context.annotation.PropertySource;
 
 import com.ontimize.db.SQLStatementBuilder.ExtendedSQLConditionValuesProcessor;
 import com.ontimize.db.handler.DefaultSQLStatementHandler;
-import com.ontimize.db.handler.PostgresSQLStatementHandler;
+import com.ontimize.db.handler.Oracle12cSQLStatementHandler;
 import com.ontimize.db.handler.SQLStatementHandler;
 import com.ontimize.jee.server.dao.common.INameConvention;
+import com.ontimize.jee.server.dao.dbhandler.OracleSQLStatementHandler;
+import com.ontimize.jee.server.dao.dbhandler.PostgresSQLStatementHandler;
+import com.ontimize.jee.server.dao.dbhandler.SQLServerSQLStatementHandler;
 
 @Configuration
 @PropertySource("classpath:ontimize-jdbc.properties")
@@ -44,6 +47,29 @@ public class JdbcAutoConfiguration {
 		return handler;
 	}
 	
+	@Bean("dbSQLStatementHandler")
+	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "oracle")
+	public SQLStatementHandler oracleSQLStatementHandler() {
+		SQLStatementHandler handler = new OracleSQLStatementHandler();
+		handler.setSQLConditionValuesProcessor(extendedSQLConditionValuesProcessor());
+		return handler;
+	}
+	
+	@Bean("dbSQLStatementHandler")
+	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "oracle12")
+	public SQLStatementHandler oracle12SQLStatementHandler() {
+		SQLStatementHandler handler = new Oracle12cSQLStatementHandler();
+		handler.setSQLConditionValuesProcessor(extendedSQLConditionValuesProcessor());
+		return handler;
+	}
+	
+	@Bean("dbSQLStatementHandler")
+	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "sqlserver")
+	public SQLStatementHandler sqlServerSQLStatementHandler() {
+		SQLStatementHandler handler = new SQLServerSQLStatementHandler();
+		handler.setSQLConditionValuesProcessor(extendedSQLConditionValuesProcessor());
+		return handler;
+	}
 	
 	@Bean("dbSQLStatementHandler")
 	@Conditional(DefaultSQLHandlerCondition.class)

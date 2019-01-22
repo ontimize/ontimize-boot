@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -30,6 +31,7 @@ import com.ontimize.jee.server.security.cors.OntimizeJeeCorsFilter;
 public class RestAutoConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
+	@ConditionalOnProperty(name = "ontimize.corsfilter.enabled", havingValue = "true", matchIfMissing = false)
 	public OntimizeBootCorsFilter corsSecurityFilterChain() {
 		return new OntimizeBootCorsFilter();
 	}
