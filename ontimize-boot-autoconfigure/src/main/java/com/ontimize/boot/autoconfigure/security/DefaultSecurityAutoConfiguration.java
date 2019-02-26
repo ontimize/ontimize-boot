@@ -5,10 +5,8 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
@@ -24,7 +22,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserCache;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.ExpressionBasedFilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
@@ -53,48 +50,45 @@ import com.ontimize.jee.server.security.authentication.jwt.JwtAuthenticationMech
 import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizator;
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter;
-import com.ontimize.jee.server.security.cors.OntimizeJeeCorsFilter;
 
 @Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(name = "ontimize.security.enabled", havingValue = "true", matchIfMissing = true)
-public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
-
-	@Autowired
-	private ApplicationContext context;
-	
+@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "default", matchIfMissing = true)
+public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().anonymous().disable() // Anonymous disable
-				.authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated()
-
-				.and().addFilterBefore(preAuthFilterOntimize(), UsernamePasswordAuthenticationFilter.class).addFilter(filterInvocationInterceptor());
+		http //
+		.exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint()).and() //
+		.csrf().disable() //
+		.anonymous().disable() // Anonymous disable
+		.authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated().and() //
+		.addFilterBefore(this.preAuthFilterOntimize(), UsernamePasswordAuthenticationFilter.class) //
+		.addFilter(this.filterInvocationInterceptor());
 	}
 
-	
 	@Bean
 	public SecurityConfiguration securityConfiguration() {
 		SecurityConfiguration securityConfiguration = new SecurityConfiguration();
-		securityConfiguration.setUserInformationService(userDetailsService());
-		securityConfiguration.setUserRoleInformationService(userRoleInformationService());
-		securityConfiguration.setRoleInformationService(roleInformationService());
-		securityConfiguration.setAuthorizator(ontimizeAuthorizator());
+		securityConfiguration.setUserInformationService(this.userDetailsService());
+		securityConfiguration.setUserRoleInformationService(this.userRoleInformationService());
+		securityConfiguration.setRoleInformationService(this.roleInformationService());
+		securityConfiguration.setAuthorizator(this.ontimizeAuthorizator());
 		return securityConfiguration;
 	}
 
 	@Bean
 	public OntimizeAuthenticationFilter preAuthFilterOntimize() throws Exception {
 		OntimizeAuthenticationFilter filter = new OntimizeAuthenticationFilter();
-		filter.setUserDetailsService(userDetailsService());
-		filter.setUserCache(userCache());
-		filter.setJwtService(jwtService());
+		filter.setUserDetailsService(this.userDetailsService());
+		filter.setUserCache(this.userCache());
+		filter.setJwtService(this.jwtService());
 		filter.setGenerateJwtHeader(true);
-		filter.setAuthenticationManager(authenticationManager());
-		filter.setAuthenticationEntryPoint(authenticationEntryPoint());
+		filter.setAuthenticationManager(this.authenticationManager());
+		filter.setAuthenticationEntryPoint(this.authenticationEntryPoint());
 		filter.setAuthenticationMechanismList(new ArrayList<>());
-		filter.getAuthenticationMechanismList().add(jwtAuthenticator());
-		filter.getAuthenticationMechanismList().add(basicAuthenticator());
+		filter.getAuthenticationMechanismList().add(this.jwtAuthenticator());
+		filter.getAuthenticationMechanismList().add(this.basicAuthenticator());
 		return filter;
 	}
 
@@ -105,10 +99,10 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 		return authenticationEntryPoint;
 	}
 
+	@Override
 	@Bean
-
 	public ISecurityUserInformationService userDetailsService() {
-		UserInformationServiceConfig userInformationServiceConfig = userInformationServiceConfig();
+		UserInformationServiceConfig userInformationServiceConfig = this.userInformationServiceConfig();
 		DatabaseUserInformationService databaseUserInformationService = new DatabaseUserInformationService();
 		databaseUserInformationService.setUserQueryId(userInformationServiceConfig.getQueryId());
 		databaseUserInformationService.setUserLoginColumn(userInformationServiceConfig.getUserLoginColumn());
@@ -127,71 +121,14 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	@ConfigurationProperties(prefix = "ontimize.security.userInformationService")
+	@ConfigurationProperties(prefix = "ontimize.security.user-information-service")
 	public UserInformationServiceConfig userInformationServiceConfig() {
 		return new UserInformationServiceConfig();
 	}
 
-	protected static class UserInformationServiceConfig {
-		private String			queryId;
-		private String			userLoginColumn;
-		private String			userPasswordColumn;
-		private String			userNeedCheckPassColumn;
-		private String			userRepository;
-		private List<String>	otherData;
-
-		public List<String> getOtherData() {
-			return otherData;
-		}
-
-		public void setOtherData(List<String> otherData) {
-			this.otherData = otherData;
-		}
-
-		public String getUserLoginColumn() {
-			return userLoginColumn;
-		}
-
-		public void setUserLoginColumn(String userLoginColumn) {
-			this.userLoginColumn = userLoginColumn;
-		}
-
-		public String getQueryId() {
-			return queryId;
-		}
-
-		public void setQueryId(String queryId) {
-			this.queryId = queryId;
-		}
-
-		public String getUserPasswordColumn() {
-			return userPasswordColumn;
-		}
-
-		public void setUserPasswordColumn(String userPasswordColumn) {
-			this.userPasswordColumn = userPasswordColumn;
-		}
-
-		public String getUserNeedCheckPassColumn() {
-			return userNeedCheckPassColumn;
-		}
-
-		public void setUserNeedCheckPassColumn(String userNeedCheckPassColumn) {
-			this.userNeedCheckPassColumn = userNeedCheckPassColumn;
-		}
-
-		public String getUserRepository() {
-			return userRepository;
-		}
-
-		public void setUserRepository(String userRepository) {
-			this.userRepository = userRepository;
-		}
-	}
-
 	@Bean
 	public ISecurityRoleInformationService roleInformationService() {
-		RoleInformationServiceConfig config = roleInformationServiceConfig();
+		RoleInformationServiceConfig config = this.roleInformationServiceConfig();
 		DatabaseRoleInformationService roleInformationService = new DatabaseRoleInformationService();
 
 		Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
@@ -208,71 +145,14 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	@ConfigurationProperties(prefix = "ontimize.security.roleInformationService")
+	@ConfigurationProperties(prefix = "ontimize.security.role-information-service")
 	public RoleInformationServiceConfig roleInformationServiceConfig() {
 		return new RoleInformationServiceConfig();
 	}
 
-	protected static class RoleInformationServiceConfig {
-		private String	roleRepository;
-		private String	roleNameColumn;
-		private String	serverPermissionQueryId;
-		private String	serverPermissionNameColumn;
-		private String	clientPermissionQueryId;
-		private String	clientPermissionColumn;
-
-		public String getRoleRepository() {
-			return roleRepository;
-		}
-
-		public void setRoleRepository(String roleRepository) {
-			this.roleRepository = roleRepository;
-		}
-
-		public String getRoleNameColumn() {
-			return roleNameColumn;
-		}
-
-		public void setRoleNameColumn(String roleNameColumn) {
-			this.roleNameColumn = roleNameColumn;
-		}
-
-		public String getServerPermissionQueryId() {
-			return serverPermissionQueryId;
-		}
-
-		public void setServerPermissionQueryId(String serverPermissionQueryId) {
-			this.serverPermissionQueryId = serverPermissionQueryId;
-		}
-
-		public String getServerPermissionNameColumn() {
-			return serverPermissionNameColumn;
-		}
-
-		public void setServerPermissionNameColumn(String serverPermissionNameColumn) {
-			this.serverPermissionNameColumn = serverPermissionNameColumn;
-		}
-
-		public String getClientPermissionQueryId() {
-			return clientPermissionQueryId;
-		}
-
-		public void setClientPermissionQueryId(String clientPermissionQueryId) {
-			this.clientPermissionQueryId = clientPermissionQueryId;
-		}
-
-		public String getClientPermissionColumn() {
-			return clientPermissionColumn;
-		}
-
-		public void setClientPermissionColumn(String clientPermissionColumn) {
-			this.clientPermissionColumn = clientPermissionColumn;
-		}
-	}
-
 	@Bean
 	public ISecurityUserRoleInformationService userRoleInformationService() {
-		UserRoleInformationServiceConfig userRoleInformationServiceConfig = userRoleInformationServiceConfig();
+		UserRoleInformationServiceConfig userRoleInformationServiceConfig = this.userRoleInformationServiceConfig();
 		DatabaseUserRoleInformationService userRoleInformationService = new DatabaseUserRoleInformationService();
 
 		Object userRoleDao = this.getApplicationContext().getBean(userRoleInformationServiceConfig.getUserRoleRepository());
@@ -287,48 +167,9 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	@ConfigurationProperties(prefix = "ontimize.security.userRoleInformationService")
+	@ConfigurationProperties(prefix = "ontimize.security.user-role-information-service")
 	public UserRoleInformationServiceConfig userRoleInformationServiceConfig() {
 		return new UserRoleInformationServiceConfig();
-	}
-
-	protected static class UserRoleInformationServiceConfig {
-		private String	userRoleRepository;
-		private String	queryId;
-		private String	roleLoginColumn;
-		private String	roleNameColumn;
-
-		public String getUserRoleRepository() {
-			return userRoleRepository;
-		}
-
-		public void setUserRoleRepository(String userRoleRepository) {
-			this.userRoleRepository = userRoleRepository;
-		}
-
-		public String getQueryId() {
-			return queryId;
-		}
-
-		public void setQueryId(String queryId) {
-			this.queryId = queryId;
-		}
-
-		public String getRoleLoginColumn() {
-			return roleLoginColumn;
-		}
-
-		public void setRoleLoginColumn(String roleLoginColumn) {
-			this.roleLoginColumn = roleLoginColumn;
-		}
-
-		public String getRoleNameColumn() {
-			return roleNameColumn;
-		}
-
-		public void setRoleNameColumn(String roleNameColumn) {
-			this.roleNameColumn = roleNameColumn;
-		}
 	}
 
 	@Bean
@@ -344,7 +185,7 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public IAuthenticationMechanism jwtAuthenticator() {
 		JwtAuthenticationMechanism jwtAuthenticator = new JwtAuthenticationMechanism();
-		jwtAuthenticator.setJwtService(jwtService());
+		jwtAuthenticator.setJwtService(this.jwtService());
 		jwtAuthenticator.setTokenExpirationTime(0);
 		return jwtAuthenticator;
 	}
@@ -357,9 +198,7 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(authenticationProvider());
-		// Create a default account
-		auth.inMemoryAuthentication().withUser("admin").password("password").roles("ADMIN");
+		auth.authenticationProvider(this.authenticationProvider());
 	}
 
 	// @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
@@ -371,14 +210,14 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		OntimizeAuthenticationProvider provider = new OntimizeAuthenticationProvider();
-		provider.setUserCache(userCache());
+		provider.setUserCache(this.userCache());
 		return provider;
 	}
 
 	@Bean
 	public AccessDecisionVoter ontimizeAccessDecisionVoter() {
 		OntimizeAccessDecisionVoter ontimizeVoter = new OntimizeAccessDecisionVoter();
-		ontimizeVoter.setDefaultVoter(defaultVoter());
+		ontimizeVoter.setDefaultVoter(this.defaultVoter());
 		return ontimizeVoter;
 	}
 
@@ -392,7 +231,7 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	@Bean
 	public AccessDecisionManager accessDecisionManager() {
 		List<AccessDecisionVoter<? extends Object>> decisionVoters = new ArrayList<>();
-		decisionVoters.add(ontimizeAccessDecisionVoter());
+		decisionVoters.add(this.ontimizeAccessDecisionVoter());
 		AffirmativeBased accessDecisionManager = new AffirmativeBased(decisionVoters);
 		accessDecisionManager.setAllowIfAllAbstainDecisions(false);
 		return accessDecisionManager;
@@ -407,9 +246,9 @@ public class SecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	public FilterSecurityInterceptor filterInvocationInterceptor() throws Exception {
 		FilterSecurityInterceptor filterInvocationInterceptor = new FilterSecurityInterceptor();
 		filterInvocationInterceptor.setObserveOncePerRequest(true);
-		filterInvocationInterceptor.setAuthenticationManager(authenticationManager());
-		filterInvocationInterceptor.setAccessDecisionManager(accessDecisionManager());
-		filterInvocationInterceptor.setSecurityMetadataSource(filterInvocationSecurityMetadataSource());
+		filterInvocationInterceptor.setAuthenticationManager(this.authenticationManager());
+		filterInvocationInterceptor.setAccessDecisionManager(this.accessDecisionManager());
+		filterInvocationInterceptor.setSecurityMetadataSource(this.filterInvocationSecurityMetadataSource());
 		return filterInvocationInterceptor;
 	}
 
