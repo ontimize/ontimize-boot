@@ -53,7 +53,7 @@ import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVote
 
 @Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "default", matchIfMissing = true)
+@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "default", matchIfMissing = false)
 public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override

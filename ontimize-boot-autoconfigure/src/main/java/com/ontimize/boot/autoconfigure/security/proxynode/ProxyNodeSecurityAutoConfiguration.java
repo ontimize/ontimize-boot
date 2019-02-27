@@ -34,7 +34,7 @@ import com.ontimize.jee.server.security.authentication.jwt.JwtAuthenticationMech
 
 @Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "default", matchIfMissing = true)
+@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "default", matchIfMissing = false)
 public class ProxyNodeSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private Environment env;

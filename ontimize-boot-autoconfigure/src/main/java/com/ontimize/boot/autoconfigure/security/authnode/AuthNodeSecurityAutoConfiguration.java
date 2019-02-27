@@ -55,7 +55,7 @@ import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
  *
  */
 @Configuration
-@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "authnode", matchIfMissing = true)
+@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "authnode", matchIfMissing = false)
 public class AuthNodeSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 
 	private static final Logger	logger	= LoggerFactory.getLogger(AuthNodeSecurityAutoConfiguration.class);

@@ -64,7 +64,7 @@ import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVote
  */
 @Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "proxy", matchIfMissing = true)
+@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "proxy", matchIfMissing = false)
 public class InternalNodeSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 
 	private static final Logger	logger	= LoggerFactory.getLogger(AuthNodeSecurityAutoConfiguration.class);
