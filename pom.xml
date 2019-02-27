@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
+<!-- 	<parent> -->
+<!-- 		<groupId>com.ontimize.boot</groupId> -->
+<!-- 		<artifactId>ontimize-boot-dependencies</artifactId> -->
+<!-- 		<version>2.0.0-SNAPSHOT</version> -->
+<!-- 	</parent> -->
+
 	<parent>
-		<groupId>com.imatia.ontimize.cloud</groupId>
-		<artifactId>ontimize-service-parent</artifactId>
-		<version>2.0.0-SNAPSHOT</version>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.2.RELEASE</version>
 	</parent>
 
 	<groupId>com.ontimize.boot</groupId>
@@ -13,51 +21,23 @@
 	<version>2.0.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<modules>
-		<module>ontimize-boot-autoconfigure</module>
-		<module>ontimize-boot-starters</module>
-	</modules>
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-autoconfigure</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-core</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-common</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-jdbc</artifactId>
-				<version>${project.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework.session</groupId>
-						<artifactId>spring-session-data-redis</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
-
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-rest</artifactId>
-				<version>${project.version}</version>
+				<artifactId>ontimize-boot-dependencies</artifactId>
+				<version>2.0.0-SNAPSHOT</version>
+				<scope>import</scope>
+				<type>pom</type>
 			</dependency>
 		</dependencies>
 
 	</dependencyManagement>
+
+	<modules>
+		<module>ontimize-boot-autoconfigure</module>
+		<module>ontimize-boot-starters</module>
+	</modules>
 
 	<build>
 		<plugins>
