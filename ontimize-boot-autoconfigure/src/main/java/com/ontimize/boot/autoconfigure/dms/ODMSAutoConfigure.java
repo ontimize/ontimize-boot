@@ -53,7 +53,9 @@ public class ODMSAutoConfigure {
 	public OntimizeDMSConfiguration ontimizeDMSConfiguration() {
 		DMSConfiguration dmsConfiguration = new DMSConfiguration();
 		dmsConfiguration.setEngine((IDMSServiceServer)this.ontimizeDMSService());
-		return new OntimizeDMSConfiguration();
+		OntimizeDMSConfiguration ontimizeDMSConfiguration = new OntimizeDMSConfiguration();
+		ontimizeDMSConfiguration.setDmsConfiguration(dmsConfiguration);
+		return ontimizeDMSConfiguration;
 	}
 	
 }
