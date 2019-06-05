@@ -3,6 +3,7 @@ package com.ontimize.boot.autoconfigure.jdbc;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -23,6 +24,7 @@ import com.ontimize.jee.server.dao.dbhandler.SQLServerSQLStatementHandler;
 
 @Configuration
 @PropertySource("classpath:ontimize-jdbc.properties")
+@ConditionalOnClass(DataSource.class)
 public class JdbcAutoConfiguration {
 
 	@Value("${ontimize.jdbc.sqlConditionProcessor.upperString:false}")
@@ -30,14 +32,17 @@ public class JdbcAutoConfiguration {
 
 	@Value("${ontimize.jdbc.sqlConditionProcessor.upperLike:true}")
 	boolean upperLike;
-
+	
+	
 	@Bean
 	@Primary
 	@ConfigurationProperties(prefix = "spring.datasource")
+	@ConditionalOnProperty(name = "ontimize.jdbc.datasource.enabled", havingValue = "true", matchIfMissing = true)
 	public DataSource mainDataSource() {
 		DataSource dataSource = DataSourceBuilder.create().build();
 		return dataSource;
 	}
+	
 
 	@Bean("dbSQLStatementHandler")
 	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "postgres")
