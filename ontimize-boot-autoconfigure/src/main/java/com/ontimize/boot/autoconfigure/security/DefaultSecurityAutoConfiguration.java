@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -18,8 +19,10 @@ import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserCache;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
@@ -43,6 +46,7 @@ import com.ontimize.jee.server.security.SecurityConfiguration;
 import com.ontimize.jee.server.security.authentication.IAuthenticationMechanism;
 import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationFilter;
 import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationProvider;
+import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationSuccessHandler;
 import com.ontimize.jee.server.security.authentication.basic.BasicAuthenticationMechanism;
 import com.ontimize.jee.server.security.authentication.jwt.DefaultJwtService;
 import com.ontimize.jee.server.security.authentication.jwt.IJwtService;
@@ -55,31 +59,31 @@ import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVote
 @EnableWebSecurity
 @ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "default", matchIfMissing = false)
 public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
+	@Value("${ontimize.security.servicePath:/**}")
+	private String servicePath;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http //
-		.exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint()).and() //
-		.csrf().disable() //
-		.anonymous().disable() // Anonymous disable
-		.authorizeRequests().antMatchers("/").permitAll().anyRequest().authenticated().and() //
-		.addFilterBefore(this.preAuthFilterOntimize(), UsernamePasswordAuthenticationFilter.class) //
+		http.antMatcher(this.servicePath) //
+		.exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint())//
+		// private
+		.and().csrf().disable().anonymous().disable() // Anonymous disable
+		.authorizeRequests().antMatchers(this.servicePath).permitAll().anyRequest().authenticated()
+		// no create sessions
+		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
+		// ontimize filters
+		.and().addFilterBefore(this.preAuthFilterOntimize(), UsernamePasswordAuthenticationFilter.class) //
 		.addFilter(this.filterInvocationInterceptor());
 	}
 
-	@Bean
-	public SecurityConfiguration securityConfiguration() {
-		SecurityConfiguration securityConfiguration = new SecurityConfiguration();
-		securityConfiguration.setUserInformationService(this.userDetailsService());
-		securityConfiguration.setUserRoleInformationService(this.userRoleInformationService());
-		securityConfiguration.setRoleInformationService(this.roleInformationService());
-		securityConfiguration.setAuthorizator(this.ontimizeAuthorizator());
-		return securityConfiguration;
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/resources/**");
 	}
 
-	@Bean
+	// @Bean no puede ser un bean porque se configuraria para todos los websecurity de la aplicacion
 	public OntimizeAuthenticationFilter preAuthFilterOntimize() throws Exception {
-		OntimizeAuthenticationFilter filter = new OntimizeAuthenticationFilter();
+		OntimizeAuthenticationFilter filter = new OntimizeAuthenticationFilter("/private/**");
 		filter.setUserDetailsService(this.userDetailsService());
 		filter.setUserCache(this.userCache());
 		filter.setJwtService(this.jwtService());
@@ -89,14 +93,9 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		filter.setAuthenticationMechanismList(new ArrayList<>());
 		filter.getAuthenticationMechanismList().add(this.jwtAuthenticator());
 		filter.getAuthenticationMechanismList().add(this.basicAuthenticator());
+		filter.setAuthenticationSuccessHandler(new OntimizeAuthenticationSuccessHandler());
+		filter.afterPropertiesSet();
 		return filter;
-	}
-
-	@Bean
-	public AuthenticationEntryPoint authenticationEntryPoint() {
-		BasicAuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
-		authenticationEntryPoint.setRealmName("ONTIMIZE REALM");
-		return authenticationEntryPoint;
 	}
 
 	@Override
@@ -173,20 +172,29 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	}
 
 	@Bean
+	@ConfigurationProperties(prefix = "ontimize.security.jwt")
+	public JWTConfig jwtConfig() {
+		return new JWTConfig();
+	}
+
+	@Bean
 	public UserCache userCache() {
 		return new MemoryUserCache();
 	}
 
 	@Bean
 	public IJwtService jwtService() {
-		return new DefaultJwtService("ld.a,#82xyz");
+		JWTConfig jwtConfig = this.jwtConfig();
+		return new DefaultJwtService(jwtConfig.getPassword() == null ? "ld.a,#82xyz" : jwtConfig.getPassword());
 	}
 
 	@Bean
 	public IAuthenticationMechanism jwtAuthenticator() {
+		JWTConfig jwtConfig = this.jwtConfig();
 		JwtAuthenticationMechanism jwtAuthenticator = new JwtAuthenticationMechanism();
 		jwtAuthenticator.setJwtService(this.jwtService());
-		jwtAuthenticator.setTokenExpirationTime(0);
+		jwtAuthenticator.setTokenExpirationTime(jwtConfig.getExpirationTime() == null ? 0 : jwtConfig.getExpirationTime());
+		jwtAuthenticator.setRefreshToken(jwtConfig.getRefreshToken() == null ? false : jwtConfig.getRefreshToken());
 		return jwtAuthenticator;
 	}
 
@@ -242,7 +250,7 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		return new DefaultOntimizeAuthorizator();
 	}
 
-	@Bean
+	// @Bean
 	public FilterSecurityInterceptor filterInvocationInterceptor() throws Exception {
 		FilterSecurityInterceptor filterInvocationInterceptor = new FilterSecurityInterceptor();
 		filterInvocationInterceptor.setObserveOncePerRequest(true);
@@ -261,4 +269,22 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 				new DefaultWebSecurityExpressionHandler());
 		return filterSecurityMetadataSource;
 	}
+
+	@Bean
+	public SecurityConfiguration securityConfiguration() {
+		SecurityConfiguration securityConfiguration = new SecurityConfiguration();
+		securityConfiguration.setUserInformationService(this.userDetailsService());
+		securityConfiguration.setUserRoleInformationService(this.userRoleInformationService());
+		securityConfiguration.setRoleInformationService(this.roleInformationService());
+		securityConfiguration.setAuthorizator(this.ontimizeAuthorizator());
+		return securityConfiguration;
+	}
+
+	@Bean
+	public AuthenticationEntryPoint authenticationEntryPoint() {
+		BasicAuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
+		authenticationEntryPoint.setRealmName("ONTIMIZE REALM");
+		return authenticationEntryPoint;
+	}
+
 }
