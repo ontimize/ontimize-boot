@@ -1,7 +1,4 @@
 package com.ontimize.boot.autoconfigure.rest;
-
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -35,19 +32,13 @@ public class RestAutoConfiguration implements WebMvcConfigurer {
 	}
 
 	@Bean
+	public GlobalCorsProperties globalCorsProperties() {
+		return new GlobalCorsProperties();
+	}
+
+	@Bean
 	public LinkedHashMap<String, CorsConfiguration> ontimizeJeeCorsConfigurations() {
-		LinkedHashMap<String, CorsConfiguration> ontimizeJeeCorsConfigurations = new LinkedHashMap<>();
-
-		CorsConfiguration corsConfiguration = new CorsConfiguration();
-		corsConfiguration.setAllowedOrigins(Collections.singletonList("*"));
-		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "PUT", "POST", "OPTIONS", "DELETE"));
-		corsConfiguration.setExposedHeaders(Collections.singletonList("X-Auth-Token"));
-		corsConfiguration.setAllowedHeaders(Collections.singletonList("*"));
-		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setMaxAge(1600L);
-
-		ontimizeJeeCorsConfigurations.put("/**", corsConfiguration);
-		return ontimizeJeeCorsConfigurations;
+		return this.globalCorsProperties().getCorsConfigurations();
 	}
 
 
