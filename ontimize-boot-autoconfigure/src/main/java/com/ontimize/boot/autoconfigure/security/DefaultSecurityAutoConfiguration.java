@@ -43,7 +43,9 @@ import com.ontimize.jee.server.security.ISecurityUserInformationService;
 import com.ontimize.jee.server.security.ISecurityUserRoleInformationService;
 import com.ontimize.jee.server.security.MemoryUserCache;
 import com.ontimize.jee.server.security.SecurityConfiguration;
+import com.ontimize.jee.server.security.authentication.DefaultSecurityJWTTokenGenerator;
 import com.ontimize.jee.server.security.authentication.IAuthenticationMechanism;
+import com.ontimize.jee.server.security.authentication.ISecurityJWTTokenGenerator;
 import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationFilter;
 import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationProvider;
 import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationSuccessHandler;
@@ -83,10 +85,10 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 
 	// @Bean no puede ser un bean porque se configuraria para todos los websecurity de la aplicacion
 	public OntimizeAuthenticationFilter preAuthFilterOntimize() throws Exception {
-		OntimizeAuthenticationFilter filter = new OntimizeAuthenticationFilter("/private/**");
+		OntimizeAuthenticationFilter filter = new OntimizeAuthenticationFilter(this.servicePath);
 		filter.setUserDetailsService(this.userDetailsService());
 		filter.setUserCache(this.userCache());
-		filter.setJwtService(this.jwtService());
+		filter.setTokenGenerator(this.tokenGenerator());
 		filter.setGenerateJwtHeader(true);
 		filter.setAuthenticationManager(this.authenticationManager());
 		filter.setAuthenticationEntryPoint(this.authenticationEntryPoint());
@@ -117,6 +119,13 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		}
 
 		return databaseUserInformationService;
+	}
+
+	@Bean
+	public ISecurityJWTTokenGenerator tokenGenerator() {
+		DefaultSecurityJWTTokenGenerator tokenGenerator = new DefaultSecurityJWTTokenGenerator();
+		tokenGenerator.setJwtService(this.jwtService());
+		return tokenGenerator;
 	}
 
 	@Bean

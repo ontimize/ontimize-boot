@@ -32,8 +32,8 @@ public class JdbcAutoConfiguration {
 
 	@Value("${ontimize.jdbc.sqlConditionProcessor.upperLike:true}")
 	boolean upperLike;
-	
-	
+
+
 	@Bean
 	@Primary
 	@ConfigurationProperties(prefix = "spring.datasource")
@@ -42,7 +42,7 @@ public class JdbcAutoConfiguration {
 		DataSource dataSource = DataSourceBuilder.create().build();
 		return dataSource;
 	}
-	
+
 
 	@Bean("dbSQLStatementHandler")
 	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "postgres")

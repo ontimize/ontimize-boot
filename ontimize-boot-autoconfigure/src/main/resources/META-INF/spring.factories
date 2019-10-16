@@ -3,6 +3,5 @@ com.ontimize.boot.autoconfigure.core.CoreAutoConfiguration,\
 com.ontimize.boot.autoconfigure.rest.RestAutoConfiguration,\
 com.ontimize.boot.autoconfigure.jdbc.JdbcAutoConfiguration,\
 com.ontimize.boot.autoconfigure.security.DefaultSecurityAutoConfiguration,\
-com.ontimize.boot.autoconfigure.security.internalnode.InternalNodeSecurityAutoConfiguration,\
-com.ontimize.boot.autoconfigure.security.authnode.AuthNodeSecurityAutoConfiguration,\
+com.ontimize.boot.autoconfigure.security.MethodSecurityConfiguration,\
 com.ontimize.boot.autoconfigure.dms.ODMSAutoConfigure
