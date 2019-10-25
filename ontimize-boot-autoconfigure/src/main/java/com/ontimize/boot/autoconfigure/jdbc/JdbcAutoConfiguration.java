@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
@@ -77,15 +76,14 @@ public class JdbcAutoConfiguration {
 	}
 
 	@Bean("dbSQLStatementHandler")
-	@Conditional(DefaultSQLHandlerCondition.class)
+	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", matchIfMissing = true)
 	public SQLStatementHandler defaultSQLStatementHandler() {
 		SQLStatementHandler handler = new DefaultSQLStatementHandler();
 		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
 		return handler;
 	}
 
-	@Bean
-	public ExtendedSQLConditionValuesProcessor extendedSQLConditionValuesProcessor() {
+	private ExtendedSQLConditionValuesProcessor extendedSQLConditionValuesProcessor() {
 		return new ExtendedSQLConditionValuesProcessor(this.upperStrings, this.upperLike);
 	}
 
