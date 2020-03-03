@@ -17,7 +17,7 @@ public class DefaultSQLHandlerCondition implements Condition {
 		}catch(NoSuchBeanDefinitionException ex) {
 			
 		}
-		return sqlStatementHandler != null;
+		return sqlStatementHandler == null;
 	}
 
 }
