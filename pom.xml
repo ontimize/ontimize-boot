@@ -44,21 +44,18 @@
 				<groupId>com.ontimize.jee</groupId>
 				<artifactId>ontimize-jee-server-rest</artifactId>
 				<version>${project.dependency.ontimize-jee.version}</version>
-				<optional>true</optional>
 			</dependency>
 
 			<dependency>
 				<groupId>com.ontimize.jee.dms</groupId>
 				<artifactId>ontimize-jee-dms-rest</artifactId>
 				<version>${project.dependency.ontimize-jee-dms.version}</version>
-				<optional>true</optional>
 			</dependency>
 
 			<dependency>
 				<groupId>com.ontimize.jee.dms</groupId>
 				<artifactId>ontimize-jee-dms-server</artifactId>
 				<version>${project.dependency.ontimize-jee-dms.version}</version>
-				<optional>true</optional>
 			</dependency>
 
 			<dependency>
@@ -66,14 +63,13 @@
 				<artifactId>ontimize-boot-autoconfigure</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
-
 		</dependencies>
-
 	</dependencyManagement>
 
 	<modules>
 		<module>ontimize-boot-autoconfigure</module>
 		<module>ontimize-boot-starters</module>
+		<module>ontimize-boot-dependencies</module>
 	</modules>
 
 	<build>
@@ -92,18 +88,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<distributionManagement>
-		<repository>
-			<id>imatia-artifactory</id>
-			<name>libs-release-local</name>
-			<url>https://artifactory.imatia.com/artifactory/libs-release-local</url>
-		</repository>
-		<snapshotRepository>
-			<id>imatia-artifactory</id>
-			<name>libs-snapshot-local</name>
-			<url>https://artifactory.imatia.com/artifactory/libs-snapshot-local</url>
-		</snapshotRepository>
-	</distributionManagement>
-
 </project>
