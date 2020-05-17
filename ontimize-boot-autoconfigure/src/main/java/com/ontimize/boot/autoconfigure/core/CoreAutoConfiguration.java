@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import com.ontimize.jee.server.configuration.OntimizeConfiguration;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import com.ontimize.jee.server.security.SecurityConfiguration;
+import com.ontimize.jee.server.services.i18n.I18nConfiguration;
 import com.ontimize.jee.server.services.mail.MailConfiguration;
 
 @Configuration
@@ -16,6 +17,8 @@ public class CoreAutoConfiguration {
 	SecurityConfiguration	securityConfiguration;
 	@Autowired(required = false)
 	MailConfiguration		mailConfiguration;
+	@Autowired(required = false)
+	I18nConfiguration i18nConfiguration;
 
 	@Bean
 	public DefaultOntimizeDaoHelper defaultOntimizeDaoHelper() {
@@ -31,6 +34,10 @@ public class CoreAutoConfiguration {
 		if (this.mailConfiguration != null) {
 			ontimizeConfiguration.setMailConfiguration(this.mailConfiguration);
 		}
+		if (this.i18nConfiguration != null) {
+			ontimizeConfiguration.setI18nConfiguration(this.i18nConfiguration);
+		}
+
 		return ontimizeConfiguration;
 	}
 }

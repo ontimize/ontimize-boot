@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.ontimize.jee.common.services.dms.IDMSService;
 import com.ontimize.jee.server.services.dms.DMSConfiguration;
+import com.ontimize.jee.server.services.dms.DMSCreationHelper;
 import com.ontimize.jee.server.services.dms.DMSServiceCategoryHelper;
 import com.ontimize.jee.server.services.dms.DMSServiceDocumentHelper;
 import com.ontimize.jee.server.services.dms.DMSServiceFileHelper;
@@ -57,5 +58,10 @@ public class ODMSAutoConfigure {
 		ontimizeDMSConfiguration.setDmsConfiguration(dmsConfiguration);
 		return ontimizeDMSConfiguration;
 	}
-	
+
+	@Bean
+	public DMSCreationHelper dMSCreationHelper(){
+		return new DMSCreationHelper();
+	}
+
 }

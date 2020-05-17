@@ -1,234 +1,113 @@
 package com.ontimize.boot.autoconfigure.mail;
 
-public class MailConfig {
-	private String	encodingKey;
-	private String	hostKey;
-	private String	portKey;
-	private String	protocolKey;
-	private String	userKey;
-	private String	passwordKey;
-	private String	propertiesKey;
+import org.springframework.context.annotation.PropertySource;
 
-	private String	encoding;
-	private String	host;
-	private String	port;
-	private String	protocol;
-	private String	user;
-	private String	password;
-	private String	properties;
+public class MailConfig {
+
+
+	private String filterColumnName;
+	private String valueColumnName;
+	private String refRepository;
+	private String queryId;
+	private String filterColumnValueEncoding;
+	private String filterColumnValueHost;
+	private String filterColumnValuePort;
+	private String filterColumnValueProtocol;
+	private String filterColumnValueUser;
+	private String filterColumnValuePassword;
+	private String filterColumnValueJavaMailProperties;
+
+
 
 	public MailConfig() {
 		super();
 	}
 
-	/**
-	 * @return the encodingKey
-	 */
-	public String getEncodingKey() {
-		return this.encodingKey;
+	public String getFilterColumnName() {
+		return filterColumnName;
 	}
 
-	/**
-	 * @param encodingKey
-	 *            the encodingKey to set
-	 */
-	public void setEncodingKey(String encodingKey) {
-		this.encodingKey = encodingKey;
+	public void setFilterColumnName(String filterColumnName) {
+		this.filterColumnName = filterColumnName;
 	}
 
-	/**
-	 * @return the hostKey
-	 */
-	public String getHostKey() {
-		return this.hostKey;
+	public String getValueColumnName() {
+		return valueColumnName;
 	}
 
-	/**
-	 * @param hostKey
-	 *            the hostKey to set
-	 */
-	public void setHostKey(String hostKey) {
-		this.hostKey = hostKey;
+	public void setValueColumnName(String valueColumnName) {
+		this.valueColumnName = valueColumnName;
 	}
 
-	/**
-	 * @return the portKey
-	 */
-	public String getPortKey() {
-		return this.portKey;
+	public String getRefRepository() {
+		return refRepository;
 	}
 
-	/**
-	 * @param portKey
-	 *            the portKey to set
-	 */
-	public void setPortKey(String portKey) {
-		this.portKey = portKey;
+	public void setRefRepository(String refRepository) {
+		this.refRepository = refRepository;
 	}
 
-	/**
-	 * @return the protocolKey
-	 */
-	public String getProtocolKey() {
-		return this.protocolKey;
+	public String getQueryId() {
+		return queryId;
 	}
 
-	/**
-	 * @param protocolKey
-	 *            the protocolKey to set
-	 */
-	public void setProtocolKey(String protocolKey) {
-		this.protocolKey = protocolKey;
+	public void setQueryId(String queryId) {
+		this.queryId = queryId;
 	}
 
-	/**
-	 * @return the userKey
-	 */
-	public String getUserKey() {
-		return this.userKey;
+	public String getFilterColumnValueEncoding() {
+		return filterColumnValueEncoding;
 	}
 
-	/**
-	 * @param userKey
-	 *            the userKey to set
-	 */
-	public void setUserKey(String userKey) {
-		this.userKey = userKey;
+	public void setFilterColumnValueEncoding(String filterColumnValueEncoding) {
+		this.filterColumnValueEncoding = filterColumnValueEncoding;
 	}
 
-	/**
-	 * @return the passwordKey
-	 */
-	public String getPasswordKey() {
-		return this.passwordKey;
+	public String getFilterColumnValueHost() {
+		return filterColumnValueHost;
 	}
 
-	/**
-	 * @param passwordKey
-	 *            the passwordKey to set
-	 */
-	public void setPasswordKey(String passwordKey) {
-		this.passwordKey = passwordKey;
+	public void setFilterColumnValueHost(String filterColumnValueHost) {
+		this.filterColumnValueHost = filterColumnValueHost;
 	}
 
-	/**
-	 * @return the propertiesKey
-	 */
-	public String getPropertiesKey() {
-		return this.propertiesKey;
+	public String getFilterColumnValuePort() {
+		return filterColumnValuePort;
 	}
 
-	/**
-	 * @param propertiesKey
-	 *            the propertiesKey to set
-	 */
-	public void setPropertiesKey(String propertiesKey) {
-		this.propertiesKey = propertiesKey;
+	public void setFilterColumnValuePort(String filterColumnValuePort) {
+		this.filterColumnValuePort = filterColumnValuePort;
 	}
 
-	/**
-	 * @return the encoding
-	 */
-	public String getEncoding() {
-		return this.encoding;
+	public String getFilterColumnValueProtocol() {
+		return filterColumnValueProtocol;
 	}
 
-	/**
-	 * @param encoding
-	 *            the encoding to set
-	 */
-	public void setEncoding(String encoding) {
-		this.encoding = encoding;
+	public void setFilterColumnValueProtocol(String filterColumnValueProtocol) {
+		this.filterColumnValueProtocol = filterColumnValueProtocol;
 	}
 
-	/**
-	 * @return the host
-	 */
-	public String getHost() {
-		return this.host;
+	public String getFilterColumnValueUser() {
+		return filterColumnValueUser;
 	}
 
-	/**
-	 * @param host
-	 *            the host to set
-	 */
-	public void setHost(String host) {
-		this.host = host;
+	public void setFilterColumnValueUser(String filterColumnValueUser) {
+		this.filterColumnValueUser = filterColumnValueUser;
 	}
 
-	/**
-	 * @return the port
-	 */
-	public String getPort() {
-		return this.port;
+	public String getFilterColumnValuePassword() {
+		return filterColumnValuePassword;
 	}
 
-	/**
-	 * @param port
-	 *            the port to set
-	 */
-	public void setPort(String port) {
-		this.port = port;
+	public void setFilterColumnValuePassword(String filterColumnValuePassword) {
+		this.filterColumnValuePassword = filterColumnValuePassword;
 	}
 
-	/**
-	 * @return the protocol
-	 */
-	public String getProtocol() {
-		return this.protocol;
+	public String getFilterColumnValueJavaMailProperties() {
+		return filterColumnValueJavaMailProperties;
 	}
 
-	/**
-	 * @param protocol
-	 *            the protocol to set
-	 */
-	public void setProtocol(String protocol) {
-		this.protocol = protocol;
+	public void setFilterColumnValueJavaMailProperties(String filterColumnValueJavaMailProperties) {
+		this.filterColumnValueJavaMailProperties = filterColumnValueJavaMailProperties;
 	}
-
-	/**
-	 * @return the user
-	 */
-	public String getUser() {
-		return this.user;
-	}
-
-	/**
-	 * @param user
-	 *            the user to set
-	 */
-	public void setUser(String user) {
-		this.user = user;
-	}
-
-	/**
-	 * @return the password
-	 */
-	public String getPassword() {
-		return this.password;
-	}
-
-	/**
-	 * @param password
-	 *            the password to set
-	 */
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	/**
-	 * @return the properties
-	 */
-	public String getProperties() {
-		return this.properties;
-	}
-
-	/**
-	 * @param properties
-	 *            the properties to set
-	 */
-	public void setProperties(String properties) {
-		this.properties = properties;
-	}
-
 }

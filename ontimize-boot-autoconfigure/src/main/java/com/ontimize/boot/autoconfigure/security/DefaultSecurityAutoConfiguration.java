@@ -64,6 +64,9 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	@Value("${ontimize.security.servicePath:/**}")
 	private String servicePath;
 
+	@Value("${ontimize.security.ignorePaths:}")
+	private String[] ignorePaths;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.antMatcher(this.servicePath) //
@@ -81,6 +84,9 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**");
+		if (ignorePaths!=null && ignorePaths.length >0){
+			web.ignoring().antMatchers(ignorePaths);
+		}
 	}
 
 	// @Bean no puede ser un bean porque se configuraria para todos los websecurity de la aplicacion
