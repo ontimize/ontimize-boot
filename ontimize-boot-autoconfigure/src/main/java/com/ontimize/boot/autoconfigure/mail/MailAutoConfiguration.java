@@ -49,7 +49,7 @@ public class MailAutoConfiguration {
 	public IMailEngine mailEngine(){
 		SpringMailEngine engine = new SpringMailEngine();
 		engine.setConfigurator(mailConfigurator());
-		return new SpringMailEngine();
+		return engine;
 	}
 
 	@Bean

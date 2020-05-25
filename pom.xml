@@ -15,7 +15,7 @@
 
 	<properties>
 		<project.dependency.spring.boot.version>2.1.2.RELEASE</project.dependency.spring.boot.version>
-		<project.dependency.ontimize.boot.version>2.0.1</project.dependency.ontimize.boot.version>
+		<project.dependency.ontimize.boot.version>2.0.1-SNAPSHOT</project.dependency.ontimize.boot.version>
 		<project.dependency.ontimize-jee.version>2.0.1</project.dependency.ontimize-jee.version>
 		<project.dependency.ontimize-jee-dms.version>2.0.1</project.dependency.ontimize-jee-dms.version>
 	</properties>
