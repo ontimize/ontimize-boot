@@ -72,6 +72,12 @@
 			</dependency>
 
 			<dependency>
+				<groupId>com.ontimize.jee.dms</groupId>
+				<artifactId>ontimize-jee-dms-common</artifactId>
+				<version>${project.dependency.ontimize-jee-dms.version}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-autoconfigure</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
