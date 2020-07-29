@@ -5,11 +5,7 @@
 	<parent>
 		<groupId>com.ontimize.boot</groupId>
 		<artifactId>ontimize-boot-starters</artifactId>
-<<<<<<< HEAD
-		<version>2.1.0</version>
-=======
 		<version>2.1.1</version>
->>>>>>> develop
 	</parent>
 
 	<artifactId>ontimize-boot-starter-common</artifactId>
