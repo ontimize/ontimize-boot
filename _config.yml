@@ -116,7 +116,7 @@ author:
       url: "https://www.youtube.com/user/ImatiaInnovation"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/ontimize"
+      url: "https://github.com/ontimize/ontimize-boot"
 
 # Site Footer
 footer:
@@ -129,7 +129,7 @@ footer:
       url: "https://www.linkedin.com/company/imatia-innovation/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/ontimize"
+      url: "https://github.com/ontimize/ontimize-boot"
 
 
 # Reading Files
