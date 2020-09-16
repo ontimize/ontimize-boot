@@ -20,7 +20,7 @@ title                    : "Ontimize"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
 name                     : "Imatia Innovation, S.L"
-description              : "An amazing website."
+description              : ""
 url                      : "https://ontimize.github.io"
 baseurl                  : "/ontimize-boot"
 repository               : "ontimize/ontimize-boot"
