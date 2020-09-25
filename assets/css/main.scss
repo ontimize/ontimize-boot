@@ -6,3 +6,11 @@
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+.doubleColumnRow {
+    display: flex;
+}
+  
+.doubleColumn {
+    padding: 10px;
+}

@@ -1,0 +1,1 @@
+$('.jstreeloader').jstree();
