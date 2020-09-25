@@ -1,6 +1,6 @@
 ---
 title: "Getting started"
-layout: single
+layout: no-left
 permalink: /getting_started/
 toc: true
 toc_label: "Table of Contents"
