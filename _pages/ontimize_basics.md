@@ -1,4 +1,4 @@
 ---
 layout: single
-permalink: /ontimize_basics/
+permalink: /basics/
 ---
