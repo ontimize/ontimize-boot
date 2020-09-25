@@ -446,8 +446,8 @@ The first thing to do is to execute the `mvn install` command inside the project
   <div class="doubleColumn">
   {{ "Next, we navigate to the `model` folder to start the HSQLDB database
 
-    $ cd model
-    /model$ mvn exec:java -Prun_database
+    /app$ cd model
+    /app/model$ mvn exec:java -Prun_database
 " | markdownify }}
   </div>
 </div>
@@ -653,8 +653,8 @@ The first thing to do is to execute the `mvn install` command inside the project
   <div class="doubleColumn">
   {{ "To start the server, open a new console in the root folder of the project, navigate to `boot` folder and type the following command
 
-    $ cd boot
-    /boot$ mvn spring-boot:run
+    /app$ cd boot
+    /app/boot$ mvn spring-boot:run
 " | markdownify }}
   </div>
 </div>
