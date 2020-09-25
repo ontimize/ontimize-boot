@@ -651,7 +651,7 @@ The first thing to do is to execute the `mvn install` command inside the project
 </ul>
   </div>
   <div class="doubleColumn">
-  {{ "To start the server, navigate to the `boot` folder and type the following command
+  {{ "To start the server, open a new console in the root folder of the project, navigate to `boot` folder and type the following command
 
     $ cd boot
     /boot$ mvn spring-boot:run
