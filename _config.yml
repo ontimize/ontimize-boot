@@ -27,7 +27,9 @@ repository               : "ontimize/ontimize-boot"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : "/assets/images/logo-ontimize.png"
 masthead_title           : " "
-# breadcrumbs            : false # true, false (default)
+breadcrumbs            : true
+breadcrumb_home_label : "Ontimize Boot"
+breadcrumb_separator  : ">"
 words_per_minute         : 200
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "custom"
