@@ -7,7 +7,7 @@ toc_label: "Table of Contents"
 toc_sticky: true
 ---
 
-This page allows you to know how to start developing an application with Ontimize Boot in a simple way.
+This page allows you to know how to start developing an application with Ontimize Boot in a simple way. This project includes an HSQLDB database already prepared to start the application. It can be replaced.
 
 ## Prerequisites
 
