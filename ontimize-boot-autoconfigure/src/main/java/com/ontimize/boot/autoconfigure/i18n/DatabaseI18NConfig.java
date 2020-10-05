@@ -1,7 +1,7 @@
 package com.ontimize.boot.autoconfigure.i18n;
 
 /**
- * @author <a href="changeme@ext.inditex.com">faustino.lage</a>
+ * @author <a href="faustino.lage@imatia.com">faustino.lage</a>
  */
 public class DatabaseI18NConfig {
 
