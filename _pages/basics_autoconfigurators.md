@@ -1,7 +1,7 @@
 ---
 title: "Autoconfigurators"
 layout: single
-permalink: /basics/autoconfigurators
+permalink: /basics/autoconfigurators/
 toc: true
 toc_label: "Table of Contents"
 toc_sticky: true
