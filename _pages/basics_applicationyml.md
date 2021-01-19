@@ -10,7 +10,7 @@ breadcrumbs: true
 
 ## Introduction
 
-A [**YAML**](https://es.wikipedia.org/wiki/Intercambio_de_recursos_de_origen_cruzado) file, with extension ***.yml** or **.yaml** , is a human readable file in which we can write data pairs in a suitable way by combinations of lists, maps and simple data. Another of the most important features of these files is the indentation. It is important to write these indented elements correctly, since if they are badly indented, they cannot be parsed correctly.
+A [**YAML**](https://en.wikipedia.org/wiki/YAML) file, with extension ***.yml** or **.yaml** , is a human readable file in which we can write data pairs in a suitable way by combinations of lists, maps and simple data. Another of the most important features of these files is the indentation. It is important to write these indented elements correctly, since if they are badly indented, they cannot be parsed correctly.
 
 ## Application.yml file description
 
@@ -68,7 +68,7 @@ CORS global configuration
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| corsConfigurations | '[/**]' | Configuration for this entrypoint |
+| corsConfigurations | String | Configuration for this entrypoint |
 
 - **ontimize:globalcors:corsConfigurations:**
 
@@ -105,7 +105,7 @@ ontimize:
 | Attribute | Values | Meaning |
 |--|--|--|
 | nameConvention | upper, lower, database | Convention of data columns name |
-| sqlhandler | postgres, oracle, sqlserver, hsqldb | SQL handler |
+| sqlhandler | postgres, oracle, oracle12, sqlserver, hsqldb | SQL handler |
 
 
 - **ontimize:jdbc:sqlConditionProcessor:**
@@ -157,7 +157,7 @@ Information about the user
 | userLoginColumn | String | Name of the column with the username |
 | userPasswordColumn | String | Name of the column with the password |
 | queryId | String | Query identififer for login |
-| otherData | list | Other query columns |
+| otherData | List | Other query columns |
 
 - **ontimize:security:userRoleInformationService:**
 
@@ -215,7 +215,7 @@ security:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| uri-encoding | UTF-8 | URI encoding |
+| uri-encoding | String | URI encoding |
 
 - **ontimize:server:compression:**
 
@@ -260,7 +260,7 @@ Data source (DB connection)
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| store-type | none | Save the session in spring |
+| store-type | String | Save the session in spring |
 
 - **ontimize:spring:resources:**
 
@@ -296,10 +296,8 @@ spring:
          org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration, org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration
 ```
 
-**Complete Example**
+## Complete Example
 ```yaml
-application.yml
-
 endpoints:
    api:
       enabled: true
