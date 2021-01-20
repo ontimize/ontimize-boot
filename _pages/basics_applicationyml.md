@@ -211,6 +211,12 @@ security:
 |--|--|--|
 | port | int | Server port |
 
+-**ontimize:server:servlet:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| context-path| String | customized servlet path |
+
 - **ontimize:server:tomcat:**
 
 | Attribute | Values | Meaning |
@@ -227,6 +233,8 @@ security:
 **Example**
 ```yaml
 server:
+   servlet:
+      context-path: /custom/path
    port: 33333
    tomcat:
       uri-encoding: UTF-8
