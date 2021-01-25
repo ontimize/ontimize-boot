@@ -13,8 +13,8 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>com.ontimize.jee</groupId>
-			<artifactId>ontimize-jee-server</artifactId>
+			<groupId>com.ontimize.boot</groupId>
+			<artifactId>ontimize-boot-core</artifactId>
 		</dependency>
 	</dependencies>
 </project>

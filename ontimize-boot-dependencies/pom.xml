@@ -57,6 +57,12 @@
 
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-core</artifactId>
+				<version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-starter-core</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>

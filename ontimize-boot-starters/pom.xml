@@ -18,11 +18,4 @@
 		<module>ontimize-boot-starter-rest</module>
 		<module>ontimize-boot-starter-dms</module>
 	</modules>
-
-	<dependencies>
-		<dependency>
-			<groupId>com.ontimize.boot</groupId>
-			<artifactId>ontimize-boot-autoconfigure</artifactId>
-		</dependency>
-	</dependencies>
 </project>

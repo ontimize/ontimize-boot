@@ -41,14 +41,6 @@ public class RestAutoConfiguration implements WebMvcConfigurer {
 		return this.globalCorsProperties().getCorsConfigurations();
 	}
 
-
-	@Bean
-	OntimizeMapper ontimizeMapper() {
-		OntimizeMapper ontiMapper = new OntimizeMapper();
-		ontiMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-		return ontiMapper;
-	}
-
 	@Bean
 	public RequestMappingHandlerMapping handlerMapping() {
 		RequestMappingHandlerMapping requestMappingHandlerMapping = new RequestMappingHandlerMapping();
@@ -59,6 +51,13 @@ public class RestAutoConfiguration implements WebMvcConfigurer {
 	@Override
 	public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
 		converters.add(this.mappingJackson2HttpMessageConverter(this.ontimizeMapper()));
+	}
+
+	@Bean
+	OntimizeMapper ontimizeMapper() {
+		OntimizeMapper ontiMapper = new OntimizeMapper();
+		ontiMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+		return ontiMapper;
 	}
 
 	@Bean

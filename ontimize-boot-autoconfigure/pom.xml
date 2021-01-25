@@ -50,5 +50,10 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.ontimize.boot</groupId>
+			<artifactId>ontimize-boot-core</artifactId>
+		</dependency>
 	</dependencies>
 </project>
