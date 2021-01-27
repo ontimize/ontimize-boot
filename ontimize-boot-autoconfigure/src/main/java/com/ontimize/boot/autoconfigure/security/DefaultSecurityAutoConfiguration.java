@@ -84,6 +84,7 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	@Override
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**");
+		web.ignoring().antMatchers("/ontimize/**");
 		if (ignorePaths!=null && ignorePaths.length >0){
 			web.ignoring().antMatchers(ignorePaths);
 		}
