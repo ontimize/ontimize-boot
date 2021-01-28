@@ -121,6 +121,7 @@ ontimize:
       filterColumnValueUser: mail_user
       filterColumnValuePassword: mail_password
       filterColumnValueJavaMailProperties: mail_properties
+      engine: default
 ```
 
 ## REST
