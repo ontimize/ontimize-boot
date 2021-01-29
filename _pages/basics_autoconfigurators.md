@@ -22,9 +22,9 @@ The configuration of DMS system is done by setting up the necessary DAOs for tha
 **Example**
 ```yaml
 ontimize:
-  dms:
-    engine: odms
-    basePath: file:/C:/applications/QSAllComponents_Jee/dms
+   dms:
+      engine: odms
+      basePath: file:/C:/applications/QSAllComponents_Jee/dms
 ```
 
 ## I18n
