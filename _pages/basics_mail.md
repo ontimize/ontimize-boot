@@ -225,7 +225,7 @@ Let's create a DAO (Data Access Object) in the projectwiki-model module to use a
                 dao
                 <ul>
                   <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.java</li>
+                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCSettingsDao.java</li>
                   <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
                   <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
                 </ul>
@@ -250,7 +250,7 @@ Let's create a DAO (Data Access Object) in the projectwiki-model module to use a
             dao
             <ul>
               <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.xml</li>
+              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCSettingsDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
