@@ -316,26 +316,26 @@ Let's create a DAO (Data Access Object) in the projectwiki-model module to use a
 </ul>
   </div>
   <div class="doubleColumn" >
-    In our *.xml file we will indicate the database table for which DAO belongs, the data source from which we collect the information (i.e. the database connection that contains this table) and the schema to which the table belongs.
-    
-```yaml
-    OCSettingsDao.xml
-    <?xml version="1.0" encoding="UTF-8"?>
-    <JdbcEntitySetup
-        xmlns="http://www.ontimize.com/schema/jdbc"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
-        catalog="" schema="${mainschema}" table="TSETTING"
-        datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
-        <DeleteKeys>
-            <Column>ID_SETTING</Column>
-        </DeleteKeys>
-        <UpdateKeys>
-            <Column>ID_SETTING</Column>
-        </UpdateKeys>
-        <GeneratedKey>ID_SETTING</GeneratedKey>
-    </JdbcEntitySetup>
-```
+    {{ "In our *.xml file we will indicate the database table for which DAO belongs, the data source from which we collect the information (i.e. the database connection that contains this table) and the schema to which the table belongs." | markdownify }}
+
+    {{ "**OCSettingsDao.xml**" | markdownify }}   
+{% highlight xml linenos%}
+<?xml version="1.0" encoding="UTF-8"?>
+<JdbcEntitySetup
+    xmlns="http://www.ontimize.com/schema/jdbc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+    catalog="" schema="${mainschema}" table="TSETTING"
+    datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+    <DeleteKeys>
+        <Column>ID_SETTING</Column>
+    </DeleteKeys>
+    <UpdateKeys>
+        <Column>ID_SETTING</Column>
+    </UpdateKeys>
+    <GeneratedKey>ID_SETTING</GeneratedKey>
+</JdbcEntitySetup>
+{% endhighlight %}
 
   </div>
-  </div>
+</div>
