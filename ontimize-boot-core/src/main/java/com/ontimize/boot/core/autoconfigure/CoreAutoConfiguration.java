@@ -1,9 +1,11 @@
-package com.ontimize.boot.autoconfigure.core;
+package com.ontimize.boot.core.autoconfigure;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.ontimize.jee.common.jackson.OntimizeMapper;
 import com.ontimize.jee.server.configuration.OntimizeConfiguration;
 import com.ontimize.jee.server.dao.DefaultOntimizeDaoHelper;
 import com.ontimize.jee.server.security.SecurityConfiguration;
@@ -40,4 +42,8 @@ public class CoreAutoConfiguration {
 
 		return ontimizeConfiguration;
 	}
+
+
+
+
 }
