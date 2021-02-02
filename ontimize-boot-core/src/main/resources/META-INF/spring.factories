@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.ontimize.boot.core.autoconfigure.CoreAutoConfiguration,\
+com.ontimize.boot.core.autoconfigure.CoreActuatorAutoConfiguration
