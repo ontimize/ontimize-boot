@@ -7,10 +7,14 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-.doubleColumnRow {
+.multiColumnRow {
     display: flex;
 }
   
-.doubleColumn {
+.multiColumn {
     padding: 10px;
+}
+
+.verticalDivider {
+    border-left: 1px solid #F2F3F3;
 }
