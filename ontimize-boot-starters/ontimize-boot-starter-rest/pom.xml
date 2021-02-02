@@ -20,5 +20,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.ontimize.boot</groupId>
+			<artifactId>ontimize-boot-autoconfigure</artifactId>
+		</dependency>
 	</dependencies>
 </project>
