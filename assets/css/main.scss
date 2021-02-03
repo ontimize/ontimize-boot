@@ -10,6 +10,14 @@
 .multiColumnRow {
     display: flex;
 }
+
+.multiColumnRowJustify {
+    justify-content: center;
+}
+
+.multiColumnGrow {
+    flex-grow: 1;
+}
   
 .multiColumn {
     padding: 10px;
