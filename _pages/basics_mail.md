@@ -12,7 +12,9 @@ breadcrumbs: true
 
 Ontimize Boot is a framework that allows you to simplify the configuration of a project made with Ontimize EE, in a fast and efficient way. The email system allows you to send mail from the server with a simple configuration.
 
-## Previus concepts
+## Previous concepts
+
+**DAO**
 
 ## Prerequisites
 
