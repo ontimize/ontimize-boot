@@ -10,34 +10,40 @@ breadcrumbs: true
 
 ## Introduction
 
-To follow this tutorial, we will start from the base project created through the [**Getting Started**](https://ontimize.github.io/ontimize-boot/getting_started/). Once we have such a project, we can follow one of these options:
+Ontimize Boot is a framework that allows you to simplify the configuration of a project made with Ontimize EE, in a fast and efficient way. The email system allows you to send mail from the server with a simple configuration.
+
+## Previus concepts
+
+## Prerequisites
+
+This system can be used in any **Ontimize Boot** application. 
+For demonstration purposes, this tutorial can be followed in two ways, either by downloading the initial example on which the tutorial will be built or by downloading the full working example. 
 
 <br>
 <div class="doubleColumnRow">
   <div class="doubleColumn" >
-      <a href="https://www.ontimize.com/xwiki/bin/view/Ontimize+Boot+Training/Creating+DAO%2C+Service%2C+Controller">Create Service Candidates</a>
+      <a >Initial project</a>
       <br>
       <br>
-      This tutorial focuses on creating from scratch a Candidates Service database table, DAO, service and controller so that they can be consumed via a REST request.
+     To start with, we can clone the initial project in order to follow the tutorial step by step.
    
 </div>
   <div class="doubleColumn" >
-    <a href="https://www.ontimize.com/xwiki/bin/view/Ontimize+Boot+Training/">Ontimize Boot Training</a>
+    <a >Complete project</a>
     <br>
     <br>
-    Ontimize Boot is a framework that allows you to simplify the configuration of a project made with Ontimize EE, in a fast and efficient way. In this complete tutorial, we are going to create a backend for an application from scratch, including the database with different tables.
-  
+    Or clone the complete example from this tutorial and check which files are new and which have been modified.   
   </div>
   </div>
   <br>
 
-With the Candidate table and the Candidate service created, we can continue with this tutorial.
 
 ## Configuring email service with Ontimize Boot
 
-The Ontimize Boot email service allows you to send mail from the server with a simple configuration. The interface that implements this service is **com.ontimize.jee.common.services.mail.IMailService**.
+In this complete tutorial, we are going to create a backend for an application from scratch, including the database with different tables, configuring the server, creating the necessary **DAO** files and implementing the service. 
+At the end of the tutorial, we will even be testing that our mailing system is fully operational and functional. 
 
-### BD configuration
+### DB configuration
 
 If the configuration table does not exist in the DB, it can be created with the following command:
 
@@ -76,11 +82,239 @@ The implementation interface contains multiple methods, to which we must give pe
 **Sentencia SQL (HSQL)**
 
 ```yaml
-INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common.services.mail.IMailService/sendMail');
-INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common.services.mail.IMailService/sendMailWithoutAttach');
+INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common.services.mail.MailService/sendMail');
+INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common.services.mail.MailService/sendMailWithoutAttach');
 INSERT INTO TROLE_SERVER_PERMISSION (ID_ROLENAME, ID_SERVER_PERMISSION) VALUES((SELECT ID_ROLENAME FROM TROLE WHERE ROLENAME='admin'), (SELECT ID_SERVER_PERMISSION FROM TSERVER_PERMISSION WHERE PERMISSION_NAME='com.ontimize.jee.common.services.mail.IMailService/sendMail'));
 INSERT INTO TROLE_SERVER_PERMISSION (ID_ROLENAME, ID_SERVER_PERMISSION) VALUES((SELECT ID_ROLENAME FROM TROLE WHERE ROLENAME='admin'), (SELECT ID_SERVER_PERMISSION FROM TSERVER_PERMISSION WHERE PERMISSION_NAME='com.ontimize.jee.common.services.mail.IMailService/sendMailWithoutAttach'));
 ```
+
+
+### Adding dependencies
+
+Now we need to add the correct dependency in the correct **pom.xml**: 
+
+<div class="doubleColumnRow">
+  <div class="doubleColumn jstreeloader" >
+  <ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            api
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                service
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            boot
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            model
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                dao
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                service
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            ws
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                rest
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="doubleColumn" >
+
+{% highlight xml %}
+...
+<dependencies>
+...	
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-mail</artifactId>
+  </dependency>
+...
+</dependencies>
+...
+  {% endhighlight %}
+  </div>
+</div>
+
+
 
 ### Server Configuration
 
@@ -103,13 +337,13 @@ To configure this service, a new configuration fragment shall be added to the **
       engine: default
 ```
 
-This configuration indicates the keys and values to be stored in the database. The database table is the one corresponding to the bean described in the **refRepository: OCSettingsDao** attribute (in this case, OCSettingsDao), which can be seen in the table "TSETTING" attribute (for this example, TSETTING) of the \*.xml configuration file of the bean (OCSettingsDao.xml). The keys would be stored in the SETTING_KEY column, the values in the SETTING_VALUE column and the rest of the attributes map the keys that exist in the database.
+This configuration indicates the keys and values to be stored in the database. The database table is the one corresponding to the bean described in the **refRepository: OCSettingsDao** attribute (in this case, OCSettingsDao), which can be seen in the table `TSETTING` attribute (for this example, `TSETTING`) of the \*.xml configuration file of the bean (*OCSettingsDao.xml*). The keys would be stored in the `SETTING_KEY` column, the values in the `SETTING_VALUE` column and the rest of the attributes map the keys that exist in the database.
 
 In addition, the packet that will be scanned to look for the implementation of the email service is indicated.
 
 ### Creation of DAO files
 
-Let's create a DAO (Data Access Object) in the projectwiki-model module to use as a model of this database table. The DAO is composed by 2 files, a file with extension _.xml and a _.java file.
+Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-model` module to use as a model of this database table. The **DAO** is composed by 2 files, a file with extension \*.xml and a \*.java file.
 
 <div class="doubleColumnRow">
   <div class="doubleColumn jstreeloader" >
@@ -316,7 +550,7 @@ Let's create a DAO (Data Access Object) in the projectwiki-model module to use a
 </ul>
   </div>
   <div class="doubleColumn" >
-    {{ "In our *.xml file we will indicate the database table for which DAO belongs, the data source from which we collect the information (i.e. the database connection that contains this table) and the schema to which the table belongs." | markdownify }}
+    {{ "In our *.xml file we will indicate the database table for which **DAO** belongs, the data source from which we collect the information (e.g. the database connection that contains this table) and the schema to which the table belongs." | markdownify }}
 
     {{ "**OCSettingsDao.xml**" | markdownify }}   
 {% highlight xml linenos%}
@@ -337,5 +571,319 @@ Let's create a DAO (Data Access Object) in the projectwiki-model module to use a
 </JdbcEntitySetup>
 {% endhighlight %}
 
+    {{ "In the \*.java file we indicate that it is a repository whose name will be *CandidateDao*, through the annotation `@Repository`. With the annotation `@Lazy`, we will indicate that the load is delayed until it is completely necessary (improving in that way the performance), and the annotation `@ConfigurationFile` allows us to configure this **DAO** using the **XML** file and an additional file where some common characteristics to several **DAO**s can be stored. like the scheme to which they belong." | markdownify}}
+
+    {{ "**OCSettingsDao.java**" | markdownify }}
+{% highlight java linenos%}
+package model.core.dao;
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Repository;
+
+import com.ontimize.jee.server.dao.common.ConfigurationFile;
+import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
+
+@Repository("OCSettingsDao")
+@Lazy
+@ConfigurationFile(configurationFile = "dao/OCSettingsDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
+public class OCSettingsDao extends OntimizeJdbcDaoSupport {
+
+  public OCSettingsDao() {
+    super();
+  }
+
+}
+{% endhighlight %}
+
   </div>
 </div>
+
+### Implementation in an existing service
+
+To use this service in another service (e.g. to send a mail when a new record is created), just add a variable of type **com.ontimize.jee.common.services.mail.IMailService** and annotate it with `@Autowired`.
+
+<div class="doubleColumnRow">
+  <div class="doubleColumn jstreeloader" >
+  <ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            api
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                service
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            boot
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            model
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                dao
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                service
+                <ul>
+                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>CandidateService.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            ws
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                rest
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="doubleColumn" >
+
+{% highlight java %}
+...
+import com.ontimize.jee.common.services.mail.IMailService;
+...
+@Service("CandidateService")
+@Lazy
+public class CandidateService implements ICandidateService {
+...
+@Autowired
+private IMailService mailService;
+ ...
+@Override
+public EntityResult candidateInsert(Map<String, Object> attrMap) throws OntimizeJEERuntimeException {
+	EntityResult toRet = this.daoHelper.insert(this.candidateDao, attrMap);
+
+	if ((toRet.getCode() != EntityResult.OPERATION_WRONG)) {
+
+		Runnable runnable = () -> {
+
+		List<String> receiverList = new ArrayList<String>();
+		receiverList.add("receiver@example.com");
+		StringBuilder builder = new StringBuilder();
+		builder.append("Created new user.");
+		try {
+			this.mailService.sendMailWithoutAttach("my.mail@example.com", receiverList, "New candidate",
+				builder.toString());
+		} catch (OntimizeJEEException e) {
+	}
+	};
+			
+  DelegatingSecurityContextRunnable wrappedRunnable = new DelegatingSecurityContextRunnable(runnable);
+	  new Thread(wrappedRunnable).start();
+  }
+
+return toRet;
+}
+ ...
+  {% endhighlight %}
+  </div>
+</div>
+
+**Note:** For space reasons, the entire files are not included, only the code snippets **related to the tutorial**. The ... in the code snippets indicate that **there may** be unrelated code before or after them.
+{: .notice--warning}
+
+
+
+
+## Checking the sending of mails
+
+In order to check that the created service is indeed sending mails, we will use an external service called **FakeSMTP**, is a *free* Fake SMTP Server with GUI for testing emails in applications easily.
+
+To do this, we enter  [**this link**](http://nilhcem.com/FakeSMTP/download.html) and clone the repository it indicates into the workspace where we have our project. 
+
+We launch the DB and the server. Next, open a console and move to the path where **FakeSMTP** was downloaded: 
+
+```powershell
+...\FakeSMTP> mvn package-Dmaven.test.skip
+
+...\FakeSMTP> cd target
+
+...\FakeSMTP\target> java -jar fakeSMTP-2.1-SNAPSHOT.jar -s -p 2525
+```
+
+| Command | Meaning |
+|--|--|--|
+| fakeSMTP-VERSION.jar | Downloaded version. |
+| -s | Launch the server. |
+| - p 2525 | Launch the application on the port indicated. | 
+
+
+Now we can use an application like **Postman** to execute different REST requests to our project.
+
+### Use REST request
+
+The request types can only be **GET, POST, PUT, DELETE**. The authorization used for these requests is authorization of the type **BASIC**, whose credentials are **demo** as an user and **demouser** as a password.
+
+| Request type | Query | URL | Service method | Body request |
+|--|--|--|--|--|
+| 
