@@ -12,32 +12,34 @@ breadcrumbs: true
 
 Ontimize Boot is a framework that allows you to simplify the configuration of a project made with Ontimize EE, in a fast and efficient way. The email system allows you to send mail from the server with a simple configuration.
 
-## Previous concepts
-
-**DAO**
-
 ## Prerequisites
 
-This system can be used in any **Ontimize Boot** application. 
-For demonstration purposes, this tutorial can be followed in two ways, either by downloading the initial example on which the tutorial will be built or by downloading the full working example. 
+There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.
 
-<br>
-<div class="doubleColumnRow">
-  <div class="doubleColumn" >
-      <a >Initial project</a>
-      <br>
-      <br>
-     To start with, we can clone the initial project in order to follow the tutorial step by step.
+<div class="multiColumnRow multiColumnRowJustify">
+  <div class="multiColumn multiColumnGrow" >
+  {{ "**Initial project**
+ 
+    /$ git clone https://github.com/ontimize/ontimize-examples
+    /ontimize-examples$ cd ontimize-examples
+    /ontimize-examples$ git checkout boot-mail-initial"
+    | markdownify }}
    
 </div>
-  <div class="doubleColumn" >
-    <a >Complete project</a>
-    <br>
-    <br>
-    Or clone the complete example from this tutorial and check which files are new and which have been modified.   
+<div class="verticalDivider"></div>
+<div class="multiColumn multiColumnGrow">
+
+  {{ "**Final example**
+    
+    /$ git clone https://github.com/ontimize/ontimize-examples
+    /ontimize-examples$ cd ontimize-examples
+    /ontimize-examples$ git checkout boot-mail"
+    | markdownify }}
+
+
   </div>
   </div>
-  <br>
+
 
 
 ## Configuring email service with Ontimize Boot
@@ -59,8 +61,8 @@ We fill in this table with the data that applies to each specific mail server, i
 
 | SETTING_KEY     | SETTING_VALUE                                        | SETTING_COMMENT      |
 | --------------- | ---------------------------------------------------- | -------------------- |
-| mail_host       | smtp.gmail.com                                       | Server host          |
-| mail_port       | 587                                                  | Email server port    |
+| mail_host       | localhost                                            | Server host          |
+| mail_port       | 2525                                                 | Email server port    |
 | mail_protocol   | smtp                                                 | Mailing protocol     |
 | mail_user       | my.mail@example.com                                  | User for sending     |
 | mail_password   | my_password                                          | Mail server password |
@@ -70,8 +72,8 @@ We fill in this table with the data that applies to each specific mail server, i
 **Sentencia SQL (HSQL)**
 
 ```yaml
-INSERT INTO TSETTING (SETTING_KEY, SETTING_VALUE, SETTING_COMMENT) VALUES('mail_host', 'smtp.gmail.com', 'Server host');
-INSERT INTO TSETTING (SETTING_KEY, SETTING_VALUE, SETTING_COMMENT) VALUES('mail_port', '587', 'Email server port');
+INSERT INTO TSETTING (SETTING_KEY, SETTING_VALUE, SETTING_COMMENT) VALUES('mail_host', 'localhost', 'Server host');
+INSERT INTO TSETTING (SETTING_KEY, SETTING_VALUE, SETTING_COMMENT) VALUES('mail_port', '2525', 'Email server port');
 INSERT INTO TSETTING (SETTING_KEY, SETTING_VALUE, SETTING_COMMENT) VALUES('mail_protocol', 'smtp', 'Mailing protocol');
 INSERT INTO TSETTING (SETTING_KEY, SETTING_VALUE, SETTING_COMMENT) VALUES('mail_user', 'my.mail@example.com', 'User for sending');
 INSERT INTO TSETTING (SETTING_KEY, SETTING_VALUE, SETTING_COMMENT) VALUES('mail_password', 'my_password', 'Mail server password');
@@ -867,13 +869,11 @@ We launch the DB and the server. Next, open a console and move to the path where
 
 ```powershell
 ...\FakeSMTP> mvn package-Dmaven.test.skip
-
 ...\FakeSMTP> cd target
-
 ...\FakeSMTP\target> java -jar fakeSMTP-2.1-SNAPSHOT.jar -s -p 2525
 ```
 
-| Command | Meaning |
+| Command | Meaning |34
 |--|--|--|
 | fakeSMTP-VERSION.jar | Downloaded version. |
 | -s | Launch the server. |
@@ -884,8 +884,60 @@ Now we can use an application like **Postman** to execute different REST request
 
 ### Use REST request
 
-The request types can only be **GET, POST, PUT, DELETE**. The authorization used for these requests is authorization of the type **BASIC**, whose credentials are **demo** as an user and **demouser** as a password.
+The requests contains the following structure: **localhost:33333/candidates/candidate**
+
+| Element | Meaning |
+|--|--|
+| localhost:33333 | Indicates the host|
+| /candidates | Indicates the service to be queried |
+| /candidate | Indicates the **DAO** that will access that service |
+
+
+The request types can only be **GET, POST, PUT, DELETE**.
+
+Below are examples of request for candidates (**CANDIDATES**).
+
+The authorization used for these requests is authorization of the type **BASIC**.
+
+In both cases, the access must be done with a user and password example:
+
+        User: demo
+    Password: demouser
 
 | Request type | Query | URL | Service method | Body request |
 |--|--|--|--|--|
-| 
+| POST | insert | localhost:33333/candidates/candidate | candidateInsert | Example below |
+
+
+**Body request:**
+{% highlight json %}
+{
+    "data": {
+        "PHONE": "555-444-8888",
+        "BIRTHDAY": 788224700000,
+        "SURNAME": "Wilson",
+        "EMAIL": "wwiilsoon@example.org",
+        "SPECIALTIES": "C#",
+        "NAME": "William",
+        "DNI": "88643946Z"
+    },
+    "sqltypes": {
+        "SPECIALTIES": 12,
+        "LINKEDIN": 12,
+        "PHONE": 12,
+        "EXPERIENCE_LEVEL": 4,
+        "STATUS": 4,
+        "EMAIL": 12,
+        "WAGE_LEVEL": 2,
+        "DNI": 12,
+        "ID": 4,
+        "ORIGIN": 4,
+        "EDUCATION": 4,
+        "COMMENT": 12,
+        "PROFILE": 4,
+        "SURNAME": 12,
+        "NAME": 12,
+        "BIRTHDAY": 91
+    }
+}
+  {% endhighlight %}

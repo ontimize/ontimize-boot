@@ -14,3 +14,23 @@
 .doubleColumn {
     padding: 10px;
 }
+
+.multiColumnRow {
+    display: flex;
+}
+
+.multiColumnGrow {
+    flex-grow: 1;
+}
+.multiColumnRowJustify {
+    justify-content: center;
+}
+  
+  
+.multiColumn {
+    padding: 10px;
+}
+
+.verticalDivider {
+    border-left: 1px solid #F2F3F3;
+}
