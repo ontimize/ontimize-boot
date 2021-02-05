@@ -88,7 +88,8 @@ INSERT INTO TROLE_SERVER_PERMISSION (ID_ROLENAME, ID_SERVER_PERMISSION) VALUES((
 
 To configure this service, a new configuration fragment shall be added to the application.yml file.
 
-```yaml
+{%highlight yaml linenos%}
+
 ontimize:
     i18n:
       refBundleRepository: OCDatabaseBundleDao
@@ -99,7 +100,8 @@ ontimize:
       bundleValueTextKeyColumn: KEY
       bundunleValueKeyColumn: ID_I18N_VALUE
       engine: default
-```
+      
+{% endhighlight %}
 
 This configuration indicates the keys and values to be stored in the database. The database table is the one corresponding to the bean described in the **refRepository: OCDatabaseBundleDao** attribute.
 

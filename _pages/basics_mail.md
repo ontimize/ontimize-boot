@@ -320,7 +320,7 @@ Now we need to add the correct dependency in the correct **pom.xml**:
 ...
 </dependencies>
 ...
-  {% endhighlight %}
+{% endhighlight %}
   </div>
 </div>
 
@@ -330,7 +330,8 @@ Now we need to add the correct dependency in the correct **pom.xml**:
 
 To configure this service, a new configuration fragment shall be added to the **application.yml** file.
 
-```yaml
+{% highlight yaml linenos %}
+
 ontimize:
    mail:
       refRepository: OCSettingsDao
@@ -345,7 +346,9 @@ ontimize:
       filterColumnValuePassword: mail_password
       filterColumnValueJavaMailProperties: mail_properties
       engine: default
-```
+
+{% endhighlight %}
+
 
 This configuration indicates the keys and values to be stored in the database. The database table is the one corresponding to the bean described in the **refRepository: OCSettingsDao** attribute (in this case, OCSettingsDao), which can be seen in the table `TSETTING` attribute (for this example, `TSETTING`) of the \*.xml configuration file of the bean (*OCSettingsDao.xml*). The keys would be stored in the `SETTING_KEY` column, the values in the `SETTING_VALUE` column and the rest of the attributes map the keys that exist in the database.
 
@@ -873,11 +876,13 @@ To do this, we enter  [**this link**](http://nilhcem.com/FakeSMTP/download.html)
 
 We launch the DB and the server. Next, open a console and move to the path where **FakeSMTP** was downloaded: 
 
-```powershell
+{% highlight yaml linenos %}
+
 ...\FakeSMTP> mvn package-Dmaven.test.skip
 ...\FakeSMTP> cd target
 ...\FakeSMTP\target> java -jar fakeSMTP-2.1-SNAPSHOT.jar -s -p 2525
-```
+
+{% endhighlight %}
 
 | Command | Meaning |34
 |--|--|--|
