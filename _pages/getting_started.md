@@ -39,8 +39,8 @@ Open a console and type the next command:
 
 ## Start the project
 
-<div class="doubleColumnRow">
-  <div class="doubleColumn jstreeloader" >
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader" >
     <ul>
   <li data-jstree='{"selected": true, "opened":true, "icon":"fas fa-folder-open"}'>
   app
@@ -235,7 +235,7 @@ Open a console and type the next command:
   </li>
 </ul>
   </div>
-  <div class="doubleColumn">
+  <div class="multiColumn">
 {{ "To start the project, it is necessary to start both the database and the server.
 The first thing to do is to execute the `mvn install` command inside the project's root folder
 
@@ -247,8 +247,8 @@ The first thing to do is to execute the `mvn install` command inside the project
 
 ### Start the database
 
-<div class="doubleColumnRow">
-  <div class="doubleColumn jstreeloader" >
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader" >
     <ul>
   <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
   app
@@ -443,7 +443,7 @@ The first thing to do is to execute the `mvn install` command inside the project
   </li>
 </ul>
   </div>
-  <div class="doubleColumn">
+  <div class="multiColumn">
   {{ "Next, we navigate to the `model` folder to start the HSQLDB database
 
     /app$ cd model
@@ -454,8 +454,8 @@ The first thing to do is to execute the `mvn install` command inside the project
 
 ### Start the server
 
-<div class="doubleColumnRow">
-  <div class="doubleColumn jstreeloader" >
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader" >
     <ul>
   <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
   app
@@ -650,7 +650,7 @@ The first thing to do is to execute the `mvn install` command inside the project
   </li>
 </ul>
   </div>
-  <div class="doubleColumn">
+  <div class="multiColumn">
   {{ "To start the server, open a new console in the root folder of the project, navigate to `boot` folder and type the following command
 
     /app$ cd boot

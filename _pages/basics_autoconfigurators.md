@@ -22,9 +22,9 @@ The configuration of DMS system is done by setting up the necessary DAOs for tha
 **Example**
 ```yaml
 ontimize:
-  dms:
-    engine: odms
-    basePath: file:/C:/applications/QSAllComponents_Jee/dms
+   dms:
+      engine: odms
+      basePath: file:/C:/applications/QSAllComponents_Jee/dms
 ```
 
 ## I18n
@@ -121,6 +121,7 @@ ontimize:
       filterColumnValueUser: mail_user
       filterColumnValuePassword: mail_password
       filterColumnValueJavaMailProperties: mail_properties
+      engine: default
 ```
 
 ## REST
