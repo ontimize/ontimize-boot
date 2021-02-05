@@ -41,7 +41,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
   </div>
   </div>
 
-## Configuring internationalisation service in Ontimize Boot
+## Configuring internationalization service in Ontimize Boot
 
 In this complete tutorial, we are going to create a backend for an application from scratch, including the database with different tables, configuring the server, creating the necessary **DAO** files and implementing the service. 
 
