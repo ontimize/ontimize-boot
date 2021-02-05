@@ -100,7 +100,7 @@ ontimize:
       bundleValueTextKeyColumn: KEY
       bundunleValueKeyColumn: ID_I18N_VALUE
       engine: default
-      
+
 {% endhighlight %}
 
 This configuration indicates the keys and values to be stored in the database. The database table is the one corresponding to the bean described in the **refRepository: OCDatabaseBundleDao** attribute.
@@ -110,8 +110,8 @@ This configuration indicates the keys and values to be stored in the database. T
 It is necessary to create the **DAO**s that reflect the new DB tables we have created.
 
 
-<div class="doubleColumnRow">
-  <div class="doubleColumn jstreeloader" >
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader" >
   <ul>
   <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
   ontimize-examples
@@ -316,7 +316,7 @@ It is necessary to create the **DAO**s that reflect the new DB tables we have cr
   </li>
 </ul>
   </div>
-  <div class="doubleColumn" >
+  <div class="multiColumn" >
   {{ "We will start by creating the files \*.xml." | markdownify }}
 
   {{ "**OCDatabaseBundleDao.xml**" | markdownify }}   
@@ -407,6 +407,7 @@ public class OCDatabaseBundleValueDao extends OntimizeJdbcDaoSupport {
 }
 {% endhighlight %}
 
+</div>
 </div>
 
 ### Add translations
