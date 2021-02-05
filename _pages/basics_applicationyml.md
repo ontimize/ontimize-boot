@@ -305,7 +305,7 @@ spring:
 ```
 
 ## Complete Example
-```yaml
+{% highlight yaml linenos %}
 endpoints:
    api:
       enabled: true
@@ -384,5 +384,4 @@ spring:
    autoconfigure:
       exclude: |
          org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration, org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.FallbackWebSecurityAutoConfiguration
-
-```
+{% endhighlight %}

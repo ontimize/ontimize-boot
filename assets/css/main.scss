@@ -7,25 +7,17 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-.doubleColumnRow {
-    display: flex;
-}
-  
-.doubleColumn {
-    padding: 10px;
-}
-
 .multiColumnRow {
     display: flex;
+}
+
+.multiColumnRowJustify {
+    justify-content: center;
 }
 
 .multiColumnGrow {
     flex-grow: 1;
 }
-.multiColumnRowJustify {
-    justify-content: center;
-}
-  
   
 .multiColumn {
     padding: 10px;
