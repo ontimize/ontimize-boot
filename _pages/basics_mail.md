@@ -307,7 +307,7 @@ Now we need to add the correct dependency in the correct **pom.xml**:
   </li>
 </ul>
   </div>
-  <div class="multiColumn" >
+  <div class="multiColumn multiColumnGrow" >
 
 {% highlight xml %}
 ...
