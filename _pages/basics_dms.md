@@ -1970,32 +1970,32 @@ ontimize:
 It is necessary to add the permissions required for the role associated with the user to be able to execute REST requests, which are secured. For the example, we will add all the methods and give access to the *demo* user role.
 
 {%highlight sql linenos%}
-INSERT INTO TSERVER_PERMISSION VALUES(17,'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetContentOfVersion');
-INSERT INTO TSERVER_PERMISSION VALUES(18,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetProperty');
-INSERT INTO TSERVER_PERMISSION VALUES(19,'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileRecoverPreviousVersion');
-INSERT INTO TSERVER_PERMISSION VALUES(20,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentDeleteProperties');
-INSERT INTO TSERVER_PERMISSION VALUES(21,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetProperties');
-INSERT INTO TSERVER_PERMISSION VALUES(22,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetAllFiles');
-INSERT INTO TSERVER_PERMISSION VALUES(23,'com.ontimize.jee.server.services.dms.DMSServiceImpl/setRelatedDocuments');
-INSERT INTO TSERVER_PERMISSION VALUES(24,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentAddProperties');
-INSERT INTO TSERVER_PERMISSION VALUES(25,'com.ontimize.jee.server.services.dms.DMSServiceImpl/getRelatedDocument');
-INSERT INTO TSERVER_PERMISSION VALUES(26,'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryGetForDocument');
-INSERT INTO TSERVER_PERMISSION VALUES(27,'com.ontimize.jee.server.services.dms.DMSServiceImpl/moveFilesToCategory');
-INSERT INTO TSERVER_PERMISSION VALUES(28,'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileVersionQuery');
-INSERT INTO TSERVER_PERMISSION VALUES(29,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentQuery');
-INSERT INTO TSERVER_PERMISSION VALUES(30,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentInsert');
-INSERT INTO TSERVER_PERMISSION VALUES(31,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentUpdate');
-INSERT INTO TSERVER_PERMISSION VALUES(32,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetFiles');
-INSERT INTO TSERVER_PERMISSION VALUES(33,'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryInsert');
-INSERT INTO TSERVER_PERMISSION VALUES(34,'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileInsert');
-INSERT INTO TSERVER_PERMISSION VALUES(35,'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryUpdate');
-INSERT INTO TSERVER_PERMISSION VALUES(36,'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryDelete');
-INSERT INTO TSERVER_PERMISSION VALUES(37,'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileDelete');
-INSERT INTO TSERVER_PERMISSION VALUES(38,'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetVersions');
-INSERT INTO TSERVER_PERMISSION VALUES(39,'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetContent');
-INSERT INTO TSERVER_PERMISSION VALUES(40,'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileUpdate');
-INSERT INTO TSERVER_PERMISSION VALUES(41,'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentDelete');
-INSERT INTO TSERVER_PERMISSION VALUES(42,'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileQuery');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetContentOfVersion');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetProperty');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/fileRecoverPreviousVersion');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentDeleteProperties');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetProperties');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetAllFiles');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/setRelatedDocuments');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentAddProperties');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/getRelatedDocument');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryGetForDocument');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/moveFilesToCategory');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/fileVersionQuery');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentQuery');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentInsert');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentUpdate');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetFiles');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryInsert');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/fileInsert');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryUpdate');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryDelete');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/fileDelete');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetVersions');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetContent');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/fileUpdate');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/documentDelete');
+INSERT INTO TSERVER_PERMISSION VALUES('com.ontimize.jee.server.services.dms.DMSServiceImpl/fileQuery');
 {%endhighlight%}
 
 Add all permissions to the user role *demo*.
