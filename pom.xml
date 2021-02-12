@@ -96,6 +96,7 @@
 		<module>ontimize-boot-autoconfigure</module>
 		<module>ontimize-boot-core</module>
 		<module>ontimize-boot-starters</module>
+		<module>ontimize-boot-keycloak</module>
 	</modules>
 
 	<build>
