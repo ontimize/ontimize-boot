@@ -16,7 +16,7 @@
 	<properties>
 		<project.dependency.spring.boot.version>2.1.2.RELEASE</project.dependency.spring.boot.version>
 		<project.dependency.ontimize.boot.version>2.1.4-SNAPSHOT</project.dependency.ontimize.boot.version>
-		<project.dependency.ontimize-jee.version>2.1.2</project.dependency.ontimize-jee.version>
+		<project.dependency.ontimize-jee.version>2.1.4-SNAPSHOT</project.dependency.ontimize-jee.version>
 		<project.dependency.ontimize-jee-dms.version>2.0.1</project.dependency.ontimize-jee-dms.version>
 	</properties>
 
@@ -62,7 +62,7 @@
 			<dependency>
 				<groupId>com.ontimize.jee</groupId>
 				<artifactId>ontimize-jee-webclient-addons</artifactId>
-				<version>2.1.3-SNAPSHOT</version>
+				<version>${project.dependency.ontimize-jee.version}</version>
 			</dependency>
 
 			<dependency>
@@ -94,6 +94,12 @@
 				<artifactId>ontimize-boot-core</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-webaddons</artifactId>
+				<version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -102,7 +108,7 @@
 		<module>ontimize-boot-autoconfigure</module>
 		<module>ontimize-boot-core</module>
 		<module>ontimize-boot-starters</module>
-    <module>ontimize-boot-webaddons</module>
+    	<module>ontimize-boot-webaddons</module>
   </modules>
 
 	<build>
