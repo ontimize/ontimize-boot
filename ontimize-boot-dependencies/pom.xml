@@ -38,11 +38,17 @@
 			</dependency>
 
 			<dependency>
+				<groupId>com.ontimize.jee</groupId>
+				<artifactId>ontimize-jee-webclient-addons</artifactId>
+				<version>${project.dependency.ontimize-jee.version}</version>
+			</dependency>
+
+			<dependency>
 				<groupId>com.ontimize.jee.dms</groupId>
 				<artifactId>ontimize-jee-dms-rest</artifactId>
 				<version>${project.dependency.ontimize-jee-dms.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.ontimize.jee.dms</groupId>
 				<artifactId>ontimize-jee-dms-server</artifactId>
@@ -58,6 +64,12 @@
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-core</artifactId>
+				<version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-webaddons</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
 
@@ -88,6 +100,12 @@
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-starter-rest</artifactId>
+				<version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-starter-webaddons</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
 		</dependencies>
