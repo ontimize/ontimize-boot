@@ -15,7 +15,7 @@
 
 	<properties>
 		<project.dependency.spring.boot.version>2.1.2.RELEASE</project.dependency.spring.boot.version>
-		<project.dependency.ontimize.boot.version>2.1.4-SNAPSHOT</project.dependency.ontimize.boot.version>
+		<project.dependency.ontimize.boot.version>2.1.4</project.dependency.ontimize.boot.version>
 		<project.dependency.ontimize-jee.version>2.1.2</project.dependency.ontimize-jee.version>
 		<project.dependency.ontimize-jee-dms.version>2.0.1</project.dependency.ontimize-jee-dms.version>
 		<project.dependency.keycloak.version>9.0.3</project.dependency.keycloak.version>
