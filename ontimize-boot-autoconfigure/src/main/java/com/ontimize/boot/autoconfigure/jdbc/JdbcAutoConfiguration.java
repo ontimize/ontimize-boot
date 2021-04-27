@@ -28,10 +28,10 @@ import com.ontimize.jee.server.dao.dbhandler.SQLServerSQLStatementHandler;
 @ConditionalOnClass(DataSource.class)
 public class JdbcAutoConfiguration {
 
-	@Value("${ontimize.jdbc.sqlConditionProcessor.upperString:false}")
+	@Value("${ontimize.jdbc.sql_condition_processor.upper_string:false}")
 	boolean upperStrings;
 
-	@Value("${ontimize.jdbc.sqlConditionProcessor.upperLike:true}")
+	@Value("${ontimize.jdbc.sql_condition_processor.upper_like:true}")
 	boolean upperLike;
 
 
@@ -98,20 +98,20 @@ public class JdbcAutoConfiguration {
 		return new ExtendedSQLConditionValuesProcessor(this.upperStrings, this.upperLike);
 	}
 
-	@Bean("nameConvention")
-	@ConditionalOnProperty(name = "ontimize.jdbc.nameConvention", havingValue = "upper")
+	@Bean("name_convention")
+	@ConditionalOnProperty(name = "ontimize.jdbc.name_convention", havingValue = "upper")
 	public INameConvention upperNameConvention() {
 		return new com.ontimize.jee.server.dao.common.UpperCaseNameConvention();
 	}
 
-	@Bean("nameConvention")
-	@ConditionalOnProperty(name = "ontimize.jdbc.nameConvention", havingValue = "lower")
+	@Bean("name_convention")
+	@ConditionalOnProperty(name = "ontimize.jdbc.name_convention", havingValue = "lower")
 	public INameConvention lowerNameConvention() {
 		return new com.ontimize.jee.server.dao.common.LowerCaseNameConvention();
 	}
 
-	@Bean("nameConvention")
-	@ConditionalOnProperty(name = "ontimize.jdbc.nameConvention", havingValue = "database")
+	@Bean("name_convention")
+	@ConditionalOnProperty(name = "ontimize.jdbc.name_convention", havingValue = "database")
 	public INameConvention nameConvention() {
 		return new com.ontimize.jee.server.dao.common.DatabaseNameConvention();
 	}
