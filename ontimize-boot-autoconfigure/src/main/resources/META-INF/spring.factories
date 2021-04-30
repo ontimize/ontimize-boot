@@ -4,5 +4,4 @@ com.ontimize.boot.autoconfigure.jdbc.JdbcAutoConfiguration,\
 com.ontimize.boot.autoconfigure.mail.MailAutoConfiguration,\
 com.ontimize.boot.autoconfigure.i18n.I18nAutoConfiguration,\
 com.ontimize.boot.autoconfigure.security.DefaultSecurityAutoConfiguration,\
-com.ontimize.boot.autoconfigure.security.MethodSecurityConfiguration,\
-com.ontimize.boot.autoconfigure.dms.ODMSAutoConfigure
+com.ontimize.boot.autoconfigure.security.MethodSecurityConfiguration
