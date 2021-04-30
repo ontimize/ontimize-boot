@@ -84,6 +84,11 @@
 				<artifactId>ontimize-boot-starter-rest</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-starter-webaddons</artifactId>
+				<version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 </project>
