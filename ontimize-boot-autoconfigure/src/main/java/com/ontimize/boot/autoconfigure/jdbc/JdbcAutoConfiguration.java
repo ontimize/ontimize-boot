@@ -13,11 +13,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
-import com.ontimize.db.SQLStatementBuilder.ExtendedSQLConditionValuesProcessor;
-import com.ontimize.db.handler.DefaultSQLStatementHandler;
-import com.ontimize.db.handler.HSQLDBSQLStatementHandler;
-import com.ontimize.db.handler.Oracle12cSQLStatementHandler;
-import com.ontimize.db.handler.SQLStatementHandler;
+import com.ontimize.jee.common.db.SQLStatementBuilder.ExtendedSQLConditionValuesProcessor;
+import com.ontimize.jee.common.db.handler.DefaultSQLStatementHandler;
+import com.ontimize.jee.common.db.handler.HSQLDBSQLStatementHandler;
+import com.ontimize.jee.common.db.handler.Oracle12cSQLStatementHandler;
+import com.ontimize.jee.common.db.handler.SQLStatementHandler;
 import com.ontimize.jee.server.dao.common.INameConvention;
 import com.ontimize.jee.server.dao.dbhandler.OracleSQLStatementHandler;
 import com.ontimize.jee.server.dao.dbhandler.PostgresSQLStatementHandler;
