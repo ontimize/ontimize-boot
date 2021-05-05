@@ -6,7 +6,7 @@ import java.util.Map;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 
-import com.ontimize.dto.EntityResult;
+import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.webclient.remoteconfiguration.IRemoteConfigurationService;
 
 @Configuration
