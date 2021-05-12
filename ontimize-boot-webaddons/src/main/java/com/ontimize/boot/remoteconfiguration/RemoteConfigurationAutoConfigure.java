@@ -10,7 +10,7 @@ import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.webclient.remoteconfiguration.IRemoteConfigurationService;
 
 @Configuration
-@ConditionalOnProperty(name = "ontimize.remote_configuration", havingValue = "true", matchIfMissing = false)
+@ConditionalOnProperty(name = "ontimize.remote-configuration", havingValue = "true", matchIfMissing = false)
 public class RemoteConfigurationAutoConfigure implements IRemoteConfigurationService{
 	
 	
