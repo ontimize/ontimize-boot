@@ -10,14 +10,15 @@
 
 	<groupId>com.ontimize.boot</groupId>
 	<artifactId>ontimize-boot</artifactId>
-	<version>2.1.4</version>
+	<version>2.1.5-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<project.dependency.spring.boot.version>2.1.2.RELEASE</project.dependency.spring.boot.version>
-		<project.dependency.ontimize.boot.version>2.1.4</project.dependency.ontimize.boot.version>
+		<project.dependency.ontimize.boot.version>2.1.5-SNAPSHOT</project.dependency.ontimize.boot.version>
 		<project.dependency.ontimize-jee.version>2.1.2</project.dependency.ontimize-jee.version>
 		<project.dependency.ontimize-jee-dms.version>2.0.1</project.dependency.ontimize-jee-dms.version>
+		<project.dependency.ontimize-jee-report.version>1.0.3-REST-SNAPSHOT</project.dependency.ontimize-jee-report.version>
 		<project.dependency.keycloak.version>9.0.3</project.dependency.keycloak.version>
 	</properties>
 
@@ -77,6 +78,18 @@
 				<artifactId>ontimize-jee-dms-common</artifactId>
 				<version>${project.dependency.ontimize-jee-dms.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.jee.report</groupId>
+				<artifactId>ontimize-jee-report-rest</artifactId>
+				<version>${project.dependency.ontimize-jee-report.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.jee.report</groupId>
+				<artifactId>ontimize-jee-report-server</artifactId>
+				<version>${project.dependency.ontimize-jee-report.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
@@ -95,6 +108,12 @@
 				<artifactId>ontimize-boot-keycloak</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-report</artifactId>
+				<version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.keycloak</groupId>
@@ -109,6 +128,7 @@
 		<module>ontimize-boot-autoconfigure</module>
 		<module>ontimize-boot-core</module>
 		<module>ontimize-boot-keycloak</module>
+		<module>ontimize-boot-report</module>
 		<module>ontimize-boot-starters</module>
 	</modules>
 
