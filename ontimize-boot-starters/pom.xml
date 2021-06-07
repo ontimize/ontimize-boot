@@ -18,5 +18,6 @@
 		<module>ontimize-boot-starter-rest</module>
 		<module>ontimize-boot-starter-dms</module>
 		<module>ontimize-boot-starter-keycloak</module>
-	</modules>
+    	<module>ontimize-boot-starter-report</module>
+  </modules>
 </project>
