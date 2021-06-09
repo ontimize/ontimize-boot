@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
 import org.springframework.core.type.AnnotatedTypeMetadata;
 
-import com.ontimize.db.handler.SQLStatementHandler;
+import com.ontimize.jee.common.db.handler.SQLStatementHandler;
 
 public class DefaultSQLHandlerCondition implements Condition {
 
