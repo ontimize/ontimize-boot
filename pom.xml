@@ -17,6 +17,7 @@
 		<project.dependency.spring.boot.version>2.5.0</project.dependency.spring.boot.version>
 		<project.dependency.ontimize.boot.version>2.11.1-SNAPSHOT</project.dependency.ontimize.boot.version>
 		<project.dependency.ontimize-jee.version>5.3.0-SNAPSHOT</project.dependency.ontimize-jee.version>
+		<project.dependency.keycloak.version>9.0.3</project.dependency.keycloak.version>
 	</properties>
 
 	<distributionManagement>
@@ -75,6 +76,18 @@
 				<artifactId>ontimize-boot-core</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
+
+			<dependency>
+				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-keycloak</artifactId>
+				<version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.keycloak</groupId>
+				<artifactId>keycloak-spring-boot-starter</artifactId>
+				<version>${project.dependency.keycloak.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -82,6 +95,7 @@
 		<module>ontimize-boot-dependencies</module>
 		<module>ontimize-boot-autoconfigure</module>
 		<module>ontimize-boot-core</module>
+		<module>ontimize-boot-keycloak</module>
 		<module>ontimize-boot-starters</module>
 		<module>ontimize-boot-webaddons</module>
 	</modules>
