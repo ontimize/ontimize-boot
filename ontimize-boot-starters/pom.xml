@@ -16,6 +16,7 @@
 		<module>ontimize-boot-starter-core</module>
 		<module>ontimize-boot-starter-jdbc</module>
 		<module>ontimize-boot-starter-rest</module>
+		<module>ontimize-boot-starter-keycloak</module>
 		<module>ontimize-boot-starter-webaddons</module>
 	</modules>
 </project>
