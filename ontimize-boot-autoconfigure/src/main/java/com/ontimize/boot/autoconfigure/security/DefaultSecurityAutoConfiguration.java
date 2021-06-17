@@ -296,11 +296,17 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		return securityConfiguration;
 	}
 
-	@Bean
+	@Bean("authenticationEntryPoint")
+	@ConditionalOnProperty(value = "ontimize.security.authenticationEntryPoint", havingValue = "basic")
 	public AuthenticationEntryPoint authenticationEntryPoint() {
 		BasicAuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
 		authenticationEntryPoint.setRealmName("ONTIMIZE REALM");
 		return authenticationEntryPoint;
 	}
 
+	@Bean("authenticationEntryPoint")
+	@ConditionalOnProperty(value = "ontimize.security.authenticationEntryPoint", matchIfMissing = true)
+	public AuthenticationEntryPoint restAuthenticationEntryPoint() {
+		return new RestAuthenticationEntryPoint();
+	}
 }
