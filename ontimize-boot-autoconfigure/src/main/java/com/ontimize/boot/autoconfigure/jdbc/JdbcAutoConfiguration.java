@@ -4,11 +4,11 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
@@ -33,7 +33,6 @@ public class JdbcAutoConfiguration {
 
 	@Value("${ontimize.jdbc.sql-condition-processor.upper-like:true}")
 	boolean upperLike;
-
 
 	@Bean
 	@Primary
@@ -86,7 +85,7 @@ public class JdbcAutoConfiguration {
 	}
 
 	@Bean("dbSQLStatementHandler")
-	@Conditional(DefaultSQLHandlerCondition.class)
+	@ConditionalOnMissingBean
 	public SQLStatementHandler defaultSQLStatementHandler() {
 		SQLStatementHandler handler = new DefaultSQLStatementHandler();
 		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
@@ -95,7 +94,8 @@ public class JdbcAutoConfiguration {
 
 	@Bean
 	public ExtendedSQLConditionValuesProcessor extendedSQLConditionValuesProcessor() {
-		return new ExtendedSQLConditionValuesProcessor(this.upperStrings, this.upperLike);
+		return new ExtendedSQLConditionValuesProcessor(upperStrings,
+			upperLike);
 	}
 
 	@Bean("name_convention")
@@ -115,4 +115,5 @@ public class JdbcAutoConfiguration {
 	public INameConvention nameConvention() {
 		return new com.ontimize.jee.server.dao.common.DatabaseNameConvention();
 	}
+
 }
