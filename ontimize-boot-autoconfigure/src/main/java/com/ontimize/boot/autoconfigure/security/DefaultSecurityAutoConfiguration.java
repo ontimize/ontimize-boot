@@ -6,6 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -296,11 +297,17 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		return securityConfiguration;
 	}
 
-	@Bean
+	@Bean("authenticationEntryPoint")
+	@ConditionalOnProperty(value = "ontimize.security.authenticationEntryPoint", havingValue = "basic")
 	public AuthenticationEntryPoint authenticationEntryPoint() {
 		BasicAuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
 		authenticationEntryPoint.setRealmName("ONTIMIZE REALM");
 		return authenticationEntryPoint;
 	}
 
+	@Bean("authenticationEntryPoint")
+	@ConditionalOnMissingBean
+	public AuthenticationEntryPoint restAuthenticationEntryPoint() {
+		return new RestAuthenticationEntryPoint();
+	}
 }
