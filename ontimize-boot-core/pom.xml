@@ -33,13 +33,17 @@
             <optional>true</optional>
         </dependency>
 
-        <!--  
         <dependency>
             <groupId>com.ontimize.jee.dms</groupId>
             <artifactId>ontimize-jee-dms-rest</artifactId>
             <optional>true</optional>
         </dependency>
-        -->
+
+        <dependency>
+            <groupId>com.ontimize.jee.dms</groupId>
+            <artifactId>ontimize-jee-dms-server</artifactId>
+            <optional>true</optional>
+        </dependency>
 
         <dependency>
             <groupId>javax.servlet</groupId>
