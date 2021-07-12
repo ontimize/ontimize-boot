@@ -14,6 +14,7 @@
 	<modules>
 		<module>ontimize-boot-starter-common</module>
 		<module>ontimize-boot-starter-core</module>
+		<module>ontimize-boot-starter-dms</module>
 		<module>ontimize-boot-starter-jdbc</module>
 		<module>ontimize-boot-starter-rest</module>
 		<module>ontimize-boot-starter-keycloak</module>

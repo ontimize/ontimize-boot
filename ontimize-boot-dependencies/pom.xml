@@ -36,13 +36,19 @@
 				<artifactId>ontimize-jee-server-rest</artifactId>
 				<version>${project.dependency.ontimize-jee.version}</version>
 			</dependency>
-           <!--  
+
+			<dependency>
+				<groupId>com.ontimize.jee.dms</groupId>
+				<artifactId>ontimize-jee-dms-server</artifactId>
+				<version>${project.dependency.ontimize-jee-dms.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>com.ontimize.jee.dms</groupId>
 				<artifactId>ontimize-jee-dms-rest</artifactId>
 				<version>${project.dependency.ontimize-jee-dms.version}</version>
 			</dependency>
-	         -->
+
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-autoconfigure</artifactId>
