@@ -19,5 +19,6 @@
 		<module>ontimize-boot-starter-rest</module>
 		<module>ontimize-boot-starter-keycloak</module>
 		<module>ontimize-boot-starter-webaddons</module>
-	</modules>
+    	<module>ontimize-boot-starter-report</module>
+  </modules>
 </project>

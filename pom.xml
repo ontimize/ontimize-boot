@@ -16,8 +16,9 @@
 	<properties>
 		<project.dependency.spring.boot.version>2.5.0</project.dependency.spring.boot.version>
 		<project.dependency.ontimize.boot.version>3.0.0-SNAPSHOT</project.dependency.ontimize.boot.version>
-		<project.dependency.ontimize-jee.version>5.3.0-SNAPSHOT</project.dependency.ontimize-jee.version>
+		<project.dependency.ontimize-jee.version>5.0.1-SNAPSHOT</project.dependency.ontimize-jee.version>
 		<project.dependency.ontimize-jee-dms.version>3.0.0-SNAPSHOT</project.dependency.ontimize-jee-dms.version>
+		<project.dependency.ontimize-jee-report.version>1.0.3-REST-SNAPSHOT</project.dependency.ontimize-jee-report.version>
 		<project.dependency.keycloak.version>9.0.3</project.dependency.keycloak.version>
 	</properties> 
 
@@ -83,6 +84,18 @@
 				<artifactId>ontimize-jee-dms-rest</artifactId>
 				<version>${project.dependency.ontimize-jee-dms.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.jee.report</groupId>
+				<artifactId>ontimize-jee-report-rest</artifactId>
+				<version>${project.dependency.ontimize-jee-report.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.jee.report</groupId>
+				<artifactId>ontimize-jee-report-server</artifactId>
+				<version>${project.dependency.ontimize-jee-report.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
@@ -101,6 +114,12 @@
 				<artifactId>ontimize-boot-keycloak</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-report</artifactId>
+				<version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.keycloak</groupId>
@@ -117,7 +136,8 @@
 		<module>ontimize-boot-keycloak</module>
 		<module>ontimize-boot-starters</module>
 		<module>ontimize-boot-webaddons</module>
-	</modules>
+    	<module>ontimize-boot-report</module>
+  </modules>
 
 	<build>
 		<plugins>
