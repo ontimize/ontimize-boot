@@ -103,6 +103,12 @@
         <version>${project.dependency.ontimize.boot.version}</version>
       </dependency>
       
+      		<dependency>
+				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-starter-report</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
+      
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-starter-webaddons</artifactId>
