@@ -10,12 +10,12 @@
 
 	<groupId>com.ontimize.boot</groupId>
 	<artifactId>ontimize-boot</artifactId>
-	<version>3.0.1-SNAPSHOT</version>
+	<version>3.0.0-REPORT-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<properties>
 		<project.dependency.spring.boot.version>2.5.0</project.dependency.spring.boot.version>
-		<project.dependency.ontimize.boot.version>3.0.1-SNAPSHOT</project.dependency.ontimize.boot.version>
+		<project.dependency.ontimize.boot.version>3.0.0-REPORT-SNAPSHOT</project.dependency.ontimize.boot.version>
 		<project.dependency.ontimize-jee.version>5.0.1-SNAPSHOT</project.dependency.ontimize-jee.version>
 		<project.dependency.ontimize-jee-dms.version>3.0.0-SNAPSHOT</project.dependency.ontimize-jee-dms.version>
 		<project.dependency.ontimize-jee-report.version>1.0.11-REST-SNAPSHOT</project.dependency.ontimize-jee-report.version>
