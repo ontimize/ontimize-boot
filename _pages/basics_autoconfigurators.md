@@ -17,7 +17,7 @@ Autoconfigurators are an easy way to indicate common elements that need minimal 
 | engine | *odms* | Indicates the engine that will be used for the DMS system. Ontimize has an implementation of an engine, whose value is *odms*. |
 | basePath | *String* | The path where the DMS files will be stored |
 
-The configuration of DMS system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/basics/dms/).
+The configuration of DMS system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/v3/basics/dms/).
 
 **Example**
 ```yaml
@@ -104,7 +104,7 @@ ontimize:
 | filterColumnValueJavaMailProperties | *String* | Name of the key in the row of the key column containing the value for the mail propoerties in the mail service |
 | engine | *String* | Enable or disable mail engine. To enable, have any value int this arribute. By default, use *default* value|
 
-The configuration of the mail system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/basics/mail/).
+The configuration of the mail system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/v3/basics/mail/).
 
 **Example**
 ```yaml
@@ -212,7 +212,7 @@ ontimize:
 | roleLoginColumn | *String* | Database column that stores the username |
 | roleNameColumn | *String* | Database column that stores the role name |
 
-The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/basics/security/).
+The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/v3/basics/security/).
 
 **Example**
 ```yaml
