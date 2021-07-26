@@ -1,0 +1,1176 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>I18N System - Ontimize Boot</title>
+<meta name="description" content="">
+
+
+  <meta name="author" content="Imatia Innovation, S.L.">
+  
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ontimize Boot">
+<meta property="og:title" content="I18N System">
+<meta property="og:url" content="https://ontimize.github.io/ontimize-boot/v3/basics/i18n/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ontimize.github.io/ontimize-boot/v3/basics/i18n/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Imatia Innovation, S.L",
+      "url": "https://ontimize.github.io/ontimize-boot/v3/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/ontimize-boot/v3/feed.xml" type="application/atom+xml" rel="alternate" title="Ontimize Boot Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/ontimize-boot/v3/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+<link rel="stylesheet" href="/ontimize-boot/v3/assets/css/jstreestyle.css"/>
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/ontimize-boot/v3/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/ontimize-boot/v3/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/ontimize-boot/v3/assets/images/favicon-16x16.png">
+<link rel="mask-icon" href="/ontimize-boot/v3/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/ontimize-boot/v3/assets/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/ontimize-boot/v3/assets/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/ontimize-boot/v3/"><img src="/ontimize-boot/v3/assets/images/logo-ontimize.png" alt=""></a>
+        
+        <a class="site-title" href="/ontimize-boot/v3/">
+           
+          
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="https://ontimize.github.io/docs/">Ontimize Docs</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://ontimize.github.io/ontimize-boot/v3/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/ontimize-boot/v3/basics" itemprop="item"><span itemprop="name">Basics</span></a>
+          <meta itemprop="position" content="2">
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">I18N System</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="I18N System">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">I18N System
+</h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> Table of Contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#prerequisites">Prerequisites</a></li>
+  <li>
+<a href="#configuring-internationalization-service-in-ontimize-boot">Configuring internationalization service in Ontimize Boot</a>
+    <ul>
+      <li><a href="#db-configuration">DB configuration</a></li>
+      <li><a href="#add-permissions">Add Permissions</a></li>
+      <li><a href="#server-configuration">Server configuration</a></li>
+      <li><a href="#creation-of-dao-files">Creation of DAO files</a></li>
+      <li><a href="#add-i18n-rest-controller">Add I18n Rest Controller</a></li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="introduction">Introduction</h2>
+
+<p>Ontimize Boot’s remote internationalisation service (hereinafter <strong>i18n</strong>) allows you to manage the translations of the different languages of the application without having to modify the programme’s translation files, by storing the translations in the database. These translations can be modified while the application is running. The interfaces implemented by the service is <code class="language-plaintext highlighter-rouge">com.ontimize.jee.common.services.i18n.II18nService</code>.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<p>There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.</p>
+
+<div class="multiColumnRow multiColumnRowJustify">
+  <div class="multiColumn multiColumnGrow">
+  <p><strong>Initial project</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/$ git clone https://github.com/ontimize/ontimize-examples
+/ontimize-examples$ cd ontimize-examples
+/ontimize-examples$ git checkout boot-i18n-initial
+</code></pre></div></div>
+
+   
+</div>
+<div class="verticalDivider"></div>
+<div class="multiColumn multiColumnGrow">
+
+  <p><strong>Final example</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/$ git clone https://github.com/ontimize/ontimize-examples
+/ontimize-examples$ cd ontimize-examples
+/ontimize-examples$ git checkout boot-i18n
+</code></pre></div></div>
+
+
+
+  </div>
+  </div>
+
+<h2 id="configuring-internationalization-service-in-ontimize-boot">Configuring internationalization service in Ontimize Boot</h2>
+
+<p>In this complete tutorial, we are going to create a backend for an application from scratch, including the database with different tables, configuring the server, creating the necessary <strong>DAO</strong> files and implementing the service.</p>
+
+<h3 id="db-configuration">DB configuration</h3>
+
+<p>If the configuration table does not exist in the DB, the database tables necessary for the operation of the service are created, one in which the names of the translation bundles shall be stored, and another in which the translations and the bundle to which they belong shall be stored:</p>
+
+<p><strong>SQL (HSQL) Statement</strong></p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+</pre></td>
+<td class="code"><pre><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">TI18N</span><span class="p">(</span><span class="n">ID_I18N</span> <span class="nb">INTEGER</span> <span class="k">GENERATED</span> <span class="k">BY</span> <span class="k">DEFAULT</span> <span class="k">AS</span> <span class="k">IDENTITY</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span><span class="n">CLASS_NAME</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">150</span><span class="p">),</span><span class="n">I18N_DESCRIPTION</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">250</span><span class="p">));</span>
+<span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">TI18N_VALUE</span><span class="p">(</span><span class="n">ID_I18N_VALUE</span> <span class="nb">INTEGER</span> <span class="k">GENERATED</span> <span class="k">BY</span> <span class="k">DEFAULT</span> <span class="k">AS</span> <span class="k">IDENTITY</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">PRIMARY</span> <span class="k">KEY</span><span class="p">,</span><span class="n">ID_I18N</span> <span class="nb">INTEGER</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span><span class="nv">"KEY"</span> <span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">250</span><span class="p">),</span><span class="n">ES_ES</span> <span class="n">LONGVARCHAR</span><span class="p">,</span><span class="n">EN_US</span> <span class="n">LONGVARCHAR</span><span class="p">,</span><span class="n">ES_ES_GL</span> <span class="n">LONGVARCHAR</span><span class="p">);</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<p>In the case of the second table (the one named <strong>TI18N_VALUE</strong>) it will contain a column with the name of each Locale accepted by the application.</p>
+
+<h3 id="add-permissions">Add Permissions</h3>
+
+<p>The <code class="language-plaintext highlighter-rouge">com.ontimize.jee.server.services.i18n.DatabaseI18nEngine</code> service has several methods that we will have to add to the permissions to be able to execute the methods.</p>
+
+<p><strong>SQL (HSQL) Statement</strong></p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td>
+<td class="code"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getAllResourceBundles'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getBundles'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getBundle'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getAvailableBundles'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getAvailableLocales'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/updateBundleValues'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/deleteBundleValues'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/queryBundleValues'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getBundle'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getColumnName'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getBundleDescriptor'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getLocaleString'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getBundleId'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/getBundleValueKey'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.i18n.DatabaseI18nEngine/insertNewBundle'</span><span class="p">);</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<p>Add all permissions to the user role <code class="language-plaintext highlighter-rouge">demo</code>.</p>
+
+<p><strong>SQL (HSQL) Statement</strong></p>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td>
+<td class="code"><pre><span class="k">INSERT</span>
+	<span class="k">INTO</span>
+	<span class="n">TROLE_SERVER_PERMISSION</span> <span class="n">tsp</span> <span class="p">(</span><span class="n">ID_SERVER_PERMISSION</span><span class="p">,</span> <span class="n">ID_ROLENAME</span><span class="p">)</span>
+<span class="k">SELECT</span>
+	<span class="n">ID_SERVER_PERMISSION</span><span class="p">,</span>
+	<span class="p">(</span>
+	<span class="k">SELECT</span>
+		<span class="n">ID_ROLENAME</span>
+	<span class="k">FROM</span>
+		<span class="n">TUSER_ROLE</span>
+	<span class="k">WHERE</span>
+		<span class="n">USER_</span> <span class="o">=</span> <span class="s1">'demo'</span><span class="p">)</span> <span class="k">AS</span> <span class="n">ID_ROLENAME</span>
+<span class="k">FROM</span>
+	<span class="n">TSERVER_PERMISSION</span> <span class="n">tp</span>
+<span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">TROLE_SERVER_PERMISSION</span> <span class="n">tsp</span> <span class="k">ON</span>
+	<span class="n">tp</span><span class="p">.</span><span class="n">ID_SERVER_PERMISSION</span> <span class="o">=</span> <span class="n">tsp</span><span class="p">.</span><span class="n">ID_SERVER_PERMISSION</span>
+<span class="k">WHERE</span>
+	<span class="n">tsp</span><span class="p">.</span><span class="n">ID_SERVER_PERMISSION</span> <span class="k">IS</span> <span class="k">NULL</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<h3 id="server-configuration">Server configuration</h3>
+
+<p>To configure this service, a new configuration fragment shall be added to the application.yml file.</p>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+<td class="code"><pre><span class="na">ontimize</span><span class="pi">:</span>
+    <span class="na">i18n</span><span class="pi">:</span>
+      <span class="na">refBundleRepository</span><span class="pi">:</span> <span class="s">OCDatabaseBundleDao</span>
+      <span class="na">bundleKeyColumn</span><span class="pi">:</span> <span class="s">ID_I18N</span>
+      <span class="na">bundleClassNameColumn</span><span class="pi">:</span> <span class="s">CLASS_NAME</span>
+      <span class="na">bundleDescriptionColumn</span><span class="pi">:</span> <span class="s">I18N_DESCRIPTION</span>
+      <span class="na">refBundleValueRepository</span><span class="pi">:</span> <span class="s">OCDatabaseBundleValueDao</span>
+      <span class="na">bundleValueTextKeyColumn</span><span class="pi">:</span> <span class="s">KEY</span>
+      <span class="na">bundleValueKeyColumn</span><span class="pi">:</span> <span class="s">ID_I18N_VALUE</span>
+      <span class="na">engine</span><span class="pi">:</span> <span class="s">default</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<p>This configuration indicates the keys and values to be stored in the database. The database table is the one corresponding to the bean described in the <strong>refRepository: OCDatabaseBundleDao</strong> attribute.</p>
+
+<h3 id="creation-of-dao-files">Creation of DAO files</h3>
+
+<p>It is necessary to create the <strong>DAO</strong>s that reflect the new DB tables we have created.</p>
+
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader">
+  <ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            api
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                service
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            boot
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            model
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                dao
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCDatabaseBundleDao.java</li>
+                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCDatabaseBundleValue.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                service
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCDatabaseBundleDao.xml</li>
+              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCDatabaseBundleValueDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            ws
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                rest
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="multiColumn">
+  <p>We will start by creating the files *.xml.</p>
+
+
+  <p><strong>OCDatabaseBundleDao.xml</strong></p>
+   
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td>
+<td class="code"><pre><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;JdbcEntitySetup</span>
+	<span class="na">xmlns=</span><span class="s">"http://www.ontimize.com/schema/jdbc"</span>
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"</span>
+	<span class="na">table=</span><span class="s">"TI18N"</span> <span class="na">datasource=</span><span class="s">"mainDataSource"</span>
+	<span class="na">catalog=</span><span class="s">""</span> <span class="na">schema=</span><span class="s">"${mainschema}"</span>
+	<span class="na">sqlhandler=</span><span class="s">"dbSQLStatementHandler"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;DeleteKeys&gt;</span>
+		<span class="nt">&lt;Column&gt;</span>ID_I18N<span class="nt">&lt;/Column&gt;</span>
+	<span class="nt">&lt;/DeleteKeys&gt;</span>
+	<span class="nt">&lt;UpdateKeys&gt;</span>
+		<span class="nt">&lt;Column&gt;</span>ID_I18N<span class="nt">&lt;/Column&gt;</span>
+	<span class="nt">&lt;/UpdateKeys&gt;</span>
+	<span class="nt">&lt;GeneratedKey&gt;</span>ID_I18N<span class="nt">&lt;/GeneratedKey&gt;</span>
+<span class="nt">&lt;/JdbcEntitySetup&gt;</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+
+
+<p><strong>OCDatabaseBundleValueDao.xml</strong></p>
+
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td>
+<td class="code"><pre><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;JdbcEntitySetup</span>
+	<span class="na">xmlns=</span><span class="s">"http://www.ontimize.com/schema/jdbc"</span>
+	<span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+	<span class="na">xsi:schemaLocation=</span><span class="s">"http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"</span>
+	<span class="na">table=</span><span class="s">"TI18N_VALUE"</span> <span class="na">datasource=</span><span class="s">"mainDataSource"</span>
+	<span class="na">catalog=</span><span class="s">""</span> <span class="na">schema=</span><span class="s">"${mainschema}"</span>
+	<span class="na">sqlhandler=</span><span class="s">"dbSQLStatementHandler"</span><span class="nt">&gt;</span>
+	<span class="nt">&lt;DeleteKeys&gt;</span>
+		<span class="nt">&lt;Column&gt;</span>ID_I18N<span class="nt">&lt;/Column&gt;</span>
+		<span class="nt">&lt;Column&gt;</span>KEY<span class="nt">&lt;/Column&gt;</span>
+	<span class="nt">&lt;/DeleteKeys&gt;</span>
+	<span class="nt">&lt;UpdateKeys&gt;</span>
+		<span class="nt">&lt;Column&gt;</span>ID_I18N<span class="nt">&lt;/Column&gt;</span>
+		<span class="nt">&lt;Column&gt;</span>KEY<span class="nt">&lt;/Column&gt;</span>
+	<span class="nt">&lt;/UpdateKeys&gt;</span>
+	<span class="nt">&lt;GeneratedKey&gt;</span>ID_I18N_VALUE<span class="nt">&lt;/GeneratedKey&gt;</span>
+<span class="nt">&lt;/JdbcEntitySetup&gt;</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+
+<p>In the *.java files we indicate that it is a repository whose name will be <em>OCDatabaseBundleDao</em> and <em>OCDatabaseBundleValueDao</em> respectively, by means of the <code class="language-plaintext highlighter-rouge">@Repository</code> annotation. With the <code class="language-plaintext highlighter-rouge">@Lazy</code> annotation, we indicate that the loading is delayed until it is completely necessary (thus improving performance), and the <code class="language-plaintext highlighter-rouge">@ConfigurationFile</code> annotation allows us to configure this <strong>DAO</strong> using the <strong>XML</strong> file and an additional file where some features common to several <strong>DAO</strong>s can be stored, such as the schema they belong to.</p>
+
+
+<p><strong>OCDatabaseBundleDao.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">model.core.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.dao.common.ConfigurationFile</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport</span><span class="o">;</span>
+
+<span class="nd">@Repository</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"OCDatabaseBundleDao"</span><span class="o">)</span>
+<span class="nd">@Lazy</span>
+<span class="nd">@ConfigurationFile</span><span class="o">(</span><span class="n">configurationFile</span> <span class="o">=</span> <span class="s">"dao/OCDatabaseBundleDao.xml"</span><span class="o">,</span> <span class="n">configurationFilePlaceholder</span> <span class="o">=</span> <span class="s">"dao/placeholders.properties"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OCDatabaseBundleDao</span> <span class="kd">extends</span> <span class="nc">OntimizeJdbcDaoSupport</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="nf">OCDatabaseBundleDao</span><span class="o">()</span> <span class="o">{</span>
+		<span class="kd">super</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+
+<p><strong>OCDatabaseBundleValueDao.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+</pre></td>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">model.core.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.dao.common.ConfigurationFile</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport</span><span class="o">;</span>
+
+<span class="nd">@Repository</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"OCDatabaseBundleValueDao"</span><span class="o">)</span>
+<span class="nd">@Lazy</span>
+<span class="nd">@ConfigurationFile</span><span class="o">(</span><span class="n">configurationFile</span> <span class="o">=</span> <span class="s">"dao/OCDatabaseBundleValueDao.xml"</span><span class="o">,</span> <span class="n">configurationFilePlaceholder</span> <span class="o">=</span> <span class="s">"dao/placeholders.properties"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OCDatabaseBundleValueDao</span> <span class="kd">extends</span> <span class="nc">OntimizeJdbcDaoSupport</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="nf">OCDatabaseBundleValueDao</span><span class="o">()</span> <span class="o">{</span>
+
+		<span class="kd">super</span><span class="o">();</span>
+	<span class="o">}</span>
+<span class="o">}</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+
+</div>
+</div>
+
+<h3 id="add-i18n-rest-controller">Add I18n Rest Controller</h3>
+
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader">
+  <ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            api
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                service
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            boot
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            model
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                dao
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleValue.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                service
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleValueDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            ws
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              core
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                rest
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>I18nRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="multiColumn">
+
+  <p><strong>I18nRestController.java</strong></p>
+
+
+  <p>As two implementations of the interface are needed, we use the <code class="language-plaintext highlighter-rouge">@Qualifier</code> annotation to specify which is the correct <code class="language-plaintext highlighter-rouge">bean</code> so that it can be launched correctly.</p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+</pre></td>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">ws.core.rest</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Qualifier</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RequestMapping</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.web.bind.annotation.RestController</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.services.i18n.II18nService</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.rest.ORestController</span><span class="o">;</span>
+
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/i18n"</span><span class="o">)</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackageClasses</span> <span class="o">=</span> <span class="o">{</span><span class="n">com</span><span class="o">.</span><span class="na">ontimize</span><span class="o">.</span><span class="na">jee</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">services</span><span class="o">.</span><span class="na">i18n</span><span class="o">.</span><span class="na">II18nService</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">I18nRestController</span> <span class="kd">extends</span> <span class="nc">ORestController</span><span class="o">&lt;</span><span class="nc">II18nService</span><span class="o">&gt;{</span>
+
+  <span class="nd">@Autowired</span>
+  <span class="nd">@Qualifier</span> <span class="o">(</span><span class="s">"I18nService"</span><span class="o">)</span>
+  <span class="kd">private</span> <span class="nc">II18nService</span> <span class="n">iI18nService</span><span class="o">;</span> 
+	
+	
+  <span class="nd">@Override</span>
+  <span class="kd">public</span> <span class="nc">II18nService</span> <span class="nf">getService</span><span class="o">()</span> <span class="o">{</span>
+	  <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">iI18nService</span><span class="o">;</span>
+  <span class="o">}</span>
+	
+
+<span class="o">}</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+
+</div>
+</div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/imatiainnova" rel="noopener noreferrer" target="_blank"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://www.linkedin.com/company/imatia-innovation/" rel="noopener noreferrer" target="_blank"><i class="fab fa-fw fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://github.com/ontimize/ontimize-boot" rel="noopener noreferrer" target="_blank"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/ontimize-boot/v3/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2021 Imatia Innovation, S.L. Powered by <a href="https://jekyllrb.com" rel="noopener noreferrer" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="noopener noreferrer" target="_blank">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/ontimize-boot/v3/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
