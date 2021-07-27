@@ -11,7 +11,7 @@ This page allows you to know how to start developing an application with Ontimiz
 
 ## Prerequisites
 
- - [Java JDK 8](https://adoptopenjdk.net/?variant=openjdk8&jvmVariant=hotspot)
+ - [Java JDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
  - [Maven](https://maven.apache.org/download.cgi)
  - Any IDE that supports Spring Boot ([Eclipse](https://www.eclipse.org/downloads/packages/release/2020-09/r/eclipse-ide-enterprise-java-developers), [IntelliJ](https://www.jetbrains.com/es-es/idea/download/#section=windows)...)
  - [Git](https://git-scm.com/) (Optional)
