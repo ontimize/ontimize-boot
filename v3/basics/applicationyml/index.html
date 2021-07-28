@@ -361,7 +361,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>corsConfigurations</td>
+      <td>cors-configurations</td>
       <td>String</td>
       <td>Configuration for this entrypoint</td>
     </tr>
@@ -369,7 +369,7 @@
 </table>
 
 <ul>
-  <li><strong>ontimize:globalcors:corsConfigurations:</strong></li>
+  <li><strong>ontimize:globalcors:cors-configurations:</strong></li>
 </ul>
 
 <table>
@@ -382,22 +382,22 @@
   </thead>
   <tbody>
     <tr>
-      <td>allowedOrigins</td>
+      <td>allowed-origins</td>
       <td>String</td>
       <td>Allow different origins</td>
     </tr>
     <tr>
-      <td>allowedHeaders</td>
+      <td>allowed-headers</td>
       <td>String</td>
       <td>Allow headers</td>
     </tr>
     <tr>
-      <td>exposedHeaders</td>
+      <td>exposed-headers</td>
       <td>[“X-Auth-Token”,”Content-disposition”,”X-Requested-With”]</td>
       <td>Exposed headers</td>
     </tr>
     <tr>
-      <td>allowedMethods</td>
+      <td>allowed-methods</td>
       <td>GET, POST, PUT, DELETE, OPTIONS</td>
       <td>Allow HTTP methods</td>
     </tr>
@@ -409,12 +409,12 @@
     <span class="na">corsfilter</span><span class="pi">:</span>
       <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
     <span class="na">globalcors</span><span class="pi">:</span>
-      <span class="na">corsConfigurations</span><span class="pi">:</span>
+      <span class="na">cors-configurations</span><span class="pi">:</span>
          <span class="s1">'</span><span class="s">[/**]'</span><span class="pi">:</span>
-            <span class="na">allowedOrigins</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
-            <span class="na">allowedHeaders</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
-            <span class="na">exposedHeaders</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">X-Auth-Token"</span><span class="pi">,</span><span class="s2">"</span><span class="s">Content-disposition"</span><span class="pi">,</span><span class="s2">"</span><span class="s">X-Requested-With"</span><span class="pi">]</span>       
-            <span class="na">allowedMethods</span><span class="pi">:</span>
+            <span class="na">allowed-origins</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">allowed-headers</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">exposed-headers</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">X-Auth-Token"</span><span class="pi">,</span><span class="s2">"</span><span class="s">Content-disposition"</span><span class="pi">,</span><span class="s2">"</span><span class="s">X-Requested-With"</span><span class="pi">]</span>       
+            <span class="na">allowed-methods</span><span class="pi">:</span>
             <span class="pi">-</span> <span class="s">GET</span>
             <span class="pi">-</span> <span class="s">POST</span>
             <span class="pi">-</span> <span class="s">PUT</span>
@@ -438,7 +438,7 @@
   </thead>
   <tbody>
     <tr>
-      <td>nameConvention</td>
+      <td>name-convention</td>
       <td>upper, lower, database</td>
       <td>Convention of data columns name</td>
     </tr>
@@ -451,7 +451,7 @@
 </table>
 
 <ul>
-  <li><strong>ontimize:jdbc:sqlConditionProcessor:</strong></li>
+  <li><strong>ontimize:jdbc:sql-condition-processor:</strong></li>
 </ul>
 
 <p>SQL handler</p>
@@ -466,12 +466,12 @@
   </thead>
   <tbody>
     <tr>
-      <td>upperString</td>
+      <td>upper-string</td>
       <td>true, false</td>
       <td>Use of uppercase</td>
     </tr>
     <tr>
-      <td>upperLike</td>
+      <td>upper-like</td>
       <td>true, false</td>
       <td>String comparision using LIKE in uppercase</td>
     </tr>
@@ -480,11 +480,11 @@
 
 <p><strong>Example</strong></p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jdbc</span><span class="pi">:</span>
-      <span class="na">nameConvention</span><span class="pi">:</span> <span class="s">upper</span>
-      <span class="na">sqlhandler</span><span class="pi">:</span> <span class="s">oracle</span>
-      <span class="na">sqlConditionProcessor</span><span class="pi">:</span>
-         <span class="na">uppperString</span><span class="pi">:</span> <span class="no">true</span>
-         <span class="na">upperLike</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">name-convention</span><span class="pi">:</span> <span class="s">upper</span>
+      <span class="na">sqlhandler</span><span class="pi">:</span> <span class="s">hsqldb</span>
+      <span class="na">sql-condition-processor</span><span class="pi">:</span>
+         <span class="na">uppper-string</span><span class="pi">:</span> <span class="no">true</span>
+         <span class="na">upper-like</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div></div>
 
 <h3 id="security">Security</h3>
@@ -507,7 +507,7 @@
 </table>
 
 <ul>
-  <li><strong>ontimize:security:roleInformationService:</strong></li>
+  <li><strong>ontimize:security:role-information-service:</strong></li>
 </ul>
 
 <p>Configure columns for user roles</p>
@@ -522,32 +522,32 @@
   </thead>
   <tbody>
     <tr>
-      <td>roleRepository</td>
+      <td>role-repository</td>
       <td>String</td>
       <td>Repository which store the user role</td>
     </tr>
     <tr>
-      <td>roleNameColumn</td>
+      <td>role-name-column</td>
       <td>String</td>
       <td>Name of the column which store the role name</td>
     </tr>
     <tr>
-      <td>serverPermissionQueryId</td>
+      <td>server-permission-query-id</td>
       <td>String</td>
       <td>Query ID to identify the query of server permissions</td>
     </tr>
     <tr>
-      <td>serverPermissionNameColumn</td>
+      <td>server-permission-name-column</td>
       <td>String</td>
       <td>Name of the columns which contains the name of the server permission</td>
     </tr>
     <tr>
-      <td>clientPermissionQueryId</td>
+      <td>client-permission-query-id</td>
       <td>String</td>
       <td>Query ID for  client permissions</td>
     </tr>
     <tr>
-      <td>clientPermissionColumn</td>
+      <td>client-permission-column</td>
       <td>String</td>
       <td>Name of the columns which contains the name of the client permission</td>
     </tr>
@@ -555,7 +555,7 @@
 </table>
 
 <ul>
-  <li><strong>ontimize:security:userInformationService:</strong></li>
+  <li><strong>ontimize:security:user-information-service:</strong></li>
 </ul>
 
 <p>Information about the user</p>
@@ -570,27 +570,27 @@
   </thead>
   <tbody>
     <tr>
-      <td>userRepository</td>
+      <td>user-repository</td>
       <td>String</td>
       <td>Repository which stores the users of the application</td>
     </tr>
     <tr>
-      <td>userLoginColumn</td>
+      <td>user-login-column</td>
       <td>String</td>
       <td>Name of the column with the username</td>
     </tr>
     <tr>
-      <td>userPasswordColumn</td>
+      <td>user-password-column</td>
       <td>String</td>
       <td>Name of the column with the password</td>
     </tr>
     <tr>
-      <td>queryId</td>
+      <td>query-id</td>
       <td>String</td>
       <td>Query identififer for login</td>
     </tr>
     <tr>
-      <td>otherData</td>
+      <td>other-data</td>
       <td>List</td>
       <td>Other query columns</td>
     </tr>
@@ -598,7 +598,7 @@
 </table>
 
 <ul>
-  <li><strong>ontimize:security:userRoleInformationService:</strong></li>
+  <li><strong>ontimize:security:user-role-information-service:</strong></li>
 </ul>
 
 <p>Repository information about linking users and roles</p>
@@ -613,22 +613,22 @@
   </thead>
   <tbody>
     <tr>
-      <td>userRoleRepository</td>
+      <td>user-role-repository</td>
       <td>String</td>
       <td>Repository name</td>
     </tr>
     <tr>
-      <td>queryId</td>
+      <td>query-id</td>
       <td>String</td>
       <td>Query identifier</td>
     </tr>
     <tr>
-      <td>roleLoginColumn</td>
+      <td>role-login-column</td>
       <td>String</td>
       <td>Column which stores the user</td>
     </tr>
     <tr>
-      <td>roleNameColumn</td>
+      <td>role-name-column</td>
       <td>String</td>
       <td>Column which stores the role name</td>
     </tr>
@@ -638,19 +638,19 @@
 <p><strong>Example</strong></p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">security</span><span class="pi">:</span>
       <span class="na">mode</span><span class="pi">:</span> <span class="s">default</span>
-      <span class="na">roleInformationService</span><span class="pi">:</span>
-         <span class="na">roleRepository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
-         <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
-         <span class="na">serverPermissionQueryId</span><span class="pi">:</span> <span class="s">serverPermissions</span>
-         <span class="na">serverPermissionNameColumn</span><span class="pi">:</span> <span class="s">PERMISSION_NAME</span>
-         <span class="na">clientPermissionQueryId</span><span class="pi">:</span> <span class="s">clientPermissions</span>
-         <span class="na">clientPermissionColumn</span><span class="pi">:</span> <span class="s">XMLCLIENTPERMISSION</span>
-      <span class="na">userInformationService</span><span class="pi">:</span>
-         <span class="na">userRepository</span><span class="pi">:</span> <span class="s">UserDao</span>
-         <span class="na">userLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
-         <span class="na">userPasswordColumn</span><span class="pi">:</span> <span class="s">PASSWORD</span>
-         <span class="na">queryId</span><span class="pi">:</span> <span class="s">login</span>
-         <span class="na">otherData</span><span class="pi">:</span>
+      <span class="na">role-information-iervice</span><span class="pi">:</span>
+         <span class="na">role-repository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">role-name-column</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+         <span class="na">server-permission-query-id</span><span class="pi">:</span> <span class="s">serverPermissions</span>
+         <span class="na">server-permission-name-column</span><span class="pi">:</span> <span class="s">PERMISSION_NAME</span>
+         <span class="na">client-permission-query-id</span><span class="pi">:</span> <span class="s">clientPermissions</span>
+         <span class="na">client-ermission-column</span><span class="pi">:</span> <span class="s">XMLCLIENTPERMISSION</span>
+      <span class="na">user-information-service</span><span class="pi">:</span>
+         <span class="na">user-repository</span><span class="pi">:</span> <span class="s">UserDao</span>
+         <span class="na">user-login-column</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">user-password-column</span><span class="pi">:</span> <span class="s">PASSWORD</span>
+         <span class="na">query-id</span><span class="pi">:</span> <span class="s">login</span>
+         <span class="na">other-data</span><span class="pi">:</span>
             <span class="pi">-</span> <span class="s">NAME</span>
             <span class="pi">-</span> <span class="s">SURNAME</span>
             <span class="pi">-</span> <span class="s">EMAIL</span>
@@ -658,11 +658,11 @@
             <span class="pi">-</span> <span class="s">USERBLOCKED</span>
             <span class="pi">-</span> <span class="s">LASTPASSWORDUPDATE</span>
             <span class="pi">-</span> <span class="s">FIRSTLOGIN</span>
-      <span class="na">userRoleInformationService</span><span class="pi">:</span>
-         <span class="na">userRoleRepository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
-         <span class="na">queryId</span><span class="pi">:</span> <span class="s">userRole</span>
-         <span class="na">roleLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
-         <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+      <span class="na">user-role-information-service</span><span class="pi">:</span>
+         <span class="na">user-role-repository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">query-id</span><span class="pi">:</span> <span class="s">userRole</span>
+         <span class="na">role-login-column</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">role-name-column</span><span class="pi">:</span> <span class="s">ROLENAME</span>
 </code></pre></div></div>
 
 <h3 id="server">Server</h3>
@@ -789,7 +789,7 @@
       <td>JDBC driver</td>
     </tr>
     <tr>
-      <td>jdbcUrl</td>
+      <td>jdbc-url</td>
       <td>String</td>
       <td>Connection URl</td>
     </tr>
@@ -804,12 +804,12 @@
       <td>DB username password</td>
     </tr>
     <tr>
-      <td>initialSize</td>
+      <td>initial-size</td>
       <td>int</td>
       <td>Initial size</td>
     </tr>
     <tr>
-      <td>testOnBorrow</td>
+      <td>test-on-borrow</td>
       <td>true, false</td>
       <td>Validation</td>
     </tr>
@@ -904,11 +904,11 @@
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spring</span><span class="pi">:</span>
    <span class="na">datasource</span><span class="pi">:</span>
       <span class="na">driver-class-name</span><span class="pi">:</span> <span class="s">org.hsqldb.jdbcDriver</span>
-      <span class="na">jdbcUrl</span><span class="pi">:</span> <span class="s">jdbc:hsqldb:hsql://localhost:9013/templateDB</span>
+      <span class="na">jdbc-url</span><span class="pi">:</span> <span class="s">jdbc:hsqldb:hsql://localhost:9013/templateDB</span>
       <span class="na">username</span><span class="pi">:</span> <span class="s">SA</span>
       <span class="na">password</span><span class="pi">:</span>
-      <span class="na">initialSize</span><span class="pi">:</span> <span class="m">10</span>
-      <span class="na">testOnBorrow</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">initial-size</span><span class="pi">:</span> <span class="m">10</span>
+      <span class="na">test-on-borrow</span><span class="pi">:</span> <span class="no">true</span>
    <span class="na">main</span><span class="pi">:</span>
       <span class="na">banner-mode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">off'</span>
    <span class="na">session</span><span class="pi">:</span>
@@ -1012,38 +1012,38 @@
    <span class="na">corsfilter</span><span class="pi">:</span>
       <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
    <span class="na">globalcors</span><span class="pi">:</span>
-      <span class="na">corsConfigurations</span><span class="pi">:</span>
+      <span class="na">cors-configurations</span><span class="pi">:</span>
          <span class="s1">'</span><span class="s">[/**]'</span><span class="pi">:</span>
-            <span class="na">allowedOrigins</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
-            <span class="na">allowedHeaders</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
-            <span class="na">exposedHeaders</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">X-Auth-Token"</span><span class="pi">,</span><span class="s2">"</span><span class="s">Content-disposition"</span><span class="pi">,</span><span class="s2">"</span><span class="s">X-Requested-With"</span><span class="pi">]</span>
-            <span class="na">allowedMethods</span><span class="pi">:</span>
+            <span class="na">allowed-origins</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">allowed-headers</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">exposed-headers</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">X-Auth-Token"</span><span class="pi">,</span><span class="s2">"</span><span class="s">Content-disposition"</span><span class="pi">,</span><span class="s2">"</span><span class="s">X-Requested-With"</span><span class="pi">]</span>
+            <span class="na">allowed-methods</span><span class="pi">:</span>
             <span class="pi">-</span> <span class="s">GET</span>
             <span class="pi">-</span> <span class="s">POST</span>
             <span class="pi">-</span> <span class="s">PUT</span>
             <span class="pi">-</span> <span class="s">OPTIONS</span>
             <span class="pi">-</span> <span class="s">DELETE</span>
    <span class="na">jdbc</span><span class="pi">:</span>
-      <span class="na">nameConvention</span><span class="pi">:</span> <span class="s">upper</span>
-      <span class="na">sqlhandler</span><span class="pi">:</span> <span class="s">oracle</span>
-      <span class="na">sqlConditionProcessor</span><span class="pi">:</span>
-         <span class="na">uppperString</span><span class="pi">:</span> <span class="no">true</span>
-         <span class="na">upperLike</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">name-convention</span><span class="pi">:</span> <span class="s">upper</span>
+      <span class="na">sqlhandler</span><span class="pi">:</span> <span class="s">hsqldb</span>
+      <span class="na">sql-condition-processor</span><span class="pi">:</span>
+         <span class="na">uppper-string</span><span class="pi">:</span> <span class="no">true</span>
+         <span class="na">upper-like</span><span class="pi">:</span> <span class="no">true</span>
    <span class="na">security</span><span class="pi">:</span>
       <span class="na">mode</span><span class="pi">:</span> <span class="s">default</span>
-      <span class="na">roleInformationService</span><span class="pi">:</span>
-         <span class="na">roleRepository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
-         <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
-         <span class="na">serverPermissionQueryId</span><span class="pi">:</span> <span class="s">serverPermissions</span>
-         <span class="na">serverPermissionNameColumn</span><span class="pi">:</span> <span class="s">PERMISSION_NAME</span>
-         <span class="na">clientPermissionQueryId</span><span class="pi">:</span> <span class="s">clientPermissions</span>
-         <span class="na">clientPermissionColumn</span><span class="pi">:</span> <span class="s">XMLCLIENTPERMISSION</span>
-      <span class="na">userInformationService</span><span class="pi">:</span>
-         <span class="na">userRepository</span><span class="pi">:</span> <span class="s">UserDao</span>
-         <span class="na">userLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
-         <span class="na">userPasswordColumn</span><span class="pi">:</span> <span class="s">PASSWORD</span>
-         <span class="na">queryId</span><span class="pi">:</span> <span class="s">login</span>
-         <span class="na">otherData</span><span class="pi">:</span>
+      <span class="na">role-information-service</span><span class="pi">:</span>
+         <span class="na">role-repository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">role-name-column</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+         <span class="na">server-permission-query-id</span><span class="pi">:</span> <span class="s">serverPermissions</span>
+         <span class="na">server-permission-name-column</span><span class="pi">:</span> <span class="s">PERMISSION_NAME</span>
+         <span class="na">client-permission-query-id</span><span class="pi">:</span> <span class="s">clientPermissions</span>
+         <span class="na">client-permission-column</span><span class="pi">:</span> <span class="s">XMLCLIENTPERMISSION</span>
+      <span class="na">user-information-service</span><span class="pi">:</span>
+         <span class="na">user-repository</span><span class="pi">:</span> <span class="s">UserDao</span>
+         <span class="na">user-login-column</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">user-password-column</span><span class="pi">:</span> <span class="s">PASSWORD</span>
+         <span class="na">query-id</span><span class="pi">:</span> <span class="s">login</span>
+         <span class="na">other-data</span><span class="pi">:</span>
             <span class="pi">-</span> <span class="s">NAME</span>
             <span class="pi">-</span> <span class="s">SURNAME</span>
             <span class="pi">-</span> <span class="s">EMAIL</span>
@@ -1051,11 +1051,11 @@
             <span class="pi">-</span> <span class="s">USERBLOCKED</span>
             <span class="pi">-</span> <span class="s">LASTPASSWORDUPDATE</span>
             <span class="pi">-</span> <span class="s">FIRSTLOGIN</span>
-      <span class="na">userRoleInformationService</span><span class="pi">:</span>
-         <span class="na">userRoleRepository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
-         <span class="na">queryId</span><span class="pi">:</span> <span class="s">userRole</span>
-         <span class="na">roleLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
-         <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+      <span class="na">user-role-information-service</span><span class="pi">:</span>
+         <span class="na">user-role-repository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">query-id</span><span class="pi">:</span> <span class="s">userRole</span>
+         <span class="na">role-login-column</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">role-name-column</span><span class="pi">:</span> <span class="s">ROLENAME</span>
 <span class="na">server</span><span class="pi">:</span>
    <span class="na">port</span><span class="pi">:</span> <span class="m">33333</span>
    <span class="na">tomcat</span><span class="pi">:</span>
@@ -1066,11 +1066,11 @@
 <span class="na">spring</span><span class="pi">:</span>
    <span class="na">datasource</span><span class="pi">:</span>
       <span class="na">driver-class-name</span><span class="pi">:</span> <span class="s">org.hsqldb.jdbcDriver</span>
-      <span class="na">jdbcUrl</span><span class="pi">:</span> <span class="s">jdbc:hsqldb:hsql://localhost:9013/templateDB</span>
+      <span class="na">jdbc-url</span><span class="pi">:</span> <span class="s">jdbc:hsqldb:hsql://localhost:9013/templateDB</span>
       <span class="na">username</span><span class="pi">:</span> <span class="s">SA</span>
       <span class="na">password</span><span class="pi">:</span>
-      <span class="na">initialSize</span><span class="pi">:</span> <span class="m">10</span>
-      <span class="na">testOnBorrow</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">initial-size</span><span class="pi">:</span> <span class="m">10</span>
+      <span class="na">test-on-borrow</span><span class="pi">:</span> <span class="no">true</span>
    <span class="na">main</span><span class="pi">:</span>
       <span class="na">banner-mode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">off'</span>
    <span class="na">session</span><span class="pi">:</span>
