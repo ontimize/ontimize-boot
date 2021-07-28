@@ -331,7 +331,7 @@ ontimize:
       nameConvention: upper
       sqlhandler: hsqldb
       sqlConditionProcessor:
-         uppperString: true
+         upperString: true
          upperLike: true
    security:
       mode: default
