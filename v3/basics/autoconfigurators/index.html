@@ -268,7 +268,7 @@
       <td>Indicates the engine that will be used for the DMS system. Ontimize has an implementation of an engine, whose value is <em>odms</em>.</td>
     </tr>
     <tr>
-      <td>basePath</td>
+      <td>base-path</td>
       <td><em>String</em></td>
       <td>The path where the DMS files will be stored</td>
     </tr>
@@ -281,7 +281,7 @@
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
    <span class="na">dms</span><span class="pi">:</span>
       <span class="na">engine</span><span class="pi">:</span> <span class="s">odms</span>
-      <span class="na">basePath</span><span class="pi">:</span> <span class="s">file:/C:/applications/QSAllComponents_Jee/dms</span>
+      <span class="na">base-path</span><span class="pi">:</span> <span class="s">file:/C:/applications/QSAllComponents_Jee/dms</span>
 </code></pre></div></div>
 
 <h2 id="i18n">I18n</h2>
@@ -388,7 +388,7 @@
 </table>
 
 <ul>
-  <li><strong>ontimize:jdbc:sqlConditionProcessor:</strong></li>
+  <li><strong>ontimize:jdbc:sql-condition-processor:</strong></li>
 </ul>
 
 <table>
@@ -401,14 +401,14 @@
   </thead>
   <tbody>
     <tr>
-      <td>uppperString</td>
+      <td>upper-string</td>
       <td>
 <em>true</em>, <em>false</em>
 </td>
       <td>Use uppercase strings in WHERE conditions</td>
     </tr>
     <tr>
-      <td>upperLike</td>
+      <td>upper-like</td>
       <td>
 <em>true</em>, <em>false</em>
 </td>
@@ -420,11 +420,11 @@
 <p><strong>Example</strong></p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
    <span class="na">jdbc</span><span class="pi">:</span>
-      <span class="na">nameConvention</span><span class="pi">:</span> <span class="s">upper</span>
+      <span class="na">name-convention</span><span class="pi">:</span> <span class="s">upper</span>
       <span class="na">sqlhandler</span><span class="pi">:</span> <span class="s">hsqldb</span>
-      <span class="na">sqlConditionProcessor</span><span class="pi">:</span>
-         <span class="na">uppperString</span><span class="pi">:</span> <span class="no">true</span>
-         <span class="na">upperLike</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">sql-condition-processor</span><span class="pi">:</span>
+         <span class="na">upper-string</span><span class="pi">:</span> <span class="no">true</span>
+         <span class="na">upper-like</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div></div>
 
 <h2 id="mail">Mail</h2>
@@ -552,7 +552,7 @@
 
 <ul>
   <li>
-<strong>ontimize:globalcors:corsConfigurations</strong><br>
+<strong>ontimize:globalcors:cors-configurations</strong><br>
 Indicates the entrypoint to be configured, with the properties for each one. In general, the entrypoint [/**] is configured entirely.</li>
 </ul>
 
@@ -566,22 +566,22 @@ Indicates the entrypoint to be configured, with the properties for each one. In 
   </thead>
   <tbody>
     <tr>
-      <td>allowedOrigins</td>
+      <td>allowed-origins</td>
       <td><em>*</em></td>
       <td>Set the origins to allow, the special value * allows all domains. By default this is not set</td>
     </tr>
     <tr>
-      <td>allowedHeaders</td>
+      <td>allowed-headers</td>
       <td><em>*</em></td>
       <td>Set the list of headers that a pre-flight request can list as allowed for use during an actual request. The special value * allows actual requests to send any header. A header name is not required to be listed if it is one of: <em>Cache-Control</em>, <em>Content-Language</em>, <em>Expires</em>, <em>Last-Modified</em> or <em>Pragma</em>). By default this is not set.</td>
     </tr>
     <tr>
-      <td>exposedHeaders</td>
+      <td>exposed-headers</td>
       <td> </td>
       <td>Set the list of response headers other than simple headers (i.e. <em>Cache-Control</em>, <em>Content-Language</em>, <em>Content-Type</em>, <em>Expires</em>, <em>Last-Modified</em> or <em>Pragma</em> that an actual response might have and can be exposed. Note that * is not a valid exposed header value. By default this is not set.</td>
     </tr>
     <tr>
-      <td>allowedMethods</td>
+      <td>allowed-methods</td>
       <td><em>List</em></td>
       <td>Set the HTTP methods to allow, e.g. <em>GET</em>, <em>POST</em>, <em>PUT</em>, etc. The special value * allows all methods. If not set, only <em>GET</em> and <em>HEAD</em> are allowed. By default this is not set. Note: CORS checks use values from “Forwarded” <a href="http://tools.ietf.org/html/rfc7239" target="_blank" rel="noopener noreferrer">RFC7239</a>, <em>X-Forwarded-Host</em>, <em>X-Forwarded-Port</em>, and <em>X-Forwarded-Proto</em> headers, if present, in order to reflect the client-originated address. Consider using the <em>ForwardedHeaderFilter</em> in order to choose from a central place whether to extract and use, or to discard such headers. See the Spring Framework reference for more on this filter.</td>
     </tr>
@@ -591,7 +591,7 @@ Indicates the entrypoint to be configured, with the properties for each one. In 
       <td>Configure how long, in seconds, the response from a pre-flight request can be cached by clients. By default this is not set.</td>
     </tr>
     <tr>
-      <td>allowCredentials</td>
+      <td>allow-credentials</td>
       <td><em>-</em></td>
       <td>Whether user credentials are supported. By default this is not set (i.e. user credentials are not supported).</td>
     </tr>
@@ -603,12 +603,12 @@ Indicates the entrypoint to be configured, with the properties for each one. In 
    <span class="na">corsfilter</span><span class="pi">:</span>
       <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
    <span class="na">globalcors</span><span class="pi">:</span>
-      <span class="na">corsConfigurations</span><span class="pi">:</span>
+      <span class="na">cors-configurations</span><span class="pi">:</span>
          <span class="s1">'</span><span class="s">[/**]'</span><span class="pi">:</span>
-            <span class="na">allowedOrigins</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
-            <span class="na">allowedHeaders</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
-            <span class="na">exposedHeaders</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">X-Auth-Token"</span><span class="pi">,</span><span class="s2">"</span><span class="s">Content-disposition"</span><span class="pi">,</span><span class="s2">"</span><span class="s">X-Requested-With"</span><span class="pi">]</span>           
-            <span class="na">allowedMethods</span><span class="pi">:</span>
+            <span class="na">allowed-origins</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">allowed-headers</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">exposed-headers</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">X-Auth-Token"</span><span class="pi">,</span><span class="s2">"</span><span class="s">Content-disposition"</span><span class="pi">,</span><span class="s2">"</span><span class="s">X-Requested-With"</span><span class="pi">]</span>           
+            <span class="na">allowed-hethods</span><span class="pi">:</span>
             <span class="pi">-</span> <span class="s">GET</span>
             <span class="pi">-</span> <span class="s">POST</span>
             <span class="pi">-</span> <span class="s">PUT</span>
@@ -637,12 +637,12 @@ Indicates the entrypoint to be configured, with the properties for each one. In 
       <td>Use <em>default</em> to enable the security mode for Ontimize Boot</td>
     </tr>
     <tr>
-      <td>ignorePaths</td>
+      <td>ignore-paths</td>
       <td><em>String</em></td>
       <td>Paths in server thant will not be securized</td>
     </tr>
     <tr>
-      <td>servicePath</td>
+      <td>service-path</td>
       <td><em>String</em></td>
       <td>Establish the service path. By default, <em>/**</em>
 </td>
@@ -745,32 +745,32 @@ Indicates the entrypoint to be configured, with the properties for each one. In 
   </thead>
   <tbody>
     <tr>
-      <td>roleRepository</td>
+      <td>role-repository</td>
       <td><em>String</em></td>
       <td>Name of the DAO containing information about users</td>
     </tr>
     <tr>
-      <td>roleNameColumn</td>
+      <td>role-name-column</td>
       <td><em>String</em></td>
       <td>Database column that stores the role name</td>
     </tr>
     <tr>
-      <td>serverPermissionQueryId</td>
+      <td>server-permission-query-id</td>
       <td><em>String</em></td>
       <td>Name of the DAO query identifier for server permissions</td>
     </tr>
     <tr>
-      <td>serverPermissionNameColumn</td>
+      <td>server-permission-name-column</td>
       <td><em>String</em></td>
       <td>Database column that stores the server permissions</td>
     </tr>
     <tr>
-      <td>clientPermissionQueryId</td>
+      <td>client-permission-query-id</td>
       <td><em>String</em></td>
       <td>Name of the DAO query identifier for client permissions</td>
     </tr>
     <tr>
-      <td>clientPermissionColumn</td>
+      <td>client-permission-column</td>
       <td><em>List</em></td>
       <td>Database column that stores the client permissions</td>
     </tr>
@@ -791,22 +791,22 @@ Indicates the entrypoint to be configured, with the properties for each one. In 
   </thead>
   <tbody>
     <tr>
-      <td>userRoleRepository</td>
+      <td>user-role-repository</td>
       <td><em>String</em></td>
       <td>Name of the DAO containing relation between users and its profiles</td>
     </tr>
     <tr>
-      <td>queryId</td>
+      <td>query-id</td>
       <td><em>String</em></td>
       <td>Name of the DAO query identifier</td>
     </tr>
     <tr>
-      <td>roleLoginColumn</td>
+      <td>role-login-column</td>
       <td><em>String</em></td>
       <td>Database column that stores the username</td>
     </tr>
     <tr>
-      <td>roleNameColumn</td>
+      <td>role-name-column</td>
       <td><em>String</em></td>
       <td>Database column that stores the role name</td>
     </tr>
@@ -819,13 +819,13 @@ Indicates the entrypoint to be configured, with the properties for each one. In 
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
   <span class="na">security</span><span class="pi">:</span>
     <span class="na">mode</span><span class="pi">:</span> <span class="s">default</span>
-    <span class="na">ignorePaths</span><span class="pi">:</span> <span class="s">/news/**, /products/**</span>
-    <span class="na">userInformationService</span><span class="pi">:</span>
-      <span class="na">userRepository</span><span class="pi">:</span> <span class="s">OCLoginProfilesDao</span>
-      <span class="na">queryId</span><span class="pi">:</span> <span class="s">login</span>
-      <span class="na">userLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
-      <span class="na">userPasswordColumn</span><span class="pi">:</span> <span class="s">PASSWORD</span>
-      <span class="na">otherData</span><span class="pi">:</span>
+    <span class="na">ignore-paths</span><span class="pi">:</span> <span class="s">/news/**, /products/**</span>
+    <span class="na">user-information-service</span><span class="pi">:</span>
+      <span class="na">user-repository</span><span class="pi">:</span> <span class="s">OCLoginProfilesDao</span>
+      <span class="na">query-id</span><span class="pi">:</span> <span class="s">login</span>
+      <span class="na">user-login-column</span><span class="pi">:</span> <span class="s">USER_</span>
+      <span class="na">user-password-column</span><span class="pi">:</span> <span class="s">PASSWORD</span>
+      <span class="na">other-data</span><span class="pi">:</span>
         <span class="pi">-</span> <span class="s">NAME</span>
         <span class="pi">-</span> <span class="s">SURNAME</span>
         <span class="pi">-</span> <span class="s">EMAIL</span>
@@ -833,18 +833,18 @@ Indicates the entrypoint to be configured, with the properties for each one. In 
         <span class="pi">-</span> <span class="s">USERBLOCKED</span>
         <span class="pi">-</span> <span class="s">LASTPASSWORDUPDATE</span>
         <span class="pi">-</span> <span class="s">FIRSTLOGIN</span>
-    <span class="na">userRoleInformationService</span><span class="pi">:</span>
-      <span class="na">userRoleRepository</span><span class="pi">:</span> <span class="s">OCLoginProfilesDao</span>
-      <span class="na">queryId</span><span class="pi">:</span> <span class="s">userRole</span>
-      <span class="na">roleLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
-      <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
-    <span class="na">roleInformationService</span><span class="pi">:</span>
-      <span class="na">roleRepository</span><span class="pi">:</span> <span class="s">OCLoginProfilesDao</span>
-      <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
-      <span class="na">serverPermissionQueryId</span><span class="pi">:</span> <span class="s">serverPermissions</span>
-      <span class="na">serverPermissionNameColumn</span><span class="pi">:</span> <span class="s">PERMISSION_NAME</span>
-      <span class="na">clientPermissionQueryId</span><span class="pi">:</span> <span class="s">clientPermissions</span>
-      <span class="na">clientPermissionColumn</span><span class="pi">:</span> <span class="s">XMLCLIENTPERMISSION</span>
+    <span class="na">user-role-information-service</span><span class="pi">:</span>
+      <span class="na">user-role-repository</span><span class="pi">:</span> <span class="s">OCLoginProfilesDao</span>
+      <span class="na">query-id</span><span class="pi">:</span> <span class="s">userRole</span>
+      <span class="na">role-login-column</span><span class="pi">:</span> <span class="s">USER_</span>
+      <span class="na">role-name-column</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+    <span class="na">role-information-service</span><span class="pi">:</span>
+      <span class="na">role-repository</span><span class="pi">:</span> <span class="s">OCLoginProfilesDao</span>
+      <span class="na">role-name-column</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+      <span class="na">server-permission-query-id</span><span class="pi">:</span> <span class="s">serverPermissions</span>
+      <span class="na">server-permission-name-column</span><span class="pi">:</span> <span class="s">PERMISSION_NAME</span>
+      <span class="na">client-permission-query-id</span><span class="pi">:</span> <span class="s">clientPermissions</span>
+      <span class="na">client-permission-column</span><span class="pi">:</span> <span class="s">XMLCLIENTPERMISSION</span>
 </code></pre></div></div>
 
         
