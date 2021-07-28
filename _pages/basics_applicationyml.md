@@ -121,9 +121,9 @@ SQL handler
 ```yaml
 jdbc:
       nameConvention: upper
-      sqlhandler: oracle
+      sqlhandler: hslqdb
       sqlConditionProcessor:
-         uppperString: true
+         upperString: true
          upperLike: true
 ```
 
@@ -329,7 +329,7 @@ ontimize:
             - DELETE
    jdbc:
       nameConvention: upper
-      sqlhandler: oracle
+      sqlhandler: hsqldb
       sqlConditionProcessor:
          uppperString: true
          upperLike: true
