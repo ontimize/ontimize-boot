@@ -15,7 +15,7 @@ Autoconfigurators are an easy way to indicate common elements that need minimal 
 | Attribute | Values | Meaning |
 |--|--|--|
 | engine | *odms* | Indicates the engine that will be used for the DMS system. Ontimize has an implementation of an engine, whose value is *odms*. |
-| basePath | *String* | The path where the DMS files will be stored |
+| base-path | *String* | The path where the DMS files will be stored |
 
 The configuration of DMS system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/v3/basics/dms/).
 
@@ -24,7 +24,7 @@ The configuration of DMS system is done by setting up the necessary DAOs for tha
 ontimize:
    dms:
       engine: odms
-      basePath: file:/C:/applications/QSAllComponents_Jee/dms
+      base-path: file:/C:/applications/QSAllComponents_Jee/dms
 ```
 
 ## I18n
@@ -67,22 +67,22 @@ ontimize:
 |nameConvention|*upper*, *lower*, *database*| Indicate the nomenclature of the columns in the DB, in lower case, upper case or as it appears in the database |
 |sqlhandler|*postgres*, *oracle*, *oracle12*, *sqlserver*, *hsqldb*| Indicates which SQL statement handler will be used to communicate with the database |
 
-- **ontimize:jdbc:sqlConditionProcessor:**
+- **ontimize:jdbc:sql-condition-processor:**
 
 | Attribute | Values | Meaning |
 |--|--|--|
-|uppperString|*true*, *false*| Use uppercase strings in WHERE conditions |
-|upperLike|*true*, *false*| Use uppercase strings in LIKE conditions |
+|upper-string|*true*, *false*| Use uppercase strings in WHERE conditions |
+|upper-like|*true*, *false*| Use uppercase strings in LIKE conditions |
 
 **Example**
 ```yaml
 ontimize:
    jdbc:
-      nameConvention: upper
+      name-convention: upper
       sqlhandler: hsqldb
-      sqlConditionProcessor:
-         uppperString: true
-         upperLike: true
+      sql-condition-processor:
+         upper-string: true
+         upper-like: true
 ```
 
 ## Mail
@@ -132,17 +132,17 @@ ontimize:
 |--|--|--|
 | enabled | *true*, *false* | Enable or disable CORS filter |
 
-- **ontimize:globalcors:corsConfigurations**  
+- **ontimize:globalcors:cors-configurations**  
 Indicates the entrypoint to be configured, with the properties for each one. In general, the entrypoint [/**] is configured entirely.
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| allowedOrigins | *\** | Set the origins to allow, the special value \* allows all domains. By default this is not set|
-| allowedHeaders | *\** | Set the list of headers that a pre-flight request can list as allowed for use during an actual request. The special value \* allows actual requests to send any header. A header name is not required to be listed if it is one of: *Cache-Control*, *Content-Language*, *Expires*, *Last-Modified* or *Pragma*). By default this is not set.|
-| exposedHeaders |  | Set the list of response headers other than simple headers (i.e. *Cache-Control*, *Content-Language*, *Content-Type*, *Expires*, *Last-Modified* or *Pragma* that an actual response might have and can be exposed. Note that \* is not a valid exposed header value. By default this is not set. |
-| allowedMethods | *List* | Set the HTTP methods to allow, e.g. *GET*, *POST*, *PUT*, etc. The special value \* allows all methods. If not set, only *GET* and *HEAD* are allowed. By default this is not set. Note: CORS checks use values from "Forwarded" [RFC7239](http://tools.ietf.org/html/rfc7239), *X-Forwarded-Host*, *X-Forwarded-Port*, and *X-Forwarded-Proto* headers, if present, in order to reflect the client-originated address. Consider using the *ForwardedHeaderFilter* in order to choose from a central place whether to extract and use, or to discard such headers. See the Spring Framework reference for more on this filter. |
+| allowed-origins | *\** | Set the origins to allow, the special value \* allows all domains. By default this is not set|
+| allowed-headers | *\** | Set the list of headers that a pre-flight request can list as allowed for use during an actual request. The special value \* allows actual requests to send any header. A header name is not required to be listed if it is one of: *Cache-Control*, *Content-Language*, *Expires*, *Last-Modified* or *Pragma*). By default this is not set.|
+| exposed-headers |  | Set the list of response headers other than simple headers (i.e. *Cache-Control*, *Content-Language*, *Content-Type*, *Expires*, *Last-Modified* or *Pragma* that an actual response might have and can be exposed. Note that \* is not a valid exposed header value. By default this is not set. |
+| allowed-methods | *List* | Set the HTTP methods to allow, e.g. *GET*, *POST*, *PUT*, etc. The special value \* allows all methods. If not set, only *GET* and *HEAD* are allowed. By default this is not set. Note: CORS checks use values from "Forwarded" [RFC7239](http://tools.ietf.org/html/rfc7239), *X-Forwarded-Host*, *X-Forwarded-Port*, and *X-Forwarded-Proto* headers, if present, in order to reflect the client-originated address. Consider using the *ForwardedHeaderFilter* in order to choose from a central place whether to extract and use, or to discard such headers. See the Spring Framework reference for more on this filter. |
 | maxAge | *Number* | Configure how long, in seconds, the response from a pre-flight request can be cached by clients. By default this is not set. |
-| allowCredentials | *-* | Whether user credentials are supported. By default this is not set (i.e. user credentials are not supported). |
+| allow-credentials | *-* | Whether user credentials are supported. By default this is not set (i.e. user credentials are not supported). |
 
 **Example**
 ```yaml
@@ -150,12 +150,12 @@ ontimize:
    corsfilter:
       enabled: true
    globalcors:
-      corsConfigurations:
+      cors-configurations:
          '[/**]':
-            allowedOrigins: "*"
-            allowedHeaders: "*"
-            exposedHeaders: ["X-Auth-Token","Content-disposition","X-Requested-With"]           
-            allowedMethods:
+            allowed-origins: "*"
+            allowed-headers: "*"
+            exposed-headers: ["X-Auth-Token","Content-disposition","X-Requested-With"]           
+            allowed-hethods:
             - GET
             - POST
             - PUT
@@ -170,8 +170,8 @@ ontimize:
 | Attribute | Values | Meaning |
 |--|--|--|
 | mode | *default* | Use *default* to enable the security mode for Ontimize Boot |
-| ignorePaths | *String* | Paths in server thant will not be securized |
-| servicePath | *String* | Establish the service path. By default, */\*\** |
+| ignore-paths | *String* | Paths in server thant will not be securized |
+| service-path | *String* | Establish the service path. By default, */\*\** |
 
 - **ontimize:security:jwt:** *Not required, enabled by default*
 
@@ -196,21 +196,21 @@ ontimize:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| roleRepository | *String* | Name of the DAO containing information about users |
-| roleNameColumn | *String* | Database column that stores the role name |
-| serverPermissionQueryId | *String* | Name of the DAO query identifier for server permissions |
-| serverPermissionNameColumn | *String* | Database column that stores the server permissions |
-| clientPermissionQueryId | *String* | Name of the DAO query identifier for client permissions |
-| clientPermissionColumn | *List* | Database column that stores the client permissions |
+| role-repository | *String* | Name of the DAO containing information about users |
+| role-name-column | *String* | Database column that stores the role name |
+| server-permission-query-id | *String* | Name of the DAO query identifier for server permissions |
+| server-permission-name-column | *String* | Database column that stores the server permissions |
+| client-permission-query-id | *String* | Name of the DAO query identifier for client permissions |
+| client-permission-column | *List* | Database column that stores the client permissions |
 
 - **ontimize:security:user-role-information-service:**
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| userRoleRepository | *String* | Name of the DAO containing relation between users and its profiles |
-| queryId | *String* | Name of the DAO query identifier |
-| roleLoginColumn | *String* | Database column that stores the username |
-| roleNameColumn | *String* | Database column that stores the role name |
+| user-role-repository | *String* | Name of the DAO containing relation between users and its profiles |
+| query-id | *String* | Name of the DAO query identifier |
+| role-login-column | *String* | Database column that stores the username |
+| role-name-column | *String* | Database column that stores the role name |
 
 The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/v3/basics/security/).
 
@@ -219,13 +219,13 @@ The configuration of the rest of the I18N system is done by setting up the neces
 ontimize:
   security:
     mode: default
-    ignorePaths: /news/**, /products/**
-    userInformationService:
-      userRepository: OCLoginProfilesDao
-      queryId: login
-      userLoginColumn: USER_
-      userPasswordColumn: PASSWORD
-      otherData:
+    ignore-paths: /news/**, /products/**
+    user-information-service:
+      user-repository: OCLoginProfilesDao
+      query-id: login
+      user-login-column: USER_
+      user-password-column: PASSWORD
+      other-data:
         - NAME
         - SURNAME
         - EMAIL
@@ -233,16 +233,16 @@ ontimize:
         - USERBLOCKED
         - LASTPASSWORDUPDATE
         - FIRSTLOGIN
-    userRoleInformationService:
-      userRoleRepository: OCLoginProfilesDao
-      queryId: userRole
-      roleLoginColumn: USER_
-      roleNameColumn: ROLENAME
-    roleInformationService:
-      roleRepository: OCLoginProfilesDao
-      roleNameColumn: ROLENAME
-      serverPermissionQueryId: serverPermissions
-      serverPermissionNameColumn: PERMISSION_NAME
-      clientPermissionQueryId: clientPermissions
-      clientPermissionColumn: XMLCLIENTPERMISSION
+    user-role-information-service:
+      user-role-repository: OCLoginProfilesDao
+      query-id: userRole
+      role-login-column: USER_
+      role-name-column: ROLENAME
+    role-information-service:
+      role-repository: OCLoginProfilesDao
+      role-name-column: ROLENAME
+      server-permission-query-id: serverPermissions
+      server-permission-name-column: PERMISSION_NAME
+      client-permission-query-id: clientPermissions
+      client-permission-column: XMLCLIENTPERMISSION
 ```
