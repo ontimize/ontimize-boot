@@ -185,12 +185,12 @@ ontimize:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| queryId | *String* | Name of the DAO query identifier. |
-| userLoginColumn | *String* | Database column that stores the username |
-| userPasswordColumn | *String* | Database column that stores the password |
-| userNeedCheckPassColumn | *String* | Database column that stores whether the password requires updating at the next use |
-| userRepository | *String* | Name of the DAO containing information about users |
-| otherData | *List* | Extra data to store from the user logged |
+| query-id | *String* | Name of the DAO query identifier. |
+| user-login-column | *String* | Database column that stores the username |
+| user-password-column | *String* | Database column that stores the password |
+| user-need-check-pass-column | *String* | Database column that stores whether the password requires updating at the next use |
+| user-repository | *String* | Name of the DAO containing information about users |
+| other-data | *List* | Extra data to store from the user logged |
 
 - **ontimize:security:role-information-service:**
 
