@@ -64,7 +64,7 @@ ontimize:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-|nameConvention|*upper*, *lower*, *database*| Indicate the nomenclature of the columns in the DB, in lower case, upper case or as it appears in the database |
+|name-convention|*upper*, *lower*, *database*| Indicate the nomenclature of the columns in the DB, in lower case, upper case or as it appears in the database |
 |sqlhandler|*postgres*, *oracle*, *oracle12*, *sqlserver*, *hsqldb*| Indicates which SQL statement handler will be used to communicate with the database |
 
 - **ontimize:jdbc:sql-condition-processor:**
