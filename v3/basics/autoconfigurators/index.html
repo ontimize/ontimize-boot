@@ -443,58 +443,58 @@
   </thead>
   <tbody>
     <tr>
-      <td>refRepository</td>
+      <td>ref-repository</td>
       <td><em>String</em></td>
       <td>Name of the DAO containing the configuration information required for system configuration</td>
     </tr>
     <tr>
-      <td>filterColumnName</td>
+      <td>filter-column-name</td>
       <td><em>String</em></td>
       <td>Name of the column in the database table containing the keys</td>
     </tr>
     <tr>
-      <td>valueColumnName</td>
+      <td>value-column-name</td>
       <td><em>String</em></td>
       <td>Name of the database table column containing the values</td>
     </tr>
     <tr>
-      <td>queryId</td>
+      <td>query-id</td>
       <td><em>String</em></td>
       <td>Name of the DAO query to be executed. By default, is <em>default</em>
 </td>
     </tr>
     <tr>
-      <td>filterColumnValueEncoding</td>
+      <td>filter-column-value-encoding</td>
       <td><em>String</em></td>
       <td>Key name of the row in the key column containing the value for mail encoding</td>
     </tr>
     <tr>
-      <td>filterColumnValueHost</td>
+      <td>filter-column-value-host</td>
       <td><em>String</em></td>
       <td>Name of the key in the row of the key column containing the value for the host in the mail service</td>
     </tr>
     <tr>
-      <td>filterColumnValuePort</td>
+      <td>filter-column-value-port</td>
       <td><em>String</em></td>
       <td>Name of the key in the row of the key column containing the value for the port in the mail service</td>
     </tr>
     <tr>
-      <td>filterColumnValueProtocol</td>
+      <td>filter-column-value-protocol</td>
       <td><em>String</em></td>
       <td>Name of the key in the row of the key column containing the value for the protocol used in the mail service</td>
     </tr>
     <tr>
-      <td>filterColumnValueUser</td>
+      <td>filter-column-value-user</td>
       <td><em>String</em></td>
       <td>Name of the key in the row of the key column containing the value for the user in the mail service</td>
     </tr>
     <tr>
-      <td>filterColumnValuePassword</td>
+      <td>filter-column-value-password</td>
       <td><em>String</em></td>
       <td>Name of the key in the row of the key column containing the value for the user password in the mail service</td>
     </tr>
     <tr>
-      <td>filterColumnValueJavaMailProperties</td>
+      <td>filter-column-value-java-mail-properties</td>
       <td><em>String</em></td>
       <td>Name of the key in the row of the key column containing the value for the mail propoerties in the mail service</td>
     </tr>
@@ -511,17 +511,17 @@
 <p><strong>Example</strong></p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
    <span class="na">mail</span><span class="pi">:</span>
-      <span class="na">refRepository</span><span class="pi">:</span> <span class="s">OCSettingsDao</span>
-      <span class="na">filterColumnName</span><span class="pi">:</span> <span class="s">SETTING_KEY</span>
-      <span class="na">valueColumnName</span><span class="pi">:</span> <span class="s">SETTING_VALUE</span>
-      <span class="na">queryId</span><span class="pi">:</span> <span class="s">default</span>
-      <span class="na">filterColumnValueEncoding</span><span class="pi">:</span> <span class="s">mail_encoding</span>
-      <span class="na">filterColumnValueHost</span><span class="pi">:</span> <span class="s">mail_host</span>
-      <span class="na">filterColumnValuePort</span><span class="pi">:</span> <span class="s">mail_port</span>
-      <span class="na">filterColumnValueProtocol</span><span class="pi">:</span> <span class="s">mail_protocol</span>
-      <span class="na">filterColumnValueUser</span><span class="pi">:</span> <span class="s">mail_user</span>
-      <span class="na">filterColumnValuePassword</span><span class="pi">:</span> <span class="s">mail_password</span>
-      <span class="na">filterColumnValueJavaMailProperties</span><span class="pi">:</span> <span class="s">mail_properties</span>
+      <span class="na">ref-repository</span><span class="pi">:</span> <span class="s">OCSettingsDao</span>
+      <span class="na">filter-column-name</span><span class="pi">:</span> <span class="s">SETTING_KEY</span>
+      <span class="na">value-column-name</span><span class="pi">:</span> <span class="s">SETTING_VALUE</span>
+      <span class="na">query-id</span><span class="pi">:</span> <span class="s">default</span>
+      <span class="na">filter-column-value-encoding</span><span class="pi">:</span> <span class="s">mail_encoding</span>
+      <span class="na">filter-column-value-host</span><span class="pi">:</span> <span class="s">mail_host</span>
+      <span class="na">filter-column-value-port</span><span class="pi">:</span> <span class="s">mail_port</span>
+      <span class="na">filter-column-value-protocol</span><span class="pi">:</span> <span class="s">mail_protocol</span>
+      <span class="na">filter-column-value-user</span><span class="pi">:</span> <span class="s">mail_user</span>
+      <span class="na">filter-column-value-password</span><span class="pi">:</span> <span class="s">mail_password</span>
+      <span class="na">filter-column-value-java-mail-properties</span><span class="pi">:</span> <span class="s">mail_properties</span>
       <span class="na">engine</span><span class="pi">:</span> <span class="s">default</span>
 </code></pre></div></div>
 
