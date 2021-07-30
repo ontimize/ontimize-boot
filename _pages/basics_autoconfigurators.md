@@ -91,17 +91,17 @@ ontimize:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| refRepository | *String* | Name of the DAO containing the configuration information required for system configuration |
-| filterColumnName | *String* | Name of the column in the database table containing the keys |
-| valueColumnName | *String* | Name of the database table column containing the values |
-| queryId | *String* | Name of the DAO query to be executed. By default, is *default* |
-| filterColumnValueEncoding | *String* | Key name of the row in the key column containing the value for mail encoding |
-| filterColumnValueHost | *String* | Name of the key in the row of the key column containing the value for the host in the mail service |
-| filterColumnValuePort | *String* | Name of the key in the row of the key column containing the value for the port in the mail service |
-| filterColumnValueProtocol | *String* | Name of the key in the row of the key column containing the value for the protocol used in the mail service |
-| filterColumnValueUser | *String* | Name of the key in the row of the key column containing the value for the user in the mail service |
-| filterColumnValuePassword | *String* | Name of the key in the row of the key column containing the value for the user password in the mail service |
-| filterColumnValueJavaMailProperties | *String* | Name of the key in the row of the key column containing the value for the mail propoerties in the mail service |
+| ref-repository | *String* | Name of the DAO containing the configuration information required for system configuration |
+| filter-column-name | *String* | Name of the column in the database table containing the keys |
+| value-column-name | *String* | Name of the database table column containing the values |
+| query-id | *String* | Name of the DAO query to be executed. By default, is *default* |
+| filter-column-value-encoding | *String* | Key name of the row in the key column containing the value for mail encoding |
+| filter-column-value-host | *String* | Name of the key in the row of the key column containing the value for the host in the mail service |
+| filter-column-value-port | *String* | Name of the key in the row of the key column containing the value for the port in the mail service |
+| filter-column-value-protocol | *String* | Name of the key in the row of the key column containing the value for the protocol used in the mail service |
+| filter-column-value-user | *String* | Name of the key in the row of the key column containing the value for the user in the mail service |
+| filter-column-value-password | *String* | Name of the key in the row of the key column containing the value for the user password in the mail service |
+| filter-column-value-java-mail-properties | *String* | Name of the key in the row of the key column containing the value for the mail propoerties in the mail service |
 | engine | *String* | Enable or disable mail engine. To enable, have any value int this arribute. By default, use *default* value|
 
 The configuration of the mail system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/v3/basics/mail/).
@@ -110,17 +110,17 @@ The configuration of the mail system is done by setting up the necessary DAOs fo
 ```yaml
 ontimize:
    mail:
-      refRepository: OCSettingsDao
-      filterColumnName: SETTING_KEY
-      valueColumnName: SETTING_VALUE
-      queryId: default
-      filterColumnValueEncoding: mail_encoding
-      filterColumnValueHost: mail_host
-      filterColumnValuePort: mail_port
-      filterColumnValueProtocol: mail_protocol
-      filterColumnValueUser: mail_user
-      filterColumnValuePassword: mail_password
-      filterColumnValueJavaMailProperties: mail_properties
+      ref-repository: OCSettingsDao
+      filter-column-name: SETTING_KEY
+      value-column-name: SETTING_VALUE
+      query-id: default
+      filter-column-value-encoding: mail_encoding
+      filter-column-value-host: mail_host
+      filter-column-value-port: mail_port
+      filter-column-value-protocol: mail_protocol
+      filter-column-value-user: mail_user
+      filter-column-value-password: mail_password
+      filter-column-value-java-mail-properties: mail_properties
       engine: default
 ```
 
