@@ -5,9 +5,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.ontimize.jee.common.services.reportstore.IDynamicJasperService;
 import com.ontimize.jee.common.services.reportstore.IReportStoreService;
+import com.ontimize.jee.report.rest.DynamicJasperRestController;
 import com.ontimize.jee.report.rest.ReportStoreRestController;
 import com.ontimize.jee.server.services.reportstore.DatabaseReportStoreEngine;
+import com.ontimize.jee.server.services.reportstore.DynamicJasperService;
 import com.ontimize.jee.server.services.reportstore.FileReportStoreEngine;
 import com.ontimize.jee.server.services.reportstore.IReportStoreEngine;
 import com.ontimize.jee.server.services.reportstore.ReportStoreConfiguration;
@@ -19,15 +22,20 @@ public class OReportAutoConfigure {
 
 	@Value("${ontimize.report.basePath}")
 	private String basePath;
-	
+
 	@Value("${ontimize.report.type}")
 	private String type;
-		
+
 	@Bean("ReportStoreService")
 	public IReportStoreService ontimizeReportStoreService() {
 		return new ReportStoreServiceImpl();
 	}
-	
+
+	@Bean("DynamicJasperService")
+	public IDynamicJasperService ontimizeDynamicJasperService() {
+		return new DynamicJasperService();
+	}
+
 	@Bean
 	public OntimizeReportConfiguration ontimizeReportConfiguration(IReportStoreEngine reportStoreEngine) {
 		ReportStoreConfiguration reportConfiguration = new ReportStoreConfiguration();
@@ -36,7 +44,7 @@ public class OReportAutoConfigure {
 		ontimizeReportConfiguration.setReportStoreConfiguration(reportConfiguration);
 		return ontimizeReportConfiguration;
 	}
-	
+
 	@Bean("EngineService")
 	@ConditionalOnProperty(name = "ontimize.report.type", havingValue = "file", matchIfMissing = false)
 	public IReportStoreEngine reportStoreEngine() {
@@ -44,18 +52,24 @@ public class OReportAutoConfigure {
 		fileReportStoreEngine.setBasePath(basePath);
 		return fileReportStoreEngine;
 	}
-	
+
 	@Bean("ReportControllerService")
 	public ReportStoreRestController reportStoreController() {
 		ReportStoreRestController reportController = new ReportStoreRestController();
 		return reportController;
 	}
-	
+
+	@Bean("DynamicReportControllerService")
+	public DynamicJasperRestController DynamicJasperController() {
+		DynamicJasperRestController reportController = new DynamicJasperRestController();
+		return reportController;
+	}
+
 	@Bean("EngineService")
 	@ConditionalOnProperty(name = "ontimize.report.type", havingValue = "database", matchIfMissing = false)
 	public IReportStoreEngine databaseReportStoreEngine() {
 		DatabaseReportStoreEngine dbReportStoreEngine = new DatabaseReportStoreEngine();
 		return dbReportStoreEngine;
 	}
-	
+
 }
