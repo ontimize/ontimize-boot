@@ -124,6 +124,33 @@ ontimize:
       engine: default
 ```
 
+## Report
+- **ontimize:report:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| engine | *database*, *file* | Indicates the engine that will be used for the report system (*file* for file system engine or *database* for database engine) |
+| base-path | *String* | The path where the report files will be stored (file system engine only) |
+
+The configuration of the reports system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/v3/basics/reports/).
+
+**Example**
+
+*Database*
+```yaml
+ontimize:
+   report:
+      engine: database
+```
+
+*File system*
+```yaml
+ontimize:
+   report:
+      engine: file
+      base-path: file:/C:/applications/QSAllComponents_Jee/reports
+```
+
 ## REST
 
 - **ontimize:corsfilter:**
