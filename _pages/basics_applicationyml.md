@@ -211,7 +211,7 @@ security:
 |--|--|--|
 | port | int | Server port |
 
--**ontimize:server:servlet:**
+- **ontimize:server:servlet:**
 
 | Attribute | Values | Meaning |
 |--|--|--|
