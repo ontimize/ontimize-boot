@@ -239,6 +239,7 @@
   <li><a href="#i18n">I18n</a></li>
   <li><a href="#jdbc">JDBC</a></li>
   <li><a href="#mail">Mail</a></li>
+  <li><a href="#report">Report</a></li>
   <li><a href="#rest">REST</a></li>
   <li><a href="#security">Security</a></li>
 </ul>
@@ -523,6 +524,52 @@
       <span class="na">filter-column-value-password</span><span class="pi">:</span> <span class="s">mail_password</span>
       <span class="na">filter-column-value-java-mail-properties</span><span class="pi">:</span> <span class="s">mail_properties</span>
       <span class="na">engine</span><span class="pi">:</span> <span class="s">default</span>
+</code></pre></div></div>
+
+<h2 id="report">Report</h2>
+<ul>
+  <li><strong>ontimize:report:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>engine</td>
+      <td>
+<em>database</em>, <em>file</em>
+</td>
+      <td>Indicates the engine that will be used for the report system (<em>file</em> for file system engine or <em>database</em> for database engine)</td>
+    </tr>
+    <tr>
+      <td>base-path</td>
+      <td><em>String</em></td>
+      <td>The path where the report files will be stored (file system engine only)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The configuration of the reports system is done by setting up the necessary DAOs for that system. To see the configuration, see <a href="/ontimize-boot/v3/basics/reports/">this link</a>.</p>
+
+<p><strong>Example</strong></p>
+
+<p><em>Database</em></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
+   <span class="na">report</span><span class="pi">:</span>
+      <span class="na">engine</span><span class="pi">:</span> <span class="s">database</span>
+</code></pre></div></div>
+
+<p><em>File system</em></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
+   <span class="na">report</span><span class="pi">:</span>
+      <span class="na">engine</span><span class="pi">:</span> <span class="s">file</span>
+      <span class="na">base-path</span><span class="pi">:</span> <span class="s">file:/C:/applications/QSAllComponents_Jee/reports</span>
 </code></pre></div></div>
 
 <h2 id="rest">REST</h2>
