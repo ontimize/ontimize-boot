@@ -7,3 +7,4 @@ This section pretends to show the basic elements for the development of an appli
 
 - [Autoconfigurators](/ontimize-boot/v3/basics/autoconfigurators)
 - [Understanding application.yml file](/ontimize-boot/v3/basics/applicationyml)
+- [Complex Queries](/ontimize-boot/v3/basics/complexqueries)
