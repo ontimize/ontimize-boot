@@ -234,12 +234,1136 @@
             <nav class="toc">
               <header><h4 class="nav__title">
 <i class="fas fa-file-alt"></i> Table of Contents</h4></header>
-              
+              <ul class="toc__menu">
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#database-structure">Database structure</a></li>
+  <li>
+<a href="#modify-the-dao-to-add-a-complex-query">Modify the DAO to add a complex query</a>
+    <ul>
+      <li><a href="#query-markers">Query markers</a></li>
+      <li><a href="#ambiguous-columns">Ambiguous columns</a></li>
+      <li><a href="#complete-example">Complete example</a></li>
+    </ul>
+  </li>
+  <li><a href="#modify-the-interface-and-the-service-to-add-the-new-method">Modify the interface and the service to add the new method</a></li>
+</ul>
 
             </nav>
           </aside>
         
-        
+        <h2 id="introduction">Introduction</h2>
+
+<p>In this example the DAO *.xml files will be modified to make complex queries against other database tables.</p>
+
+<h2 id="database-structure">Database structure</h2>
+
+<p>We will update the OfferCandidatesDao DAO to add new information in the *.xml. In this case, you will try to add a new query that reflects the other tables that are used from this DAO to relate the offers, candidates, and status. As this table only contains identifiers, our new query will allow us to know all the data and not only its identifiers.</p>
+
+<p><img src="/ontimize-boot/v3/assets/images/databasecmplx.png" alt="database"></p>
+
+<h2 id="modify-the-dao-to-add-a-complex-query">Modify the DAO to add a complex query</h2>
+
+<p>In the *.xml, we will add a new <code class="language-plaintext highlighter-rouge">&lt;Queries&gt;</code> tag in which we will add the new queries using the <code class="language-plaintext highlighter-rouge">&lt;Query&gt;</code> tag. In this query, we can indicate the query to be executed through the <code class="language-plaintext highlighter-rouge">&lt;Sentence&gt;</code> tag.
+As we want to use the columns and conditions that you indicate through the request, we will use the following markers:</p>
+
+<h3 id="query-markers">Query markers</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Marker</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>#COLUMNS#</td>
+      <td>Columns to be queried</td>
+    </tr>
+    <tr>
+      <td>#WHERE#</td>
+      <td>Columns to filter the query</td>
+    </tr>
+    <tr>
+      <td>#WHERE_CONCAT#</td>
+      <td>Adds more columns to filter the query with the <strong>AND</strong> sql operator</td>
+    </tr>
+    <tr>
+      <td>#ORDER#</td>
+      <td>Column to order the queried values with the <strong>ORDER BY</strong> sql operator</td>
+    </tr>
+    <tr>
+      <td>#ORDER_CONCAT#</td>
+      <td>Adds more columns to order the queried values with a <strong>comma (,)</strong>
+</td>
+    </tr>
+    <tr>
+      <td>#SCHEMA#</td>
+      <td>Gets the database schema</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;Queries&gt;</span>
+    <span class="nt">&lt;Query&gt;</span>
+        <span class="nt">&lt;Sentence&gt;</span>
+            <span class="cp">&lt;![CDATA[
+                SELECT
+                #COLUMNS#
+                FROM
+                #SCHEMA#.OFFER_CANDIDATES
+                #WHERE#
+            ]]&gt;</span>
+        <span class="nt">&lt;/Sentence&gt;</span>
+    <span class="nt">&lt;/Query&gt;</span>
+<span class="nt">&lt;/Queries&gt;</span>
+</code></pre></div></div>
+
+<p>This will be the query to execute:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT ID, OFFER_ID, CANDIDATE_ID, OFFER_CANDIDATE_STATUS FROM PUBLIC.OFFER_CANDIDATES WHERE ID = 200
+</code></pre></div></div>
+
+<p>There are two ways to order the queries values, with the #ORDER# marker or with a <code class="language-plaintext highlighter-rouge">&lt;OrderColumn&gt;</code> tag</p>
+
+<p><strong>Example with #ORDER#</strong></p>
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;Queries&gt;</span>
+    <span class="nt">&lt;Query&gt;</span>
+        <span class="nt">&lt;Sentence&gt;</span>
+            <span class="cp">&lt;![CDATA[
+                SELECT
+                #COLUMNS#
+                FROM
+                OFFER_CANDIDATES
+                #ORDER#
+            ]]&gt;</span>
+        <span class="nt">&lt;/Sentence&gt;</span>
+    <span class="nt">&lt;/Query&gt;</span>
+<span class="nt">&lt;/Queries&gt;</span>
+</code></pre></div></div>
+
+<p>This will be the query to execute:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT ID, OFFER_ID, CANDIDATE_ID, OFFER_CANDIDATE_STATUS FROM PUBLIC.OFFER_CANDIDATES ORDER BY ID
+</code></pre></div></div>
+
+<p><strong>Example with <code class="language-plaintext highlighter-rouge">&lt;OrderColumn&gt;</code></strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;Queries&gt;</span>
+    <span class="nt">&lt;Query&gt;</span>
+        <span class="nt">&lt;OrderColumns&gt;</span>
+            <span class="nt">&lt;OrderColumn</span> <span class="na">name=</span><span class="s">"CANDIDATE_ID"</span> <span class="na">type=</span><span class="s">"ASC"</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;/OrderColumns&gt;</span>
+        <span class="nt">&lt;Sentence&gt;</span>
+            <span class="cp">&lt;![CDATA[
+                SELECT
+                #COLUMNS#
+                FROM
+                OFFER_CANDIDATES
+            ]]&gt;</span>
+        <span class="nt">&lt;/Sentence&gt;</span>
+    <span class="nt">&lt;/Query&gt;</span>
+<span class="nt">&lt;/Queries&gt;</span>
+</code></pre></div></div>
+<p>This will be the query to execute:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SELECT ID, OFFER_ID, CANDIDATE_ID, OFFER_CANDIDATE_STATUS FROM PUBLIC.OFFER_CANDIDATES ORDER BY CANDIDATE_ID
+</code></pre></div></div>
+
+<p>There are two types of OrderColumn, <strong>ASC</strong> (Ascendent) or <strong>DESC</strong> (Descendent).</p>
+
+<h3 id="ambiguous-columns">Ambiguous columns</h3>
+
+<p>The use of the <code class="language-plaintext highlighter-rouge">&lt;AmbiguousColumn&gt;</code> tag will indicate which are the ambiguous columns (in this case, the DESCRIPTION column of OFFER_CANDIDATE_STATUS and OFFER, using the name of DESC_STATUS for OFFER_CANDIDATE_STATUS). Otherwise in case we want to modify the query that is performed by default, the identifier of the tag would be default <code class="language-plaintext highlighter-rouge">&lt;Query id = "default"&gt;</code>. As we want to keep the query by default, we will put another identifier.</p>
+
+<p><strong>Example</strong></p>
+
+<div class="language-xml highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="nt">&lt;Queries&gt;</span>
+  <span class="nt">&lt;Query</span> <span class="na">id=</span><span class="s">"details"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;AmbiguousColumns&gt;</span>
+    <span class="nt">&lt;AmbiguousColumn</span> <span class="na">name=</span><span class="s">"DESC_STATUS"</span> <span class="na">prefix=</span><span class="s">"OS"</span>
+     <span class="na">databaseName=</span><span class="s">"DESCRIPTION"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;AmbiguousColumn</span> <span class="na">name=</span><span class="s">"OFF_STATUS"</span> <span class="na">prefix=</span><span class="s">"OCS"</span>
+     <span class="na">databaseName=</span><span class="s">"DESCRIPTION"</span> <span class="nt">/&gt;</span>
+   <span class="nt">&lt;/AmbiguousColumns&gt;</span>
+   <span class="nt">&lt;Sentence&gt;</span>
+   <span class="cp">&lt;![CDATA[
+     SELECT
+      #COLUMNS#
+     FROM
+      PUBLIC.OFFER_CANDIDATES OC
+     INNER JOIN PUBLIC.OFFER O ON
+      OC.OFFER_ID = O.ID
+     INNER JOIN PUBLIC.CANDIDATE C ON
+      OC.CANDIDATE_ID = C.ID
+     INNER JOIN PUBLIC.OFFER_STATUS OS ON
+      O.OFFER_STATUS = OS.ID
+     INNER JOIN PUBLIC.OFFER_CANDIDATE_STATUS OCS ON
+      O.OFFER_STATUS = OCS.ID
+     #WHERE#
+   ]]&gt;</span>
+   <span class="nt">&lt;/Sentence&gt;</span>
+  <span class="nt">&lt;/Query&gt;</span>
+ <span class="nt">&lt;/Queries&gt;</span>
+</code></pre></div></div>
+
+<h3 id="complete-example">Complete example</h3>
+
+<div class="multiColumnRow">
+<div class="multiColumn jstreeloader">
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-boot-tutorial
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                api
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  core
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    service
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>IMasterService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>IOfferService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                boot
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  core
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    frontend
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          ngx
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            aot-config
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>helpers.js</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>index.ejs</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>vendor-aot.ts</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>webpack-aot.config.js</li>
+            </ul>
+            </li>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            src
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              app
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                login
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login-routing.module.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.component.html</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.component.scss</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.component.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.module.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.theme.scss</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                main
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  home
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home-routing.module.ts</li>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home.component.html</li>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home.component.scss</li>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home.component.ts</li>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home.module.ts</li>
+                  </ul>
+                  </li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main-routing.module.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main.component.html</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main.component.scss</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main.component.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main.module.ts</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                shared
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>app.menu.config.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>app.services.config.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>shared.module.ts</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app-routing.module.ts</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.component.html</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.component.scss</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.component.ts</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.config.ts</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.module.ts</li>
+              </ul>
+              </li>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              assets
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                css
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>app.scss</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>loader.css</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                i18n
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>en.json</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>es.json</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                images
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>no-image.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ontimize.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ontimize_web_log.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>sidenav-closed.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>sidenav-opened.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>user_profile.png</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                js
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>domchange.js</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>keyboard.js</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              environments
+              <ul>
+                <li data-jstree='{"icon":"fas fa-file"}'>environment.prod.ts</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>environment.ts</li>
+              </ul>
+              </li>
+              <li data-jstree='{"icon":"fas fa-file"}'>favicon.ico</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>index.html</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>main.ts</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>polyfills.ts</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>styles.scss</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>test.ts</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>tsconfig.app.json</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>tsconfig.spec.json</li>
+            </ul>
+            </li>
+            <li data-jstree='{"icon":"fas fa-file"}'>angular.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>package-lock.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>package.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>tsconfig.aot.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>tsconfig.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>tslint.json</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.properties</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                model
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  core
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    dao
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.java</li>
+                      <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OfferCandidatesDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                    </ul>
+                    </li>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    service
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>MasterService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.xml</li>
+              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OfferCandidatesDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                ws
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  core
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    rest
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>MasterRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+</div>
+<div class="multiColumn multiColumnGrow">
+  <p><strong>OfferCandidatesDao.xml</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;JdbcEntitySetup</span>
+ <span class="na">xmlns=</span><span class="s">"http://www.ontimize.com/schema/jdbc"</span>
+ <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span>
+ <span class="na">xsi:schemaLocation=</span><span class="s">"http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"</span>
+ <span class="na">catalog=</span><span class="s">""</span> <span class="na">schema=</span><span class="s">"${mainschema}"</span> <span class="na">table=</span><span class="s">"OFFER_CANDIDATES"</span>
+ <span class="na">datasource=</span><span class="s">"mainDataSource"</span> <span class="na">sqlhandler=</span><span class="s">"dbSQLStatementHandler"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;DeleteKeys&gt;</span>
+  <span class="nt">&lt;Column&gt;</span>ID<span class="nt">&lt;/Column&gt;</span>
+ <span class="nt">&lt;/DeleteKeys&gt;</span>
+ <span class="nt">&lt;UpdateKeys&gt;</span>
+  <span class="nt">&lt;Column&gt;</span>ID<span class="nt">&lt;/Column&gt;</span>
+ <span class="nt">&lt;/UpdateKeys&gt;</span>
+ <span class="nt">&lt;GeneratedKey&gt;</span>ID<span class="nt">&lt;/GeneratedKey&gt;</span>
+
+ <span class="nt">&lt;Queries&gt;</span>
+  <span class="nt">&lt;Query</span> <span class="na">id=</span><span class="s">"details"</span><span class="nt">&gt;</span>
+   <span class="nt">&lt;AmbiguousColumns&gt;</span>
+    <span class="nt">&lt;AmbiguousColumn</span> <span class="na">name=</span><span class="s">"DESC_STATUS"</span> <span class="na">prefix=</span><span class="s">"OS"</span>
+     <span class="na">databaseName=</span><span class="s">"DESCRIPTION"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;AmbiguousColumn</span> <span class="na">name=</span><span class="s">"OFF_STATUS"</span> <span class="na">prefix=</span><span class="s">"OCS"</span>
+     <span class="na">databaseName=</span><span class="s">"DESCRIPTION"</span> <span class="nt">/&gt;</span>
+   <span class="nt">&lt;/AmbiguousColumns&gt;</span>
+   <span class="nt">&lt;Sentence&gt;</span>
+   <span class="cp">&lt;![CDATA[
+     SELECT
+      #COLUMNS#
+     FROM
+      PUBLIC.OFFER_CANDIDATES OC
+     INNER JOIN PUBLIC.OFFER O ON
+      OC.OFFER_ID = O.ID
+     INNER JOIN PUBLIC.CANDIDATE C ON
+      OC.CANDIDATE_ID = C.ID
+     INNER JOIN PUBLIC.OFFER_STATUS OS ON
+      O.OFFER_STATUS = OS.ID
+     INNER JOIN PUBLIC.OFFER_CANDIDATE_STATUS OCS ON
+      O.OFFER_STATUS = OCS.ID
+     #WHERE#
+   ]]&gt;</span>
+   <span class="nt">&lt;/Sentence&gt;</span>
+  <span class="nt">&lt;/Query&gt;</span>
+ <span class="nt">&lt;/Queries&gt;</span>
+<span class="nt">&lt;/JdbcEntitySetup&gt;</span></code></pre></figure>
+
+<br>
+In the java file, we will add a new constant, which will have the same value as the name of the identifier that we have established for the query. 
+<br><br>
+
+<p><strong>OfferCandidatesDao.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.model.core.dao</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.dao.common.ConfigurationFile</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport</span><span class="o">;</span>
+
+<span class="nd">@Repository</span><span class="o">(</span><span class="s">"OfferCandidatesDao"</span><span class="o">)</span>
+<span class="nd">@Lazy</span>
+<span class="nd">@ConfigurationFile</span><span class="o">(</span><span class="n">configurationFile</span> <span class="o">=</span> <span class="s">"dao/OfferCandidatesDao.xml"</span><span class="o">,</span> <span class="n">configurationFilePlaceholder</span> <span class="o">=</span> <span class="s">"dao/placeholders.properties"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OfferCandidatesDao</span> <span class="kd">extends</span> <span class="nc">OntimizeJdbcDaoSupport</span> <span class="o">{</span>
+
+ <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ATTR_ID</span> <span class="o">=</span><span class="s">"ID"</span><span class="o">;</span>
+ <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ATTR_OFFER_ID</span> <span class="o">=</span><span class="s">"OFFER_ID"</span><span class="o">;</span>
+ <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ATTR_CANDIDATE_ID</span> <span class="o">=</span><span class="s">"CANDIDATE_ID"</span><span class="o">;</span>
+ <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ATTR_OFFER_CANDIDATE_STATUS</span> <span class="o">=</span><span class="s">"OFFER_CANDIDATE_STATUS"</span><span class="o">;</span>
+ <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">QUERY_OFFER_DETAILS</span> <span class="o">=</span> <span class="s">"details"</span><span class="o">;</span>
+  
+<span class="o">}</span></code></pre></figure>
+
+</div>
+</div>
+
+<h2 id="modify-the-interface-and-the-service-to-add-the-new-method">Modify the interface and the service to add the new method</h2>
+
+<p>We will update the IOfferService interface to add the new method that will perform the query. In case of being the default query, it would not be necessary to do any of the steps indicated below.</p>
+
+<div class="multiColumnRow">
+<div class="multiColumn jstreeloader">
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-boot-tutorial
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                api
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  core
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    service
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>IMasterService.java</li>
+                      <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>IOfferService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                boot
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  core
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    frontend
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          ngx
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            aot-config
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>helpers.js</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>index.ejs</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>vendor-aot.ts</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>webpack-aot.config.js</li>
+            </ul>
+            </li>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            src
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              app
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                login
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login-routing.module.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.component.html</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.component.scss</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.component.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.module.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>login.theme.scss</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                main
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  home
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home-routing.module.ts</li>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home.component.html</li>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home.component.scss</li>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home.component.ts</li>
+                    <li data-jstree='{"icon":"fas fa-file"}'>home.module.ts</li>
+                  </ul>
+                  </li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main-routing.module.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main.component.html</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main.component.scss</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main.component.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>main.module.ts</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                shared
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>app.menu.config.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>app.services.config.ts</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>shared.module.ts</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app-routing.module.ts</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.component.html</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.component.scss</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.component.ts</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.config.ts</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>app.module.ts</li>
+              </ul>
+              </li>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              assets
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                css
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>app.scss</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>loader.css</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                i18n
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>en.json</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>es.json</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                images
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>no-image.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ontimize.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ontimize_web_log.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>sidenav-closed.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>sidenav-opened.png</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>user_profile.png</li>
+                </ul>
+                </li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                js
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>domchange.js</li>
+                  <li data-jstree='{"icon":"fas fa-file"}'>keyboard.js</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              environments
+              <ul>
+                <li data-jstree='{"icon":"fas fa-file"}'>environment.prod.ts</li>
+                <li data-jstree='{"icon":"fas fa-file"}'>environment.ts</li>
+              </ul>
+              </li>
+              <li data-jstree='{"icon":"fas fa-file"}'>favicon.ico</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>index.html</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>main.ts</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>polyfills.ts</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>styles.scss</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>test.ts</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>tsconfig.app.json</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>tsconfig.spec.json</li>
+            </ul>
+            </li>
+            <li data-jstree='{"icon":"fas fa-file"}'>angular.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>package-lock.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>package.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>tsconfig.aot.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>tsconfig.json</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>tslint.json</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.properties</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                model
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  core
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    dao
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                    </ul>
+                    </li>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    service
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>MasterService.java</li>
+                      <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OfferService.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                ws
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  core
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    rest
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>MasterRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>OfferRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                      <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+</div>
+<div class="multiColumn multiColumnGrow">
+  <p><strong>IOfferService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IOfferService</span> <span class="o">{</span>
+
+        <span class="o">...</span>
+ <span class="c1">// OFFER CANDIDATES
+</span>
+ <span class="o">...</span>
+ <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">offerCandidateDetailsQuery</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">attrList</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+
+        <span class="o">...</span>
+ <span class="c1">// OFFER CANDIDATES STATUS
+</span>
+        <span class="o">...</span>
+<span class="o">}</span></code></pre></figure>
+
+<br>
+In the service, we implement the new interface method, using the daoHelper to create the query, but adding a new parameter after the list of columns to query, which will be the identifier of the query that we have created in the DAO (and that we have associated with a constant in the corresponding java file). 
+<br><br>
+
+<p><strong>OfferService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="nd">@Service</span><span class="o">(</span><span class="s">"OfferService"</span><span class="o">)</span>
+<span class="nd">@Lazy</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OfferService</span> <span class="kd">implements</span> <span class="nc">IOfferService</span> <span class="o">{</span>
+
+ <span class="o">...</span>
+
+ <span class="nd">@Override</span>
+ <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">offerCandidateDetailsQuery</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">attrList</span><span class="o">)</span>
+   <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span> <span class="o">{</span>
+  <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">daoHelper</span><span class="o">.</span><span class="na">query</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">offerCandidatesDao</span><span class="o">,</span> <span class="n">keyMap</span><span class="o">,</span> <span class="n">attrList</span><span class="o">,</span> <span class="nc">OfferCandidatesDao</span><span class="o">.</span><span class="na">QUERY_OFFER_DETAILS</span><span class="o">);</span>
+ <span class="o">}</span>
+
+ <span class="o">...</span>
+<span class="o">}</span></code></pre></figure>
+
+</div>
+</div>
 
         
       </section>
