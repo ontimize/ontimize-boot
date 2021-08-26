@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.ontimize.boot.export.excel.ExcelExportAutoConfigure,\
+com.ontimize.boot.remoteconfiguration.RemoteConfigurationAutoConfigure

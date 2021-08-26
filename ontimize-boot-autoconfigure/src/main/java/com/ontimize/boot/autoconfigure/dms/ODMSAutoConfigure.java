@@ -22,7 +22,7 @@ import com.ontimize.jee.server.spring.namespace.OntimizeDMSConfiguration;
 @ConditionalOnProperty(name = "ontimize.dms.engine", havingValue = "odms", matchIfMissing = false)
 public class ODMSAutoConfigure {
 	
-	@Value("${ontimize.dms.basePath}")
+	@Value("${ontimize.dms.base-path}")
 	private String basePath;
 
 	@Bean("dmsService")
