@@ -162,6 +162,18 @@
 				<artifactId>ontimize-jee-dms-rest</artifactId>
 				<version>${project.dependency.ontimize-jee-dms.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.jee.report</groupId>
+				<artifactId>ontimize-jee-report-rest</artifactId>
+				<version>${project.dependency.ontimize-jee-report.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.jee.report</groupId>
+				<artifactId>ontimize-jee-report-server</artifactId>
+				<version>${project.dependency.ontimize-jee-report.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
@@ -180,6 +192,12 @@
 				<artifactId>ontimize-boot-keycloak</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
+			
+			<dependency>
+				<groupId>com.ontimize.boot</groupId>
+				<artifactId>ontimize-boot-report</artifactId>
+				<version>${project.dependency.ontimize.boot.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>org.keycloak</groupId>
@@ -196,7 +214,8 @@
 		<module>ontimize-boot-keycloak</module>
 		<module>ontimize-boot-starters</module>
 		<module>ontimize-boot-webaddons</module>
-	</modules>
+    <module>ontimize-boot-report</module>
+  </modules>
 
 	<build>
 		<pluginManagement>
