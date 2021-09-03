@@ -1,14 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
 		<groupId>com.ontimize.boot</groupId>
 		<artifactId>ontimize-boot-starters</artifactId>
-		<version>3.0.0-REPORT-SNAPSHOT</version>
+		<version>3.2.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>ontimize-boot-starter-rest</artifactId>
+
+	<organization>
+		<name>Imatia Innovation</name>
+		<url>http://imatia.com</url>
+	</organization>
+
+	<name>Ontimize Boot (Starter REST module)</name>
+	<description>Ontimize Boot (Starter REST module)</description>
+	<url>https://www.ontimize.com</url>
+
+	<developers>
+		<developer>
+			<name>Cristóbal Miguel Vázquez Carde</name>
+			<email>cmiguel.vazquez@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Enrique Álvarez Pereira</name>
+			<email>enrique.alvarez@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Faustino Lage Rego</name>
+			<email>faustino.lage@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Joaquín Romero Riveiro</name>
+			<email>joaquin.romero@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Lucía Fernández Núñez</name>
+			<email>lucia.fernandez@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Manuel Cid Rodríguez</name>
+			<email>manuel.cid@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Pablo Martínez Kirsten</name>
+			<email>pablo.martinez@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Xoán Loureiro Santamaría</name>
+			<email>xoan.loureiro@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<scm>
+		<connection>scm:git:git://github.com/ontimize/ontimize-boot.git</connection>
+		<developerConnection>scm:git:ssh://github.com:ontimize/ontimize-boot.git</developerConnection>
+		<url>https://github.com/ontimize/ontimize-boot/tree/master</url>
+	</scm>
+
 
 	<dependencies>
 		<dependency>
