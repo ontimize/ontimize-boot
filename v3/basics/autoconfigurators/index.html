@@ -238,6 +238,7 @@
   <li><a href="#dms">DMS</a></li>
   <li><a href="#i18n">I18n</a></li>
   <li><a href="#jdbc">JDBC</a></li>
+  <li><a href="#ldap">LDAP</a></li>
   <li><a href="#mail">Mail</a></li>
   <li><a href="#report">Report</a></li>
   <li><a href="#rest">REST</a></li>
@@ -276,7 +277,7 @@
   </tbody>
 </table>
 
-<p>The configuration of DMS system is done by setting up the necessary DAOs for that system. To see the configuration, see <a href="/ontimize-boot/v3/basics/dms/">this link</a>.</p>
+<p>The configuration of DMS system is done by setting up the necessary DAOs for that system. To see the configuration, check <a href="/ontimize-boot/v3/basics/dms/">this link</a>.</p>
 
 <p><strong>Example</strong></p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
@@ -341,7 +342,7 @@
   </tbody>
 </table>
 
-<!--The configuration of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, see [this link](/ontimize-boot/basics/i18n/).-->
+<!--The configuration of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/i18n/).-->
 
 <p><strong>Example</strong></p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
@@ -428,6 +429,97 @@
          <span class="na">upper-like</span><span class="pi">:</span> <span class="no">true</span>
 </code></pre></div></div>
 
+<h2 id="ldap">LDAP</h2>
+
+<ul>
+  <li><strong>ontimize:security:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Value</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mode</td>
+      <td><em>ldap</em></td>
+      <td>Change the system security from <em>default</em> to <em>ldap</em>
+</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ldap:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>active</td>
+      <td><em>true, false</em></td>
+      <td>Enable or disable ldap security</td>
+    </tr>
+    <tr>
+      <td>host</td>
+      <td><em>IP</em></td>
+      <td>Ip host for ldap security</td>
+    </tr>
+    <tr>
+      <td>port</td>
+      <td><em>Number</em></td>
+      <td>Port of the host for ldap security</td>
+    </tr>
+    <tr>
+      <td>login-type</td>
+      <td><em>DN, simple</em></td>
+      <td>The login type indicates whether a full LDAP string with <em>DN</em> value or will be used or if the username will simply be provided with <em>simple</em> value</td>
+    </tr>
+    <tr>
+      <td>bind.dn</td>
+      <td><em>String</em></td>
+      <td>File to populate the LDAP server using a <em>.ldif</em> file</td>
+    </tr>
+    <tr>
+      <td>base.dn</td>
+      <td><em>String</em></td>
+      <td>List of base DNs.</td>
+    </tr>
+    <tr>
+      <td>domain</td>
+      <td><em>String</em></td>
+      <td>The domain name</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The LDAP security configuration is done through autoconfigurators. To see the settings, check <a href="/ontimize-boot/v3/basics/ldap">this link</a>.</p>
+
+<p><strong>Example</strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
+   <span class="na">security</span><span class="pi">:</span>
+   <span class="na">mode</span><span class="pi">:</span> <span class="s">ldap</span>
+<span class="na">ldap</span><span class="pi">:</span> 
+   <span class="na">active</span><span class="pi">:</span> <span class="no">true</span> 
+   <span class="na">host</span><span class="pi">:</span> <span class="s">10.0.0.1</span>
+   <span class="na">port</span><span class="pi">:</span> <span class="m">389</span>
+   <span class="na">login-type</span><span class="pi">:</span> <span class="s">simple</span>
+   <span class="s">bind.dn</span><span class="pi">:</span> 
+   <span class="s">base.dn</span><span class="pi">:</span> 
+   <span class="na">domain</span><span class="pi">:</span> <span class="s">yourdomain.com</span>
+</code></pre></div></div>
+
 <h2 id="mail">Mail</h2>
 
 <ul>
@@ -507,7 +599,7 @@
   </tbody>
 </table>
 
-<p>The configuration of the mail system is done by setting up the necessary DAOs for that system. To see the configuration, see <a href="/ontimize-boot/v3/basics/mail/">this link</a>.</p>
+<p>The configuration of the mail system is done by setting up the necessary DAOs for that system. To see the configuration, check <a href="/ontimize-boot/v3/basics/mail/">this link</a>.</p>
 
 <p><strong>Example</strong></p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
@@ -555,7 +647,7 @@
   </tbody>
 </table>
 
-<p>The configuration of the reports system is done by setting up the necessary DAOs for that system. To see the configuration, see <a href="/ontimize-boot/v3/basics/reports/">this link</a>.</p>
+<p>The configuration of the reports system is done by setting up the necessary DAOs for that system. To see the configuration, check <a href="/ontimize-boot/v3/basics/reports/">this link</a>.</p>
 
 <p><strong>Example</strong></p>
 
@@ -860,7 +952,7 @@ Indicates the entrypoint to be configured, with the properties for each one. In 
   </tbody>
 </table>
 
-<p>The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, see <a href="/ontimize-boot/v3/basics/security/">this link</a>.</p>
+<p>The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check <a href="/ontimize-boot/v3/basics/security/">this link</a>.</p>
 
 <p><strong>Example</strong></p>
 <div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>

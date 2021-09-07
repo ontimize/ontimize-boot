@@ -19,6 +19,9 @@
 <loc>https://ontimize.github.io/ontimize-boot/v3/basics/i18n/</loc>
 </url>
 <url>
+<loc>https://ontimize.github.io/ontimize-boot/v3/basics/ldap/</loc>
+</url>
+<url>
 <loc>https://ontimize.github.io/ontimize-boot/v3/basics/mail/</loc>
 </url>
 <url>
@@ -26,6 +29,9 @@
 </url>
 <url>
 <loc>https://ontimize.github.io/ontimize-boot/v3/basics/security/</loc>
+</url>
+<url>
+<loc>https://ontimize.github.io/ontimize-boot/v3/basics/versions/</loc>
 </url>
 <url>
 <loc>https://ontimize.github.io/ontimize-boot/v3/getting_started/</loc>
