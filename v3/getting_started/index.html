@@ -261,7 +261,7 @@
 
 <p>Open a console and type the next command:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-archetype -DarchetypeVersion=1.0.0 -DinteractiveMode=false -DarchetypeCatalog=https://artifactory.imatia.com/public-artifactory/ontimize-archetypes/archetype-catalog.xml
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn archetype:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-backend-archetype -DarchetypeVersion=1.0.0 -DinteractiveMode=false
 </code></pre></div></div>
 
 <h3 id="command-explanation">Command explanation</h3>
@@ -279,8 +279,8 @@
       <td>Maven CLI</td>
     </tr>
     <tr>
-      <td>org.apache.maven.plugins:maven-archetype-plugin:2.4:generate</td>
-      <td>Use the Maven Archetype Plugin (v2.4) for create a new project from an archetype</td>
+      <td>archetype:generate</td>
+      <td>Use the Maven Archetype Plugin for create a new project from an archetype</td>
     </tr>
     <tr>
       <td>-DgroupId=YOUR_GROUP_ID</td>
@@ -303,7 +303,7 @@
 <strong>groupId</strong> of the Ontimize Boot archetype</td>
     </tr>
     <tr>
-      <td>-DarchetypeArtifactId=ontimize-boot-archetype</td>
+      <td>-DarchetypeArtifactId=ontimize-boot-backend-archetype</td>
       <td>
 <strong>artifactId</strong> of the Ontimize Boot archetype</td>
     </tr>
@@ -315,10 +315,6 @@
     <tr>
       <td>-DinteractiveMode=false</td>
       <td>Forced to <strong>skip interactive mode</strong> and use the paramaters in the command</td>
-    </tr>
-    <tr>
-      <td>-DarchetypeCatalog=https://artifactory.imatia.com/public-artifactory/ontimize-archetypes/archetype-catalog.xml</td>
-      <td>URL where you can find the archetype catalog</td>
     </tr>
   </tbody>
 </table>
