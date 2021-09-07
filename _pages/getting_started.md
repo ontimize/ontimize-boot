@@ -20,22 +20,21 @@ This page allows you to know how to start developing an application with Ontimiz
 
 Open a console and type the next command:
 
-    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-archetype -DarchetypeVersion=1.0.0 -DinteractiveMode=false -DarchetypeCatalog=https://artifactory.imatia.com/public-artifactory/ontimize-archetypes/archetype-catalog.xml
+    mvn archetype:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-backend-archetype -DarchetypeVersion=1.0.0 -DinteractiveMode=false
 
 ### Command explanation
 
 | Argument | Meaning |
 |--|--|
 | mvn | Maven CLI |
-| org.apache.maven.plugins:maven-archetype-plugin:2.4:generate | Use the Maven Archetype Plugin (v2.4) for create a new project from an archetype|
+| archetype:generate | Use the Maven Archetype Plugin for create a new project from an archetype|
 |-DgroupId=YOUR_GROUP_ID|Your project **groupId**|
 |-DartifactId=YOUR_ARTIFACT_ID|Your project **artifactId**|
 |-Dversion=YOUR_VERSION|Your project **version**|
 |-DarchetypeGroupId=com.ontimize|**groupId** of the Ontimize Boot archetype|
-|-DarchetypeArtifactId=ontimize-boot-archetype|**artifactId** of the Ontimize Boot archetype|
+|-DarchetypeArtifactId=ontimize-boot-backend-archetype|**artifactId** of the Ontimize Boot archetype|
 |-DarchetypeVersion=1.0.0|**version** of the Ontimize Boot archetype|
 |-DinteractiveMode=false| Forced to **skip interactive mode** and use the paramaters in the command|
-|-DarchetypeCatalog=https://artifactory.imatia.com/public-artifactory/ontimize-archetypes/archetype-catalog.xml| URL where you can find the archetype catalog  |
 
 ## Start the project
 
