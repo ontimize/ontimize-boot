@@ -317,7 +317,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
   {{ "**LdapError.java**"| markdownify }}
 
 {% highlight java %}
-package boot.core.security;
+package com.ontimize.security;
 
 public interface LdapError {
 
@@ -336,7 +336,7 @@ public interface LdapError {
   {{ "**LdapAuthenticationMechanism.java**"| markdownify }}
 
 {% highlight java %}
-package boot.core.security;
+package com.ontimize.security;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -537,7 +537,7 @@ public class LdapAuthenticationMechanism implements IAuthenticationMechanism {
   {{ "**CustomSecurityAutoConfiguration.java**"| markdownify }}
 
 {% highlight java %}
-package boot.core.security;
+package com.ontimize.security;
 
 import java.util.ArrayList;
 
@@ -854,9 +854,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
 <div class="multiColumn multiColumnGrow">
 
   {{ "**application.yml**"| markdownify }}
-
 {% highlight yml %}
-
 ontimize:
    security:
       mode: ldap
@@ -868,7 +866,6 @@ ldap:
    bind.dn: 
    base.dn: 
    domain: yourdomain.com
-
 {% endhighlight %}
 
 </div>
