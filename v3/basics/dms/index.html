@@ -290,7 +290,7 @@
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/$ git clone https://github.com/ontimize/ontimize-examples 
 /ontimize-examples$ cd ontimize-examples
-/ontimize-examples$ git checkout boot-dms-initial
+/ontimize-examples$ git checkout boot-dms-3.x.x-initial
 </code></pre></div></div>
 
 </div>
@@ -301,7 +301,7 @@
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/$ git clone https://github.com/ontimize/ontimize-examples 
 /ontimize-examples$ cd ontimize-examples
-/ontimize-examples$ git checkout boot-dms
+/ontimize-examples$ git checkout boot-dms-3.x.x
 </code></pre></div></div>
 
 
@@ -381,7 +381,7 @@
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -393,16 +393,31 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -419,7 +434,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -431,12 +446,17 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -457,7 +477,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -468,9 +488,7 @@
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           db
           <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -478,24 +496,39 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -525,11 +558,11 @@
         </li>
       </ul>
       </li>
-      <li data-jstree='{"selected": true,"icon":"fas fa-file"}'>pom.xml</li>
+      <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>pom.xml</li>
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -541,18 +574,33 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -565,7 +613,7 @@
         </li>
       </ul>
       </li>
-      <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>pom.xml</li>
+      <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>pom.xml</li>
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
@@ -625,7 +673,7 @@
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -637,16 +685,31 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -663,7 +726,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -675,12 +738,17 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -701,7 +769,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -713,7 +781,6 @@
           db
           <ul>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -721,30 +788,39 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSCategoryDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileVersionDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentPropertyDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSRelatedDocumentDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -760,12 +836,12 @@
             dao
             <ul>
               <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSCategoryDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSDocumentDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSDocumentFileDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSDocumentFileVersionDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSDocumentPropertyDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSRelatedDocumentDao.xml</li>
+              <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSCategoryDao.xml</li>
+              <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSDocumentDao.xml</li>
+              <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSDocumentFileDao.xml</li>
+              <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSDocumentFileVersionDao.xml</li>
+              <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSDocumentPropertyDao.xml</li>
+              <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSRelatedDocumentDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
@@ -784,7 +860,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -796,18 +872,33 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -829,7 +920,6 @@
   </ul>
   </li>
 </ul>
-
 </div>
 <div class="multiColumn multiColumnGrow">
 
@@ -1298,7 +1388,7 @@
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1310,16 +1400,31 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -1336,7 +1441,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1348,12 +1453,17 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -1374,7 +1484,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1386,7 +1496,6 @@
           db
           <ul>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -1394,30 +1503,45 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSCategoryDao.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSDocumentDao.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSDocumentFileDao.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSDocumentFileVersionDao.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSDocumentPropertyDao.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSRelatedDocumentDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSCategoryDao.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSDocumentDao.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSDocumentFileDao.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSDocumentFileVersionDao.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSDocumentPropertyDao.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSRelatedDocumentDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -1457,7 +1581,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1469,18 +1593,33 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -1541,7 +1680,7 @@
 19
 20
 </pre></td>
-<td class="code"><pre><span class="kn">package</span> <span class="nn">model.core.dao</span><span class="o">;</span>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">com.ontimize.projectwiki.model.core.dao</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
@@ -1593,7 +1732,7 @@
 22
 23
 </pre></td>
-<td class="code"><pre><span class="kn">package</span> <span class="nn">model.core.dao</span><span class="o">;</span>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">com.ontimize.projectwiki.model.core.dao</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
@@ -1646,7 +1785,7 @@
 20
 21
 </pre></td>
-<td class="code"><pre><span class="n">ackage</span> <span class="n">model</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">dao</span><span class="o">;</span>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">com.ontimize.projectwiki.model.core.dao</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
@@ -1702,7 +1841,7 @@
 25
 26
 </pre></td>
-<td class="code"><pre><span class="kn">package</span> <span class="nn">model.core.dao</span><span class="o">;</span>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">com.ontimize.projectwiki.model.core.dao</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
@@ -1757,7 +1896,7 @@
 19
 20
 </pre></td>
-<td class="code"><pre><span class="kn">package</span> <span class="nn">model.core.dao</span><span class="o">;</span>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">com.ontimize.projectwiki.model.core.dao</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
@@ -1805,7 +1944,7 @@
 18
 19
 </pre></td>
-<td class="code"><pre><span class="kn">package</span> <span class="nn">model.core.dao</span><span class="o">;</span>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">com.ontimize.projectwiki.model.core.dao</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
@@ -1840,7 +1979,7 @@
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1852,16 +1991,31 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -1878,7 +2032,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1890,12 +2044,17 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -1916,7 +2075,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1928,7 +2087,6 @@
           db
           <ul>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -1936,30 +2094,45 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSCategoryDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileVersionDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentPropertyDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSRelatedDocumentDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"selected":true, "icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSCategoryDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileVersionDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentPropertyDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSRelatedDocumentDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -1999,7 +2172,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -2011,18 +2184,33 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -2096,7 +2284,7 @@
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -2108,16 +2296,31 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -2134,7 +2337,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -2146,12 +2349,17 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -2172,7 +2380,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -2183,9 +2391,7 @@
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           db
           <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -2193,30 +2399,45 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSCategoryDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileVersionDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentPropertyDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSRelatedDocumentDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSCategoryDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileVersionDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentPropertyDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSRelatedDocumentDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -2256,7 +2477,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -2268,20 +2489,35 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>DMSNameConverter.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>FileManagerRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>DMSNameConverter.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>FileManagerRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -2378,7 +2614,7 @@
 66
 67
 </pre></td>
-<td class="code"><pre><span class="kn">package</span> <span class="nn">ws.core.rest</span><span class="o">;</span>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">com.ontimize.projectwiki.ws.core.rest</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">java.util.Date</span><span class="o">;</span>
@@ -2480,7 +2716,7 @@
 25
 26
 </pre></td>
-<td class="code"><pre><span class="kn">package</span> <span class="nn">ws.core.rest</span><span class="o">;</span>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">com.ontimize.projectwiki.ws.core.rest</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Autowired</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.context.annotation.ComponentScan</span><span class="o">;</span>
@@ -2525,7 +2761,7 @@
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -2537,16 +2773,31 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -2563,7 +2814,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -2575,12 +2826,17 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -2590,7 +2846,7 @@
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           resources
           <ul>
-            <li data-jstree='{"selected":true, "icon":"fas fa-file"}'>application.yml</li>
+            <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>application.yml</li>
           </ul>
           </li>
         </ul>
@@ -2601,7 +2857,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -2612,9 +2868,7 @@
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           db
           <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -2622,30 +2876,45 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSCategoryDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileVersionDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentPropertyDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSRelatedDocumentDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSCategoryDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentFileVersionDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSDocumentPropertyDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSRelatedDocumentDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -2685,7 +2954,7 @@
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -2697,20 +2966,35 @@
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>DMSNameConverter.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>FileManagerRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>DMSNameConverter.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>FileManagerRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -2778,32 +3062,32 @@
 25
 26
 </pre></td>
-<td class="code"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetContentOfVersion'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetProperty'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileRecoverPreviousVersion'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentDeleteProperties'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetProperties'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetAllFiles'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/setRelatedDocuments'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentAddProperties'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/getRelatedDocument'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryGetForDocument'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/moveFilesToCategory'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileVersionQuery'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentQuery'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentInsert'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentUpdate'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetFiles'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryInsert'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileInsert'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryUpdate'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryDelete'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileDelete'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetVersions'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetContent'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileUpdate'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentDelete'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileQuery'</span><span class="p">);</span>
+<td class="code"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetContentOfVersion'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetProperty'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileRecoverPreviousVersion'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentDeleteProperties'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetProperties'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetAllFiles'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/setRelatedDocuments'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentAddProperties'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/getRelatedDocument'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryGetForDocument'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/moveFilesToCategory'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileVersionQuery'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentQuery'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentInsert'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentUpdate'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentGetFiles'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryInsert'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileInsert'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryUpdate'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/categoryDelete'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileDelete'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetVersions'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileGetContent'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileUpdate'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/documentDelete'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.dms.DMSServiceImpl/fileQuery'</span><span class="p">);</span>
 </pre></td>
 </tr></tbody></table></code></pre></figure>
 

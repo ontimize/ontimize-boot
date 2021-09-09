@@ -305,12 +305,19 @@
 
 <h3 id="add-a-new-user">Add a new user</h3>
 
-<p>With the database started, we create a new user with the same username that we have registered in the domain. When we try to login we need to use the password of the domain, not the password that inserts into the database.</p>
+<p>With the database started, we create a new user with the same username that we have registered in the domain. When we try to login we need to use the password of the domain, not the password that inserts into the database. Then, we need to bind this new user with an existing role.</p>
 
 <figure class="highlight"><pre><code class="language-sql" data-lang="sql"><table class="rouge-table"><tbody><tr>
 <td class="gutter gl"><pre class="lineno">1
 </pre></td>
 <td class="code"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TUSER</span> <span class="p">(</span><span class="n">USER_</span><span class="p">,</span> <span class="n">PASSWORD</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">SURNAME</span><span class="p">,</span> <span class="n">EMAIL</span><span class="p">,</span> <span class="n">NIF</span><span class="p">,</span> <span class="n">USERBLOCKED</span><span class="p">,</span> <span class="n">LASTPASSWORDUPDATE</span><span class="p">,</span> <span class="n">FIRSTLOGIN</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'domain.username'</span><span class="p">,</span> <span class="s1">'somepassword'</span><span class="p">,</span> <span class="s1">'Name'</span><span class="p">,</span> <span class="s1">'Surname'</span><span class="p">,</span> <span class="s1">'Email'</span><span class="p">,</span> <span class="s1">'Nif'</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">,</span> <span class="k">NULL</span><span class="p">);</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+</pre></td>
+<td class="code"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TUSER_ROLE</span> <span class="p">(</span><span class="n">ID_ROLENAME</span><span class="p">,</span><span class="n">USER_</span><span class="p">)</span> <span class="k">VALUES</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s1">'domain.username'</span><span class="p">);</span>
 </pre></td>
 </tr></tbody></table></code></pre></figure>
 
@@ -572,61 +579,24 @@
 </div>
 <div class="multiColumn multiColumnGrow">
 
-  <p><strong>CustomSecurityAutoConfiguration.java</strong></p>
+  <p><strong>LdapError.java</strong></p>
 
 
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.ldap.security</span><span class="o">;</span>
 
-<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">LdapError</span> <span class="o">{</span>
 
-<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Value</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.EnableAutoConfiguration</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.condition.ConditionalOnProperty</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.configuration.EnableWebSecurity</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">NO_LDAP_CONNECTION</span> <span class="o">=</span> <span class="s">"NO_CONNECT_TO_LDAP"</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ERROR_SEARCHING_IN_LDAP</span> <span class="o">=</span> <span class="s">"ERROR_SEARCHING_IN_LDAP"</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ERROR_LOGIN_LDAP</span> <span class="o">=</span> <span class="s">"LOGINEXCEPTION_WITH_LDAP"</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ERROR_IO_LDAP</span> <span class="o">=</span> <span class="s">"IOEXCEPTION_WITH_LDAP"</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">EMPTY_LDAP_HOST</span> <span class="o">=</span> <span class="s">"HOST_CANNOT_BE_EMPTY"</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">EMPTY_LDAP_USER</span> <span class="o">=</span> <span class="s">"USER_CANNOT_BE_EMPTY"</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">EMPTY_LDAP_PASSWORD</span> <span class="o">=</span> <span class="s">"PASSWORD_CANNOT_BE_EMPTY"</span><span class="o">;;</span>
+	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">LDAP_AUTH_USER_PASS_NOT_VALID</span> <span class="o">=</span> <span class="s">"LDAP_CREDENTIALS_NOT_VALID"</span><span class="o">;</span>
 
-<span class="kn">import</span> <span class="nn">com.ontimize.boot.autoconfigure.security.DefaultSecurityAutoConfiguration</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.security.authentication.IAuthenticationMechanism</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.security.authentication.OntimizeAuthenticationFilter</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.security.authentication.OntimizeAuthenticationSuccessHandler</span><span class="o">;</span>
-
-<span class="nd">@Configuration</span> 
-<span class="nd">@EnableWebSecurity</span>
-<span class="nd">@EnableAutoConfiguration</span>
-<span class="nd">@ConditionalOnProperty</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"ontimize.security.mode"</span><span class="o">,</span> <span class="n">havingValue</span> <span class="o">=</span> <span class="s">"ldap"</span><span class="o">,</span> <span class="n">matchIfMissing</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span> 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomSecurityAutoConfiguration</span> <span class="kd">extends</span> <span class="nc">DefaultSecurityAutoConfiguration</span> <span class="o">{</span> 
-
-    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${ontimize.security.service-path:/**}"</span><span class="o">)</span> 
-    <span class="kd">private</span> <span class="nc">String</span> <span class="n">servicePath</span><span class="o">;</span> 
-
-    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${ontimize.security.ignore-paths:}"</span><span class="o">)</span> 
-    <span class="kd">private</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">ignorePaths</span><span class="o">;</span> 
- 
-    <span class="nd">@Override</span> 
-    <span class="kd">public</span> <span class="nc">OntimizeAuthenticationFilter</span> <span class="nf">preAuthFilterOntimize</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span> 
-        <span class="nc">OntimizeAuthenticationFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OntimizeAuthenticationFilter</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">servicePath</span><span class="o">);</span> 
-        <span class="n">filter</span><span class="o">.</span><span class="na">setUserDetailsService</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">userDetailsService</span><span class="o">());</span> 
-        <span class="n">filter</span><span class="o">.</span><span class="na">setUserCache</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">userCache</span><span class="o">());</span> 
-        <span class="n">filter</span><span class="o">.</span><span class="na">setTokenGenerator</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">tokenGenerator</span><span class="o">());</span> 
-        <span class="n">filter</span><span class="o">.</span><span class="na">setGenerateJwtHeader</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> 
-        <span class="n">filter</span><span class="o">.</span><span class="na">setAuthenticationManager</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">authenticationManager</span><span class="o">());</span> 
-        <span class="n">filter</span><span class="o">.</span><span class="na">setAuthenticationEntryPoint</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">authenticationEntryPoint</span><span class="o">());</span> 
-        <span class="n">filter</span><span class="o">.</span><span class="na">setAuthenticationMechanismList</span><span class="o">(</span><span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;());</span> 
-		<span class="n">filter</span><span class="o">.</span><span class="na">getAuthenticationMechanismList</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">jwtAuthenticator</span><span class="o">());</span>
-		<span class="n">filter</span><span class="o">.</span><span class="na">getAuthenticationMechanismList</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">ldapAuthenticator</span><span class="o">());</span> 
-        <span class="n">filter</span><span class="o">.</span><span class="na">setAuthenticationSuccessHandler</span><span class="o">(</span><span class="k">new</span> <span class="nc">OntimizeAuthenticationSuccessHandler</span><span class="o">());</span> 
-        <span class="n">filter</span><span class="o">.</span><span class="na">afterPropertiesSet</span><span class="o">();</span> 
-        <span class="k">return</span> <span class="n">filter</span><span class="o">;</span> 
-
-    <span class="o">}</span> 
-  
-    <span class="nd">@Bean</span> 
-    <span class="kd">public</span> <span class="nc">IAuthenticationMechanism</span> <span class="nf">ldapAuthenticator</span><span class="o">()</span> <span class="o">{</span> 
-        <span class="k">return</span> <span class="k">new</span> <span class="nf">LdapAuthenticationMechanism</span><span class="o">();</span> 
-    <span class="o">}</span> 
-<span class="o">}</span> </code></pre></figure>
+<span class="o">}</span></code></pre></figure>
 
   <p><strong>LdapAuthenticationMechanism.java</strong></p>
 
@@ -830,24 +800,62 @@
 
 <span class="o">}</span></code></pre></figure>
 
-  <p><strong>LdapError.java</strong></p>
+  <p><strong>CustomSecurityAutoConfiguration.java</strong></p>
 
 
 
 <figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.ldap.security</span><span class="o">;</span>
 
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">LdapError</span> <span class="o">{</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
 
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">NO_LDAP_CONNECTION</span> <span class="o">=</span> <span class="s">"NO_CONNECT_TO_LDAP"</span><span class="o">;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ERROR_SEARCHING_IN_LDAP</span> <span class="o">=</span> <span class="s">"ERROR_SEARCHING_IN_LDAP"</span><span class="o">;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ERROR_LOGIN_LDAP</span> <span class="o">=</span> <span class="s">"LOGINEXCEPTION_WITH_LDAP"</span><span class="o">;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">ERROR_IO_LDAP</span> <span class="o">=</span> <span class="s">"IOEXCEPTION_WITH_LDAP"</span><span class="o">;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">EMPTY_LDAP_HOST</span> <span class="o">=</span> <span class="s">"HOST_CANNOT_BE_EMPTY"</span><span class="o">;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">EMPTY_LDAP_USER</span> <span class="o">=</span> <span class="s">"USER_CANNOT_BE_EMPTY"</span><span class="o">;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">EMPTY_LDAP_PASSWORD</span> <span class="o">=</span> <span class="s">"PASSWORD_CANNOT_BE_EMPTY"</span><span class="o">;;</span>
-	<span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span> <span class="no">LDAP_AUTH_USER_PASS_NOT_VALID</span> <span class="o">=</span> <span class="s">"LDAP_CREDENTIALS_NOT_VALID"</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.beans.factory.annotation.Value</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.EnableAutoConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.boot.autoconfigure.condition.ConditionalOnProperty</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Bean</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Configuration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">org.springframework.security.config.annotation.web.configuration.EnableWebSecurity</span><span class="o">;</span>
 
-<span class="o">}</span></code></pre></figure>
+<span class="kn">import</span> <span class="nn">com.ontimize.boot.autoconfigure.security.DefaultSecurityAutoConfiguration</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.security.authentication.IAuthenticationMechanism</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.security.authentication.OntimizeAuthenticationFilter</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.server.security.authentication.OntimizeAuthenticationSuccessHandler</span><span class="o">;</span>
+
+<span class="nd">@Configuration</span> 
+<span class="nd">@EnableWebSecurity</span>
+<span class="nd">@EnableAutoConfiguration</span>
+<span class="nd">@ConditionalOnProperty</span><span class="o">(</span><span class="n">name</span> <span class="o">=</span> <span class="s">"ontimize.security.mode"</span><span class="o">,</span> <span class="n">havingValue</span> <span class="o">=</span> <span class="s">"ldap"</span><span class="o">,</span> <span class="n">matchIfMissing</span> <span class="o">=</span> <span class="kc">false</span><span class="o">)</span> 
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CustomSecurityAutoConfiguration</span> <span class="kd">extends</span> <span class="nc">DefaultSecurityAutoConfiguration</span> <span class="o">{</span> 
+
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${ontimize.security.service-path:/**}"</span><span class="o">)</span> 
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">servicePath</span><span class="o">;</span> 
+
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${ontimize.security.ignore-paths:}"</span><span class="o">)</span> 
+    <span class="kd">private</span> <span class="nc">String</span><span class="o">[]</span> <span class="n">ignorePaths</span><span class="o">;</span> 
+ 
+    <span class="nd">@Override</span> 
+    <span class="kd">public</span> <span class="nc">OntimizeAuthenticationFilter</span> <span class="nf">preAuthFilterOntimize</span><span class="o">()</span> <span class="kd">throws</span> <span class="nc">Exception</span> <span class="o">{</span> 
+        <span class="nc">OntimizeAuthenticationFilter</span> <span class="n">filter</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">OntimizeAuthenticationFilter</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">servicePath</span><span class="o">);</span> 
+        <span class="n">filter</span><span class="o">.</span><span class="na">setUserDetailsService</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">userDetailsService</span><span class="o">());</span> 
+        <span class="n">filter</span><span class="o">.</span><span class="na">setUserCache</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">userCache</span><span class="o">());</span> 
+        <span class="n">filter</span><span class="o">.</span><span class="na">setTokenGenerator</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">tokenGenerator</span><span class="o">());</span> 
+        <span class="n">filter</span><span class="o">.</span><span class="na">setGenerateJwtHeader</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span> 
+        <span class="n">filter</span><span class="o">.</span><span class="na">setAuthenticationManager</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">authenticationManager</span><span class="o">());</span> 
+        <span class="n">filter</span><span class="o">.</span><span class="na">setAuthenticationEntryPoint</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">authenticationEntryPoint</span><span class="o">());</span> 
+        <span class="n">filter</span><span class="o">.</span><span class="na">setAuthenticationMechanismList</span><span class="o">(</span><span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;&gt;());</span> 
+		<span class="n">filter</span><span class="o">.</span><span class="na">getAuthenticationMechanismList</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">jwtAuthenticator</span><span class="o">());</span>
+		<span class="n">filter</span><span class="o">.</span><span class="na">getAuthenticationMechanismList</span><span class="o">().</span><span class="na">add</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">ldapAuthenticator</span><span class="o">());</span> 
+        <span class="n">filter</span><span class="o">.</span><span class="na">setAuthenticationSuccessHandler</span><span class="o">(</span><span class="k">new</span> <span class="nc">OntimizeAuthenticationSuccessHandler</span><span class="o">());</span> 
+        <span class="n">filter</span><span class="o">.</span><span class="na">afterPropertiesSet</span><span class="o">();</span> 
+        <span class="k">return</span> <span class="n">filter</span><span class="o">;</span> 
+
+    <span class="o">}</span> 
+  
+    <span class="nd">@Bean</span> 
+    <span class="kd">public</span> <span class="nc">IAuthenticationMechanism</span> <span class="nf">ldapAuthenticator</span><span class="o">()</span> <span class="o">{</span> 
+        <span class="k">return</span> <span class="k">new</span> <span class="nf">LdapAuthenticationMechanism</span><span class="o">();</span> 
+    <span class="o">}</span> 
+<span class="o">}</span> </code></pre></figure>
+
 
 </div>
 </div>
