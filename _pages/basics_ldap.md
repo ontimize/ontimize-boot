@@ -46,10 +46,14 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
 ### Add a new user
 
-With the database started, we create a new user with the same username that we have registered in the domain. When we try to login we need to use the password of the domain, not the password that inserts into the database.
+With the database started, we create a new user with the same username that we have registered in the domain. When we try to login we need to use the password of the domain, not the password that inserts into the database. Then, we need to bind this new user with an existing role.
 
 {% highlight sql linenos %}
 INSERT INTO TUSER (USER_, PASSWORD, NAME, SURNAME, EMAIL, NIF, USERBLOCKED, LASTPASSWORDUPDATE, FIRSTLOGIN) VALUES('domain.username', 'somepassword', 'Name', 'Surname', 'Email', 'Nif', NULL, NULL, NULL);
+{% endhighlight %}
+
+{% highlight sql linenos %}
+INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
 {% endhighlight %}
 
 ## Autoconfigurators
