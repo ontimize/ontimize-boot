@@ -46,11 +46,16 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
 ### Add a new user
 
-With the database started, we create a new user with the same username that we have registered in the domain. When we try to login we need to use the password of the domain, not the password that inserts into the database.
+With the database started, we create a new user with the same username that we have registered in the domain. When we try to login we need to use the password of the domain, not the password that inserts into the database. Then, we need to bind this new user with an existing role.
 
 {% highlight sql linenos %}
 INSERT INTO TUSER (USER_, PASSWORD, NAME, SURNAME, EMAIL, NIF, USERBLOCKED, LASTPASSWORDUPDATE, FIRSTLOGIN) VALUES('domain.username', 'somepassword', 'Name', 'Surname', 'Email', 'Nif', NULL, NULL, NULL);
 {% endhighlight %}
+
+{% highlight sql linenos %}
+INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
+{% endhighlight %}
+
 
 ## Autoconfigurators
 
@@ -310,60 +315,23 @@ INSERT INTO TUSER (USER_, PASSWORD, NAME, SURNAME, EMAIL, NIF, USERBLOCKED, LAST
 </div>
 <div class="multiColumn multiColumnGrow">
 
-  {{ "**CustomSecurityAutoConfiguration.java**"| markdownify }}
+  {{ "**LdapError.java**"| markdownify }}
 
 {% highlight java %}
 package com.ontimize.ldap.security;
 
-import java.util.ArrayList;
+public interface LdapError {
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+	public static final String NO_LDAP_CONNECTION = "NO_CONNECT_TO_LDAP";
+	public static final String ERROR_SEARCHING_IN_LDAP = "ERROR_SEARCHING_IN_LDAP";
+	public static final String ERROR_LOGIN_LDAP = "LOGINEXCEPTION_WITH_LDAP";
+	public static final String ERROR_IO_LDAP = "IOEXCEPTION_WITH_LDAP";
+	public static final String EMPTY_LDAP_HOST = "HOST_CANNOT_BE_EMPTY";
+	public static final String EMPTY_LDAP_USER = "USER_CANNOT_BE_EMPTY";
+	public static final String EMPTY_LDAP_PASSWORD = "PASSWORD_CANNOT_BE_EMPTY";;
+	public static final String LDAP_AUTH_USER_PASS_NOT_VALID = "LDAP_CREDENTIALS_NOT_VALID";
 
-import com.ontimize.boot.autoconfigure.security.DefaultSecurityAutoConfiguration;
-import com.ontimize.jee.server.security.authentication.IAuthenticationMechanism;
-import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationFilter;
-import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationSuccessHandler;
-
-@Configuration 
-@EnableWebSecurity
-@EnableAutoConfiguration
-@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "ldap", matchIfMissing = false) 
-public class CustomSecurityAutoConfiguration extends DefaultSecurityAutoConfiguration { 
-
-    @Value("${ontimize.security.service-path:/**}") 
-    private String servicePath; 
-
-    @Value("${ontimize.security.ignore-paths:}") 
-    private String[] ignorePaths; 
- 
-    @Override 
-    public OntimizeAuthenticationFilter preAuthFilterOntimize() throws Exception { 
-        OntimizeAuthenticationFilter filter = new OntimizeAuthenticationFilter(this.servicePath); 
-        filter.setUserDetailsService(this.userDetailsService()); 
-        filter.setUserCache(this.userCache()); 
-        filter.setTokenGenerator(this.tokenGenerator()); 
-        filter.setGenerateJwtHeader(true); 
-        filter.setAuthenticationManager(this.authenticationManager()); 
-        filter.setAuthenticationEntryPoint(this.authenticationEntryPoint()); 
-        filter.setAuthenticationMechanismList(new ArrayList<>()); 
-		filter.getAuthenticationMechanismList().add(this.jwtAuthenticator());
-		filter.getAuthenticationMechanismList().add(this.ldapAuthenticator()); 
-        filter.setAuthenticationSuccessHandler(new OntimizeAuthenticationSuccessHandler()); 
-        filter.afterPropertiesSet(); 
-        return filter; 
-
-    } 
-  
-    @Bean 
-    public IAuthenticationMechanism ldapAuthenticator() { 
-        return new LdapAuthenticationMechanism(); 
-    } 
-} 
+}
 
 {% endhighlight %}
   {{ "**LdapAuthenticationMechanism.java**"| markdownify }}
@@ -567,25 +535,63 @@ public class LdapAuthenticationMechanism implements IAuthenticationMechanism {
 
 }
 {% endhighlight %}
-  {{ "**LdapError.java**"| markdownify }}
+  {{ "**CustomSecurityAutoConfiguration.java**"| markdownify }}
 
 {% highlight java %}
 package com.ontimize.ldap.security;
 
-public interface LdapError {
+import java.util.ArrayList;
 
-	public static final String NO_LDAP_CONNECTION = "NO_CONNECT_TO_LDAP";
-	public static final String ERROR_SEARCHING_IN_LDAP = "ERROR_SEARCHING_IN_LDAP";
-	public static final String ERROR_LOGIN_LDAP = "LOGINEXCEPTION_WITH_LDAP";
-	public static final String ERROR_IO_LDAP = "IOEXCEPTION_WITH_LDAP";
-	public static final String EMPTY_LDAP_HOST = "HOST_CANNOT_BE_EMPTY";
-	public static final String EMPTY_LDAP_USER = "USER_CANNOT_BE_EMPTY";
-	public static final String EMPTY_LDAP_PASSWORD = "PASSWORD_CANNOT_BE_EMPTY";;
-	public static final String LDAP_AUTH_USER_PASS_NOT_VALID = "LDAP_CREDENTIALS_NOT_VALID";
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-}
+import com.ontimize.boot.autoconfigure.security.DefaultSecurityAutoConfiguration;
+import com.ontimize.jee.server.security.authentication.IAuthenticationMechanism;
+import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationFilter;
+import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationSuccessHandler;
+
+@Configuration 
+@EnableWebSecurity
+@EnableAutoConfiguration
+@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "ldap", matchIfMissing = false) 
+public class CustomSecurityAutoConfiguration extends DefaultSecurityAutoConfiguration { 
+
+    @Value("${ontimize.security.service-path:/**}") 
+    private String servicePath; 
+
+    @Value("${ontimize.security.ignore-paths:}") 
+    private String[] ignorePaths; 
+ 
+    @Override 
+    public OntimizeAuthenticationFilter preAuthFilterOntimize() throws Exception { 
+        OntimizeAuthenticationFilter filter = new OntimizeAuthenticationFilter(this.servicePath); 
+        filter.setUserDetailsService(this.userDetailsService()); 
+        filter.setUserCache(this.userCache()); 
+        filter.setTokenGenerator(this.tokenGenerator()); 
+        filter.setGenerateJwtHeader(true); 
+        filter.setAuthenticationManager(this.authenticationManager()); 
+        filter.setAuthenticationEntryPoint(this.authenticationEntryPoint()); 
+        filter.setAuthenticationMechanismList(new ArrayList<>()); 
+		filter.getAuthenticationMechanismList().add(this.jwtAuthenticator());
+		filter.getAuthenticationMechanismList().add(this.ldapAuthenticator()); 
+        filter.setAuthenticationSuccessHandler(new OntimizeAuthenticationSuccessHandler()); 
+        filter.afterPropertiesSet(); 
+        return filter; 
+
+    } 
+  
+    @Bean 
+    public IAuthenticationMechanism ldapAuthenticator() { 
+        return new LdapAuthenticationMechanism(); 
+    } 
+} 
 
 {% endhighlight %}
+
 </div>
 </div>
 
