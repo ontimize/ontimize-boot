@@ -314,10 +314,29 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
 </div>
 <div class="multiColumn multiColumnGrow">
 
+  {{ "**LdapError.java**"| markdownify }}
+
+{% highlight java %}
+package boot.core.security;
+
+public interface LdapError {
+
+	public static final String NO_LDAP_CONNECTION = "NO_CONNECT_TO_LDAP";
+	public static final String ERROR_SEARCHING_IN_LDAP = "ERROR_SEARCHING_IN_LDAP";
+	public static final String ERROR_LOGIN_LDAP = "LOGINEXCEPTION_WITH_LDAP";
+	public static final String ERROR_IO_LDAP = "IOEXCEPTION_WITH_LDAP";
+	public static final String EMPTY_LDAP_HOST = "HOST_CANNOT_BE_EMPTY";
+	public static final String EMPTY_LDAP_USER = "USER_CANNOT_BE_EMPTY";
+	public static final String EMPTY_LDAP_PASSWORD = "PASSWORD_CANNOT_BE_EMPTY";;
+	public static final String LDAP_AUTH_USER_PASS_NOT_VALID = "LDAP_CREDENTIALS_NOT_VALID";
+
+}
+
+{% endhighlight %}
   {{ "**LdapAuthenticationMechanism.java**"| markdownify }}
 
 {% highlight java %}
-package com.ontimize.ldap.security;
+package boot.core.security;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -518,7 +537,7 @@ public class LdapAuthenticationMechanism implements IAuthenticationMechanism {
   {{ "**CustomSecurityAutoConfiguration.java**"| markdownify }}
 
 {% highlight java %}
-package com.ontimize.ldap.security;
+package boot.core.security;
 
 import java.util.ArrayList;
 
@@ -569,25 +588,6 @@ public class CustomSecurityAutoConfiguration extends DefaultSecurityAutoConfigur
         return new LdapAuthenticationMechanism(); 
     } 
 } 
-
-{% endhighlight %}
-  {{ "**LdapError.java**"| markdownify }}
-
-{% highlight java %}
-package com.ontimize.ldap.security;
-
-public interface LdapError {
-
-	public static final String NO_LDAP_CONNECTION = "NO_CONNECT_TO_LDAP";
-	public static final String ERROR_SEARCHING_IN_LDAP = "ERROR_SEARCHING_IN_LDAP";
-	public static final String ERROR_LOGIN_LDAP = "LOGINEXCEPTION_WITH_LDAP";
-	public static final String ERROR_IO_LDAP = "IOEXCEPTION_WITH_LDAP";
-	public static final String EMPTY_LDAP_HOST = "HOST_CANNOT_BE_EMPTY";
-	public static final String EMPTY_LDAP_USER = "USER_CANNOT_BE_EMPTY";
-	public static final String EMPTY_LDAP_PASSWORD = "PASSWORD_CANNOT_BE_EMPTY";;
-	public static final String LDAP_AUTH_USER_PASS_NOT_VALID = "LDAP_CREDENTIALS_NOT_VALID";
-
-}
 
 {% endhighlight %}
 </div>
