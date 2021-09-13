@@ -1,9 +1,12 @@
 package com.ontimize.boot.report;
 
+import java.util.concurrent.Executor;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.ontimize.jee.common.services.reportstore.IReportStoreService;
 import com.ontimize.jee.report.rest.ReportStoreRestController;
@@ -56,6 +59,17 @@ public class OReportAutoConfigure {
 	public IReportStoreEngine databaseReportStoreEngine() {
 		DatabaseReportStoreEngine dbReportStoreEngine = new DatabaseReportStoreEngine();
 		return dbReportStoreEngine;
+	}
+	
+	@Bean("ReportExecutor")
+	public Executor taskExecutor() {
+		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
+		executor.setCorePoolSize(executor.getMaxPoolSize());
+		executor.setAllowCoreThreadTimeOut(true);
+		executor.setKeepAliveSeconds(1);
+		executor.setThreadNamePrefix("FillReport-");
+		executor.initialize();
+		return executor;
 	}
 	
 }
