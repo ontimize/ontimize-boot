@@ -317,7 +317,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
   {{ "**LdapError.java**"| markdownify }}
 
 {% highlight java %}
-package com.ontimize.security;
+package com.ontimize.projectwiki.security;
 
 public interface LdapError {
 
@@ -336,7 +336,7 @@ public interface LdapError {
   {{ "**LdapAuthenticationMechanism.java**"| markdownify }}
 
 {% highlight java %}
-package com.ontimize.security;
+package com.ontimize.projectwiki.security;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -537,7 +537,7 @@ public class LdapAuthenticationMechanism implements IAuthenticationMechanism {
   {{ "**CustomSecurityAutoConfiguration.java**"| markdownify }}
 
 {% highlight java %}
-package com.ontimize.security;
+package com.ontimize.projectwiki.security;
 
 import java.util.ArrayList;
 
