@@ -20,7 +20,7 @@ This page allows you to know how to start developing an application with Ontimiz
 
 Open a console and type the next command:
 
-    mvn archetype:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-backend-archetype -DarchetypeVersion=1.0.0 -Dpackage=YOUR.GROUPID.ARTIFACTID -DinteractiveMode=false
+    mvn archetype:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -Dpackage=YOUR.GROUPID.ARTIFACTID -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-backend-archetype -DarchetypeVersion=1.0.0 -DinteractiveMode=false
 
 ### Command explanation
 
@@ -31,10 +31,10 @@ Open a console and type the next command:
 |-DgroupId=YOUR_GROUP_ID|Your project **groupId**|
 |-DartifactId=YOUR_ARTIFACT_ID|Your project **artifactId**|
 |-Dversion=YOUR_VERSION|Your project **version**|
+|-Dpackage=YOUR.GROUPID.ARTIFACTID|Sets the package on which the project will be based (e.g.: In our examples, this will be com.ontimize.projectwiki)
 |-DarchetypeGroupId=com.ontimize|**groupId** of the Ontimize Boot archetype|
 |-DarchetypeArtifactId=ontimize-boot-backend-archetype|**artifactId** of the Ontimize Boot archetype|
 |-DarchetypeVersion=1.0.0|**version** of the Ontimize Boot archetype|
-|-Dpackage=YOUR.GROUPID.ARTIFACTID|Sets the package on which the project will be based (e.g.: In our examples, this will be com.ontimize.projectwiki)
 |-DinteractiveMode=false| Forced to **skip interactive mode** and use the paramaters in the command|
 
 ## Start the project
