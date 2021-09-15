@@ -68,7 +68,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ldap-api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -86,7 +86,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
               ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                ldap
+                projectwiki
                 <ul>
                   <li data-jstree='{"icon":"fas fa-folder-open"}'>
                   api
@@ -120,7 +120,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ldap-boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -138,14 +138,14 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
               ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                ldap
+                projectwiki
                 <ul>
                   <li data-jstree='{"icon":"fas fa-folder-open"}'>
                   security
                   <ul>
-                    <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>CustomSecurityAutoConfiguration.java</li>
-                    <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>LdapAuthenticationMechanism.java</li>
-                    <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>LdapError.java</li>
+                    <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>CustomSecurityAutoConfiguration.java</li>
+                    <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>LdapAuthenticationMechanism.java</li>
+                    <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>LdapError.java</li>
                   </ul>
                   </li>
                   <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
@@ -171,7 +171,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ldap-model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -183,6 +183,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
           db
           <ul>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -196,7 +197,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
               ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                ldap
+                projectwiki
                 <ul>
                   <li data-jstree='{"icon":"fas fa-folder-open"}'>
                   model
@@ -253,7 +254,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ldap-ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -271,7 +272,7 @@ INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
               ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                ldap
+                projectwiki
                 <ul>
                   <li data-jstree='{"icon":"fas fa-folder-open"}'>
                   ws
@@ -608,7 +609,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ldap-api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -626,7 +627,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
               ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                ldap
+                projectwiki
                 <ul>
                   <li data-jstree='{"icon":"fas fa-folder-open"}'>
                   api
@@ -660,7 +661,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ldap-boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -678,7 +679,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
               ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                ldap
+                projectwiki
                 <ul>
                   <li data-jstree='{"icon":"fas fa-folder-open"}'>
                   security
@@ -700,7 +701,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           resources
           <ul>
-            <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>application.yml</li>
+            <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>application.yml</li>
           </ul>
           </li>
         </ul>
@@ -711,7 +712,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ldap-model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -723,6 +724,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
           db
           <ul>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -736,7 +738,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
               ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                ldap
+                projectwiki
                 <ul>
                   <li data-jstree='{"icon":"fas fa-folder-open"}'>
                   model
@@ -793,7 +795,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ldap-ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -811,7 +813,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
               ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                ldap
+                projectwiki
                 <ul>
                   <li data-jstree='{"icon":"fas fa-folder-open"}'>
                   ws
