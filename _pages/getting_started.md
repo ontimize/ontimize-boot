@@ -20,7 +20,7 @@ This page allows you to know how to start developing an application with Ontimiz
 
 Open a console and type the next command:
 
-    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-archetype -DarchetypeVersion=1.0.0 -DinteractiveMode=false -Dpackage=YOUR.GROUPID.ARTIFACTID -DarchetypeCatalog=https://artifactory.imatia.com/public-artifactory/ontimize-archetypes/archetype-catalog.xml
+    mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -Dpackage=YOUR.GROUPID.ARTIFACTID -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-archetype -DarchetypeVersion=1.0.0 -DinteractiveMode=false -DarchetypeCatalog=https://artifactory.imatia.com/public-artifactory/ontimize-archetypes/archetype-catalog.xml
 
 ### Command explanation
 
@@ -31,11 +31,11 @@ Open a console and type the next command:
 |-DgroupId=YOUR_GROUP_ID|Your project **groupId**|
 |-DartifactId=YOUR_ARTIFACT_ID|Your project **artifactId**|
 |-Dversion=YOUR_VERSION|Your project **version**|
+|-Dpackage=YOUR.GROUPID.ARTIFACTID | Sets the package on which the project will be based (e.g.: In our examples, this will be *com.ontimize.projectwiki*)|
 |-DarchetypeGroupId=com.ontimize|**groupId** of the Ontimize Boot archetype|
 |-DarchetypeArtifactId=ontimize-boot-archetype|**artifactId** of the Ontimize Boot archetype|
 |-DarchetypeVersion=1.0.0|**version** of the Ontimize Boot archetype|
 |-DinteractiveMode=false| Forced to **skip interactive mode** and use the paramaters in the command|
-|-Dpackage=YOUR.GROUPID.ARTIFACTID | Sets the package on which the project will be based (e.g.: In our examples, this will be *com.ontimize.projectwiki*)|
 |-DarchetypeCatalog=https://artifactory.imatia.com/public-artifactory/ontimize-archetypes/archetype-catalog.xml| URL where you can find the archetype catalog  |
 
 ## Start the project
