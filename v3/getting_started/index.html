@@ -261,7 +261,7 @@
 
 <p>Open a console and type the next command:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn archetype:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-backend-archetype -DarchetypeVersion=1.0.0 -Dpackage=YOUR.GROUPID.ARTIFACTID -DinteractiveMode=false
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mvn archetype:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -Dpackage=YOUR.GROUPID.ARTIFACTID -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-backend-archetype -DarchetypeVersion=1.0.0 -DinteractiveMode=false
 </code></pre></div></div>
 
 <h3 id="command-explanation">Command explanation</h3>
@@ -298,6 +298,10 @@
 </td>
     </tr>
     <tr>
+      <td>-Dpackage=YOUR.GROUPID.ARTIFACTID</td>
+      <td>Sets the package on which the project will be based (e.g.: In our examples, this will be com.ontimize.projectwiki)</td>
+    </tr>
+    <tr>
       <td>-DarchetypeGroupId=com.ontimize</td>
       <td>
 <strong>groupId</strong> of the Ontimize Boot archetype</td>
@@ -311,10 +315,6 @@
       <td>-DarchetypeVersion=1.0.0</td>
       <td>
 <strong>version</strong> of the Ontimize Boot archetype</td>
-    </tr>
-    <tr>
-      <td>-Dpackage=YOUR.GROUPID.ARTIFACTID</td>
-      <td>Sets the package on which the project will be based (e.g.: In our examples, this will be com.ontimize.projectwiki)</td>
     </tr>
     <tr>
       <td>-DinteractiveMode=false</td>
