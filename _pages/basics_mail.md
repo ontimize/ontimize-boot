@@ -110,7 +110,7 @@ Now we need to add the correct dependency in the correct **pom.xml**:
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -122,16 +122,31 @@ Now we need to add the correct dependency in the correct **pom.xml**:
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -148,7 +163,7 @@ Now we need to add the correct dependency in the correct **pom.xml**:
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -160,12 +175,17 @@ Now we need to add the correct dependency in the correct **pom.xml**:
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -182,11 +202,11 @@ Now we need to add the correct dependency in the correct **pom.xml**:
         </li>
       </ul>
       </li>
-      <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>pom.xml</li>
+      <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>pom.xml</li>
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -197,10 +217,7 @@ Now we need to add the correct dependency in the correct **pom.xml**:
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           db
           <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -208,25 +225,39 @@ Now we need to add the correct dependency in the correct **pom.xml**:
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -242,7 +273,6 @@ Now we need to add the correct dependency in the correct **pom.xml**:
             dao
             <ul>
               <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
@@ -261,7 +291,7 @@ Now we need to add the correct dependency in the correct **pom.xml**:
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -273,18 +303,33 @@ Now we need to add the correct dependency in the correct **pom.xml**:
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -360,12 +405,12 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
 
 <div class="multiColumnRow">
   <div class="multiColumn jstreeloader" >
-  <ul>
+<ul>
   <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -377,16 +422,31 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -403,7 +463,7 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -415,12 +475,17 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -441,7 +506,7 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -452,10 +517,7 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           db
           <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -463,25 +525,40 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCSettingsDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>OCSettingsDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -497,7 +574,7 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
             dao
             <ul>
               <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCSettingsDao.xml</li>
+              <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>OCSettingsDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
@@ -516,7 +593,7 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -528,18 +605,33 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -588,7 +680,7 @@ Let's create a **DAO** (**D**ata **A**ccess **O**bject) in the `projectwiki-mode
 
     {{ "**OCSettingsDao.java**" | markdownify }}
 {% highlight java linenos%}
-package model.core.dao;
+package com.ontimize.projectwiki.model.core.dao;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
@@ -617,12 +709,12 @@ To use this service in another service (e.g. to send a mail when a new record is
 
 <div class="multiColumnRow">
   <div class="multiColumn jstreeloader" >
-  <ul>
+ <ul>
   <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -634,16 +726,31 @@ To use this service in another service (e.g. to send a mail when a new record is
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -660,7 +767,7 @@ To use this service in another service (e.g. to send a mail when a new record is
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -672,12 +779,17 @@ To use this service in another service (e.g. to send a mail when a new record is
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -698,7 +810,7 @@ To use this service in another service (e.g. to send a mail when a new record is
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -709,10 +821,7 @@ To use this service in another service (e.g. to send a mail when a new record is
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           db
           <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -720,25 +829,40 @@ To use this service in another service (e.g. to send a mail when a new record is
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -773,7 +897,7 @@ To use this service in another service (e.g. to send a mail when a new record is
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -785,18 +909,33 @@ To use this service in another service (e.g. to send a mail when a new record is
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
