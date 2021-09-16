@@ -272,7 +272,7 @@
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/$ git clone https://github.com/ontimize/ontimize-examples
 /ontimize-examples$ cd ontimize-examples
-/ontimize-examples$ git checkout boot-mail-initial
+/ontimize-examples$ git checkout boot-mail-3.x.x-initial
 </code></pre></div></div>
 
    
@@ -284,7 +284,7 @@
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/$ git clone https://github.com/ontimize/ontimize-examples
 /ontimize-examples$ cd ontimize-examples
-/ontimize-examples$ git checkout boot-mail
+/ontimize-examples$ git checkout boot-mail-3.x.x
 </code></pre></div></div>
 
 
@@ -347,7 +347,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
       <td>Mail server password</td>
     </tr>
     <tr>
-      <td>mail-encoding</td>
+      <td>mail_encoding</td>
       <td>UTF-8</td>
       <td>Encoding of mails</td>
     </tr>
@@ -390,10 +390,10 @@ At the end of the tutorial, we will even be testing that our mailing system is f
 3
 4
 </pre></td>
-<td class="code"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.common.services.mail.MailService/sendMail'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.common.services.mail.MailService/sendMailWithoutAttach'</span><span class="p">);</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TROLE_SERVER_PERMISSION</span> <span class="p">(</span><span class="n">ID_ROLENAME</span><span class="p">,</span> <span class="n">ID_SERVER_PERMISSION</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">((</span><span class="k">SELECT</span> <span class="n">ID_ROLENAME</span> <span class="k">FROM</span> <span class="n">TROLE</span> <span class="k">WHERE</span> <span class="n">ROLENAME</span><span class="o">=</span><span class="s1">'admin'</span><span class="p">),</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">ID_SERVER_PERMISSION</span> <span class="k">FROM</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">WHERE</span> <span class="n">PERMISSION_NAME</span><span class="o">=</span><span class="s1">'com.ontimize.jee.common.services.mail.IMailService/sendMail'</span><span class="p">));</span>
-<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TROLE_SERVER_PERMISSION</span> <span class="p">(</span><span class="n">ID_ROLENAME</span><span class="p">,</span> <span class="n">ID_SERVER_PERMISSION</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">((</span><span class="k">SELECT</span> <span class="n">ID_ROLENAME</span> <span class="k">FROM</span> <span class="n">TROLE</span> <span class="k">WHERE</span> <span class="n">ROLENAME</span><span class="o">=</span><span class="s1">'admin'</span><span class="p">),</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">ID_SERVER_PERMISSION</span> <span class="k">FROM</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">WHERE</span> <span class="n">PERMISSION_NAME</span><span class="o">=</span><span class="s1">'com.ontimize.jee.common.services.mail.IMailService/sendMailWithoutAttach'</span><span class="p">));</span>
+<td class="code"><pre><span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.mail.IMailServiceServer/sendMail'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TSERVER_PERMISSION</span> <span class="p">(</span><span class="n">PERMISSION_NAME</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">(</span><span class="s1">'com.ontimize.jee.server.services.mail.IMailServiceServer/sendMailWithoutAttach'</span><span class="p">);</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TROLE_SERVER_PERMISSION</span> <span class="p">(</span><span class="n">ID_ROLENAME</span><span class="p">,</span> <span class="n">ID_SERVER_PERMISSION</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">((</span><span class="k">SELECT</span> <span class="n">ID_ROLENAME</span> <span class="k">FROM</span> <span class="n">TROLE</span> <span class="k">WHERE</span> <span class="n">ROLENAME</span><span class="o">=</span><span class="s1">'admin'</span><span class="p">),</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">ID_SERVER_PERMISSION</span> <span class="k">FROM</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">WHERE</span> <span class="n">PERMISSION_NAME</span><span class="o">=</span><span class="s1">'com.ontimize.jee.server.services.mail.IMailServiceServer/sendMail'</span><span class="p">));</span>
+<span class="k">INSERT</span> <span class="k">INTO</span> <span class="n">TROLE_SERVER_PERMISSION</span> <span class="p">(</span><span class="n">ID_ROLENAME</span><span class="p">,</span> <span class="n">ID_SERVER_PERMISSION</span><span class="p">)</span> <span class="k">VALUES</span><span class="p">((</span><span class="k">SELECT</span> <span class="n">ID_ROLENAME</span> <span class="k">FROM</span> <span class="n">TROLE</span> <span class="k">WHERE</span> <span class="n">ROLENAME</span><span class="o">=</span><span class="s1">'admin'</span><span class="p">),</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">ID_SERVER_PERMISSION</span> <span class="k">FROM</span> <span class="n">TSERVER_PERMISSION</span> <span class="k">WHERE</span> <span class="n">PERMISSION_NAME</span><span class="o">=</span><span class="s1">'com.ontimize.jee.server.services.mail.IMailServiceServer/sendMailWithoutAttach'</span><span class="p">));</span>
 </pre></td>
 </tr></tbody></table></code></pre></figure>
 
@@ -403,12 +403,12 @@ At the end of the tutorial, we will even be testing that our mailing system is f
 
 <div class="multiColumnRow">
   <div class="multiColumn jstreeloader">
-  <ul>
+ <ul>
   <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -420,16 +420,31 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -446,7 +461,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -458,12 +473,17 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -480,11 +500,11 @@ At the end of the tutorial, we will even be testing that our mailing system is f
         </li>
       </ul>
       </li>
-      <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>pom.xml</li>
+      <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>pom.xml</li>
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -495,10 +515,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           db
           <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -506,25 +523,39 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -540,7 +571,6 @@ At the end of the tutorial, we will even be testing that our mailing system is f
             dao
             <ul>
               <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
@@ -559,7 +589,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -571,18 +601,33 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -644,17 +689,17 @@ At the end of the tutorial, we will even be testing that our mailing system is f
 </pre></td>
 <td class="code"><pre><span class="na">ontimize</span><span class="pi">:</span>
    <span class="na">mail</span><span class="pi">:</span>
-      <span class="na">refRepository</span><span class="pi">:</span> <span class="s">OCSettingsDao</span>
-      <span class="na">filterColumnName</span><span class="pi">:</span> <span class="s">SETTING_KEY</span>
-      <span class="na">valueColumnName</span><span class="pi">:</span> <span class="s">SETTING_VALUE</span>
-      <span class="na">queryId</span><span class="pi">:</span> <span class="s">default</span>
-      <span class="na">filterColumnValueEncoding</span><span class="pi">:</span> <span class="s">mail_encoding</span>
-      <span class="na">filterColumnValueHost</span><span class="pi">:</span> <span class="s">mail_host</span>
-      <span class="na">filterColumnValuePort</span><span class="pi">:</span> <span class="s">mail_port</span>
-      <span class="na">filterColumnValueProtocol</span><span class="pi">:</span> <span class="s">mail_protocol</span>
-      <span class="na">filterColumnValueUser</span><span class="pi">:</span> <span class="s">mail_user</span>
-      <span class="na">filterColumnValuePassword</span><span class="pi">:</span> <span class="s">mail_password</span>
-      <span class="na">filterColumnValueJavaMailProperties</span><span class="pi">:</span> <span class="s">mail_properties</span>
+      <span class="na">ref-repository</span><span class="pi">:</span> <span class="s">OCSettingsDao</span>
+      <span class="na">filter-column-name</span><span class="pi">:</span> <span class="s">SETTING_KEY</span>
+      <span class="na">value-column-name</span><span class="pi">:</span> <span class="s">SETTING_VALUE</span>
+      <span class="na">query-id</span><span class="pi">:</span> <span class="s">default</span>
+      <span class="na">filter-column-value-encoding</span><span class="pi">:</span> <span class="s">mail_encoding</span>
+      <span class="na">filter-column-value-host</span><span class="pi">:</span> <span class="s">mail_host</span>
+      <span class="na">filter-column-value-port</span><span class="pi">:</span> <span class="s">mail_port</span>
+      <span class="na">filter-column-value-protocol</span><span class="pi">:</span> <span class="s">mail_protocol</span>
+      <span class="na">filter-column-value-user</span><span class="pi">:</span> <span class="s">mail_user</span>
+      <span class="na">filter-column-value-password</span><span class="pi">:</span> <span class="s">mail_password</span>
+      <span class="na">filter-column-value-java-mail-properties</span><span class="pi">:</span> <span class="s">mail_properties</span>
       <span class="na">engine</span><span class="pi">:</span> <span class="s">default</span>
 </pre></td>
 </tr></tbody></table></code></pre></figure>
@@ -669,12 +714,12 @@ At the end of the tutorial, we will even be testing that our mailing system is f
 
 <div class="multiColumnRow">
   <div class="multiColumn jstreeloader">
-  <ul>
+ <ul>
   <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -686,16 +731,31 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -712,7 +772,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -724,12 +784,17 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -750,7 +815,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -761,10 +826,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           db
           <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -772,25 +834,40 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCSettingsDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>OCSettingsDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -806,7 +883,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
             dao
             <ul>
               <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OCSettingsDao.xml</li>
+              <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>OCSettingsDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
@@ -825,7 +902,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -837,18 +914,33 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -940,7 +1032,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
 17
 18
 </pre></td>
-<td class="code"><pre><span class="kn">package</span> <span class="nn">model.core.dao</span><span class="o">;</span>
+<td class="code"><pre><span class="kn">package</span> <span class="nn">com.ontimize.projectwiki.model.core.dao</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">org.springframework.context.annotation.Lazy</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">org.springframework.stereotype.Repository</span><span class="o">;</span>
@@ -971,12 +1063,12 @@ At the end of the tutorial, we will even be testing that our mailing system is f
 
 <div class="multiColumnRow">
   <div class="multiColumn jstreeloader">
-  <ul>
+ <ul>
   <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
   ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    api
+    projectwiki-api
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -988,16 +1080,31 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            api
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -1014,7 +1121,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    boot
+    projectwiki-boot
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1026,12 +1133,17 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            boot
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
-                <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
               </ul>
               </li>
             </ul>
@@ -1052,7 +1164,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    model
+    projectwiki-model
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1063,10 +1175,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           db
           <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
             <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
           </ul>
           </li>
@@ -1074,25 +1183,40 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            model
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                dao
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                </ul>
-                </li>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                service
-                <ul>
-                  <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>CandidateService.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OCSettingsDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
@@ -1127,7 +1251,7 @@ At the end of the tutorial, we will even be testing that our mailing system is f
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    ws
+    projectwiki-ws
     <ul>
       <li data-jstree='{"icon":"fas fa-folder-open"}'>
       src
@@ -1139,18 +1263,33 @@ At the end of the tutorial, we will even be testing that our mailing system is f
           java
           <ul>
             <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            ws
+            com
             <ul>
               <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              core
+              ontimize
               <ul>
                 <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                rest
+                projectwiki
                 <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                  <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
                 </ul>
                 </li>
               </ul>
