@@ -42,7 +42,7 @@ ontimize:
 |bundleValueKeyColumn| *String* | Column of the database table containing the key of a translation |
 |engine| *default* | Property to enable the i18n system. Need to have any value, commonly, *default*.  |
 
-<!--The configuration of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/i18n/).-->
+The configuration of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/i18n/).
 
 **Example**
 ```yaml
