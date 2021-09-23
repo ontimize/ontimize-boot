@@ -88,7 +88,7 @@ INSERT INTO TI18N_VALUE (ID_I18N, KEY, ES_ES, EN_US, GL_ES) VALUES(0,'EMAIL','Co
 
 ### Add Permissions
 
-The `com.ontimize.jee.server.services.i18n.DatabaseI18nEngine` service has several methods that we will have to add to the permissions to be able to execute the methods.
+The `com.ontimize.jee.server.services.i18n.I18nServiceImpl` service has several methods that we will have to add to the permissions to be able to execute the methods.
 
 **SQL (HSQL) Statement**
 
