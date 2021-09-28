@@ -42,19 +42,19 @@ ontimize:
 |bundleValueKeyColumn| *String* | Column of the database table containing the key of a translation |
 |engine| *default* | Property to enable the i18n system. Need to have any value, commonly, *default*.  |
 
-<!--The configuration of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/i18n/).-->
+The configuration of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/v3/basics/i18n/).
 
 **Example**
 ```yaml
 ontimize:
    i18n:
-      refBundleRepository: OCDatabaseBundleDao 
-      bundleKeyColumn: ID_I18N
-      bundleClassNameColumn: CLASS_NAME
-      bundleDescriptionColumn: I18N_DESCRIPTION
-      refBundleValueRepository: OCDatabaseBundleValueDao
-      bundleValueTextKeyColumn: KEY
-      bundleValueKeyColumn: ID_I18N_VALUE
+      ref-bundle-repository: OCDatabaseBundleDao 
+      bundle-key-column: ID_I18N
+      bundle-class-name-column: CLASS_NAME
+      bundle-description-column: I18N_DESCRIPTION
+      ref-bundle-value-repository: OCDatabaseBundleValueDao
+      bundle-value-text-key-column: KEY
+      bundle-value-key-column: ID_I18N_VALUE
       engine: default    
 ```
 
