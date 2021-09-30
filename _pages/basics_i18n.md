@@ -10,7 +10,7 @@ breadcrumbs: true
 
 ## Introduction
 
-Ontimize Boot's remote internationalisation service (hereinafter **i18n**) allows you to manage the translations of the different languages of the application without having to modify the programme's translation files, by storing the translations in the database. These translations can be modified while the application is running. The interfaces implemented by the service is `com.ontimize.jee.common.services.i18n.II18nService`.
+Ontimize Boot's remote internationalization service (**i18n**) allows you to manage the translations of the different languages of the application without having to modify the programs translation files, by storing the translations in the database. The interfaces implemented by the service is `com.ontimize.jee.common.services.i18n.II18nService`.
 
 
 ## Prerequisites
@@ -150,7 +150,7 @@ ontimize:
 
 {% endhighlight %}
 
-This configuration indicates the keys and values to be stored in the database. The database table is the one corresponding to the bean described in the **refRepository: OCDatabaseBundleDao** attribute.
+This configuration indicates the keys and values to be stored in the database. The database table is the one corresponding to the bean described in the **refBundleRepository: OCDatabaseBundleDao** attribute.
 
 ### Creation of DAO files
 
@@ -414,7 +414,7 @@ It is necessary to create the **DAO**s that reflect the new DB tables we have cr
 </ul>
   </div>
   <div class="multiColumn" >
-  {{ "We will start by creating the files \*.xml." | markdownify }}
+  {{ "First we will create the \*.xml files." | markdownify }}
 
   {{ "**OCDatabaseBundleDao.xml**" | markdownify }}   
 {% highlight xml linenos%}
@@ -459,7 +459,7 @@ It is necessary to create the **DAO**s that reflect the new DB tables we have cr
 </JdbcEntitySetup>
 {% endhighlight %}
 
-{{ "In the \*.java files we indicate that it is a repository whose name will be *OCDatabaseBundleDao* and *OCDatabaseBundleValueDao* respectively, by means of the `@Repository` annotation. With the `@Lazy` annotation, we indicate that the loading is delayed until it is completely necessary (thus improving performance), and the `@ConfigurationFile` annotation allows us to configure this **DAO** using the **XML** file and an additional file where some features common to several **DAO**s can be stored, such as the schema they belong to." | markdownify}}
+{{ "In the \*.java files we indicate that it is a repository whose name will be *OCDatabaseBundleDao* and *OCDatabaseBundleValueDao* respectively, using the `@Repository` annotation. With the `@Lazy` annotation, we indicate that the loading is delayed until it is completely necessary, and the `@ConfigurationFile` annotation allows us to configure this **DAO** using the **XML** file and an additional file where some features common to several **DAO**s can be stored, such as the schema they belong to." | markdownify}}
 
 {{"**OCDatabaseBundleDao.java**" | markdownify}}
 
@@ -844,9 +844,9 @@ public class I18nRestController {
 </div>
 </div>
 
-## Testing the internationalization
+## Testing the i18n services
 
-To test internationalization we will use REST requests. The request contains the following structure: **localhost:33333/i18n/bundle**
+To test the i18n service we will use REST requests. For this, the following query will be executed: **localhost:33333/i18n/bundle**
 
 | Element | Meaning |
 |--|--|
@@ -854,18 +854,13 @@ To test internationalization we will use REST requests. The request contains the
 | /i18n | Indicates the service to be queried |
 | /bundle | Indicates the request mapping class |
 
-The request types can only be POST and the request body has to have the following structure:
+The request types can only be *POST* and the request body has to have the following structure:
 
 | Element | Meaning |
 |--|--|
 | bundle | Indicates the class name of the bundle specified in the database |
-| lang | Indicates the language of the bundle. It needs to be lowercase. Example: `en` |
-| country | Indicates the country of the language. It needs to be uppercase. Example: `US`|
-
-The authorization used for these requests is authorization of the type BASIC. In this case, the access must be done with a user and password example:
-
-        User: demo
-    Password: demouser
+| lang | Indicates the language of the bundle. It needs to be lowercase. |
+| country | Indicates the country of the language. It needs to be uppercase. |
 
 | Request type | Query | URL | Service method | Body request |
 |--|--|--|--|--|
@@ -882,46 +877,722 @@ The authorization used for these requests is authorization of the type BASIC. In
 }
   {% endhighlight %}
 
+The authorization used for these requests is authorization of the type BASIC. In this case, the access must be done with a user and password example:
 
-**Body response:**
+        User: demo
+    Password: demouser
+
+## Uses of I18n Rest Controller
+
+The i18n interface has a few methods for managing bundles or translations. Next in this example, we will test the bundle values CRUD(Create, Read, Update, Delete) methods.
+
+**Note:** To simplify the code being written, three dots (...) may appear in some parts of the code. This indicates that there may be previous code before and after those dots.
+{: .notice--info}
+
+### Query bundle values
+
+To query the bundle values we create a method that receieves the bundle class, the language to query and the country of this language.
+
+**Note:** The code to query the values of a bundle is in the previous [section](/ontimize-boot/v3/basics/i18n/#add-i18n-rest-controller).
+{: .notice--info}
+
+### Update bundle values
+
+To update the bundle values we create a method that receieves the translations to modify of a bundle that we have specified.
+
+**Code**
+
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader" >
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleValueDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleValueDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>I18nRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="multiColumn" >
+
+  {{"**I18nRestController.java**" | markdownify}}
+
+{%highlight java linenos%}
+package com.ontimize.projectwiki.ws.core.rest;
+
+import java.util.ArrayList;
+import java.util.Hashtable;
+. . .
+
+import com.ontimize.jee.common.gui.i18n.DatabaseBundleValues;
+import com.ontimize.jee.server.rest.UpdateParameter;
+
+. . .
+
+@RestController
+@RequestMapping("/i18n")
+@ComponentScan(basePackageClasses = { com.ontimize.jee.common.services.i18n.II18nService.class })
+public class I18nRestController {
+
+	@Autowired
+	@Qualifier("I18nService")
+	private II18nService iI18nService;
+
+  . . .
+
+	@RequestMapping(value = "/bundle/update", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void updateBundleValues(@RequestBody UpdateParameter parameter) {
+
+		DatabaseBundleValues values = new DatabaseBundleValues(iI18nService.getAvailableLocales());
+		String bundleClass = String.valueOf(parameter.getData().get("bundleClass"));
+		String key = String.valueOf(parameter.getFilter().get("key"));
+		ArrayList e = (ArrayList) parameter.getData().get("bundleValues");
+		Hashtable<String, Object> translationValues = new Hashtable<>(); 
+		for (int i = 0; i < e.size(); i++) {
+			Map<String,Object> map = (Map<String, Object>) e.get(i);
+			translationValues.put(String.valueOf(map.get("language")), map.get("value"));
+		}
+		values.addBundleValue(key, bundleClass, translationValues);
+		iI18nService.updateBundleValues(values);
+	}
+
+}
+{% endhighlight %}
+
+</div>
+</div>
+
+**REST request**
+
+The request to execute is the following: **localhost:33333/i18n/bundle/update**
+
+| Element | Meaning |
+|--|--|
+| localhost:33333 | Indicates the host |
+| /i18n | Indicates the service to be queried |
+| /bundle/update | Indicates the request mapping class |
+
+The request types can only be *PUT* and the request body has to have the following structure:
+
+| Element | Meaning |
+|--|--|
+| key | Indicates the key of the value to be translated. |
+| bundleClass | Indicates the class name of the bundle specified in the database. |
+| bundleValues | Indicates the values of the translation to be modified. |
+
+**Body request:**
 {% highlight json %}
 {
-    "code": 0,
-    "message": "",
-    "data": [
-        {
-            "key": "NAME",
-            "value": "Name"
-        },
-        {
-            "key": "DNI",
-            "value": "Candidate DNI"
-        },
-        {
-            "key": "PHOTO",
-            "value": "Photo"
-        },
-        {
-            "key": "EMAIL",
-            "value": "E-mail"
-        },
-        {
-            "key": "SURNAME",
-            "value": "Surname"
-        },
-        {
-            "key": "BIRTHDAY",
-            "value": "Birthday"
-        },
-        {
-            "key": "PHONE",
-            "value": "Phone"
-        },
-        {
-            "key": "ID",
-            "value": "Candidate id"
-        }
-    ],
-    "sqlTypes": null
+ "filter":{
+     "key": "EMAIL"
+ },   
+ "data":
+ {
+     "bundleClass": "i18n.bundle",
+     "bundleValues": [
+         {
+             "language":"es_ES",
+             "value":"ejemplo@ejemplo.com"
+         },
+         {
+             "language":"en_US",
+             "value":"example@example.com"
+         },
+         {
+             "language":"gl_ES",
+             "value":"exemplo@exemplo.com"
+         }
+     ]
+ }
 }
-  {% endhighlight %}
+{% endhighlight %}
+
+### Insert bundle values
+
+The method to update the bundle values explained in the previous point also allows creating a new value in the case of the specified value does not exist in the database.
+
+**DatabaseI18nEngine.java**
+{% highlight java %}
+. . .
+Object key = this.getBundleValueKey(filter);
+if (key != null) {
+    // update
+    filter.put(this.bundleValuesKeyColumn, key);
+    this.daoBundleValues.update(hValues, filter);
+} else {
+    // insert
+    hValues.putAll(filter);
+    this.daoBundleValues.insert(hValues);
+}
+. . .
+{% endhighlight %}
+
+### Delete bundle values
+
+To delete the bundle values we create a method that receives the bundle class and the key of the bundle values.
+
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader" >
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleValueDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OCDatabaseBundleValueDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>I18nRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="multiColumn" >
+
+  {{"**I18nRestController.java**" | markdownify}}
+
+{%highlight java linenos%}
+package com.ontimize.projectwiki.ws.core.rest;
+
+import java.util.ArrayList;
+. . .
+
+import com.ontimize.jee.common.gui.i18n.DatabaseBundleValues;
+import com.ontimize.jee.server.rest.DeleteParameter;
+
+. . .
+
+@RestController
+@RequestMapping("/i18n")
+@ComponentScan(basePackageClasses = { com.ontimize.jee.common.services.i18n.II18nService.class })
+public class I18nRestController {
+
+	@Autowired
+	@Qualifier("I18nService")
+	private II18nService iI18nService;
+
+  . . .
+
+	@RequestMapping(value = "/bundle/delete", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteBundleValues(@RequestBody DeleteParameter parameter) {
+		DatabaseBundleValues values = new DatabaseBundleValues(iI18nService.getAvailableLocales());
+
+		String bundleClass = String.valueOf(parameter.getFilter().get("bundleClass"));
+		String key = String.valueOf(parameter.getFilter().get("key"));
+		
+		values.addBundleValue(key, bundleClass, null);
+		iI18nService.deleteBundleValues(values);
+	}
+
+}
+{% endhighlight %}
+
+</div>
+</div>
+
+The request to execute is the following: **localhost:33333/i18n/bundle/delete**
+
+| Element | Meaning |
+|--|--|
+| localhost:33333 | Indicates the host |
+| /i18n | Indicates the service to be queried |
+| /bundle/delete | Indicates the request mapping class |
+
+The request types can only be *DELETE* and the request body has to have the following structure:
+
+| Element | Meaning |
+|--|--|
+| bundleClass | Indicates the class name of the bundle specified in the database. |
+| key | Indicates the key of the value to be translated. |
+
+**Body Request**
+
+{% highlight json %}
+{
+ "filter":{
+     "bundleClass": "i18n.bundle",
+     "key": "EMAIL"
+ }
+}
+{% endhighlight %}
