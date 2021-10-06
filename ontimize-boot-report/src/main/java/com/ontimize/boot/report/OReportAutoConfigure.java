@@ -18,6 +18,7 @@ import com.ontimize.jee.server.services.reportstore.ReportStoreServiceImpl;
 import com.ontimize.jee.server.spring.namespace.OntimizeReportConfiguration;
 
 @Configuration
+@ConditionalOnProperty(name = "ontimize.report.enable", havingValue = "true", matchIfMissing = false)
 public class OReportAutoConfigure {
 
 	@Value("${ontimize.report.base-path: null}")
