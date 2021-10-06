@@ -2,20 +2,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>ontimize-boot</artifactId>
+		<artifactId>ontimize-boot-starters</artifactId>
 		<groupId>com.ontimize.boot</groupId>
 		<version>3.2.0</version>
 	</parent>
-	<modelVersion>4.0.0</modelVersion>
-
+	
+	<artifactId>ontimize-boot-starter-report</artifactId>
+	<packaging>jar</packaging>
+	
 	<organization>
 		<name>Imatia Innovation</name>
 		<url>http://imatia.com</url>
 	</organization>
 
-	<name>Ontimize Boot (Core module)</name>
-	<description>Ontimize Boot (Core module)</description>
+	<name>Ontimize Boot (Starter report module)</name>
+	<description>Ontimize Boot (Starter report module)</description>
 	<url>https://www.ontimize.com</url>
 
 	<developers>
@@ -82,52 +85,10 @@
 		<url>https://github.com/ontimize/ontimize-boot/tree/master</url>
 	</scm>
 
-
-	<artifactId>ontimize-boot-core</artifactId>
-
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-autoconfigure</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.ontimize.jee</groupId>
-			<artifactId>ontimize-jee-server</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.ontimize.jee</groupId>
-			<artifactId>ontimize-jee-server-rest</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>com.ontimize.jee.dms</groupId>
-			<artifactId>ontimize-jee-dms-rest</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>com.ontimize.jee.dms</groupId>
-			<artifactId>ontimize-jee-dms-server</artifactId>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-actuator</artifactId>
+			<groupId>com.ontimize.boot</groupId>
+			<artifactId>ontimize-boot-report</artifactId>
 		</dependency>
 	</dependencies>
-
 </project>

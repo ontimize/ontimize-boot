@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.ontimize.boot</groupId>
 		<artifactId>ontimize-boot</artifactId>
-		<version>3.1.0</version>
+		<version>3.2.0</version>
 	</parent>
 
 	<organization>
@@ -20,6 +20,12 @@
 	<url>https://www.ontimize.com</url>
 
 	<developers>
+		<developer>
+			<name>Cristóbal Miguel Vázquez Carde</name>
+			<email>cmiguel.vazquez@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
 		<developer>
 			<name>Enrique Álvarez Pereira</name>
 			<email>enrique.alvarez@imatia.com</email>
@@ -89,5 +95,6 @@
 		<module>ontimize-boot-starter-rest</module>
 		<module>ontimize-boot-starter-keycloak</module>
 		<module>ontimize-boot-starter-webaddons</module>
-	</modules>
+    	<module>ontimize-boot-starter-report</module>
+  </modules>
 </project>
