@@ -38,8 +38,6 @@ public class OAsyncTaskAspect {
 	
 	/** The Constant TASK_STATUS_STARTED. */
 	private static final String					TASK_STATUS_STARTED					= "Started";
-
-	private String taskUuid;
 	
 	private Executor taskExecutor;
 	
@@ -53,11 +51,11 @@ public class OAsyncTaskAspect {
 	@SuppressWarnings({ "rawtypes" })
 	@Around("@annotation(com.ontimize.boot.core.asynctask.OAsyncTask)")
 	public ResponseEntity newTask(ProceedingJoinPoint point) {
-
+		String taskUuid;
 		AsyncTaskResultDto taskDto;
 		try {
 			taskDto = this.taskService.taskInsert();
-			this.taskUuid = taskDto.getUuid();
+			taskUuid = taskDto.getUuid();
 			//NOT STARTED
 			this.taskService.taskUpdateStatus(taskUuid, TASK_STATUS_NOT_STARTED);
 			CompletableFuture.supplyAsync(() -> {
@@ -70,18 +68,18 @@ public class OAsyncTaskAspect {
 					logger.error(OAsyncTaskAspect.ERROR_NESTED_SERVICE);
 				}
 				return res;
-			}, this.taskExecutor).thenComposeAsync(s -> CompletableFuture.supplyAsync(() -> {
+			}, this.taskExecutor).thenApply(s -> {
 				try {
 					ResponseEntity res = (ResponseEntity) s;
-					this.taskService.taskUpdateResult(this.taskUuid, res.getBody());
+					this.taskService.taskUpdateResult(taskUuid, res.getBody());
 				} catch (AsyncTaskException | IOException e) {
 					logger.error(OAsyncTaskAspect.ERROR_RESULT_STORAGE);
 				}
 				return s;
-			}), this.taskExecutor);
+			});
 			
 			HttpHeaders responseHeaders = new HttpHeaders();
-		    responseHeaders.set("Location", this.url + "/" + this.taskUuid);
+		    responseHeaders.set("Location", this.url + "/" + taskUuid);
 			
 			return ResponseEntity.accepted()
 				      .headers(responseHeaders).build();
