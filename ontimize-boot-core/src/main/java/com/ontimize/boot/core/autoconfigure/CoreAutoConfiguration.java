@@ -34,6 +34,9 @@ public class CoreAutoConfiguration {
 	
 	@Value("${ontimize.threadpool.keepalive}")
 	private String keepAlive;
+	
+	@Value("${ontimize.threadpool.timeout}")
+	private boolean timeout;
 
 	@Bean
 	public DefaultOntimizeDaoHelper defaultOntimizeDaoHelper() {
@@ -64,11 +67,8 @@ public class CoreAutoConfiguration {
 				Long.valueOf(keepAlive),
 				TimeUnit.MILLISECONDS,   
 				new LinkedBlockingQueue<Runnable>());
-		executor.allowCoreThreadTimeOut(true);
+		executor.allowCoreThreadTimeOut(this.timeout);
 		return executor;
 	}
-
-
-
 
 }
