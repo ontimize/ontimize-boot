@@ -62,10 +62,10 @@ import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVote
 @EnableWebSecurity
 @ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "default", matchIfMissing = false)
 public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
-	@Value("${ontimize.security.servicePath:/**}")
+	@Value("${ontimize.security.service-path:/**}")
 	private String servicePath;
 
-	@Value("${ontimize.security.ignorePaths:}")
+	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
 
 	@Override
@@ -298,7 +298,7 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	}
 
 	@Bean("authenticationEntryPoint")
-	@ConditionalOnProperty(value = "ontimize.security.authenticationEntryPoint", havingValue = "basic")
+	@ConditionalOnProperty(value = "ontimize.security.authentication-entry-point", havingValue = "basic")
 	public AuthenticationEntryPoint authenticationEntryPoint() {
 		BasicAuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
 		authenticationEntryPoint.setRealmName("ONTIMIZE REALM");
