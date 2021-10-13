@@ -12,7 +12,7 @@
 
 	<groupId>com.ontimize.boot</groupId>
 	<artifactId>ontimize-boot</artifactId>
-	<version>3.3.0</version>
+	<version>3.4.0</version>
 	<packaging>pom</packaging>
 
 	<organization>
@@ -105,7 +105,7 @@
 		<project.dependency.ontimize-jee.version>5.5.0</project.dependency.ontimize-jee.version>
 		<project.dependency.ontimize-jee-dms.version>3.1.0</project.dependency.ontimize-jee-dms.version>
 		<project.dependency.keycloak.version>9.0.3</project.dependency.keycloak.version>
-		<project.dependency.ontimize-jee-report.version>3.0.0-SNAPSHOT</project.dependency.ontimize-jee-report.version>
+		<project.dependency.ontimize-jee-report.version>3.0.0</project.dependency.ontimize-jee-report.version>
 		<!-- =========================================================== -->
 		<!-- Plugin versions -->
 		<!-- =========================================================== -->
