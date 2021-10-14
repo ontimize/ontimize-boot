@@ -1,0 +1,2066 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Migration from Ontimize 1.x.x to 3.x.x - Ontimize Boot</title>
+<meta name="description" content="">
+
+
+  <meta name="author" content="Imatia Innovation, S.L.">
+  
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ontimize Boot">
+<meta property="og:title" content="Migration from Ontimize 1.x.x to 3.x.x">
+<meta property="og:url" content="https://ontimize.github.io/ontimize-boot/v3/basics/migration/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ontimize.github.io/ontimize-boot/v3/basics/migration/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Imatia Innovation, S.L",
+      "url": "https://ontimize.github.io/ontimize-boot/v3/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/ontimize-boot/v3/feed.xml" type="application/atom+xml" rel="alternate" title="Ontimize Boot Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/ontimize-boot/v3/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+<link rel="stylesheet" href="/ontimize-boot/v3/assets/css/jstreestyle.css"/>
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/ontimize-boot/v3/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/ontimize-boot/v3/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/ontimize-boot/v3/assets/images/favicon-16x16.png">
+<link rel="mask-icon" href="/ontimize-boot/v3/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/ontimize-boot/v3/assets/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/ontimize-boot/v3/assets/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/ontimize-boot/v3/"><img src="/ontimize-boot/v3/assets/images/logo-ontimize.png" alt=""></a>
+        
+        <a class="site-title" href="/ontimize-boot/v3/">
+           
+          
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="https://ontimize.github.io/docs/v3/">Ontimize Docs</a>
+            </li>
+          <li class="masthead__menu-item">
+            <select class="masthead__menu-item-combo" onchange="window.location = this.options[this.selectedIndex].value">
+            
+              <option value="https://ontimize.github.io/ontimize-boot/v3" selected>3.x.x</option>
+            
+              <option value="https://ontimize.github.io/ontimize-boot">1.x.x</option>
+            
+            </select>
+          </li>
+          
+        </ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://ontimize.github.io/ontimize-boot/v3/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/ontimize-boot/v3/basics" itemprop="item"><span itemprop="name">Basics</span></a>
+          <meta itemprop="position" content="2">
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Migration from Ontimize 1.x.x to 3.x.x</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Migration from Ontimize 1.x.x to 3.x.x">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Migration from Ontimize 1.x.x to 3.x.x
+</h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> Table of Contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#introduction">Introduction</a></li>
+  <li><a href="#prerequisites">Prerequisites</a></li>
+  <li>
+<a href="#steps">Steps</a>
+    <ul>
+      <li><a href="#ontimize-version">Ontimize version</a></li>
+      <li><a href="#java-version">Java version</a></li>
+      <li>
+<a href="#renaming-packages">Renaming packages</a>
+        <ul>
+          <li><a href="#api-module">Api module</a></li>
+          <li><a href="#model-module">Model module</a></li>
+          <li><a href="#ws-module">Ws module</a></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="introduction">Introduction</h2>
+
+<p>In this tutorial we are going to explain how to migrate a project from Ontimize version <strong>1.x.x</strong> that works with <strong>JDK 8</strong> to Ontimize version <strong>3.x.x</strong> that works with <strong>JDK 11</strong>. For this example we will download a project like the explained in this <a href="https://www.ontimize.com/xwiki/bin/view/Ontimize+Boot+Training/" target="_blank" rel="noopener noreferrer">training course</a>.</p>
+
+<h2 id="prerequisites">Prerequisites</h2>
+<p>You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found <a href="https://ontimize.github.io/ontimize-boot/v3/getting_started/">on this page</a> and with a REST service.</p>
+
+<p>There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.</p>
+
+<div class="multiColumnRow multiColumnRowJustify">
+<div class="multiColumn multiColumnGrow">
+  <p><strong>Initial project</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/$ git clone https://github.com/ontimize/ontimize-examples 
+/ontimize-examples$ cd ontimize-examples
+/ontimize-examples$ git checkout boot-migration-3.x.x-initial
+</code></pre></div></div>
+
+</div>
+<div class="verticalDivider"></div>
+<div class="multiColumn multiColumnGrow">
+
+  <p><strong>Final example</strong></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/$ git clone https://github.com/ontimize/ontimize-examples 
+/ontimize-examples$ cd ontimize-examples
+/ontimize-examples$ git checkout boot-migration-3.x.x
+</code></pre></div></div>
+
+
+</div>
+</div>
+
+<p class="notice--info"><strong>Note:</strong> To simplify the code being written, three dots (…) may appear in some parts of the code. This indicates that there may be previous code before and after those dots.</p>
+
+<h2 id="steps">Steps</h2>
+<h3 id="ontimize-version">Ontimize version</h3>
+<p>First of all we need to update the version of Ontimize (ontimize-boot-parent) located in the parent of the project.</p>
+
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader">
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IMasterService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IOfferService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MasterService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MasterRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="multiColumn">
+
+  <p><strong>pom.xml</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  <span class="nt">&lt;parent&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.ontimize.boot<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>ontimize-boot-parent<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>3.6.0<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;/parent&gt;</span></code></pre></figure>
+
+
+</div>
+</div>
+
+<h3 id="java-version">Java version</h3>
+
+<p>In the project properties we will change the java version <strong>from 1.8 to 11</strong>, both for the main <strong>pom.xml</strong> and for the <code class="language-plaintext highlighter-rouge">hr-model</code> module <strong>pom.xml</strong>.</p>
+
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader">
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IMasterService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IOfferService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MasterService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"selected":true,"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MasterRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="multiColumn">
+
+  <p><strong>pom.xml</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-xml" data-lang="xml">  <span class="nt">&lt;properties&gt;</span>
+    . . .
+    <span class="nt">&lt;java.version&gt;</span>11<span class="nt">&lt;/java.version&gt;</span>
+    . . .
+  <span class="nt">&lt;/properties&gt;</span></code></pre></figure>
+
+
+</div>
+</div>
+
+<h3 id="renaming-packages">Renaming packages</h3>
+
+<p>With the new version, the <strong>ontimize-core</strong> library has been <strong>merged</strong> with <strong>ontimize-jee</strong>, and some classes have changed the name of their package, among them, the <strong>EntityResult</strong> Interface. To learn more about this class, check the following <a href="https://www.ontimize.com/xwiki/bin/view/Ontimize+Boot+Training/Understanding+the+EntityResult" target="_blank" rel="noopener noreferrer">link</a>.</p>
+
+<p>The package name of <strong>EntityResult</strong> has been renamed from <code class="language-plaintext highlighter-rouge">com.ontimize.db.EntityResult</code> to <code class="language-plaintext highlighter-rouge">com.ontimize.jee.common.dto.EntityResult</code>.</p>
+
+<h4 id="api-module">Api module</h4>
+
+<p>In the <code class="language-plaintext highlighter-rouge">hr-api</code> module we need to change the name of the package of this class in all the interfaces that are using it.</p>
+
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader">
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>IMasterService.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>IOfferService.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MasterService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MasterRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="multiColumn">
+
+  <p><strong>ICandidateService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.api.core.service</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ICandidateService</span> <span class="o">{</span>
+
+ <span class="c1">// CANDIDATE
+</span>
+ <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">candidateQuery</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">attrList</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+ <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">candidateInsert</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">attrMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+ <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">candidateUpdate</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">attrMap</span><span class="o">,</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+ <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">candidateDelete</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+
+<span class="o">}</span></code></pre></figure>
+
+
+  <p><strong>IMasterService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.api.core.service</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IMasterService</span> <span class="o">{</span>
+
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+	 <span class="c1">// EDUCATION
+</span>
+	 <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">educationQuery</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">attrList</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+	 <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">educationInsert</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">attrMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+	 <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">educationUpdate</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">attrMap</span><span class="o">,</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+	 <span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">educationDelete</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+     <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  <p><strong>IOfferService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.api.core.service</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IOfferService</span> <span class="o">{</span>
+
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+	<span class="c1">// OFFER
+</span>
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">offerQuery</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">attrList</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">offerInsert</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">attrMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">offerUpdate</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">attrMap</span><span class="o">,</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">offerDelete</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">keyMap</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">OntimizeJEERuntimeException</span><span class="o">;</span>
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="o">}</span></code></pre></figure>
+
+
+  <p><strong>IUserService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.api.core.service</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">IUserService</span> <span class="o">{</span>
+
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">userQuery</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;?,</span> <span class="o">?&gt;</span> <span class="n">keyMap</span><span class="o">,</span> <span class="nc">List</span><span class="o">&lt;?&gt;</span> <span class="n">attrList</span><span class="o">);</span>
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">userInsert</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;?,</span> <span class="o">?&gt;</span> <span class="n">attrMap</span><span class="o">);</span>
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">userUpdate</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;?,</span> <span class="o">?&gt;</span> <span class="n">attrMap</span><span class="o">,</span> <span class="nc">Map</span><span class="o">&lt;?,</span> <span class="o">?&gt;</span> <span class="n">keyMap</span><span class="o">);</span>
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">userDelete</span><span class="o">(</span><span class="nc">Map</span><span class="o">&lt;?,</span> <span class="o">?&gt;</span> <span class="n">keyMap</span><span class="o">);</span>
+
+<span class="o">}</span></code></pre></figure>
+
+</div>
+</div>
+
+<h4 id="model-module">Model module</h4>
+
+<p>Having changed the class in the interface, we also have to change it in the service. For this we go to the <code class="language-plaintext highlighter-rouge">hr-model</code> module and replace the import of all services.</p>
+
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader">
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IMasterService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IOfferService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>MasterService.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OfferService.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MasterRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+  </div>
+  <div class="multiColumn">
+
+  <p><strong>CandidateService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.model.core.service</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="nd">@Service</span><span class="o">(</span><span class="s">"CandidateService"</span><span class="o">)</span>
+<span class="nd">@Lazy</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">CandidateService</span> <span class="kd">implements</span> <span class="nc">ICandidateService</span> <span class="o">{</span>
+
+	<span class="nd">@Autowired</span>
+	<span class="kd">private</span> <span class="nc">CandidateDao</span> <span class="n">candidateDao</span><span class="o">;</span>
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  <p><strong>MasterService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.model.core.service</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="nd">@Service</span><span class="o">(</span><span class="s">"MasterService"</span><span class="o">)</span>
+<span class="nd">@Lazy</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MasterService</span> <span class="kd">implements</span> <span class="nc">MasterService</span> <span class="o">{</span>
+
+	<span class="nd">@Autowired</span>
+	<span class="kd">private</span> <span class="nc">EducationDao</span> <span class="n">educationDao</span><span class="o">;</span>
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  <p><strong>OfferService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.model.core.service</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="nd">@Service</span><span class="o">(</span><span class="s">"OfferService"</span><span class="o">)</span>
+<span class="nd">@Lazy</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OfferService</span> <span class="kd">implements</span> <span class="nc">IOfferService</span> <span class="o">{</span>
+
+	<span class="nd">@Autowired</span>
+	<span class="kd">private</span> <span class="nc">OfferDao</span> <span class="n">offerDao</span><span class="o">;</span>
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="o">}</span></code></pre></figure>
+
+
+  <p><strong>UserService.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.model.core.service</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="nd">@Lazy</span>
+<span class="nd">@Service</span><span class="o">(</span><span class="s">"UserService"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserService</span> <span class="kd">implements</span> <span class="nc">IUserService</span> <span class="o">{</span>
+
+	<span class="nd">@Autowired</span>
+	<span class="kd">private</span> <span class="nc">UserDao</span> <span class="n">userDao</span><span class="o">;</span>
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="o">}</span></code></pre></figure>
+
+</div>
+</div>
+
+<h4 id="ws-module">Ws module</h4>
+
+<p>In this case it is not just about changing the name of the package, it must also be taken into account that the <code class="language-plaintext highlighter-rouge">EntityResult</code> class is now an <strong>Interface</strong>, so an object cannot be instantiated from it. To do this, we will use the <code class="language-plaintext highlighter-rouge">EntityResultMapImpl</code> class.</p>
+
+<p>Go to the <code class="language-plaintext highlighter-rouge">hr-ws</code> module and replace the import of the EntityResult class in the rest controllers and make the following changes:</p>
+
+<div class="multiColumnRow">
+  <div class="multiColumn jstreeloader">
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IMasterService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IOfferService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MasterService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>OfferService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>EducationDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ExperienceLevelDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidatesDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferCandidateStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OfferStatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>OriginDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ProfileDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>StatusDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    hr-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                hr
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MasterRestController.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>OfferRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul> 
+  </div>
+  <div class="multiColumn">
+
+  <p><strong>OfferRestController.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.ws.core.rest</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.db.SQLStatementBuilder</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.db.SQLStatementBuilder.BasicExpression</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.db.SQLStatementBuilder.BasicField</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.db.SQLStatementBuilder.BasicOperator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResultMapImpl</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/offers"</span><span class="o">)</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackageClasses</span> <span class="o">=</span> <span class="o">{</span> <span class="n">com</span><span class="o">.</span><span class="na">ontimize</span><span class="o">.</span><span class="na">hr</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">service</span><span class="o">.</span><span class="na">IOfferService</span><span class="o">.</span><span class="na">class</span> <span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">OfferRestController</span> <span class="kd">extends</span> <span class="nc">ORestController</span><span class="o">&lt;</span><span class="nc">IOfferService</span><span class="o">&gt;</span> <span class="o">{</span>
+
+	<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"currentOffers/search"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="nc">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">currentOffersSearch</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">req</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">columns</span> <span class="o">=</span> <span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;)</span> <span class="n">req</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"columns"</span><span class="o">);</span>
+			<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;();</span>
+			<span class="n">key</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="nc">SQLStatementBuilder</span><span class="o">.</span><span class="na">ExtendedSQLConditionValuesProcessor</span><span class="o">.</span><span class="na">EXPRESSION_KEY</span><span class="o">,</span>
+					<span class="n">searchBetween</span><span class="o">(</span><span class="nc">OfferDao</span><span class="o">.</span><span class="na">ATTR_START_DATE</span><span class="o">));</span>
+			<span class="k">return</span> <span class="n">offerService</span><span class="o">.</span><span class="na">offerQuery</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">columns</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+			<span class="nc">EntityResult</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EntityResultMapImpl</span><span class="o">();</span>
+			<span class="n">res</span><span class="o">.</span><span class="na">setCode</span><span class="o">(</span><span class="nc">EntityResult</span><span class="o">.</span><span class="na">OPERATION_WRONG</span><span class="o">);</span>
+			<span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+	<span class="nd">@RequestMapping</span><span class="o">(</span><span class="n">value</span> <span class="o">=</span> <span class="s">"yearOffers/search"</span><span class="o">,</span> <span class="n">method</span> <span class="o">=</span> <span class="nc">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">,</span> <span class="n">produces</span> <span class="o">=</span> <span class="nc">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="nc">EntityResult</span> <span class="nf">yearOffersSearch</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">req</span><span class="o">)</span> <span class="o">{</span>
+		<span class="k">try</span> <span class="o">{</span>
+			<span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;</span> <span class="n">columns</span> <span class="o">=</span> <span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">&gt;)</span> <span class="n">req</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"columns"</span><span class="o">);</span>
+			<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">filter</span> <span class="o">=</span> <span class="o">(</span><span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;)</span> <span class="n">req</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"filter"</span><span class="o">);</span>
+			<span class="kt">int</span> <span class="n">year</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)</span> <span class="n">filter</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">"YEAR"</span><span class="o">);</span>
+			<span class="nc">Map</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;</span> <span class="n">key</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">HashMap</span><span class="o">&lt;</span><span class="nc">String</span><span class="o">,</span> <span class="nc">Object</span><span class="o">&gt;();</span>
+			<span class="n">key</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="nc">SQLStatementBuilder</span><span class="o">.</span><span class="na">ExtendedSQLConditionValuesProcessor</span><span class="o">.</span><span class="na">EXPRESSION_KEY</span><span class="o">,</span>
+					<span class="n">searchBetweenWithYear</span><span class="o">(</span><span class="nc">OfferDao</span><span class="o">.</span><span class="na">ATTR_START_DATE</span><span class="o">,</span> <span class="n">year</span><span class="o">));</span>
+			<span class="k">return</span> <span class="n">offerService</span><span class="o">.</span><span class="na">offerQuery</span><span class="o">(</span><span class="n">key</span><span class="o">,</span> <span class="n">columns</span><span class="o">);</span>
+		<span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="nc">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+			<span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+			<span class="nc">EntityResult</span> <span class="n">res</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">EntityResultMapImpl</span><span class="o">();</span>
+			<span class="n">res</span><span class="o">.</span><span class="na">setCode</span><span class="o">(</span><span class="nc">EntityResult</span><span class="o">.</span><span class="na">OPERATION_WRONG</span><span class="o">);</span>
+			<span class="k">return</span> <span class="n">res</span><span class="o">;</span>
+		<span class="o">}</span>
+	<span class="o">}</span>
+
+    <span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="o">}</span></code></pre></figure>
+
+
+  <p><strong>UserRestController.java</strong></p>
+
+
+
+<figure class="highlight"><pre><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.ontimize.hr.ws.core.rest</span><span class="o">;</span>
+
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+<span class="kn">import</span> <span class="nn">com.ontimize.jee.common.dto.EntityResult</span><span class="o">;</span>
+<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+
+<span class="nd">@RestController</span>
+<span class="nd">@RequestMapping</span><span class="o">(</span><span class="s">"/users"</span><span class="o">)</span>
+<span class="nd">@ComponentScan</span><span class="o">(</span><span class="n">basePackageClasses</span><span class="o">={</span><span class="n">com</span><span class="o">.</span><span class="na">ontimize</span><span class="o">.</span><span class="na">hr</span><span class="o">.</span><span class="na">api</span><span class="o">.</span><span class="na">core</span><span class="o">.</span><span class="na">service</span><span class="o">.</span><span class="na">IUserService</span><span class="o">.</span><span class="na">class</span><span class="o">})</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UserRestController</span> <span class="kd">extends</span> <span class="nc">ORestController</span><span class="o">&lt;</span><span class="nc">IUserService</span><span class="o">&gt;</span> <span class="o">{</span>
+
+	<span class="o">.</span> <span class="o">.</span> <span class="o">.</span>
+	<span class="nd">@RequestMapping</span><span class="o">(</span>
+		<span class="n">value</span> <span class="o">=</span> <span class="s">"/login"</span><span class="o">,</span>
+		<span class="n">method</span> <span class="o">=</span> <span class="nc">RequestMethod</span><span class="o">.</span><span class="na">POST</span><span class="o">,</span>
+		<span class="n">produces</span> <span class="o">=</span> <span class="nc">MediaType</span><span class="o">.</span><span class="na">APPLICATION_JSON_VALUE</span><span class="o">)</span>
+	<span class="kd">public</span> <span class="nc">ResponseEntity</span><span class="o">&lt;</span><span class="nc">EntityResult</span><span class="o">&gt;</span> <span class="nf">login</span><span class="o">()</span> <span class="o">{</span>
+		<span class="k">return</span> <span class="k">new</span> <span class="nc">ResponseEntity</span><span class="o">&lt;&gt;(</span><span class="nc">HttpStatus</span><span class="o">.</span><span class="na">OK</span><span class="o">);</span>
+	<span class="o">}</span>
+<span class="o">}</span></code></pre></figure>
+
+</div>
+</div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/imatiainnova" rel="noopener noreferrer" target="_blank"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://www.linkedin.com/company/imatia-innovation/" rel="noopener noreferrer" target="_blank"><i class="fab fa-fw fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://github.com/ontimize/ontimize-boot" rel="noopener noreferrer" target="_blank"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/ontimize-boot/v3/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2021 Imatia Innovation, S.L. Powered by <a href="https://jekyllrb.com" rel="noopener noreferrer" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="noopener noreferrer" target="_blank">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/ontimize-boot/v3/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>
