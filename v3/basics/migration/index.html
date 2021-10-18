@@ -242,6 +242,7 @@
     <ul>
       <li><a href="#ontimize-version">Ontimize version</a></li>
       <li><a href="#java-version">Java version</a></li>
+      <li><a href="#modifying-applicationyml">Modifying application.yml</a></li>
       <li>
 <a href="#renaming-packages">Renaming packages</a>
         <ul>
@@ -877,6 +878,89 @@
 
 </div>
 </div>
+
+<h3 id="modifying-applicationyml">Modifying application.yml</h3>
+
+<p>In the new version of Ontimize Boot, it has been decided to change the properties from <strong>camelCase</strong> to <strong>kebab-case</strong>, so you have to modify the <code class="language-plaintext highlighter-rouge">application.yml</code>.</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">endpoints</span><span class="pi">:</span>
+   <span class="na">api</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">logging</span><span class="pi">:</span>
+   <span class="na">level</span><span class="pi">:</span>
+      <span class="na">root</span><span class="pi">:</span> <span class="s">info</span>
+<span class="na">ontimize</span><span class="pi">:</span>
+   <span class="na">corsfilter</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+   <span class="na">globalcors</span><span class="pi">:</span>
+      <span class="na">cors-configurations</span><span class="pi">:</span>
+         <span class="s1">'</span><span class="s">[/**]'</span><span class="pi">:</span>
+            <span class="na">allowed-origins</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">allowed-headers</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">exposed-headers</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">X-Auth-Token"</span><span class="pi">,</span><span class="s2">"</span><span class="s">Content-disposition"</span><span class="pi">,</span><span class="s2">"</span><span class="s">X-Requested-With"</span><span class="pi">]</span>
+            <span class="na">allowed-methods</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">GET</span>
+            <span class="pi">-</span> <span class="s">POST</span>
+            <span class="pi">-</span> <span class="s">PUT</span>
+            <span class="pi">-</span> <span class="s">OPTIONS</span>
+            <span class="pi">-</span> <span class="s">DELETE</span>
+   <span class="na">jdbc</span><span class="pi">:</span>
+      <span class="na">name-convention</span><span class="pi">:</span> <span class="s">upper</span>
+      <span class="na">sqlhandler</span><span class="pi">:</span> <span class="s">hsqldb</span>
+      <span class="na">sql-dondition-processor</span><span class="pi">:</span>
+         <span class="na">uppper-string</span><span class="pi">:</span> <span class="no">true</span>
+         <span class="na">upper-like</span><span class="pi">:</span> <span class="no">true</span>
+   <span class="na">security</span><span class="pi">:</span>
+      <span class="na">mode</span><span class="pi">:</span> <span class="s">default</span>
+      <span class="na">ignore-paths</span><span class="pi">:</span> <span class="s">/app/**</span>
+      <span class="na">role-information-service</span><span class="pi">:</span>
+         <span class="na">role-repository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">role-name-column</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+         <span class="na">server-permission-query-id</span><span class="pi">:</span> <span class="s">serverPermissions</span>
+         <span class="na">server-permission-name-column</span><span class="pi">:</span> <span class="s">PERMISSION_NAME</span>
+         <span class="na">client-permission-query-id</span><span class="pi">:</span> <span class="s">clientPermissions</span>
+         <span class="na">client-permission-column</span><span class="pi">:</span> <span class="s">XMLCLIENTPERMISSION</span>
+      <span class="na">user-information-service</span><span class="pi">:</span>
+         <span class="na">user-repository</span><span class="pi">:</span> <span class="s">UserDao</span>
+         <span class="na">user-login-column</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">user-password-column</span><span class="pi">:</span> <span class="s">PASSWORD</span>
+         <span class="na">query-id</span><span class="pi">:</span> <span class="s">login</span>
+         <span class="na">other-data</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">NAME</span>
+            <span class="pi">-</span> <span class="s">SURNAME</span>
+            <span class="pi">-</span> <span class="s">EMAIL</span>
+            <span class="pi">-</span> <span class="s">NIF</span>
+            <span class="pi">-</span> <span class="s">USERBLOCKED</span>
+            <span class="pi">-</span> <span class="s">LASTPASSWORDUPDATE</span>
+            <span class="pi">-</span> <span class="s">FIRSTLOGIN</span>
+      <span class="na">user-role-information-service</span><span class="pi">:</span>
+         <span class="na">user-role-repository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">query-id</span><span class="pi">:</span> <span class="s">userRole</span>
+         <span class="na">role-login-column</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">role-name-column</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+<span class="na">server</span><span class="pi">:</span>
+   <span class="na">port</span><span class="pi">:</span> <span class="m">33333</span>
+   <span class="na">tomcat</span><span class="pi">:</span>
+      <span class="na">uri-encoding</span><span class="pi">:</span> <span class="s">UTF-8</span>
+   <span class="na">compression</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">mime-types</span><span class="pi">:</span> <span class="s">application/json, application/xml</span>
+<span class="na">spring</span><span class="pi">:</span>
+   <span class="na">datasource</span><span class="pi">:</span>
+      <span class="na">driver-class-name</span><span class="pi">:</span> <span class="s">org.hsqldb.jdbcDriver</span>
+      <span class="na">jdbc-url</span><span class="pi">:</span> <span class="s">jdbc:hsqldb:hsql://localhost:9013/templateDB</span>
+      <span class="na">username</span><span class="pi">:</span> <span class="s">SA</span>
+      <span class="na">password</span><span class="pi">:</span>
+      <span class="na">initial-size</span><span class="pi">:</span> <span class="m">10</span>
+      <span class="na">test-on-borrow</span><span class="pi">:</span> <span class="no">true</span>
+   <span class="na">main</span><span class="pi">:</span>
+      <span class="na">banner-mode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">off'</span>
+   <span class="na">session</span><span class="pi">:</span>
+      <span class="na">store-type</span><span class="pi">:</span> <span class="s">none</span>
+   <span class="na">autoconfigure</span><span class="pi">:</span>
+      <span class="na">exclude</span><span class="pi">:</span> <span class="pi">|</span>
+         <span class="s">org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration, org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.FallbackWebSecurityAutoConfiguration</span>
+</code></pre></div></div>
 
 <h3 id="renaming-packages">Renaming packages</h3>
 
