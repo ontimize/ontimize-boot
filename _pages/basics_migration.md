@@ -626,6 +626,90 @@ In the project properties we will change the java version **from 1.8 to 11**, bo
 </div>
 </div>
 
+### Modifying application.yml
+
+In the new version of Ontimize Boot, it has been decided to change the properties from **camelCase** to **kebab-case**, so you have to modify the `application.yml`.
+
+```yaml
+endpoints:
+   api:
+      enabled: true
+logging:
+   level:
+      root: info
+ontimize:
+   corsfilter:
+      enabled: true
+   globalcors:
+      cors-configurations:
+         '[/**]':
+            allowed-origins: "*"
+            allowed-headers: "*"
+            exposed-headers: ["X-Auth-Token","Content-disposition","X-Requested-With"]
+            allowed-methods:
+            - GET
+            - POST
+            - PUT
+            - OPTIONS
+            - DELETE
+   jdbc:
+      name-convention: upper
+      sqlhandler: hsqldb
+      sql-dondition-processor:
+         uppper-string: true
+         upper-like: true
+   security:
+      mode: default
+      ignore-paths: /app/**
+      role-information-service:
+         role-repository: UserRoleDao
+         role-name-column: ROLENAME
+         server-permission-query-id: serverPermissions
+         server-permission-name-column: PERMISSION_NAME
+         client-permission-query-id: clientPermissions
+         client-permission-column: XMLCLIENTPERMISSION
+      user-information-service:
+         user-repository: UserDao
+         user-login-column: USER_
+         user-password-column: PASSWORD
+         query-id: login
+         other-data:
+            - NAME
+            - SURNAME
+            - EMAIL
+            - NIF
+            - USERBLOCKED
+            - LASTPASSWORDUPDATE
+            - FIRSTLOGIN
+      user-role-information-service:
+         user-role-repository: UserRoleDao
+         query-id: userRole
+         role-login-column: USER_
+         role-name-column: ROLENAME
+server:
+   port: 33333
+   tomcat:
+      uri-encoding: UTF-8
+   compression:
+      enabled: true
+      mime-types: application/json, application/xml
+spring:
+   datasource:
+      driver-class-name: org.hsqldb.jdbcDriver
+      jdbc-url: jdbc:hsqldb:hsql://localhost:9013/templateDB
+      username: SA
+      password:
+      initial-size: 10
+      test-on-borrow: true
+   main:
+      banner-mode: 'off'
+   session:
+      store-type: none
+   autoconfigure:
+      exclude: |
+         org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration, org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.FallbackWebSecurityAutoConfiguration
+```
+
 ### Renaming packages
 
 With the new version, the **ontimize-core** library has been **merged** with **ontimize-jee**, and some classes have changed the name of their package, among them, the **EntityResult** Interface. To learn more about this class, check the following [link](https://www.ontimize.com/xwiki/bin/view/Ontimize+Boot+Training/Understanding+the+EntityResult). 
