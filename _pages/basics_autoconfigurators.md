@@ -9,6 +9,28 @@ breadcrumbs: true
 ---
 Autoconfigurators are an easy way to indicate common elements that need minimal customization in applications, such as database connection. These configurations are used within the **application.yml** file located inside the **boot** folder.
 
+## AsyncTask
+- **ontimize:asynctask:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| enable | *true* | Module loading property |
+| engine | *database* | Indicates the storage engine that will be used for the report system (*database* for database engine) |
+| url | *String* | The URL base path where the asynchronous tasks service will be exposed |
+
+The configuration of the decoupled tasks system is done by setting up the necessary DAO for that system and annotating the service controller method. To see the configuration, check [this link](/ontimize-boot/v3/basics/asynctask/).
+
+**Example**
+
+*Database*
+```yaml
+ontimize:
+   asynctask:
+      enable: true
+      engine: database
+      url: /tasks
+```
+
 ## DMS
 - **ontimize:dms:**
 
@@ -166,6 +188,7 @@ ontimize:
 
 | Attribute | Values | Meaning |
 |--|--|--|
+| enable | *true* | Module loading property |
 | engine | *database*, *file* | Indicates the engine that will be used for the report system (*file* for file system engine or *database* for database engine) |
 | base-path | *String* | The path where the report files will be stored (file system engine only) |
 
@@ -177,6 +200,7 @@ The configuration of the reports system is done by setting up the necessary DAOs
 ```yaml
 ontimize:
    report:
+      enable: true
       engine: database
 ```
 
@@ -184,8 +208,9 @@ ontimize:
 ```yaml
 ontimize:
    report:
+      enable: true
       engine: file
-      base-path: file:/C:/applications/QSAllComponents_Jee/reports
+      base-path: C:/applications/QSAllComponents_Jee/reports
 ```
 
 ## REST
@@ -309,4 +334,24 @@ ontimize:
       server-permission-name-column: PERMISSION_NAME
       client-permission-query-id: clientPermissions
       client-permission-column: XMLCLIENTPERMISSION
+```
+## TaskExecutor
+- **ontimize:threadpool:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| coresize | *Integer* | The number of threads to keep in the pool, evenif they are idle |
+| maxsize | *Integer* | The maximum number of threads to allow in the pool |
+| keepalive | *Long* | When the number of threads is greater than the core, the maximum time that excess idle threads will wait for new tasks before terminating (in milliseconds) |
+| timeout | *true*, *false* | Allow core threads to time out |
+
+**Example**
+
+```yaml
+ontimize:
+   threadpool:
+      coresize: 1
+      maxsize: 2147483647
+      keepalive: 1000
+      timeout: true
 ```

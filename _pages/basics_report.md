@@ -8,6 +8,9 @@ toc_sticky: true
 breadcrumbs: true
 ---
 
+**Important:** This module works only for Ontimize Boot version 3.7.0 or above.
+{: .notice--warning}
+
 # Introduction
 The **Report Store** system will allow you to store, manage and export all kinds of reports designed and implemented via the JasperReports API. This module will let you use your Ontimize application data as data sources for your reports, allowing you to fully customize its layout with tables, charts, graphs... and also visualize, export, print and download your reports.
 
@@ -71,7 +74,251 @@ ALTER TABLE REPORT_PARAMETERS ADD CONSTRAINT REPORT_PARAMETERS_FK FOREIGN KEY(RE
 
 <div class="multiColumnRow">
 <div class="multiColumn jstreeloader">
-
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>templateDB.tmp</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
 </div>
 <div class="multiColumn multiColumnGrow">
   {{ "**boot/pom.xml**"| markdownify }}
@@ -79,12 +326,12 @@ ALTER TABLE REPORT_PARAMETERS ADD CONSTRAINT REPORT_PARAMETERS_FK FOREIGN KEY(RE
 {% highlight xml %}
 ...
 <dependencies>
-  ...
-  <dependency>
-    <groupId>com.ontimize.boot</groupId>
-	<artifactId>ontimize-boot-starter-report</artifactId>
-  </dependency>
-  ...
+	...
+	<dependency>
+		<groupId>com.ontimize.boot</groupId>
+		<artifactId>ontimize-boot-starter-report</artifactId>
+	</dependency>
+	...
 </dependencies>
 ...
 {% endhighlight %}
@@ -95,12 +342,12 @@ ALTER TABLE REPORT_PARAMETERS ADD CONSTRAINT REPORT_PARAMETERS_FK FOREIGN KEY(RE
 {% highlight xml %}
 ...
 <dependencies>
-  ...
-  <dependency>
-    <groupId>com.ontimize.jee.report</groupId>
-	<artifactId>ontimize-jee-report-server</artifactId>
-  </dependency>
-  ...
+	...
+	<dependency>
+		<groupId>com.ontimize.jee.report</groupId>
+		<artifactId>ontimize-jee-report-server</artifactId>
+	</dependency>
+	...
 </dependencies>
 ...
 {% endhighlight %}
@@ -109,12 +356,260 @@ ALTER TABLE REPORT_PARAMETERS ADD CONSTRAINT REPORT_PARAMETERS_FK FOREIGN KEY(RE
 
 </div>
 
-### Add Report DAO
+### Add Report DAOs
 A specific DAO will be created for each of both tables in the reports system, and each of them will implement a different interface.
 
 <div class="multiColumnRow">
 <div class="multiColumn jstreeloader">
-
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>templateDB.tmp</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>ReportDao.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>ReportParameterDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>ReportDao.xml</li>
+              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>ReportParameterDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
 </div>
 <div class="multiColumn multiColumnGrow">
 
@@ -152,15 +647,6 @@ A specific DAO will be created for each of both tables in the reports system, an
 </JdbcEntitySetup>
 {% endhighlight %}
 
-</div>
-</div>
-
-<div class="multiColumnRow">
-<div class="multiColumn jstreeloader">
-
-</div>
-<div class="multiColumn multiColumnGrow">
-
 {{ "**ReportDao.java**" | markdownify}}
 {% highlight java linenos %}
 package com.imatia.qsallcomponents.model.dao;
@@ -174,7 +660,7 @@ import com.ontimize.jee.server.services.reportstore.dao.IReportDao;
 
 @Lazy
 @Repository(value = "ReportDao")
-@ConfigurationFile(configurationFile = "base-dao/ReportDao.xml", configurationFilePlaceholder = "base-dao/placeholders.properties")
+@ConfigurationFile(configurationFile = "dao/ReportDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class ReportDao extends OntimizeJdbcDaoSupport implements IReportDao {
 
 	public static final String	ATTR_ID					= "ID";
@@ -205,7 +691,7 @@ import com.ontimize.jee.server.services.reportstore.dao.IReportParameterDao;
 
 @Lazy
 @Repository(value = "ReportParameterDao")
-@ConfigurationFile(configurationFile = "base-dao/ReportParameterDao.xml", configurationFilePlaceholder = "base-dao/placeholders.properties")
+@ConfigurationFile(configurationFile = "dao/ReportParameterDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class ReportParameterDao extends OntimizeJdbcDaoSupport implements IReportParameterDao {
 	
 	public static final String	ATTR_ID					= "ID";
@@ -227,9 +713,9 @@ public class ReportParameterDao extends OntimizeJdbcDaoSupport implements IRepor
 
 ### Modify application.yml
 
-The **application.yml** file will be modified to indicate the report engine type it will use and, if needed, the path where the report files will be stored. [In this link](/ontimize-boot/v3/basics/autoconfigurators/#report) you have information about the configuration of the reports system in the **application.yml** file.
+The **application.yml** file will be modified to enable the reports module, indicate the report engine type it will use and, if needed, the path where the report files will be stored. [In this link](/ontimize-boot/v3/basics/autoconfigurators/#report) you have information about the configuration of the reports system in the **application.yml** file.
 
-**Note:** The engine type specified in the *engine* variable must exist before the server is started.
+**Note:** The *enable* property must be set to ***true*** and the engine type must be specified in the *engine* property before the server is started.
 {: .notice--info}
 
 **Important:** You can only choose **ONE** of the two options listed below.
@@ -237,25 +723,292 @@ The **application.yml** file will be modified to indicate the report engine type
 
 <div class="multiColumnRow">
 <div class="multiColumn jstreeloader">
-
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>templateDB.tmp</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.lck</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.log</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.script</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ReportDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ReportParameterDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ReportDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ReportParameterDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
 </div>
 <div class="multiColumn multiColumnGrow">
 
 {{"**application.yml**" | markdownify}}
-{{"For *database* engine" | markdownify}}
+{{"For ***database*** engine" | markdownify}}
 {% highlight yaml%}
 ontimize:
    report:
+      enable: true
       engine: database
 {% endhighlight %}
 
 
-{{"For *file system* engine" | markdownify}}
+{{"For ***file system*** engine" | markdownify}}
 {% highlight yaml%}
 ontimize:
    report:
+      enable: true
       engine: file
-      base-path: file:/C:/applications/projectwiki/reports
+      base-path: C:/applications/projectwiki/reports
 {% endhighlight %}
 </div>
 </div>
+
+# Testing the reports system
+Once the reports system is already configured, we will 
+
+## Create new Candidate entity
+### Add Candidate table
+### Add Candidate DAO
+### Add Candidate service
+### Add Candidate controller
+
+## Create report template
+
+## Add report to the reports system
+
+## Generate report
+
+## Visualize report document 
