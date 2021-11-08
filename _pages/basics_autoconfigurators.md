@@ -22,7 +22,6 @@ The configuration of the decoupled tasks system is done by setting up the necess
 
 **Example**
 
-*Database*
 ```yaml
 ontimize:
    asynctask:
