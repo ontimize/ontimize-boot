@@ -341,6 +341,288 @@ CREATE TABLE TASKS(ID INTEGER IDENTITY NOT NULL PRIMARY KEY, UUID VARCHAR(255) N
 
 </div>
 
+### Modify application.yml
+
+The **application.yml** file will be modified to enable the decoupled tasks module, indicate the storage engine it will use, the URL base path for the service, and its thread pool configuration. [In this link](/ontimize-boot/v3/basics/autoconfigurators/#asynctask) you have information about the configuration of the asynchronous tasks system in the **application.yml** file.
+
+**Note:** The *enable* property must be set to ***true*** and the storage engine type must be specified in the *engine* property before the server is started.
+{: .notice--info}
+
+**Important:** The asynchronous tasks system requires the **Ontimize** ***TaskExecutor*** to be configured, see [this link](/ontimize-boot/v3/basics/autoconfigurators/#taskexecutor).
+{: .notice--warning}
+
+<div class="multiColumnRow">
+<div class="multiColumn jstreeloader">
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
+  <ul>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-api
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  api
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      entities
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>Candidate.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-boot
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>application.yml</li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-model
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          db
+          <ul>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  model
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      dao
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TaskDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
+                      </ul>
+                      </li>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      service
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          resources
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            dao
+            <ul>
+              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>TaskDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+    projectwiki-ws
+    <ul>
+      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+      src
+      <ul>
+        <li data-jstree='{"icon":"fas fa-folder-open"}'>
+        main
+        <ul>
+          <li data-jstree='{"icon":"fas fa-folder-open"}'>
+          java
+          <ul>
+            <li data-jstree='{"icon":"fas fa-folder-open"}'>
+            com
+            <ul>
+              <li data-jstree='{"icon":"fas fa-folder-open"}'>
+              ontimize
+              <ul>
+                <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                projectwiki
+                <ul>
+                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                  ws
+                  <ul>
+                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                    core
+                    <ul>
+                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
+                      rest
+                      <ul>
+                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
+                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
+                      </ul>
+                      </li>
+                    </ul>
+                    </li>
+                  </ul>
+                  </li>
+                </ul>
+                </li>
+              </ul>
+              </li>
+            </ul>
+            </li>
+          </ul>
+          </li>
+        </ul>
+        </li>
+      </ul>
+      </li>
+      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    </ul>
+    </li>
+    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
+  </ul>
+  </li>
+</ul>
+</div>
+<div class="multiColumn multiColumnGrow">
+
+{{"**application.yml**" | markdownify}}
+{{"For *database* storage" | markdownify}}
+{% highlight yaml%}
+ontimize:
+  asynctask:
+    enable: true
+    engine: database
+    url: /tasks
+{% endhighlight %}
+
+</div>
+</div>
+
 ### Add Task DAO
 A specific DAO will be created for the tasks table, and it will implement the DAO interface in the tasks module.
 
@@ -623,7 +905,7 @@ import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
 
 @Lazy
 @Repository(value = "TaskDao")
-@ConfigurationFile(configurationFile = "base-dao/TaskDao.xml", configurationFilePlaceholder = "base-dao/placeholders.properties")
+@ConfigurationFile(configurationFile = "dao/TaskDao.xml", configurationFilePlaceholder = "dao/placeholders.properties")
 public class TaskDao extends OntimizeJdbcDaoSupport implements IAsyncTaskDao {
 	
 	public static final String	ATTR_ID				= "ID";
@@ -646,7 +928,7 @@ public class TaskDao extends OntimizeJdbcDaoSupport implements IAsyncTaskDao {
 
 In order to run some service method asynchronously, we need to annotate its respective REST controller method with **@OAsyncTask**. This way, a new thread will be created in order to handle the method's execution, and we will recieve an instant response with the URL where we can check the execution status and retrieve its result when it's finished.
 
-**Important:** The service's method **MUST** return a *serializable* object with getters and setters, as well as the controller's method must return a *ResponseEntity* object.
+**Important:** The service's method **MUST** return a *serializable* object with getters and setters, as well as the controller's method must return a *ResponseEntity* object. In this case, the `query()` method returns a Serializable object, the *EntityResult*.
 {: .notice--warning}
 
 <div class="multiColumnRow">
@@ -682,606 +964,6 @@ In order to run some service method asynchronously, we need to annotate its resp
                     <li data-jstree='{"icon":"fas fa-folder-open"}'>
                     core
                     <ul>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      entities
-                      <ul>
-                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>Candidate.java</li>
-                      </ul>
-                      </li>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      service
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
-                      </ul>
-                      </li>
-                    </ul>
-                    </li>
-                  </ul>
-                  </li>
-                </ul>
-                </li>
-              </ul>
-              </li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-        </ul>
-        </li>
-      </ul>
-      </li>
-      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    </ul>
-    </li>
-    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    projectwiki-boot
-    <ul>
-      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-      src
-      <ul>
-        <li data-jstree='{"icon":"fas fa-folder-open"}'>
-        main
-        <ul>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          java
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            com
-            <ul>
-              <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              ontimize
-              <ul>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                projectwiki
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
-                </ul>
-                </li>
-              </ul>
-              </li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          resources
-          <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
-          </ul>
-          </li>
-        </ul>
-        </li>
-      </ul>
-      </li>
-      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    </ul>
-    </li>
-    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    projectwiki-model
-    <ul>
-      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-      src
-      <ul>
-        <li data-jstree='{"icon":"fas fa-folder-open"}'>
-        main
-        <ul>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          db
-          <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
-          </ul>
-          </li>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          java
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            com
-            <ul>
-              <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              ontimize
-              <ul>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                projectwiki
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                  model
-                  <ul>
-                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                    core
-                    <ul>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      dao
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>TaskDao.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                      </ul>
-                      </li>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      service
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
-                      </ul>
-                      </li>
-                    </ul>
-                    </li>
-                  </ul>
-                  </li>
-                </ul>
-                </li>
-              </ul>
-              </li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          resources
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            dao
-            <ul>
-              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>TaskDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-        </ul>
-        </li>
-      </ul>
-      </li>
-      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    </ul>
-    </li>
-    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    projectwiki-ws
-    <ul>
-      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-      src
-      <ul>
-        <li data-jstree='{"icon":"fas fa-folder-open"}'>
-        main
-        <ul>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          java
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            com
-            <ul>
-              <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              ontimize
-              <ul>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                projectwiki
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                  ws
-                  <ul>
-                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                    core
-                    <ul>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      rest
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
-                      </ul>
-                      </li>
-                    </ul>
-                    </li>
-                  </ul>
-                  </li>
-                </ul>
-                </li>
-              </ul>
-              </li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-        </ul>
-        </li>
-      </ul>
-      </li>
-      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    </ul>
-    </li>
-    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
-    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
-  </ul>
-  </li>
-</ul>
-</div>
-<div class="multiColumn multiColumnGrow">
-
-{{ "We will create a new package in `projectwiki-api` module called `com.ontimize.projectwiki.api.core.entities` and in it we will create the **Candidate** object." | markdownify}}
-
-{{ "**Candidate.java**" | markdownify}}
-{% highlight java linenos %}
-package com.imatia.qsallcomponents.api.constants.entities;
-
-import java.io.Serializable;
-
-public class Candidate implements Serializable {
-	
-    private static final long serialVersionUID = 1L;
-
-    private String	id;
-    private String	name;
-    private String	email;
-    ...
-	
-    public Candidate() {}
-
-    public String getId() {
-        return this.id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-    
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
-    ...
-
-}
-
-{% endhighlight %}
-
-</div>
-</div>
-
-<div class="multiColumnRow">
-<div class="multiColumn jstreeloader">
-<ul>
-  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
-  ontimize-examples
-  <ul>
-    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    projectwiki-api
-    <ul>
-      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-      src
-      <ul>
-        <li data-jstree='{"icon":"fas fa-folder-open"}'>
-        main
-        <ul>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          java
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            com
-            <ul>
-              <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              ontimize
-              <ul>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                projectwiki
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                  api
-                  <ul>
-                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                    core
-                    <ul>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      entities
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>Candidate.java</li>
-                      </ul>
-                      </li>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      service
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>ICandidateService.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>IUserService.java</li>
-                      </ul>
-                      </li>
-                    </ul>
-                    </li>
-                  </ul>
-                  </li>
-                </ul>
-                </li>
-              </ul>
-              </li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-        </ul>
-        </li>
-      </ul>
-      </li>
-      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    </ul>
-    </li>
-    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    projectwiki-boot
-    <ul>
-      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-      src
-      <ul>
-        <li data-jstree='{"icon":"fas fa-folder-open"}'>
-        main
-        <ul>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          java
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            com
-            <ul>
-              <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              ontimize
-              <ul>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                projectwiki
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-file"}'>ServerApplication.java</li>
-                </ul>
-                </li>
-              </ul>
-              </li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          resources
-          <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
-          </ul>
-          </li>
-        </ul>
-        </li>
-      </ul>
-      </li>
-      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    </ul>
-    </li>
-    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    projectwiki-model
-    <ul>
-      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-      src
-      <ul>
-        <li data-jstree='{"icon":"fas fa-folder-open"}'>
-        main
-        <ul>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          db
-          <ul>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.properties</li>
-            <li data-jstree='{"icon":"fas fa-file"}'>templateDB.txt</li>
-          </ul>
-          </li>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          java
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            com
-            <ul>
-              <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              ontimize
-              <ul>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                projectwiki
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                  model
-                  <ul>
-                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                    core
-                    <ul>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      dao
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>TaskDao.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>UserDao.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.java</li>
-                      </ul>
-                      </li>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      service
-                      <ul>
-                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>CandidateService.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
-                      </ul>
-                      </li>
-                    </ul>
-                    </li>
-                  </ul>
-                  </li>
-                </ul>
-                </li>
-              </ul>
-              </li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          resources
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            dao
-            <ul>
-              <li data-jstree='{"icon":"fas fa-file"}'>CandidateDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>RoleDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>TaskDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
-              <li data-jstree='{"icon":"fas fa-file"}'>UserRoleDao.xml</li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-        </ul>
-        </li>
-      </ul>
-      </li>
-      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    </ul>
-    </li>
-    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    projectwiki-ws
-    <ul>
-      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-      src
-      <ul>
-        <li data-jstree='{"icon":"fas fa-folder-open"}'>
-        main
-        <ul>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          java
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            com
-            <ul>
-              <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              ontimize
-              <ul>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                projectwiki
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                  ws
-                  <ul>
-                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                    core
-                    <ul>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      rest
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateRestController.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>MainRestController.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>TestRestController.java</li>
-                        <li data-jstree='{"icon":"fas fa-file"}'>UserRestController.java</li>
-                      </ul>
-                      </li>
-                    </ul>
-                    </li>
-                  </ul>
-                  </li>
-                </ul>
-                </li>
-              </ul>
-              </li>
-            </ul>
-            </li>
-          </ul>
-          </li>
-        </ul>
-        </li>
-      </ul>
-      </li>
-      <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    </ul>
-    </li>
-    <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
-    <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
-    <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
-  </ul>
-  </li>
-</ul>
-</div>
-<div class="multiColumn multiColumnGrow">
-
-{{ "We will modify the `candidateQuery()` method of `CandidateService` to return the **Candidate** Object." | markdownify}}
-
-{{ "**CandidateService.java**" | markdownify}}
-{% highlight java linenos %}
-package com.ontimize.projectwiki.model.core.service;
-
-import org.springframework.stereotype.Service;
-
-import com.ontimize.projectwiki.api.core.entities.Candidate;
-import com.ontimize.projectwiki.api.core.service.ICandidateService;
-
-import com.ontimize.jee.common.exceptions.OntimizeJEERuntimeException;
-
-...
-
-@Service("CandidateService")
-public class CandidateService implements ICandidateService {
-
-    ...
-
-    @Override
-    public Candidate candidateQuery() throws OntimizeJEERuntimeException {
-		
-        ...
-        
-        return <Candidate>;
-    }
-
-    ...
-
-}
-
-{% endhighlight %}
-
-</div>
-</div>
-
-<div class="multiColumnRow">
-<div class="multiColumn jstreeloader">
-<ul>
-  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
-  ontimize-examples
-  <ul>
-    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-    projectwiki-api
-    <ul>
-      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-      src
-      <ul>
-        <li data-jstree='{"icon":"fas fa-folder-open"}'>
-        main
-        <ul>
-          <li data-jstree='{"icon":"fas fa-folder-open"}'>
-          java
-          <ul>
-            <li data-jstree='{"icon":"fas fa-folder-open"}'>
-            com
-            <ul>
-              <li data-jstree='{"icon":"fas fa-folder-open"}'>
-              ontimize
-              <ul>
-                <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                projectwiki
-                <ul>
-                  <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                  api
-                  <ul>
-                    <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                    core
-                    <ul>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      entities
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>Candidate.java</li>
-                      </ul>
-                      </li>
                       <li data-jstree='{"icon":"fas fa-folder-open"}'>
                       service
                       <ul>
@@ -1502,49 +1184,45 @@ public class CandidateService implements ICandidateService {
 </div>
 <div class="multiColumn multiColumnGrow">
 
-{{ "We will add a **RequestMapping** of the `candidateQuery()` method." | markdownify}}
+{{ "We will override the `query()` method of the *ORestController* class." | markdownify}}
 
 {{ "**CandidateRestController.java**" | markdownify}}
 {% highlight java linenos %}
 package com.ontimize.projectwiki.ws.core.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ontimize.projectwiki.api.core.entities.Candidate;
-import com.ontimize.projectwiki.api.core.service.ICandidateService;
 import com.ontimize.boot.core.asynctask.OAsyncTask;
+import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.server.rest.ORestController;
-
-...
+import com.ontimize.projectwiki.api.core.service.ICandidateService;
 
 @RestController
 @RequestMapping("/candidates")
-...
+@ComponentScan(basePackageClasses = { com.ontimize.projectwiki.api.core.service.ICandidateService.class })
 public class CandidateRestController extends ORestController<ICandidateService>{
 
-    @Autowired
-    private ICandidateService candidateService;
+	@Autowired
+	private ICandidateService candidateService;
 
-    @Override
-    public ICandidateService getService() {
-        return this.candidateService;
-    }
-
-    ...
+	@Override
+	public ICandidateService getService() {
+		return this.candidateService;
+	}
 	
     @OAsyncTask
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public ResponseEntity<Candidate> getCandidate() {
-        return ResponseEntity.ok().body(this.candidateService.candidateQuery());
-        
+    @Override
+    public ResponseEntity<EntityResult> query(@PathVariable("name") String name,
+            @RequestParam(name = "filter", required = false) String filter,
+            @RequestParam(name = "columns", required = false) String columns) {
+        return super.query(name, filter, columns);
     }
-    
-    ...
-
 }
 
 {% endhighlight %}
@@ -1552,15 +1230,9 @@ public class CandidateRestController extends ORestController<ICandidateService>{
 </div>
 </div>
 
-### Modify application.yml
+### Delay service method
 
-The **application.yml** file will be modified to enable the decoupled tasks module, indicate the storage engine it will use, the URL base path for the service, and its thread pool configuration. [In this link](/ontimize-boot/v3/basics/autoconfigurators/#asynctask) you have information about the configuration of the asynchronous tasks system in the **application.yml** file.
-
-**Note:** The *enable* property must be set to ***true*** and the storage engine type must be specified in the *engine* property before the server is started.
-{: .notice--info}
-
-**Important:** The asynchronous tasks system requires the **Ontimize** ***TaskExecutor*** to be configured, see [this link](/ontimize-boot/v3/basics/autoconfigurators/#taskexecutor).
-{: .notice--warning}
+To know all the states through which the asynchronous request passes, we will add a delay in the `candidateQuery()` method.
 
 <div class="multiColumnRow">
 <div class="multiColumn jstreeloader">
@@ -1595,12 +1267,6 @@ The **application.yml** file will be modified to enable the decoupled tasks modu
                     <li data-jstree='{"icon":"fas fa-folder-open"}'>
                     core
                     <ul>
-                      <li data-jstree='{"icon":"fas fa-folder-open"}'>
-                      entities
-                      <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>Candidate.java</li>
-                      </ul>
-                      </li>
                       <li data-jstree='{"icon":"fas fa-folder-open"}'>
                       service
                       <ul>
@@ -1660,7 +1326,7 @@ The **application.yml** file will be modified to enable the decoupled tasks modu
           <li data-jstree='{"icon":"fas fa-folder-open"}'>
           resources
           <ul>
-            <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>application.yml</li>
+            <li data-jstree='{"icon":"fas fa-file"}'>application.yml</li>
           </ul>
           </li>
         </ul>
@@ -1716,7 +1382,7 @@ The **application.yml** file will be modified to enable the decoupled tasks modu
                       <li data-jstree='{"icon":"fas fa-folder-open"}'>
                       service
                       <ul>
-                        <li data-jstree='{"icon":"fas fa-file"}'>CandidateService.java</li>
+                        <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>CandidateService.java</li>
                         <li data-jstree='{"icon":"fas fa-file"}'>UserService.java</li>
                       </ul>
                       </li>
@@ -1821,15 +1487,71 @@ The **application.yml** file will be modified to enable the decoupled tasks modu
 </div>
 <div class="multiColumn multiColumnGrow">
 
-{{"**application.yml**" | markdownify}}
-{{"For *database* storage" | markdownify}}
-{% highlight yaml%}
-ontimize:
-  asynctask:
-    enable: true
-    engine: database
-    url: /tasks
+{{ "We will override the `query()` method of the *ORestController* class." | markdownify}}
+
+{{ "**CandidateService.java**" | markdownify}}
+{% highlight java linenos %}
+package com.ontimize.projectwiki.model.core.service;
+
+import java.util.concurrent.TimeUnit;
+
+. . .
+
+@Service("CandidateService")
+@Lazy
+public class CandidateService implements ICandidateService {
+
+. . .
+
+	@Override
+	public EntityResult candidateQuery(Map<String, Object> keyMap, List<String> attrList)
+			throws OntimizeJEERuntimeException {
+		try {
+			TimeUnit.MINUTES.sleep(1);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		return this.daoHelper.query(this.candidateDao, keyMap, attrList);
+	}
+. . .
+}
+
 {% endhighlight %}
 
 </div>
 </div>
+
+## Testing
+
+To test the asynchronous tasks we need to execute a REST request to the method that we have marked with the annotation **@OAsyncTask**.
+
+In this case, the request is GET and has the following structure: `http://localhost:33333/candidates/candidate?columns=ID,NAME,SURNAME`
+
+| Element | Meaning |
+|--|--|
+| localhost:33333 | Indicates the host|
+| /candidates | Indicates the service to be queried |
+| /candidate | Indicates the **DAO** that will access that service |
+| ?columns= | Indicates the columns to be queried |
+
+The authorization used for this requests is authorization of the type **BASIC**.
+
+The access must be done with a user and password example:
+
+        User: demo
+    Password: demouser
+
+
+When you run the query, it should return a 202 Accepted with the following header: **Location**.
+
+This header contains the relative path to the asynchronous task that you have to execute to receive the data.
+
+**Example:** `Location:` `/tasks/f16e9af7-ec0f-444c-a173-5b0179f5d57f`
+{: .notice--info}
+
+To execute the query the request needs to be GET and have the following structure: `http://localhost:33333/tasks/f16e9af7-ec0f-444c-a173-5b0179f5d57f`
+
+**Note:** The uuid that goes after `/tasks` varies in each execution of the previous query.
+{: .notice--info}
+
+The first time you run this query the status becomes **Started**. When the time set in the delay expires the second time you execute the query, the status becomes **Completed**, returns the request data and removes the task from the TASKS table.
