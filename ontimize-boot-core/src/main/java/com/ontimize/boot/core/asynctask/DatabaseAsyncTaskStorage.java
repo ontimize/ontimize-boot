@@ -37,7 +37,7 @@ public class DatabaseAsyncTaskStorage implements IAsyncTaskStorage {
 	private static final String					ERROR_RETRIEVING_TASK			= "E_RETRIEVING_TASK";
 	
 	/** The Constant ERROR_INSERTING_TASK. */
-	private static final String					ERROR_INSERTING_TASK			= "E_UPDATING_TASK";
+	private static final String					ERROR_INSERTING_TASK			= "E_INSERTING_TASK";
 	
 	/** The Constant ERROR_DELETING_TASK. */
 	private static final String					ERROR_DELETING_TASK				= "E_DELETING_TASK";
