@@ -1,26 +1,24 @@
 package com.ontimize.boot.export.excel;
 
-import org.springframework.beans.BeansException;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.ontimize.jee.webclient.export.base.ExcelExportRestController;
 import com.ontimize.jee.webclient.export.base.ExcelExportService;
 
+@Configuration
 @ConditionalOnProperty(name = "ontimize.export.extension", havingValue = "xlsx", matchIfMissing = false)
-@RequestMapping("${ontimize.export.url}")
-public class ExcelExportAutoConfigure extends ExcelExportRestController{
+public class ExcelExportAutoConfigure{
 	
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		// TODO Auto-generated method stub
-		
+	@Bean
+	public ExportRestController exportRestController() {
+		return new ExportRestController();
 	}
 	
 	@Bean
 	public ExcelExportService exportService() {
 		return new ExcelExportService();
 	}
+
 }
