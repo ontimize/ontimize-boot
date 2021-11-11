@@ -93,6 +93,11 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.ontimize.jee</groupId>
+			<artifactId>ontimize-jee-server-keycloak</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.keycloak</groupId>
 			<artifactId>keycloak-spring-boot-starter</artifactId>
 		</dependency>

@@ -149,6 +149,12 @@
 
 			<dependency>
 				<groupId>com.ontimize.jee</groupId>
+				<artifactId>ontimize-jee-server-keycloak</artifactId>
+				<version>${project.dependency.ontimize-jee.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ontimize.jee</groupId>
 				<artifactId>ontimize-jee-webclient-addons</artifactId>
 				<version>${project.dependency.ontimize-jee.version}</version>
 			</dependency>

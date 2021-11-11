@@ -1,11 +1,15 @@
 package com.ontimize.boot.keycloak;
 
+import com.ontimize.jee.server.security.keycloak.OntimizeMultitenantKeycloakConfigResolver;
+
+import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -52,8 +56,15 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 		return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
 	}
 
-	@Bean
-	public KeycloakSpringBootConfigResolver createKeycloakConfigResolver() {
+	@Bean("KeycloakConfigResolver")
+	@ConditionalOnProperty(name = "ontimize.multitenant.enabled", havingValue = "true", matchIfMissing = false)
+	public KeycloakConfigResolver createOntimizeMultitenantKeycloakConfigResolver() {
+		return new OntimizeMultitenantKeycloakConfigResolver();
+	}
+
+	@Bean("KeycloakConfigResolver")
+	@ConditionalOnMissingBean(name = "KeycloakConfigResolver")
+	public KeycloakConfigResolver createKeycloakConfigResolver() {
 		return new KeycloakSpringBootConfigResolver();
 	}
 
