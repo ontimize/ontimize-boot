@@ -14,7 +14,7 @@ The **L**ightweight **D**irectory **A**ccess **P**rotocol (**LDAP**) is an open 
 
 # Prerequisites
 
-You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service.
+You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/v1/getting_started/) and with a REST service.
 
 There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.
 
@@ -598,7 +598,7 @@ public class CustomSecurityAutoConfiguration extends DefaultSecurityAutoConfigur
 
 ### Add LDAP properties
 
-In the *application.yml* we need to change the ontimize security mode to **ldap** and add the following properties (More information in [this link](/ontimize-boot/basics/autoconfigurators/#ldap)):
+In the *application.yml* we need to change the ontimize security mode to **ldap** and add the following properties (More information in [this link](/ontimize-boot/v1/basics/autoconfigurators/#ldap)):
 
 <div class="multiColumnRow">
 <div class="multiColumn jstreeloader">

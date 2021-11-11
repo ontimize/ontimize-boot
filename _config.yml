@@ -22,7 +22,7 @@ subtitle                 : # site tagline that appears below site title in masth
 name                     : "Imatia Innovation, S.L"
 description              : ""
 url                      : "https://ontimize.github.io"
-baseurl                  : "/ontimize-boot"
+baseurl                  : "/ontimize-boot/v1"
 repository               : "ontimize/ontimize-boot"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : "/assets/images/logo-ontimize.png"

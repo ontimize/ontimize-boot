@@ -1,0 +1,14 @@
+# Develop override settings
+
+url                     : https://ontimize.github.io
+baseurl                 : "/ontimize-boot/v1"
+
+analytics:
+  provider              : false
+
+comments:
+  disqus:
+    shortname           : "mmistakes-dev"
+
+sass:
+  style: expanded
