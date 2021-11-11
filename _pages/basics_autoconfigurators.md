@@ -9,13 +9,34 @@ breadcrumbs: true
 ---
 Autoconfigurators are an easy way to indicate common elements that need minimal customization in applications, such as database connection. These configurations are used within the **application.yml** file located inside the **boot** folder.
 
+## AsyncTask
+- **ontimize:asynctask:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| enable | *true* | Module loading property |
+| engine | *database* | Indicates the storage engine that will be used for the report system (*database* for database engine) |
+| url | *String* | The URL base path where the asynchronous tasks service will be exposed |
+
+The configuration of the decoupled tasks system is done by setting up the necessary DAO for that system and annotating the service controller method. To see the configuration, check [this link](/ontimize-boot/basics/asynctask/).
+
+**Example**
+
+```yaml
+ontimize:
+   asynctask:
+      enable: true
+      engine: database
+      url: /tasks
+```
+
 ## DMS
 - **ontimize:dms:**
 
 | Attribute | Values | Meaning |
 |--|--|--|
 | engine | *odms* | Indicates the engine that will be used for the DMS system. Ontimize has an implementation of an engine, whose value is *odms*. |
-| basePath | *String* | The path where the DMS files will be stored |
+| base-path | *String* | The path where the DMS files will be stored |
 
 The configuration of DMS system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/dms/).
 
@@ -24,7 +45,7 @@ The configuration of DMS system is done by setting up the necessary DAOs for tha
 ontimize:
    dms:
       engine: odms
-      basePath: file:/C:/applications/projectwiki/dms
+      base-path: file:/C:/applications/QSAllComponents_Jee/dms
 ```
 
 ## I18n
@@ -48,13 +69,13 @@ The configuration of the I18N system is done by setting up the necessary DAOs fo
 ```yaml
 ontimize:
    i18n:
-      refBundleRepository: OCDatabaseBundleDao 
-      bundleKeyColumn: ID_I18N
-      bundleClassNameColumn: CLASS_NAME
-      bundleDescriptionColumn: I18N_DESCRIPTION
-      refBundleValueRepository: OCDatabaseBundleValueDao
-      bundleValueTextKeyColumn: KEY
-      bundleValueKeyColumn: ID_I18N_VALUE
+      ref-bundle-repository: OCDatabaseBundleDao 
+      bundle-key-column: ID_I18N
+      bundle-class-name-column: CLASS_NAME
+      bundle-description-column: I18N_DESCRIPTION
+      ref-bundle-value-repository: OCDatabaseBundleValueDao
+      bundle-value-text-key-column: KEY
+      bundle-value-key-column: ID_I18N_VALUE
       engine: default    
 ```
 
@@ -64,25 +85,62 @@ ontimize:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-|nameConvention|*upper*, *lower*, *database*| Indicate the nomenclature of the columns in the DB, in lower case, upper case or as it appears in the database |
+|name-convention|*upper*, *lower*, *database*| Indicate the nomenclature of the columns in the DB, in lower case, upper case or as it appears in the database |
 |sqlhandler|*postgres*, *oracle*, *oracle12*, *sqlserver*, *hsqldb*| Indicates which SQL statement handler will be used to communicate with the database |
 
-- **ontimize:jdbc:sqlConditionProcessor:**
+- **ontimize:jdbc:sql-condition-processor:**
 
 | Attribute | Values | Meaning |
 |--|--|--|
-|uppperString|*true*, *false*| Use uppercase strings in WHERE conditions |
-|upperLike|*true*, *false*| Use uppercase strings in LIKE conditions |
+|upper-string|*true*, *false*| Use uppercase strings in WHERE conditions |
+|upper-like|*true*, *false*| Use uppercase strings in LIKE conditions |
 
 **Example**
 ```yaml
 ontimize:
    jdbc:
-      nameConvention: upper
+      name-convention: upper
       sqlhandler: hsqldb
-      sqlConditionProcessor:
-         uppperString: true
-         upperLike: true
+      sql-condition-processor:
+         upper-string: true
+         upper-like: true
+```
+
+## LDAP
+
+- **ontimize:security:**
+
+| Attribute | Value | Meaning |
+|--|--|--|
+| mode | *ldap* | Change the system security from *default* to *ldap* |
+
+- **ldap:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| active | *true, false* | Enable or disable ldap security |
+| host | *IP* | Ip host for ldap security |
+| port | *Number* | Port of the host for ldap security |
+| login-type | *DN, simple* | The login type indicates whether a full LDAP string with *DN* value or will be used or if the username will simply be provided with *simple* value |
+| bind.dn | *String* | File to populate the LDAP server using a *.ldif* file |
+| base.dn | *String* | List of base DNs. |
+| domain | *String* | The domain name |
+
+The LDAP security configuration is done through autoconfigurators. To see the settings, check [this link](/ontimize-boot/basics/ldap).
+
+**Example**
+```yaml
+ontimize:
+   security:
+   mode: ldap
+ldap: 
+   active: true 
+   host: 10.0.0.1
+   port: 389
+   login-type: simple
+   bind.dn: 
+   base.dn: 
+   domain: yourdomain.com
 ```
 
 ## LDAP
@@ -128,17 +186,17 @@ ldap:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| refRepository | *String* | Name of the DAO containing the configuration information required for system configuration |
-| filterColumnName | *String* | Name of the column in the database table containing the keys |
-| valueColumnName | *String* | Name of the database table column containing the values |
-| queryId | *String* | Name of the DAO query to be executed. By default, is *default* |
-| filterColumnValueEncoding | *String* | Key name of the row in the key column containing the value for mail encoding |
-| filterColumnValueHost | *String* | Name of the key in the row of the key column containing the value for the host in the mail service |
-| filterColumnValuePort | *String* | Name of the key in the row of the key column containing the value for the port in the mail service |
-| filterColumnValueProtocol | *String* | Name of the key in the row of the key column containing the value for the protocol used in the mail service |
-| filterColumnValueUser | *String* | Name of the key in the row of the key column containing the value for the user in the mail service |
-| filterColumnValuePassword | *String* | Name of the key in the row of the key column containing the value for the user password in the mail service |
-| filterColumnValueJavaMailProperties | *String* | Name of the key in the row of the key column containing the value for the mail propoerties in the mail service |
+| ref-repository | *String* | Name of the DAO containing the configuration information required for system configuration |
+| filter-column-name | *String* | Name of the column in the database table containing the keys |
+| value-column-name | *String* | Name of the database table column containing the values |
+| query-id | *String* | Name of the DAO query to be executed. By default, is *default* |
+| filter-column-value-encoding | *String* | Key name of the row in the key column containing the value for mail encoding |
+| filter-column-value-host | *String* | Name of the key in the row of the key column containing the value for the host in the mail service |
+| filter-column-value-port | *String* | Name of the key in the row of the key column containing the value for the port in the mail service |
+| filter-column-value-protocol | *String* | Name of the key in the row of the key column containing the value for the protocol used in the mail service |
+| filter-column-value-user | *String* | Name of the key in the row of the key column containing the value for the user in the mail service |
+| filter-column-value-password | *String* | Name of the key in the row of the key column containing the value for the user password in the mail service |
+| filter-column-value-java-mail-properties | *String* | Name of the key in the row of the key column containing the value for the mail propoerties in the mail service |
 | engine | *String* | Enable or disable mail engine. To enable, have any value int this arribute. By default, use *default* value|
 
 The configuration of the mail system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/mail/).
@@ -147,18 +205,48 @@ The configuration of the mail system is done by setting up the necessary DAOs fo
 ```yaml
 ontimize:
    mail:
-      refRepository: OCSettingsDao
-      filterColumnName: SETTING_KEY
-      valueColumnName: SETTING_VALUE
-      queryId: default
-      filterColumnValueEncoding: mail_encoding
-      filterColumnValueHost: mail_host
-      filterColumnValuePort: mail_port
-      filterColumnValueProtocol: mail_protocol
-      filterColumnValueUser: mail_user
-      filterColumnValuePassword: mail_password
-      filterColumnValueJavaMailProperties: mail_properties
+      ref-repository: OCSettingsDao
+      filter-column-name: SETTING_KEY
+      value-column-name: SETTING_VALUE
+      query-id: default
+      filter-column-value-encoding: mail_encoding
+      filter-column-value-host: mail_host
+      filter-column-value-port: mail_port
+      filter-column-value-protocol: mail_protocol
+      filter-column-value-user: mail_user
+      filter-column-value-password: mail_password
+      filter-column-value-java-mail-properties: mail_properties
       engine: default
+```
+
+## Report
+- **ontimize:report:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| enable | *true* | Module loading property |
+| engine | *database*, *file* | Indicates the engine that will be used for the report system (*file* for file system engine or *database* for database engine) |
+| base-path | *String* | The path where the report files will be stored (file system engine only) |
+
+[comment]: <> (The configuration of the reports system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/reports/).)
+
+**Example**
+
+*Database*
+```yaml
+ontimize:
+   report:
+      enable: true
+      engine: database
+```
+
+*File system*
+```yaml
+ontimize:
+   report:
+      enable: true
+      engine: file
+      base-path: C:/applications/QSAllComponents_Jee/reports
 ```
 
 ## REST
@@ -169,17 +257,17 @@ ontimize:
 |--|--|--|
 | enabled | *true*, *false* | Enable or disable CORS filter |
 
-- **ontimize:globalcors:corsConfigurations**  
+- **ontimize:globalcors:cors-configurations**  
 Indicates the entrypoint to be configured, with the properties for each one. In general, the entrypoint [/**] is configured entirely.
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| allowedOrigins | *\** | Set the origins to allow, the special value \* allows all domains. By default this is not set|
-| allowedHeaders | *\** | Set the list of headers that a pre-flight request can list as allowed for use during an actual request. The special value \* allows actual requests to send any header. A header name is not required to be listed if it is one of: *Cache-Control*, *Content-Language*, *Expires*, *Last-Modified* or *Pragma*). By default this is not set.|
-| exposedHeaders |  | Set the list of response headers other than simple headers (i.e. *Cache-Control*, *Content-Language*, *Content-Type*, *Expires*, *Last-Modified* or *Pragma* that an actual response might have and can be exposed. Note that \* is not a valid exposed header value. By default this is not set. |
-| allowedMethods | *List* | Set the HTTP methods to allow, e.g. *GET*, *POST*, *PUT*, etc. The special value \* allows all methods. If not set, only *GET* and *HEAD* are allowed. By default this is not set. Note: CORS checks use values from "Forwarded" [RFC7239](http://tools.ietf.org/html/rfc7239), *X-Forwarded-Host*, *X-Forwarded-Port*, and *X-Forwarded-Proto* headers, if present, in order to reflect the client-originated address. Consider using the *ForwardedHeaderFilter* in order to choose from a central place whether to extract and use, or to discard such headers. See the Spring Framework reference for more on this filter. |
+| allowed-origins | *\** | Set the origins to allow, the special value \* allows all domains. By default this is not set|
+| allowed-headers | *\** | Set the list of headers that a pre-flight request can list as allowed for use during an actual request. The special value \* allows actual requests to send any header. A header name is not required to be listed if it is one of: *Cache-Control*, *Content-Language*, *Expires*, *Last-Modified* or *Pragma*). By default this is not set.|
+| exposed-headers |  | Set the list of response headers other than simple headers (i.e. *Cache-Control*, *Content-Language*, *Content-Type*, *Expires*, *Last-Modified* or *Pragma* that an actual response might have and can be exposed. Note that \* is not a valid exposed header value. By default this is not set. |
+| allowed-methods | *List* | Set the HTTP methods to allow, e.g. *GET*, *POST*, *PUT*, etc. The special value \* allows all methods. If not set, only *GET* and *HEAD* are allowed. By default this is not set. Note: CORS checks use values from "Forwarded" [RFC7239](http://tools.ietf.org/html/rfc7239), *X-Forwarded-Host*, *X-Forwarded-Port*, and *X-Forwarded-Proto* headers, if present, in order to reflect the client-originated address. Consider using the *ForwardedHeaderFilter* in order to choose from a central place whether to extract and use, or to discard such headers. See the Spring Framework reference for more on this filter. |
 | maxAge | *Number* | Configure how long, in seconds, the response from a pre-flight request can be cached by clients. By default this is not set. |
-| allowCredentials | *-* | Whether user credentials are supported. By default this is not set (i.e. user credentials are not supported). |
+| allow-credentials | *-* | Whether user credentials are supported. By default this is not set (i.e. user credentials are not supported). |
 
 **Example**
 ```yaml
@@ -187,12 +275,12 @@ ontimize:
    corsfilter:
       enabled: true
    globalcors:
-      corsConfigurations:
+      cors-configurations:
          '[/**]':
-            allowedOrigins: "*"
-            allowedHeaders: "*"
-            exposedHeaders: ["X-Auth-Token","Content-disposition","X-Requested-With"]           
-            allowedMethods:
+            allowed-origins: "*"
+            allowed-headers: "*"
+            exposed-headers: ["X-Auth-Token","Content-disposition","X-Requested-With"]           
+            allowed-hethods:
             - GET
             - POST
             - PUT
@@ -207,8 +295,8 @@ ontimize:
 | Attribute | Values | Meaning |
 |--|--|--|
 | mode | *default* | Use *default* to enable the security mode for Ontimize Boot |
-| ignorePaths | *String* | Paths in server thant will not be securized |
-| servicePath | *String* | Establish the service path. By default, */\*\** |
+| ignore-paths | *String* | Paths in server thant will not be securized |
+| service-path | *String* | Establish the service path. By default, */\*\** |
 
 - **ontimize:security:jwt:** *Not required, enabled by default*
 
@@ -222,32 +310,32 @@ ontimize:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| queryId | *String* | Name of the DAO query identifier. |
-| userLoginColumn | *String* | Database column that stores the username |
-| userPasswordColumn | *String* | Database column that stores the password |
-| userNeedCheckPassColumn | *String* | Database column that stores whether the password requires updating at the next use |
-| userRepository | *String* | Name of the DAO containing information about users |
-| otherData | *List* | Extra data to store from the user logged |
+| query-id | *String* | Name of the DAO query identifier. |
+| user-login-column | *String* | Database column that stores the username |
+| user-password-column | *String* | Database column that stores the password |
+| user-need-check-pass-column | *String* | Database column that stores whether the password requires updating at the next use |
+| user-repository | *String* | Name of the DAO containing information about users |
+| other-data | *List* | Extra data to store from the user logged |
 
 - **ontimize:security:role-information-service:**
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| roleRepository | *String* | Name of the DAO containing information about users |
-| roleNameColumn | *String* | Database column that stores the role name |
-| serverPermissionQueryId | *String* | Name of the DAO query identifier for server permissions |
-| serverPermissionNameColumn | *String* | Database column that stores the server permissions |
-| clientPermissionQueryId | *String* | Name of the DAO query identifier for client permissions |
-| clientPermissionColumn | *List* | Database column that stores the client permissions |
+| role-repository | *String* | Name of the DAO containing information about users |
+| role-name-column | *String* | Database column that stores the role name |
+| server-permission-query-id | *String* | Name of the DAO query identifier for server permissions |
+| server-permission-name-column | *String* | Database column that stores the server permissions |
+| client-permission-query-id | *String* | Name of the DAO query identifier for client permissions |
+| client-permission-column | *List* | Database column that stores the client permissions |
 
 - **ontimize:security:user-role-information-service:**
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| userRoleRepository | *String* | Name of the DAO containing relation between users and its profiles |
-| queryId | *String* | Name of the DAO query identifier |
-| roleLoginColumn | *String* | Database column that stores the username |
-| roleNameColumn | *String* | Database column that stores the role name |
+| user-role-repository | *String* | Name of the DAO containing relation between users and its profiles |
+| query-id | *String* | Name of the DAO query identifier |
+| role-login-column | *String* | Database column that stores the username |
+| role-name-column | *String* | Database column that stores the role name |
 
 The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/security/).
 
@@ -256,13 +344,13 @@ The configuration of the rest of the I18N system is done by setting up the neces
 ontimize:
   security:
     mode: default
-    ignorePaths: /news/**, /products/**
-    userInformationService:
-      userRepository: OCLoginProfilesDao
-      queryId: login
-      userLoginColumn: USER_
-      userPasswordColumn: PASSWORD
-      otherData:
+    ignore-paths: /news/**, /products/**
+    user-information-service:
+      user-repository: OCLoginProfilesDao
+      query-id: login
+      user-login-column: USER_
+      user-password-column: PASSWORD
+      other-data:
         - NAME
         - SURNAME
         - EMAIL
@@ -270,16 +358,36 @@ ontimize:
         - USERBLOCKED
         - LASTPASSWORDUPDATE
         - FIRSTLOGIN
-    userRoleInformationService:
-      userRoleRepository: OCLoginProfilesDao
-      queryId: userRole
-      roleLoginColumn: USER_
-      roleNameColumn: ROLENAME
-    roleInformationService:
-      roleRepository: OCLoginProfilesDao
-      roleNameColumn: ROLENAME
-      serverPermissionQueryId: serverPermissions
-      serverPermissionNameColumn: PERMISSION_NAME
-      clientPermissionQueryId: clientPermissions
-      clientPermissionColumn: XMLCLIENTPERMISSION
+    user-role-information-service:
+      user-role-repository: OCLoginProfilesDao
+      query-id: userRole
+      role-login-column: USER_
+      role-name-column: ROLENAME
+    role-information-service:
+      role-repository: OCLoginProfilesDao
+      role-name-column: ROLENAME
+      server-permission-query-id: serverPermissions
+      server-permission-name-column: PERMISSION_NAME
+      client-permission-query-id: clientPermissions
+      client-permission-column: XMLCLIENTPERMISSION
+```
+## TaskExecutor
+- **ontimize:threadpool:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| coresize | *Integer* | The number of threads to keep in the pool, evenif they are idle |
+| maxsize | *Integer* | The maximum number of threads to allow in the pool |
+| keepalive | *Long* | When the number of threads is greater than the core, the maximum time that excess idle threads will wait for new tasks before terminating (in milliseconds) |
+| timeout | *true*, *false* | Allow core threads to time out |
+
+**Example**
+
+```yaml
+ontimize:
+   threadpool:
+      coresize: 1
+      maxsize: 2147483647
+      keepalive: 1000
+      timeout: true
 ```

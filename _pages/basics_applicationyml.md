@@ -68,16 +68,16 @@ CORS global configuration
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| corsConfigurations | String | Configuration for this entrypoint |
+| cors-configurations | String | Configuration for this entrypoint |
 
-- **ontimize:globalcors:corsConfigurations:**
+- **ontimize:globalcors:cors-configurations:**
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| allowedOrigins | String | Allow different origins |
-| allowedHeaders | String | Allow headers |
-| exposedHeaders | ["X-Auth-Token","Content-disposition","X-Requested-With"] | Exposed headers |
-| allowedMethods | GET, POST, PUT, DELETE, OPTIONS | Allow HTTP methods |
+| allowed-origins | String | Allow different origins |
+| allowed-headers | String | Allow headers |
+| exposed-headers | ["X-Auth-Token","Content-disposition","X-Requested-With"] | Exposed headers |
+| allowed-methods | GET, POST, PUT, DELETE, OPTIONS | Allow HTTP methods |
 
 **Example**
 ```yaml
@@ -85,12 +85,12 @@ ontimize:
     corsfilter:
       enabled: true
     globalcors:
-      corsConfigurations:
+      cors-configurations:
          '[/**]':
-            allowedOrigins: "*"
-            allowedHeaders: "*"
-            exposedHeaders: ["X-Auth-Token","Content-disposition","X-Requested-With"]       
-            allowedMethods:
+            allowed-origins: "*"
+            allowed-headers: "*"
+            exposed-headers: ["X-Auth-Token","Content-disposition","X-Requested-With"]       
+            allowed-methods:
             - GET
             - POST
             - PUT
@@ -104,27 +104,27 @@ ontimize:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| nameConvention | upper, lower, database | Convention of data columns name |
+| name-convention | upper, lower, database | Convention of data columns name |
 | sqlhandler | postgres, oracle, oracle12, sqlserver, hsqldb | SQL handler |
 
 
-- **ontimize:jdbc:sqlConditionProcessor:**
+- **ontimize:jdbc:sql-condition-processor:**
 
 SQL handler
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| upperString | true, false | Use of uppercase |
-| upperLike | true, false | String comparision using LIKE in uppercase |
+| upper-string | true, false | Use of uppercase |
+| upper-like | true, false | String comparision using LIKE in uppercase |
 
 **Example**
 ```yaml
 jdbc:
-      nameConvention: upper
-      sqlhandler: hslqdb
-      sqlConditionProcessor:
-         upperString: true
-         upperLike: true
+      name-convention: upper
+      sqlhandler: hsqldb
+      sql-condition-processor:
+         upper-string: true
+         upper-like: true
 ```
 
 
@@ -134,60 +134,60 @@ jdbc:
 |--|--|--|
 | mode | default | Default security mode |
 
-- **ontimize:security:roleInformationService:**
+- **ontimize:security:role-information-service:**
 
 Configure columns for user roles
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| roleRepository | String | Repository which store the user role |
-| roleNameColumn | String | Name of the column which store the role name |
-| serverPermissionQueryId | String | Query ID to identify the query of server permissions |
-| serverPermissionNameColumn | String | Name of the columns which contains the name of the server permission |
-| clientPermissionQueryId | String | Query ID for  client permissions |
-| clientPermissionColumn | String | Name of the columns which contains the name of the client permission |
+| role-repository | String | Repository which store the user role |
+| role-name-column | String | Name of the column which store the role name |
+| server-permission-query-id | String | Query ID to identify the query of server permissions |
+| server-permission-name-column | String | Name of the columns which contains the name of the server permission |
+| client-permission-query-id | String | Query ID for  client permissions |
+| client-permission-column | String | Name of the columns which contains the name of the client permission |
 
-- **ontimize:security:userInformationService:**
+- **ontimize:security:user-information-service:**
 
 Information about the user
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| userRepository | String | Repository which stores the users of the application |
-| userLoginColumn | String | Name of the column with the username |
-| userPasswordColumn | String | Name of the column with the password |
-| queryId | String | Query identififer for login |
-| otherData | List | Other query columns |
+| user-repository | String | Repository which stores the users of the application |
+| user-login-column | String | Name of the column with the username |
+| user-password-column | String | Name of the column with the password |
+| query-id | String | Query identififer for login |
+| other-data | List | Other query columns |
 
-- **ontimize:security:userRoleInformationService:**
+- **ontimize:security:user-role-information-service:**
 
 Repository information about linking users and roles
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| userRoleRepository | String | Repository name |
-| queryId | String | Query identifier |
-| roleLoginColumn | String | Column which stores the user |
-| roleNameColumn | String | Column which stores the role name |
+| user-role-repository | String | Repository name |
+| query-id | String | Query identifier |
+| role-login-column | String | Column which stores the user |
+| role-name-column | String | Column which stores the role name |
 
 
 **Example**
 ```yaml
 security:
       mode: default
-      roleInformationService:
-         roleRepository: UserRoleDao
-         roleNameColumn: ROLENAME
-         serverPermissionQueryId: serverPermissions
-         serverPermissionNameColumn: PERMISSION_NAME
-         clientPermissionQueryId: clientPermissions
-         clientPermissionColumn: XMLCLIENTPERMISSION
-      userInformationService:
-         userRepository: UserDao
-         userLoginColumn: USER_
-         userPasswordColumn: PASSWORD
-         queryId: login
-         otherData:
+      role-information-iervice:
+         role-repository: UserRoleDao
+         role-name-column: ROLENAME
+         server-permission-query-id: serverPermissions
+         server-permission-name-column: PERMISSION_NAME
+         client-permission-query-id: clientPermissions
+         client-ermission-column: XMLCLIENTPERMISSION
+      user-information-service:
+         user-repository: UserDao
+         user-login-column: USER_
+         user-password-column: PASSWORD
+         query-id: login
+         other-data:
             - NAME
             - SURNAME
             - EMAIL
@@ -195,11 +195,11 @@ security:
             - USERBLOCKED
             - LASTPASSWORDUPDATE
             - FIRSTLOGIN
-      userRoleInformationService:
-         userRoleRepository: UserRoleDao
-         queryId: userRole
-         roleLoginColumn: USER_
-         roleNameColumn: ROLENAME
+      user-role-information-service:
+         user-role-repository: UserRoleDao
+         query-id: userRole
+         role-login-column: USER_
+         role-name-column: ROLENAME
 ```
 
 
@@ -252,11 +252,11 @@ Data source (DB connection)
 | Attribute | Values | Meaning |
 |--|--|--|
 | driver-class-name | String | JDBC driver |
-| jdbcUrl | String | Connection URl |
+| jdbc-url | String | Connection URl |
 | username | String | DB username |
 | password | String | DB username password |
-| initialSize | int | Initial size |
-| testOnBorrow | true, false | Validation |
+| initial-size | int | Initial size |
+| test-on-borrow | true, false | Validation |
 
 - **ontimize:spring:main:**
 
@@ -288,11 +288,11 @@ Data source (DB connection)
 spring:
    datasource:
       driver-class-name: org.hsqldb.jdbcDriver
-      jdbcUrl: jdbc:hsqldb:hsql://localhost:9013/templateDB
+      jdbc-url: jdbc:hsqldb:hsql://localhost:9013/templateDB
       username: SA
       password:
-      initialSize: 10
-      testOnBorrow: true
+      initial-size: 10
+      test-on-borrow: true
    main:
       banner-mode: 'off'
    session:
@@ -316,38 +316,38 @@ ontimize:
    corsfilter:
       enabled: true
    globalcors:
-      corsConfigurations:
+      cors-configurations:
          '[/**]':
-            allowedOrigins: "*"
-            allowedHeaders: "*"
-            exposedHeaders: ["X-Auth-Token","Content-disposition","X-Requested-With"]
-            allowedMethods:
+            allowed-origins: "*"
+            allowed-headers: "*"
+            exposed-headers: ["X-Auth-Token","Content-disposition","X-Requested-With"]
+            allowed-methods:
             - GET
             - POST
             - PUT
             - OPTIONS
             - DELETE
    jdbc:
-      nameConvention: upper
+      name-convention: upper
       sqlhandler: hsqldb
-      sqlConditionProcessor:
-         upperString: true
-         upperLike: true
+      sql-condition-processor:
+         upper-string: true
+         upper-like: true
    security:
       mode: default
-      roleInformationService:
-         roleRepository: UserRoleDao
-         roleNameColumn: ROLENAME
-         serverPermissionQueryId: serverPermissions
-         serverPermissionNameColumn: PERMISSION_NAME
-         clientPermissionQueryId: clientPermissions
-         clientPermissionColumn: XMLCLIENTPERMISSION
-      userInformationService:
-         userRepository: UserDao
-         userLoginColumn: USER_
-         userPasswordColumn: PASSWORD
-         queryId: login
-         otherData:
+      role-information-service:
+         role-repository: UserRoleDao
+         role-name-column: ROLENAME
+         server-permission-query-id: serverPermissions
+         server-permission-name-column: PERMISSION_NAME
+         client-permission-query-id: clientPermissions
+         client-permission-column: XMLCLIENTPERMISSION
+      user-information-service:
+         user-repository: UserDao
+         user-login-column: USER_
+         user-password-column: PASSWORD
+         query-id: login
+         other-data:
             - NAME
             - SURNAME
             - EMAIL
@@ -355,11 +355,11 @@ ontimize:
             - USERBLOCKED
             - LASTPASSWORDUPDATE
             - FIRSTLOGIN
-      userRoleInformationService:
-         userRoleRepository: UserRoleDao
-         queryId: userRole
-         roleLoginColumn: USER_
-         roleNameColumn: ROLENAME
+      user-role-information-service:
+         user-role-repository: UserRoleDao
+         query-id: userRole
+         role-login-column: USER_
+         role-name-column: ROLENAME
 server:
    port: 33333
    tomcat:
@@ -370,11 +370,11 @@ server:
 spring:
    datasource:
       driver-class-name: org.hsqldb.jdbcDriver
-      jdbcUrl: jdbc:hsqldb:hsql://localhost:9013/templateDB
+      jdbc-url: jdbc:hsqldb:hsql://localhost:9013/templateDB
       username: SA
       password:
-      initialSize: 10
-      testOnBorrow: true
+      initial-size: 10
+      test-on-borrow: true
    main:
       banner-mode: 'off'
    session:

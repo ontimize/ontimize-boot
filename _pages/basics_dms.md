@@ -28,7 +28,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
     /$ git clone https://github.com/ontimize/ontimize-examples 
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-dms-initial" 
+    /ontimize-examples$ git checkout boot-dms-3.x.x-initial" 
     | markdownify }}
 </div>
 <div class="verticalDivider"></div>
@@ -38,7 +38,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
     /$ git clone https://github.com/ontimize/ontimize-examples 
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-dms" 
+    /ontimize-examples$ git checkout boot-dms-3.x.x" 
     | markdownify }}
 
 </div>
@@ -632,7 +632,6 @@ A specific DAO will be created for each table in the DMS system, and each of the
   </ul>
   </li>
 </ul>
-
 </div>
 <div class="multiColumn multiColumnGrow">
 

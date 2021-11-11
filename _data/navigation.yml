@@ -10,8 +10,8 @@ main:
   #   url: /sitemap/
 
 versions:
-  - title: "1.x.x"
+  - title: "3.x.x"
     url: /ontimize-boot
     active: true
-  - title: "3.x.x"
-    url: /ontimize-boot/v3
+  - title: "1.x.x"
+    url: /ontimize-boot/v1

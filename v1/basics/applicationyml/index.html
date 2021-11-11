@@ -1,0 +1,1166 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.20.2 by Michael Rose
+  Copyright 2013-2020 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Understanding application.yml - Ontimize Boot</title>
+<meta name="description" content="">
+
+
+  <meta name="author" content="Imatia Innovation, S.L.">
+  
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Ontimize Boot">
+<meta property="og:title" content="Understanding application.yml">
+<meta property="og:url" content="https://ontimize.github.io/ontimize-boot/v1/basics/applicationyml/">
+
+
+  <meta property="og:description" content="">
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="https://ontimize.github.io/ontimize-boot/v1/basics/applicationyml/">
+
+
+
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    
+      "@type": "Person",
+      "name": "Imatia Innovation, S.L",
+      "url": "https://ontimize.github.io/ontimize-boot/v1/"
+    
+  }
+</script>
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/ontimize-boot/v1/feed.xml" type="application/atom+xml" rel="alternate" title="Ontimize Boot Feed">
+
+<!-- https://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/ontimize-boot/v1/assets/css/main.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5/css/all.min.css">
+<link rel="stylesheet" href="/ontimize-boot/v1/assets/css/jstreestyle.css"/>
+
+<!--[if IE]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+<link rel="apple-touch-icon" sizes="180x180" href="/ontimize-boot/v1/assets/images/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/ontimize-boot/v1/assets/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/ontimize-boot/v1/assets/images/favicon-16x16.png">
+<link rel="mask-icon" href="/ontimize-boot/v1/assets/images/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/ontimize-boot/v1/assets/images/favicon.ico">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="msapplication-config" content="/ontimize-boot/v1/assets/images/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- end custom head snippets -->
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <h2 class="screen-reader-text">Skip links</h2>
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">Skip to primary navigation</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">Skip to content</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">Skip to footer</a></li>
+  </ul>
+</nav>
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+          <a class="site-logo" href="/ontimize-boot/v1/"><img src="/ontimize-boot/v1/assets/images/logo-ontimize.png" alt=""></a>
+        
+        <a class="site-title" href="/ontimize-boot/v1/">
+           
+          
+        </a>
+        <ul class="visible-links">
+<li class="masthead__menu-item">
+              <a href="https://ontimize.github.io/docs/v1/">Ontimize Docs</a>
+            </li>
+          <li class="masthead__menu-item">
+            <select class="masthead__menu-item-combo" onchange="window.location = this.options[this.selectedIndex].value">
+            
+              <option value="https://ontimize.github.io/ontimize-boot/v1" selected>1.x.x</option>
+            
+              <option value="https://ontimize.github.io/ontimize-boot">3.x.x</option>
+            
+            </select>
+          </li>
+          
+        </ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="https://ontimize.github.io/ontimize-boot/v1/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1">
+        </li>
+        <span class="sep">/</span>
+      
+      
+        
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="/ontimize-boot/v1/basics" itemprop="item"><span itemprop="name">Basics</span></a>
+          <meta itemprop="position" content="2">
+        </li>
+        <span class="sep">/</span>
+      
+    
+      
+      
+        <li class="current">Understanding application.yml</li>
+      
+    
+  </ol>
+</nav>
+
+  
+
+
+<div id="main" role="main">
+  
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Understanding application.yml">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Understanding application.yml
+</h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title">
+<i class="fas fa-file-alt"></i> Table of Contents</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#introduction">Introduction</a></li>
+  <li>
+<a href="#applicationyml-file-description">Application.yml file description</a>
+    <ul>
+      <li><a href="#endpoints">Endpoints</a></li>
+      <li><a href="#logging">Logging</a></li>
+      <li><a href="#cors">CORS</a></li>
+      <li><a href="#jdbc">JDBC</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#server">Server</a></li>
+      <li><a href="#spring">Spring</a></li>
+    </ul>
+  </li>
+  <li><a href="#complete-example">Complete Example</a></li>
+</ul>
+
+            </nav>
+          </aside>
+        
+        <h2 id="introduction">Introduction</h2>
+
+<p>A <a href="https://en.wikipedia.org/wiki/YAML" target="_blank" rel="noopener noreferrer"><strong>YAML</strong></a> file, with extension <strong>*.yml</strong> or <strong>.yaml</strong> , is a human readable file in which we can write data pairs in a suitable way by combinations of lists, maps and simple data. Another of the most important features of these files is the indentation. It is important to write these indented elements correctly, since if they are badly indented, they cannot be parsed correctly.</p>
+
+<h2 id="applicationyml-file-description">Application.yml file description</h2>
+
+<h3 id="endpoints">Endpoints</h3>
+
+<p>They allow you to monitor and interact with your application. Integrated endpoints are available, but adding custom endpoints is also allowed. </p>
+
+<ul>
+  <li><strong>endpoints: api:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>enabled</td>
+      <td>true, false</td>
+      <td>Active Spring Boot endpoints.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example</strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">endpoints</span><span class="pi">:</span>
+   <span class="na">api</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h3 id="logging">Logging</h3>
+
+<ul>
+  <li><strong>logging: level:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>root</td>
+      <td>String</td>
+      <td>Default server log level set to INFO level</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example</strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">logging</span><span class="pi">:</span>
+   <span class="na">level</span><span class="pi">:</span>
+      <span class="na">root</span><span class="pi">:</span> <span class="s">info</span>
+</code></pre></div></div>
+
+<h3 id="cors">CORS</h3>
+
+<p>Mechanism that allows restricted resources to be requested between domains.</p>
+
+<ul>
+  <li><strong>ontimize:corsfilter:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>enabled</td>
+      <td>true, false</td>
+      <td>CORS filter enabled.</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:globalcors:</strong></li>
+</ul>
+
+<p>CORS global configuration</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>corsConfigurations</td>
+      <td>String</td>
+      <td>Configuration for this entrypoint</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:globalcors:corsConfigurations:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>allowedOrigins</td>
+      <td>String</td>
+      <td>Allow different origins</td>
+    </tr>
+    <tr>
+      <td>allowedHeaders</td>
+      <td>String</td>
+      <td>Allow headers</td>
+    </tr>
+    <tr>
+      <td>exposedHeaders</td>
+      <td>[“X-Auth-Token”,”Content-disposition”,”X-Requested-With”]</td>
+      <td>Exposed headers</td>
+    </tr>
+    <tr>
+      <td>allowedMethods</td>
+      <td>GET, POST, PUT, DELETE, OPTIONS</td>
+      <td>Allow HTTP methods</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example</strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">ontimize</span><span class="pi">:</span>
+    <span class="na">corsfilter</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+    <span class="na">globalcors</span><span class="pi">:</span>
+      <span class="na">corsConfigurations</span><span class="pi">:</span>
+         <span class="s1">'</span><span class="s">[/**]'</span><span class="pi">:</span>
+            <span class="na">allowedOrigins</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">allowedHeaders</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">exposedHeaders</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">X-Auth-Token"</span><span class="pi">,</span><span class="s2">"</span><span class="s">Content-disposition"</span><span class="pi">,</span><span class="s2">"</span><span class="s">X-Requested-With"</span><span class="pi">]</span>       
+            <span class="na">allowedMethods</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">GET</span>
+            <span class="pi">-</span> <span class="s">POST</span>
+            <span class="pi">-</span> <span class="s">PUT</span>
+            <span class="pi">-</span> <span class="s">OPTIONS</span>
+            <span class="pi">-</span> <span class="s">DELETE</span>
+</code></pre></div></div>
+
+<h3 id="jdbc">JDBC</h3>
+
+<ul>
+  <li><strong>ontimize:jdbc:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>nameConvention</td>
+      <td>upper, lower, database</td>
+      <td>Convention of data columns name</td>
+    </tr>
+    <tr>
+      <td>sqlhandler</td>
+      <td>postgres, oracle, oracle12, sqlserver, hsqldb</td>
+      <td>SQL handler</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:jdbc:sqlConditionProcessor:</strong></li>
+</ul>
+
+<p>SQL handler</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>upperString</td>
+      <td>true, false</td>
+      <td>Use of uppercase</td>
+    </tr>
+    <tr>
+      <td>upperLike</td>
+      <td>true, false</td>
+      <td>String comparision using LIKE in uppercase</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example</strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jdbc</span><span class="pi">:</span>
+      <span class="na">nameConvention</span><span class="pi">:</span> <span class="s">upper</span>
+      <span class="na">sqlhandler</span><span class="pi">:</span> <span class="s">hslqdb</span>
+      <span class="na">sqlConditionProcessor</span><span class="pi">:</span>
+         <span class="na">upperString</span><span class="pi">:</span> <span class="no">true</span>
+         <span class="na">upperLike</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h3 id="security">Security</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>mode</td>
+      <td>default</td>
+      <td>Default security mode</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:security:roleInformationService:</strong></li>
+</ul>
+
+<p>Configure columns for user roles</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>roleRepository</td>
+      <td>String</td>
+      <td>Repository which store the user role</td>
+    </tr>
+    <tr>
+      <td>roleNameColumn</td>
+      <td>String</td>
+      <td>Name of the column which store the role name</td>
+    </tr>
+    <tr>
+      <td>serverPermissionQueryId</td>
+      <td>String</td>
+      <td>Query ID to identify the query of server permissions</td>
+    </tr>
+    <tr>
+      <td>serverPermissionNameColumn</td>
+      <td>String</td>
+      <td>Name of the columns which contains the name of the server permission</td>
+    </tr>
+    <tr>
+      <td>clientPermissionQueryId</td>
+      <td>String</td>
+      <td>Query ID for  client permissions</td>
+    </tr>
+    <tr>
+      <td>clientPermissionColumn</td>
+      <td>String</td>
+      <td>Name of the columns which contains the name of the client permission</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:security:userInformationService:</strong></li>
+</ul>
+
+<p>Information about the user</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>userRepository</td>
+      <td>String</td>
+      <td>Repository which stores the users of the application</td>
+    </tr>
+    <tr>
+      <td>userLoginColumn</td>
+      <td>String</td>
+      <td>Name of the column with the username</td>
+    </tr>
+    <tr>
+      <td>userPasswordColumn</td>
+      <td>String</td>
+      <td>Name of the column with the password</td>
+    </tr>
+    <tr>
+      <td>queryId</td>
+      <td>String</td>
+      <td>Query identififer for login</td>
+    </tr>
+    <tr>
+      <td>otherData</td>
+      <td>List</td>
+      <td>Other query columns</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:security:userRoleInformationService:</strong></li>
+</ul>
+
+<p>Repository information about linking users and roles</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>userRoleRepository</td>
+      <td>String</td>
+      <td>Repository name</td>
+    </tr>
+    <tr>
+      <td>queryId</td>
+      <td>String</td>
+      <td>Query identifier</td>
+    </tr>
+    <tr>
+      <td>roleLoginColumn</td>
+      <td>String</td>
+      <td>Column which stores the user</td>
+    </tr>
+    <tr>
+      <td>roleNameColumn</td>
+      <td>String</td>
+      <td>Column which stores the role name</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example</strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">security</span><span class="pi">:</span>
+      <span class="na">mode</span><span class="pi">:</span> <span class="s">default</span>
+      <span class="na">roleInformationService</span><span class="pi">:</span>
+         <span class="na">roleRepository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+         <span class="na">serverPermissionQueryId</span><span class="pi">:</span> <span class="s">serverPermissions</span>
+         <span class="na">serverPermissionNameColumn</span><span class="pi">:</span> <span class="s">PERMISSION_NAME</span>
+         <span class="na">clientPermissionQueryId</span><span class="pi">:</span> <span class="s">clientPermissions</span>
+         <span class="na">clientPermissionColumn</span><span class="pi">:</span> <span class="s">XMLCLIENTPERMISSION</span>
+      <span class="na">userInformationService</span><span class="pi">:</span>
+         <span class="na">userRepository</span><span class="pi">:</span> <span class="s">UserDao</span>
+         <span class="na">userLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">userPasswordColumn</span><span class="pi">:</span> <span class="s">PASSWORD</span>
+         <span class="na">queryId</span><span class="pi">:</span> <span class="s">login</span>
+         <span class="na">otherData</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">NAME</span>
+            <span class="pi">-</span> <span class="s">SURNAME</span>
+            <span class="pi">-</span> <span class="s">EMAIL</span>
+            <span class="pi">-</span> <span class="s">NIF</span>
+            <span class="pi">-</span> <span class="s">USERBLOCKED</span>
+            <span class="pi">-</span> <span class="s">LASTPASSWORDUPDATE</span>
+            <span class="pi">-</span> <span class="s">FIRSTLOGIN</span>
+      <span class="na">userRoleInformationService</span><span class="pi">:</span>
+         <span class="na">userRoleRepository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">queryId</span><span class="pi">:</span> <span class="s">userRole</span>
+         <span class="na">roleLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+</code></pre></div></div>
+
+<h3 id="server">Server</h3>
+
+<ul>
+  <li><strong>ontimize:server:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>port</td>
+      <td>int</td>
+      <td>Server port</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:server:servlet:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>context-path</td>
+      <td>String</td>
+      <td>customized servlet path</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:server:tomcat:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>uri-encoding</td>
+      <td>String</td>
+      <td>URI encoding</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:server:compression:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>enabled</td>
+      <td>true, false</td>
+      <td>Enable data compression</td>
+    </tr>
+    <tr>
+      <td>mime-types</td>
+      <td>String</td>
+      <td>Mime types</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example</strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">server</span><span class="pi">:</span>
+   <span class="na">servlet</span><span class="pi">:</span>
+      <span class="na">context-path</span><span class="pi">:</span> <span class="s">/custom/path</span>
+   <span class="na">port</span><span class="pi">:</span> <span class="m">33333</span>
+   <span class="na">tomcat</span><span class="pi">:</span>
+      <span class="na">uri-encoding</span><span class="pi">:</span> <span class="s">UTF-8</span>
+   <span class="na">compression</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">mime-types</span><span class="pi">:</span> <span class="s">application/json, application/xml</span>
+</code></pre></div></div>
+
+<h3 id="spring">Spring</h3>
+
+<ul>
+  <li><strong>ontimize:spring:datasource:</strong></li>
+</ul>
+
+<p>Data source (DB connection)</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>driver-class-name</td>
+      <td>String</td>
+      <td>JDBC driver</td>
+    </tr>
+    <tr>
+      <td>jdbcUrl</td>
+      <td>String</td>
+      <td>Connection URl</td>
+    </tr>
+    <tr>
+      <td>username</td>
+      <td>String</td>
+      <td>DB username</td>
+    </tr>
+    <tr>
+      <td>password</td>
+      <td>String</td>
+      <td>DB username password</td>
+    </tr>
+    <tr>
+      <td>initialSize</td>
+      <td>int</td>
+      <td>Initial size</td>
+    </tr>
+    <tr>
+      <td>testOnBorrow</td>
+      <td>true, false</td>
+      <td>Validation</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:spring:main:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>banner-mode</td>
+      <td>on, off</td>
+      <td>Remove the startup banner in the console</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:spring:session:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>store-type</td>
+      <td>String</td>
+      <td>Save the session in spring</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:spring:resources:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>static-locations</td>
+      <td>String</td>
+      <td>Path for satic resources</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li><strong>ontimize:spring:autoconfigure:</strong></li>
+</ul>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Values</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>exclude</td>
+      <td>String</td>
+      <td>Delete Spring Boot auto-configuration files</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Example</strong></p>
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">spring</span><span class="pi">:</span>
+   <span class="na">datasource</span><span class="pi">:</span>
+      <span class="na">driver-class-name</span><span class="pi">:</span> <span class="s">org.hsqldb.jdbcDriver</span>
+      <span class="na">jdbcUrl</span><span class="pi">:</span> <span class="s">jdbc:hsqldb:hsql://localhost:9013/templateDB</span>
+      <span class="na">username</span><span class="pi">:</span> <span class="s">SA</span>
+      <span class="na">password</span><span class="pi">:</span>
+      <span class="na">initialSize</span><span class="pi">:</span> <span class="m">10</span>
+      <span class="na">testOnBorrow</span><span class="pi">:</span> <span class="no">true</span>
+   <span class="na">main</span><span class="pi">:</span>
+      <span class="na">banner-mode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">off'</span>
+   <span class="na">session</span><span class="pi">:</span>
+      <span class="na">store-type</span><span class="pi">:</span> <span class="s">none</span>
+   <span class="na">resources</span><span class="pi">:</span>
+      <span class="na">static-locations</span><span class="pi">:</span> <span class="s">classpath:/ngx/dist/</span>
+   <span class="na">autoconfigure</span><span class="pi">:</span>
+      <span class="na">exclude</span><span class="pi">:</span> 
+         <span class="s">org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration, org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration</span>
+</code></pre></div></div>
+
+<h2 id="complete-example">Complete Example</h2>
+
+<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"><table class="rouge-table"><tbody><tr>
+<td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+</pre></td>
+<td class="code"><pre><span class="na">endpoints</span><span class="pi">:</span>
+   <span class="na">api</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+<span class="na">logging</span><span class="pi">:</span>
+   <span class="na">level</span><span class="pi">:</span>
+      <span class="na">root</span><span class="pi">:</span> <span class="s">info</span>
+<span class="na">ontimize</span><span class="pi">:</span>
+   <span class="na">corsfilter</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+   <span class="na">globalcors</span><span class="pi">:</span>
+      <span class="na">corsConfigurations</span><span class="pi">:</span>
+         <span class="s1">'</span><span class="s">[/**]'</span><span class="pi">:</span>
+            <span class="na">allowedOrigins</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">allowedHeaders</span><span class="pi">:</span> <span class="s2">"</span><span class="s">*"</span>
+            <span class="na">exposedHeaders</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">X-Auth-Token"</span><span class="pi">,</span><span class="s2">"</span><span class="s">Content-disposition"</span><span class="pi">,</span><span class="s2">"</span><span class="s">X-Requested-With"</span><span class="pi">]</span>
+            <span class="na">allowedMethods</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">GET</span>
+            <span class="pi">-</span> <span class="s">POST</span>
+            <span class="pi">-</span> <span class="s">PUT</span>
+            <span class="pi">-</span> <span class="s">OPTIONS</span>
+            <span class="pi">-</span> <span class="s">DELETE</span>
+   <span class="na">jdbc</span><span class="pi">:</span>
+      <span class="na">nameConvention</span><span class="pi">:</span> <span class="s">upper</span>
+      <span class="na">sqlhandler</span><span class="pi">:</span> <span class="s">hsqldb</span>
+      <span class="na">sqlConditionProcessor</span><span class="pi">:</span>
+         <span class="na">upperString</span><span class="pi">:</span> <span class="no">true</span>
+         <span class="na">upperLike</span><span class="pi">:</span> <span class="no">true</span>
+   <span class="na">security</span><span class="pi">:</span>
+      <span class="na">mode</span><span class="pi">:</span> <span class="s">default</span>
+      <span class="na">roleInformationService</span><span class="pi">:</span>
+         <span class="na">roleRepository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+         <span class="na">serverPermissionQueryId</span><span class="pi">:</span> <span class="s">serverPermissions</span>
+         <span class="na">serverPermissionNameColumn</span><span class="pi">:</span> <span class="s">PERMISSION_NAME</span>
+         <span class="na">clientPermissionQueryId</span><span class="pi">:</span> <span class="s">clientPermissions</span>
+         <span class="na">clientPermissionColumn</span><span class="pi">:</span> <span class="s">XMLCLIENTPERMISSION</span>
+      <span class="na">userInformationService</span><span class="pi">:</span>
+         <span class="na">userRepository</span><span class="pi">:</span> <span class="s">UserDao</span>
+         <span class="na">userLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">userPasswordColumn</span><span class="pi">:</span> <span class="s">PASSWORD</span>
+         <span class="na">queryId</span><span class="pi">:</span> <span class="s">login</span>
+         <span class="na">otherData</span><span class="pi">:</span>
+            <span class="pi">-</span> <span class="s">NAME</span>
+            <span class="pi">-</span> <span class="s">SURNAME</span>
+            <span class="pi">-</span> <span class="s">EMAIL</span>
+            <span class="pi">-</span> <span class="s">NIF</span>
+            <span class="pi">-</span> <span class="s">USERBLOCKED</span>
+            <span class="pi">-</span> <span class="s">LASTPASSWORDUPDATE</span>
+            <span class="pi">-</span> <span class="s">FIRSTLOGIN</span>
+      <span class="na">userRoleInformationService</span><span class="pi">:</span>
+         <span class="na">userRoleRepository</span><span class="pi">:</span> <span class="s">UserRoleDao</span>
+         <span class="na">queryId</span><span class="pi">:</span> <span class="s">userRole</span>
+         <span class="na">roleLoginColumn</span><span class="pi">:</span> <span class="s">USER_</span>
+         <span class="na">roleNameColumn</span><span class="pi">:</span> <span class="s">ROLENAME</span>
+<span class="na">server</span><span class="pi">:</span>
+   <span class="na">port</span><span class="pi">:</span> <span class="m">33333</span>
+   <span class="na">tomcat</span><span class="pi">:</span>
+      <span class="na">uri-encoding</span><span class="pi">:</span> <span class="s">UTF-8</span>
+   <span class="na">compression</span><span class="pi">:</span>
+      <span class="na">enabled</span><span class="pi">:</span> <span class="no">true</span>
+      <span class="na">mime-types</span><span class="pi">:</span> <span class="s">application/json, application/xml</span>
+<span class="na">spring</span><span class="pi">:</span>
+   <span class="na">datasource</span><span class="pi">:</span>
+      <span class="na">driver-class-name</span><span class="pi">:</span> <span class="s">org.hsqldb.jdbcDriver</span>
+      <span class="na">jdbcUrl</span><span class="pi">:</span> <span class="s">jdbc:hsqldb:hsql://localhost:9013/templateDB</span>
+      <span class="na">username</span><span class="pi">:</span> <span class="s">SA</span>
+      <span class="na">password</span><span class="pi">:</span>
+      <span class="na">initialSize</span><span class="pi">:</span> <span class="m">10</span>
+      <span class="na">testOnBorrow</span><span class="pi">:</span> <span class="no">true</span>
+   <span class="na">main</span><span class="pi">:</span>
+      <span class="na">banner-mode</span><span class="pi">:</span> <span class="s1">'</span><span class="s">off'</span>
+   <span class="na">session</span><span class="pi">:</span>
+      <span class="na">store-type</span><span class="pi">:</span> <span class="s">none</span>
+   <span class="na">resources</span><span class="pi">:</span>
+      <span class="na">static-locations</span><span class="pi">:</span> <span class="s">classpath:/ngx/dist/</span>
+   <span class="na">autoconfigure</span><span class="pi">:</span>
+      <span class="na">exclude</span><span class="pi">:</span> <span class="pi">|</span>
+         <span class="s">org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration, org.springframework.boot.actuate.autoconfigure.ManagementWebSecurityAutoConfiguration, org.springframework.boot.autoconfigure.security.FallbackWebSecurityAutoConfiguration</span>
+</pre></td>
+</tr></tbody></table></code></pre></figure>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/imatiainnova" rel="noopener noreferrer" target="_blank"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+          <li><a href="https://www.linkedin.com/company/imatia-innovation/" rel="noopener noreferrer" target="_blank"><i class="fab fa-fw fa-linkedin-in" aria-hidden="true"></i> LinkedIn</a></li>
+        
+      
+        
+          <li><a href="https://github.com/ontimize/ontimize-boot" rel="noopener noreferrer" target="_blank"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+    
+
+    <li><a href="/ontimize-boot/v1/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">© 2021 Imatia Innovation, S.L. Powered by <a href="https://jekyllrb.com" rel="noopener noreferrer" target="_blank">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="noopener noreferrer" target="_blank">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/ontimize-boot/v1/assets/js/main.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+  </body>
+</html>

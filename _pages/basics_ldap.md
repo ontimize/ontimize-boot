@@ -24,7 +24,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
     /$ git clone https://github.com/ontimize/ontimize-examples 
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-ldap-login-initial" 
+    /ontimize-examples$ git checkout boot-ldap-login-3.x.x-initial" 
     | markdownify }}
 </div>
 <div class="verticalDivider"></div>
@@ -34,7 +34,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
     /$ git clone https://github.com/ontimize/ontimize-examples 
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-ldap-login" 
+    /ontimize-examples$ git checkout boot-ldap-login-3.x.x" 
     | markdownify }}
 
 </div>
@@ -55,6 +55,7 @@ INSERT INTO TUSER (USER_, PASSWORD, NAME, SURNAME, EMAIL, NIF, USERBLOCKED, LAST
 {% highlight sql linenos %}
 INSERT INTO TUSER_ROLE (ID_ROLENAME,USER_) VALUES (0,'domain.username');
 {% endhighlight %}
+
 
 ## Autoconfigurators
 
@@ -380,7 +381,7 @@ public class LdapAuthenticationMechanism implements IAuthenticationMechanism {
 	@Value("${ldap.port}")
 	private int ldapPort;
 
-	@Value("${ldap.loginType}")
+	@Value("${ldap.login-type}")
 	private String loginType;
 
 	@Value("${ldap.bind.dn}")
@@ -560,10 +561,10 @@ import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationSuc
 @ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "ldap", matchIfMissing = false) 
 public class CustomSecurityAutoConfiguration extends DefaultSecurityAutoConfiguration { 
 
-    @Value("${ontimize.security.servicePath:/**}") 
+    @Value("${ontimize.security.service-path:/**}") 
     private String servicePath; 
 
-    @Value("${ontimize.security.ignorePaths:}") 
+    @Value("${ontimize.security.ignore-paths:}") 
     private String[] ignorePaths; 
  
     @Override 
@@ -591,6 +592,7 @@ public class CustomSecurityAutoConfiguration extends DefaultSecurityAutoConfigur
 } 
 
 {% endhighlight %}
+
 </div>
 </div>
 
@@ -856,7 +858,9 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
 <div class="multiColumn multiColumnGrow">
 
   {{ "**application.yml**"| markdownify }}
+
 {% highlight yml %}
+  
 ontimize:
    security:
       mode: ldap
@@ -864,10 +868,11 @@ ldap:
    active: true 
    host: 10.0.0.1
    port: 389
-   loginType: simple
+   login-type: simple
    bind.dn: 
    base.dn: 
    domain: yourdomain.com
+
 {% endhighlight %}
 
 </div>
