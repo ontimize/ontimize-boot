@@ -19,7 +19,7 @@ The **Async Task** system will allow you to run decoupled, asynchronous tasks. T
 - **Aspect**: It is a modularization of a concern that cuts across multiple classes. It allows us to intercept the execution of any given method or class and implement some alternative or extra behaviour for it.
 
 # Prerequisites
-You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/v3/getting_started/) and with a REST service. 
+You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service. 
 
 There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.
 
@@ -346,12 +346,12 @@ CREATE TABLE TASKS(ID INTEGER IDENTITY NOT NULL PRIMARY KEY, UUID VARCHAR(255) N
 
 ### Modify application.yml
 
-The **application.yml** file will be modified to enable the decoupled tasks module, indicate the storage engine it will use, the URL base path for the service, and its thread pool configuration. [In this link](/ontimize-boot/v3/basics/autoconfigurators/#asynctask) you have information about the configuration of the asynchronous tasks system in the **application.yml** file.
+The **application.yml** file will be modified to enable the decoupled tasks module, indicate the storage engine it will use, the URL base path for the service, and its thread pool configuration. [In this link](/ontimize-boot/basics/autoconfigurators/#asynctask) you have information about the configuration of the asynchronous tasks system in the **application.yml** file.
 
 **Note:** The *enable* property must be set to ***true*** and the storage engine type must be specified in the *engine* property before the server is started.
 {: .notice--info}
 
-**Important:** The asynchronous tasks system requires the **Ontimize** ***TaskExecutor*** to be configured, see [this link](/ontimize-boot/v3/basics/autoconfigurators/#taskexecutor).
+**Important:** The asynchronous tasks system requires the **Ontimize** ***TaskExecutor*** to be configured, see [this link](/ontimize-boot/basics/autoconfigurators/#taskexecutor).
 {: .notice--warning}
 
 <div class="multiColumnRow">

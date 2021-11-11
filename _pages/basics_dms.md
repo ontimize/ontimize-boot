@@ -18,7 +18,7 @@ A **D**ocument **M**anagement **S**ystem (**DMS**) is a system that allows you t
 - **Category** (or **folder**): Is a way of grouping files within the document.
 
 # Prerequisites
-You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/v3/getting_started/) and with a REST service. 
+You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service. 
 
 There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.
 
@@ -1969,7 +1969,7 @@ public class FileManagerRestController extends DMSRestController<IDMSService, ID
 
 ### Modify application.yml
 
-The **application.yml** file will be modified to indicate the path where the dms files will be stored and the engine it will use. [In this link](https://ontimize.github.io/ontimize-boot/v3/basics/autoconfigurators/#dms) you have information about the configuration of the DMS system in the **application.yml** file.
+The **application.yml** file will be modified to indicate the path where the dms files will be stored and the engine it will use. [In this link](https://ontimize.github.io/ontimize-boot/basics/autoconfigurators/#dms) you have information about the configuration of the DMS system in the **application.yml** file.
 
 **Note:** The path specified in the *basePath* variable must exist before the server is started.
 {: .notice--info}

@@ -18,7 +18,7 @@ Autoconfigurators are an easy way to indicate common elements that need minimal 
 | engine | *database* | Indicates the storage engine that will be used for the report system (*database* for database engine) |
 | url | *String* | The URL base path where the asynchronous tasks service will be exposed |
 
-The configuration of the decoupled tasks system is done by setting up the necessary DAO for that system and annotating the service controller method. To see the configuration, check [this link](/ontimize-boot/v3/basics/asynctask/).
+The configuration of the decoupled tasks system is done by setting up the necessary DAO for that system and annotating the service controller method. To see the configuration, check [this link](/ontimize-boot/basics/asynctask/).
 
 **Example**
 
@@ -38,7 +38,7 @@ ontimize:
 | engine | *odms* | Indicates the engine that will be used for the DMS system. Ontimize has an implementation of an engine, whose value is *odms*. |
 | base-path | *String* | The path where the DMS files will be stored |
 
-The configuration of DMS system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/v3/basics/dms/).
+The configuration of DMS system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/dms/).
 
 **Example**
 ```yaml
@@ -63,7 +63,7 @@ ontimize:
 |bundleValueKeyColumn| *String* | Column of the database table containing the key of a translation |
 |engine| *default* | Property to enable the i18n system. Need to have any value, commonly, *default*.  |
 
-The configuration of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/v3/basics/i18n/).
+The configuration of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/i18n/).
 
 **Example**
 ```yaml
@@ -126,7 +126,7 @@ ontimize:
 | base.dn | *String* | List of base DNs. |
 | domain | *String* | The domain name |
 
-The LDAP security configuration is done through autoconfigurators. To see the settings, check [this link](/ontimize-boot/v3/basics/ldap).
+The LDAP security configuration is done through autoconfigurators. To see the settings, check [this link](/ontimize-boot/basics/ldap).
 
 **Example**
 ```yaml
@@ -162,7 +162,7 @@ ldap:
 | filter-column-value-java-mail-properties | *String* | Name of the key in the row of the key column containing the value for the mail propoerties in the mail service |
 | engine | *String* | Enable or disable mail engine. To enable, have any value int this arribute. By default, use *default* value|
 
-The configuration of the mail system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/v3/basics/mail/).
+The configuration of the mail system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/mail/).
 
 **Example**
 ```yaml
@@ -300,7 +300,7 @@ ontimize:
 | role-login-column | *String* | Database column that stores the username |
 | role-name-column | *String* | Database column that stores the role name |
 
-The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/v3/basics/security/).
+The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/security/).
 
 **Example**
 ```yaml

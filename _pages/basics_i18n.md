@@ -881,7 +881,7 @@ The i18n interface has a few methods for managing bundles or translations. Next 
 
 To query the bundle values we create a method that receieves the bundle class, the language to query and the country of this language.
 
-**Note:** The code to query the values of a bundle is in the previous [section](/ontimize-boot/v3/basics/i18n/#add-i18n-rest-controller).
+**Note:** The code to query the values of a bundle is in the previous [section](/ontimize-boot/basics/i18n/#add-i18n-rest-controller).
 {: .notice--info}
 
 ### Update bundle values

@@ -13,7 +13,7 @@ breadcrumbs: true
 In this tutorial we are going to explain how to migrate a project from Ontimize version **1.x.x** that works with **JDK 8** to Ontimize version **3.x.x** that works with **JDK 11**. For this example we will download a project like the explained in this [training course](https://www.ontimize.com/xwiki/bin/view/Ontimize+Boot+Training/).
 
 ## Prerequisites
-You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/v3/getting_started/) and with a REST service. 
+You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service. 
 
 There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.
 

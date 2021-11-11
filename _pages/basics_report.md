@@ -20,7 +20,7 @@ The **Report Store** system will allow you to store, manage and export all kinds
 - **Report parameter**: It is the generic representation of a custom report parameter. They are used for defining filters, implementing pagination, or even specifying the report data source.
 
 # Prerequisites
-You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/v3/getting_started/) and with a REST service. 
+You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service. 
 
 There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.
 
@@ -713,7 +713,7 @@ public class ReportParameterDao extends OntimizeJdbcDaoSupport implements IRepor
 
 ### Modify application.yml
 
-The **application.yml** file will be modified to enable the reports module, indicate the report engine type it will use and, if needed, the path where the report files will be stored. [In this link](/ontimize-boot/v3/basics/autoconfigurators/#report) you have information about the configuration of the reports system in the **application.yml** file.
+The **application.yml** file will be modified to enable the reports module, indicate the report engine type it will use and, if needed, the path where the report files will be stored. [In this link](/ontimize-boot/basics/autoconfigurators/#report) you have information about the configuration of the reports system in the **application.yml** file.
 
 **Note:** The *enable* property must be set to ***true*** and the engine type must be specified in the *engine* property before the server is started.
 {: .notice--info}
