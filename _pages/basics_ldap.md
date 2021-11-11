@@ -860,7 +860,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
   {{ "**application.yml**"| markdownify }}
 
 {% highlight yml %}
-
+  
 ontimize:
    security:
       mode: ldap

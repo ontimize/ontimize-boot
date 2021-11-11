@@ -88,11 +88,14 @@ INSERT INTO TI18N_VALUE (ID_I18N, KEY, ES_ES, EN_US, GL_ES) VALUES(0,'EMAIL','Co
 
 ### Add Permissions
 
+
 The `com.ontimize.jee.common.services.i18n.II18nService` service has several methods that we will have to add to the permissions to be able to execute the methods.
+
 
 **SQL (HSQL) Statement**
 
 {%highlight sql linenos%}
+
 
 INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common.services.i18n.II18nService/getAllResourceBundles');
 INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common.services.i18n.II18nService/getBundles');
@@ -101,6 +104,7 @@ INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common
 INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common.services.i18n.II18nService/getAvailableLocales');
 INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common.services.i18n.II18nService/updateBundleValues');
 INSERT INTO TSERVER_PERMISSION (PERMISSION_NAME) VALUES('com.ontimize.jee.common.services.i18n.II18nService/deleteBundleValues');
+
 
 {% endhighlight %}
 
@@ -514,6 +518,9 @@ public class OCDatabaseBundleValueDao extends OntimizeJdbcDaoSupport {
 <ul>
   <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
   ontimize-examples
+<ul>
+  <li data-jstree='{"opened":true, "icon":"fas fa-folder-open"}'>
+  ontimize-examples
   <ul>
     <li data-jstree='{"icon":"fas fa-folder-open"}'>
     projectwiki-api
@@ -762,11 +769,13 @@ public class OCDatabaseBundleValueDao extends OntimizeJdbcDaoSupport {
   </ul>
   </li>
 </ul>
+  </li>
+</ul>
   </div>
   <div class="multiColumn" >
 
   {{"**I18nRestController.java**
-
+    
   With the tag `@RequestMapping` we indicate the route through which the rest service will receive the requests.
   With the tag `@RequestBody` we receive the data that were sent in the rest request.
   In this class we create a method that retrieves the translations of a bundle that we have specified in the language that we have indicated. " | markdownify}}
@@ -793,6 +802,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ontimize.jee.common.dto.EntityResult;
 import com.ontimize.jee.common.dto.EntityResultMapImpl;
+
 import com.ontimize.jee.common.services.i18n.II18nService;
 import com.ontimize.jee.server.rest.InsertParameter;
 

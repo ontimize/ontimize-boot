@@ -143,6 +143,43 @@ ldap:
    domain: yourdomain.com
 ```
 
+## LDAP
+
+- **ontimize:security:**
+
+| Attribute | Value | Meaning |
+|--|--|--|
+| mode | *ldap* | Change the system security from *default* to *ldap* |
+
+- **ldap:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| active | *true, false* | Enable or disable ldap security |
+| host | *IP* | Ip host for ldap security |
+| port | *Number* | Port of the host for ldap security |
+| loginType | *DN, simple* | The login type indicates whether a full LDAP string with *DN* value or will be used or if the username will simply be provided with *simple* value |
+| bind.dn | *String* | File to populate the LDAP server using a *.ldif* file |
+| base.dn | *String* | List of base DNs. |
+| domain | *String* | The domain name |
+
+The LDAP security configuration is done through autoconfigurators. To see the settings, check [this link](/ontimize-boot/basics/ldap).
+
+**Example**
+```yaml
+ontimize:
+   security:
+   mode: ldap
+ldap: 
+   active: true 
+   host: 10.0.0.1
+   port: 389
+   loginType: simple
+   bind.dn: 
+   base.dn: 
+   domain: yourdomain.com
+```
+
 ## Mail
 
 - **ontimize:mail:**
