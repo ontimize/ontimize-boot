@@ -8,6 +8,9 @@ toc_sticky: true
 breadcrumbs: true
 ---
 
+**Important:** This module works only for Ontimize Boot version 3.8.0 or above.
+{: .notice--warning}
+
 # Introduction
 The **Async Task** system will allow you to run decoupled, asynchronous tasks. This module will let you run any service method in a separate, newly created thread, by simply adding an annotation to its controller method.
 
@@ -1486,8 +1489,6 @@ To know all the states through which the asynchronous request passes, we will ad
 </ul>
 </div>
 <div class="multiColumn multiColumnGrow">
-
-{{ "We will override the `query()` method of the *ORestController* class." | markdownify}}
 
 {{ "**CandidateService.java**" | markdownify}}
 {% highlight java linenos %}
