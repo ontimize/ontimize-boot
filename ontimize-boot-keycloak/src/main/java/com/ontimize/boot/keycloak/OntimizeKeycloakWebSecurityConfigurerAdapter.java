@@ -1,6 +1,7 @@
 package com.ontimize.boot.keycloak;
 
-import com.ontimize.jee.server.security.keycloak.OntimizeMultitenantKeycloakConfigResolver;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
@@ -26,8 +27,7 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.ontimize.jee.server.security.keycloak.OntimizeMultitenantKeycloakConfigResolver;
 
 @KeycloakConfiguration
 @PropertySource("classpath:ontimize-security-keycloak.properties")
@@ -96,5 +96,4 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 		accessDecisionManager.setAllowIfAllAbstainDecisions(false);
 		return accessDecisionManager;
 	}
-
 }
