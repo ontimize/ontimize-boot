@@ -314,6 +314,7 @@ ALTER TABLE REPORT_PARAMETERS ADD CONSTRAINT REPORT_PARAMETERS_FK FOREIGN KEY(RE
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>candidates.zip</li>
     <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
     <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
   </ul>
@@ -321,7 +322,7 @@ ALTER TABLE REPORT_PARAMETERS ADD CONSTRAINT REPORT_PARAMETERS_FK FOREIGN KEY(RE
 </ul>
 </div>
 <div class="multiColumn multiColumnGrow">
-  {{ "**boot/pom.xml**"| markdownify }}
+  {{ "**projectwiki-boot/pom.xml**"| markdownify }}
 
 {% highlight xml %}
 ...
@@ -337,7 +338,7 @@ ALTER TABLE REPORT_PARAMETERS ADD CONSTRAINT REPORT_PARAMETERS_FK FOREIGN KEY(RE
 {% endhighlight %}
 
 
-  {{ "**model/pom.xml**"| markdownify }}
+  {{ "**projectwiki-model/pom.xml**"| markdownify }}
 
 {% highlight xml %}
 ...
@@ -605,6 +606,7 @@ A specific DAO will be created for each of both tables in the reports system, an
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>candidates.zip</li>
     <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
     <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
   </ul>
@@ -649,7 +651,7 @@ A specific DAO will be created for each of both tables in the reports system, an
 
 {{ "**ReportDao.java**" | markdownify}}
 {% highlight java linenos %}
-package com.imatia.qsallcomponents.model.dao;
+package com.ontimize.projectwiki.model.core.dao;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
@@ -680,7 +682,7 @@ public class ReportDao extends OntimizeJdbcDaoSupport implements IReportDao {
 
 {{ "**ReportParameterDao.java**" | markdownify}}
 {% highlight java linenos %}
-package com.imatia.qsallcomponents.model.dao;
+package com.ontimize.projectwiki.model.core.dao;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
@@ -967,6 +969,7 @@ The **application.yml** file will be modified to enable the reports module, indi
     </ul>
     </li>
     <li data-jstree='{"icon":"fas fa-file"}'>.gitignore</li>
+    <li data-jstree='{"icon":"fas fa-file"}'>candidates.zip</li>
     <li data-jstree='{"icon":"fas fa-file"}'>pom.xml</li>
     <li data-jstree='{"icon":"fas fa-file"}'>README.md</li>
   </ul>
@@ -997,18 +1000,65 @@ ontimize:
 </div>
 
 # Testing the reports system
-Once the reports system is already configured, we will 
 
-## Create new Candidate entity
-### Add Candidate table
-### Add Candidate DAO
-### Add Candidate service
-### Add Candidate controller
+Once the reports system is already configured and the server and the database are running, we will follow the next steps:
 
 ## Create report template
+In order to create our own report templates, it is recommended to use Jaspersoft Studio. You can download it from [this link](https://community.jaspersoft.com/project/jaspersoft-studio).
+
+In this tutorial we will provide you a report template for candidates, but if you want more information about how to create and customize a template, check [this tutorial](https://community.jaspersoft.com/documentation/tibco-jaspersoft-studio-user-guide/v60/creating-and-customizing-templates).
+
+Our template is located in the main folder of the project, it is called **candidates.zip**.
+
+**Note:** Do not unzip the compressed file because the request explained below requires it compressed.
+{: .notice--info}
 
 ## Add report to the reports system
+To add the template we will have to execute the following REST request: **http://localhost:33333/reportstore/addReport**
+
+| Element | Meaning |
+|--|--|
+| localhost:33333 | Indicates the host |
+| /reportstore | Indicates the service to be queried |
+| /addReport | Indicates the method of the service that is going to be executed |
+
+With the [Postman](https://www.postman.com/) program, you will have to add a body of type form-data in which you will have to add the following values:
+
+| key | type | value | Description |
+|--|--|--|--|
+| data | *text* | {"name":"x","type":"x","description":"x"} | Indicates the name, type and description of the template |
+| file | *file* | candidates.zip | You have to indicate the path of the candidates.zip file|
 
 ## Generate report
 
-## Visualize report document 
+When you run the above request, if the value of the **engine** set in the `applitacion.yml` is *filesystem*, you have to copy the **uuid** that comes in the response data and execute the following request: **http://localhost:33333/reportstore/fillReport/{{UUID}}**.
+
+| Element | Meaning |
+|--|--|
+| localhost:33333 | Indicates the host |
+| /reportstore | Indicates the service to be queried |
+| /fillReport | Indicates the method of the service that is going to be executed |
+| {{UUID}} | Indicates the uuid that you receives of the previous request |
+
+
+But if the value of the **engine** set in the `applitacion.yml` is *database*, you have to execute the following request to know the **uuid** of the report template: **http://localhost:33333/reportstore/listReports**.
+
+| Element | Meaning |
+|--|--|
+| localhost:33333 | Indicates the host |
+| /reportstore | Indicates the service to be queried |
+| /listReports | Indicates the method of the service that is going to be executed |
+
+**Example:** http://localhost:33333/reportstore/fillReport/fd656189-2158-4e84-ac5c-8379960fddbd
+{: .notice--info}
+
+The authorization used for these requests is authorization of the type **BASIC**.
+
+In both cases, the access must be done with a user and password example:
+
+        User: demo
+    Password: demouser
+
+## Visualize report document
+
+When you run the above request, in the body of the response you will find the key *file*, whose value is a **Base 64** that contains the format and data of the report template. Copy it and go to this [page](https://www.ipvoid.com/base64-to-pdf/) to convert the Base 64 into a **PDF** file.

@@ -228,7 +228,9 @@ ontimize:
 | engine | *database*, *file* | Indicates the engine that will be used for the report system (*file* for file system engine or *database* for database engine) |
 | base-path | *String* | The path where the report files will be stored (file system engine only) |
 
-[comment]: <> (The configuration of the reports system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/reports/).)
+
+The configuration of the reports system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/reports/).
+
 
 **Example**
 
