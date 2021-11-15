@@ -9,13 +9,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import com.ontimize.jee.common.services.reportstore.IReportStoreService;
+import com.ontimize.jee.common.services.reportstore.IDynamicJasperService;
+import com.ontimize.jee.common.services.reportstore.IPreferencesService;
 import com.ontimize.jee.report.rest.ReportStoreRestController;
+import com.ontimize.jee.report.rest.PreferencesRestController;
+import com.ontimize.jee.report.rest.DynamicJasperRestController;
 import com.ontimize.jee.server.services.reportstore.DatabaseReportStoreEngine;
+import com.ontimize.jee.server.services.reportstore.DynamicJasperService;
 import com.ontimize.jee.server.services.reportstore.FileReportStoreEngine;
 import com.ontimize.jee.server.services.reportstore.IReportStoreEngine;
+import com.ontimize.jee.server.services.reportstore.PreferencesService;
 import com.ontimize.jee.server.services.reportstore.ReportStoreConfiguration;
 import com.ontimize.jee.server.services.reportstore.ReportStoreServiceImpl;
 import com.ontimize.jee.server.spring.namespace.OntimizeReportConfiguration;
+
+import util.JsonServicePreferencesDtoConversor;
 
 @Configuration
 @ConditionalOnProperty(name = "ontimize.report.enable", havingValue = "true", matchIfMissing = false)
@@ -31,7 +39,14 @@ public class OReportAutoConfigure {
 	public IReportStoreService ontimizeReportStoreService() {
 		return new ReportStoreServiceImpl();
 	}
-	
+	@Bean("DynamicJasperService")
+	public IDynamicJasperService ontimizeDynamicJasperService() {
+		return new DynamicJasperService();
+	}
+	@Bean("PreferencesService")
+	public IPreferencesService ontimizePreferencesService() {
+		return new PreferencesService();
+	}
 	@Bean
 	public OntimizeReportConfiguration ontimizeReportConfiguration(IReportStoreEngine reportStoreEngine) {
 		ReportStoreConfiguration reportConfiguration = new ReportStoreConfiguration();
@@ -54,7 +69,21 @@ public class OReportAutoConfigure {
 		ReportStoreRestController reportController = new ReportStoreRestController();
 		return reportController;
 	}
-	
+	@Bean("DynamicReportControllerService")
+	public DynamicJasperRestController DynamicJasperController() {
+		DynamicJasperRestController reportController = new DynamicJasperRestController();
+		return reportController;
+	}
+	@Bean("PreferencesControllerService")
+	public PreferencesRestController PreferencesController() {
+		PreferencesRestController preferencesController = new PreferencesRestController();
+		return preferencesController;
+	}
+	@Bean("JsonServicePreferencesDtoConversor")
+	public JsonServicePreferencesDtoConversor Conversor() {
+		JsonServicePreferencesDtoConversor conversor = new JsonServicePreferencesDtoConversor();
+		return conversor;
+	}
 	@Bean("EngineService")
 	@ConditionalOnProperty(name = "ontimize.report.engine", havingValue = "database", matchIfMissing = false)
 	public IReportStoreEngine databaseReportStoreEngine() {
