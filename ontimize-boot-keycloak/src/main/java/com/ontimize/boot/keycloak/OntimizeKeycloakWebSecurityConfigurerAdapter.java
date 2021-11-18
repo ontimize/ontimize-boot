@@ -27,7 +27,11 @@ import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
+import com.ontimize.jee.server.security.keycloak.IOntimizeKeycloakConfiguration;
+import com.ontimize.jee.server.security.keycloak.IUserManagement;
+import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakConfiguration;
 import com.ontimize.jee.server.security.keycloak.OntimizeMultitenantKeycloakConfigResolver;
+import com.ontimize.jee.server.security.keycloak.UserManagementKeycloakImpl;
 
 @KeycloakConfiguration
 @PropertySource("classpath:ontimize-security-keycloak.properties")
@@ -66,6 +70,17 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	@ConditionalOnMissingBean(name = "KeycloakConfigResolver")
 	public KeycloakConfigResolver createKeycloakConfigResolver() {
 		return new KeycloakSpringBootConfigResolver();
+	}
+
+	@Bean
+	public IOntimizeKeycloakConfiguration createOntimizeKeycloakConfiguration() {
+		return new OntimizeKeycloakConfiguration();
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.admin.realm", matchIfMissing = false)
+	public IUserManagement createUserManagementKeycloak() {
+		return new UserManagementKeycloakImpl();
 	}
 
 	@Override
