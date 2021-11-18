@@ -163,13 +163,13 @@
 				<artifactId>ontimize-jee-dms-rest</artifactId>
 				<version>${project.dependency.ontimize-jee-dms.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.ontimize.jee.report</groupId>
 				<artifactId>ontimize-jee-report-rest</artifactId>
 				<version>${project.dependency.ontimize-jee-report.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.ontimize.jee.report</groupId>
 				<artifactId>ontimize-jee-report-server</artifactId>
@@ -193,7 +193,7 @@
 				<artifactId>ontimize-boot-keycloak</artifactId>
 				<version>${project.dependency.ontimize.boot.version}</version>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>com.ontimize.boot</groupId>
 				<artifactId>ontimize-boot-report</artifactId>
@@ -215,8 +215,8 @@
 		<module>ontimize-boot-keycloak</module>
 		<module>ontimize-boot-starters</module>
 		<module>ontimize-boot-webaddons</module>
-    <module>ontimize-boot-report</module>
-  </modules>
+		<module>ontimize-boot-report</module>
+	</modules>
 
 	<build>
 		<pluginManagement>
@@ -326,9 +326,9 @@
 						</configuration>
 					</plugin>
 					<plugin>
-						<groupId>org.simplify4u.plugins</groupId>
-						<artifactId>sign-maven-plugin</artifactId>
-						<version>0.3.1</version>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>1.5</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>
