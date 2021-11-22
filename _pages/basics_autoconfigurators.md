@@ -45,7 +45,7 @@ The configuration of DMS system is done by setting up the necessary DAOs for tha
 ontimize:
    dms:
       engine: odms
-      base-path: file:/C:/applications/QSAllComponents_Jee/dms
+      base-path: file:/C:/applications/projectwiki/dms
 ```
 
 ## I18n
@@ -54,13 +54,13 @@ ontimize:
 
 | Attribute | Values | Meaning |
 |--|--|--|
-|refBundleRepository| *String* | Name of the DAO containing information about the translation bundles |
-|bundleKeyColumn| *String* | Column of the database table containing the translation bundle identifier |
-|bundleClassNameColumn| *String* | Column of the database table containing the name of the translation bundle class |
-|bundleDescriptionColumn| *String* | Column of the database table containing the description of the translation bundle |
-|refBundleValueRepository| *String* | Name of the database table containing information about the translations of each translation bundle |
-|bundleValueTextKeyColumn| *String* | Column of the database table containing the key of a translation |
-|bundleValueKeyColumn| *String* | Column of the database table containing the key of a translation |
+|ref-bundle-repository| *String* | Name of the DAO containing information about the translation bundles |
+|bundle-key-column| *String* | Column of the database table containing the translation bundle identifier |
+|bundle-class-name-column| *String* | Column of the database table containing the name of the translation bundle class |
+|bundle-description-column| *String* | Column of the database table containing the description of the translation bundle |
+|ref-bundle-value-repository| *String* | Name of the database table containing information about the translations of each translation bundle |
+|bundle-value-text-key-column| *String* | Column of the database table containing the key of a translation |
+|bundle-value-key-column| *String* | Column of the database table containing the key of a translation |
 |engine| *default* | Property to enable the i18n system. Need to have any value, commonly, *default*.  |
 
 The configuration of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/i18n/).
@@ -143,43 +143,6 @@ ldap:
    domain: yourdomain.com
 ```
 
-## LDAP
-
-- **ontimize:security:**
-
-| Attribute | Value | Meaning |
-|--|--|--|
-| mode | *ldap* | Change the system security from *default* to *ldap* |
-
-- **ldap:**
-
-| Attribute | Values | Meaning |
-|--|--|--|
-| active | *true, false* | Enable or disable ldap security |
-| host | *IP* | Ip host for ldap security |
-| port | *Number* | Port of the host for ldap security |
-| loginType | *DN, simple* | The login type indicates whether a full LDAP string with *DN* value or will be used or if the username will simply be provided with *simple* value |
-| bind.dn | *String* | File to populate the LDAP server using a *.ldif* file |
-| base.dn | *String* | List of base DNs. |
-| domain | *String* | The domain name |
-
-The LDAP security configuration is done through autoconfigurators. To see the settings, check [this link](/ontimize-boot/basics/ldap).
-
-**Example**
-```yaml
-ontimize:
-   security:
-   mode: ldap
-ldap: 
-   active: true 
-   host: 10.0.0.1
-   port: 389
-   loginType: simple
-   bind.dn: 
-   base.dn: 
-   domain: yourdomain.com
-```
-
 ## Mail
 
 - **ontimize:mail:**
@@ -248,7 +211,7 @@ ontimize:
    report:
       enable: true
       engine: file
-      base-path: C:/applications/QSAllComponents_Jee/reports
+      base-path: C:/applications/projectwiki/reports
 ```
 
 ## REST
@@ -305,8 +268,8 @@ ontimize:
 | Attribute | Values | Meaning |
 |--|--|--|
 | password | *String* | JWT password |
-| expirationTime | *Long* | JWT expiration time|
-| refreshToken | *true*, *false* | Set *true* to refresh JWT, *false* otherwise|
+| expiration-time | *Long* | JWT expiration time|
+| refresh-token | *true*, *false* | Set *true* to refresh JWT, *false* otherwise|
 
 - **ontimize:security:user-information-service:**
 
@@ -339,7 +302,7 @@ ontimize:
 | role-login-column | *String* | Database column that stores the username |
 | role-name-column | *String* | Database column that stores the role name |
 
-The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/security/).
+The configuration of the rest of the Security System is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/security/).
 
 **Example**
 ```yaml
