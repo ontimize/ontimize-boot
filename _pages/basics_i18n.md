@@ -23,7 +23,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
  
     /$ git clone https://github.com/ontimize/ontimize-examples
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-i18n-initial"
+    /ontimize-examples$ git checkout boot-i18n-1.x.x-initial"
     | markdownify }}
    
 </div>
@@ -34,7 +34,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
     
     /$ git clone https://github.com/ontimize/ontimize-examples
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-i18n"
+    /ontimize-examples$ git checkout boot-i18n-1.x.x"
     | markdownify }}
 
 

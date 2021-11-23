@@ -249,7 +249,7 @@ ontimize:
 | roleLoginColumn | *String* | Database column that stores the username |
 | roleNameColumn | *String* | Database column that stores the role name |
 
-The configuration of the rest of the I18N system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/v1/basics/security/).
+The configuration of the rest of the Security system is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/v1/basics/security/).
 
 **Example**
 ```yaml
