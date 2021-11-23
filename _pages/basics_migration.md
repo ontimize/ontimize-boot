@@ -655,7 +655,7 @@ ontimize:
    jdbc:
       name-convention: upper
       sqlhandler: hsqldb
-      sql-dondition-processor:
+      sql-condition-processor:
          uppper-string: true
          upper-like: true
    security:

@@ -28,7 +28,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
     /$ git clone https://github.com/ontimize/ontimize-examples 
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-dms-3.x.x-initial" 
+    /ontimize-examples$ git checkout boot-dms-initial" 
     | markdownify }}
 </div>
 <div class="verticalDivider"></div>
@@ -38,7 +38,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
     /$ git clone https://github.com/ontimize/ontimize-examples 
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-dms-3.x.x" 
+    /ontimize-examples$ git checkout boot-dms" 
     | markdownify }}
 
 </div>
