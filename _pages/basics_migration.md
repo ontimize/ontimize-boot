@@ -44,7 +44,7 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
 ## Steps
 ### Ontimize version
-First of all we need to update the version of Ontimize (ontimize-boot-parent) located in the parent of the project.
+First of all we need to update the version of Ontimize (ontimize-boot-parent) located in the parent of the project. Use always the latest version: [![Ontimize Boot Parent](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot-parent?label=Ontimize%20Boot%20Parent&style=for-the-badge)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot-parent)
 
 <div class="multiColumnRow">
   <div class="multiColumn jstreeloader" >
@@ -327,7 +327,7 @@ First of all we need to update the version of Ontimize (ontimize-boot-parent) lo
   <parent>
     <groupId>com.ontimize.boot</groupId>
     <artifactId>ontimize-boot-parent</artifactId>
-    <version>3.6.0</version>
+    <version>3.x.x</version>
   </parent>
 {% endhighlight %}
 
@@ -1788,7 +1788,6 @@ import com.ontimize.jee.common.dto.EntityResult;
 
 @RestController
 @RequestMapping("/users")
-@ComponentScan(basePackageClasses={com.ontimize.hr.api.core.service.IUserService.class})
 public class UserRestController extends ORestController<IUserService> {
 
 	. . .

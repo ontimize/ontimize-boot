@@ -369,7 +369,6 @@ import com.ontimize.jee.server.security.authentication.IAuthenticationMechanism;
 import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationProvider;
 
 @Component
-
 public class LdapAuthenticationMechanism implements IAuthenticationMechanism {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(LdapAuthenticationMechanism.class);
@@ -582,7 +581,6 @@ public class CustomSecurityAutoConfiguration extends DefaultSecurityAutoConfigur
         filter.setAuthenticationSuccessHandler(new OntimizeAuthenticationSuccessHandler()); 
         filter.afterPropertiesSet(); 
         return filter; 
-
     } 
   
     @Bean 
@@ -859,8 +857,7 @@ In the *application.yml* we need to change the ontimize security mode to **ldap*
 
   {{ "**application.yml**"| markdownify }}
 
-{% highlight yml %}
-  
+{% highlight yaml %}
 ontimize:
    security:
       mode: ldap
@@ -872,7 +869,6 @@ ldap:
    bind.dn: 
    base.dn: 
    domain: yourdomain.com
-
 {% endhighlight %}
 
 </div>
