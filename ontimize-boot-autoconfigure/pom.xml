@@ -104,7 +104,6 @@
 		<dependency>
 			<groupId>com.ontimize.jee</groupId>
 			<artifactId>ontimize-jee-server-jdbc</artifactId>
-			<optional>true</optional>
 		</dependency>
  
 		<dependency>
