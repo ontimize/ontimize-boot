@@ -6,6 +6,7 @@ import java.util.Properties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.sql.init.dependency.DependsOnDatabaseInitialization;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,6 +27,7 @@ import com.ontimize.jee.server.spring.PropertyResolver;
 
 @Configuration
 @ConditionalOnProperty(name = "ontimize.mail.engine", matchIfMissing = false)
+@DependsOnDatabaseInitialization
 public class MailAutoConfiguration {
 
 	@Autowired
