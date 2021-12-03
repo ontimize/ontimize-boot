@@ -7,7 +7,7 @@
 	<parent>
 		<groupId>com.ontimize.boot</groupId>
 		<artifactId>ontimize-boot</artifactId>
-		<version>3.8.0-SNAPSHOT</version>
+		<version>3.9.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>ontimize-boot-autoconfigure</artifactId>
@@ -101,6 +101,11 @@
 			<artifactId>ontimize-jee-server</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.ontimize.jee</groupId>
+			<artifactId>ontimize-jee-server-jdbc</artifactId>
+		</dependency>
+ 
 		<dependency>
 			<groupId>com.ontimize.jee</groupId>
 			<artifactId>ontimize-jee-server-rest</artifactId>

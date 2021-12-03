@@ -12,7 +12,7 @@
 
 	<groupId>com.ontimize.boot</groupId>
 	<artifactId>ontimize-boot</artifactId>
-	<version>3.8.0-SNAPSHOT</version>
+	<version>3.9.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<organization>
@@ -101,11 +101,12 @@
 
 	<properties>
 		<project.dependency.spring.boot.version>2.5.0</project.dependency.spring.boot.version>
-		<project.dependency.ontimize.boot.version>3.8.0</project.dependency.ontimize.boot.version>
-		<project.dependency.ontimize-jee.version>5.5.0</project.dependency.ontimize-jee.version>
+		<project.dependency.spring.security.version>5.5.1</project.dependency.spring.security.version>
+		<project.dependency.ontimize.boot.version>3.9.0-SNAPSHOT</project.dependency.ontimize.boot.version>
+		<project.dependency.ontimize-jee.version>5.6.0-SNAPSHOT</project.dependency.ontimize-jee.version>
 		<project.dependency.ontimize-jee-dms.version>3.1.0</project.dependency.ontimize-jee-dms.version>
 		<project.dependency.keycloak.version>9.0.3</project.dependency.keycloak.version>
-		<project.dependency.ontimize-jee-report.version>1.0.11-REST-SNAPSHOT</project.dependency.ontimize-jee-report.version>
+		<project.dependency.ontimize-jee-report.version>1.0.11-SNAPSHOT</project.dependency.ontimize-jee-report.version>
 		<!-- =========================================================== -->
 		<!-- Plugin versions -->
 		<!-- =========================================================== -->
@@ -116,6 +117,12 @@
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${project.dependency.spring.security.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>com.ontimize.jee</groupId>
 				<artifactId>ontimize-jee-server</artifactId>
@@ -137,6 +144,12 @@
 			<dependency>
 				<groupId>com.ontimize.jee</groupId>
 				<artifactId>ontimize-jee-server-rest</artifactId>
+				<version>${project.dependency.ontimize-jee.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.ontimize.jee</groupId>
+				<artifactId>ontimize-jee-server-keycloak</artifactId>
 				<version>${project.dependency.ontimize-jee.version}</version>
 			</dependency>
 
@@ -326,9 +339,9 @@
 						</configuration>
 					</plugin>
 					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-gpg-plugin</artifactId>
-						<version>1.5</version>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.5</version>
 						<executions>
 							<execution>
 								<id>sign-artifacts</id>

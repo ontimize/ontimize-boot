@@ -31,7 +31,6 @@ import org.springframework.security.web.access.expression.ExpressionBasedFilterI
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.www.BasicAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
@@ -50,6 +49,7 @@ import com.ontimize.jee.server.security.authentication.ISecurityJWTTokenGenerato
 import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationFilter;
 import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationProvider;
 import com.ontimize.jee.server.security.authentication.OntimizeAuthenticationSuccessHandler;
+import com.ontimize.jee.server.security.authentication.basic.BasicAuthenticationEntryPoint;
 import com.ontimize.jee.server.security.authentication.basic.BasicAuthenticationMechanism;
 import com.ontimize.jee.server.security.authentication.jwt.DefaultJwtService;
 import com.ontimize.jee.server.security.authentication.jwt.IJwtService;
@@ -297,17 +297,9 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		return securityConfiguration;
 	}
 
-	@Bean("authenticationEntryPoint")
-	@ConditionalOnProperty(value = "ontimize.security.authentication-entry-point", havingValue = "basic")
+	@Bean
 	public AuthenticationEntryPoint authenticationEntryPoint() {
 		BasicAuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
-		authenticationEntryPoint.setRealmName("ONTIMIZE REALM");
 		return authenticationEntryPoint;
-	}
-
-	@Bean("authenticationEntryPoint")
-	@ConditionalOnMissingBean
-	public AuthenticationEntryPoint restAuthenticationEntryPoint() {
-		return new RestAuthenticationEntryPoint();
 	}
 }
