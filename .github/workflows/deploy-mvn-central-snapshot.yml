@@ -18,7 +18,9 @@ jobs:
           server-username: ${{ env.MAVEN_USERNAME }}
           server-password: ${{ env.MAVEN_CENTRAL_TOKEN }}
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          gpg-passphrase: ${{ env.MAVEN_GPG_PASSPHRASE }}     
+          gpg-passphrase: ${{ env.MAVEN_GPG_PASSPHRASE }}   
+      - name: Check .m2 generated
+        run: cat $HOME/.m2/settings.xml
       - name: Publish to Apache Maven Central
         run: mvn -U -X clean deploy -Pgenerate-version
         env:
