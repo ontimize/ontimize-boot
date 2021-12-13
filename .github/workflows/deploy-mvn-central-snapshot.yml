@@ -20,7 +20,7 @@ jobs:
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: ${{ env.MAVEN_GPG_PASSPHRASE }}     
       - name: Publish to Apache Maven Central
-        run: mvn -U clean deploy -Pgenerate-version
+        run: mvn -U -X clean deploy -Pgenerate-version
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
