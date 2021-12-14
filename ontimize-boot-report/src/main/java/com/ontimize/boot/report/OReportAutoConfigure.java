@@ -20,12 +20,12 @@ import com.ontimize.jee.server.spring.namespace.OntimizeReportConfiguration;
 @Configuration
 public class OReportAutoConfigure {
 
-	@Value("${ontimize.report.basePath}")
+	@Value("${ontimize.report.base-path: null}")
 	private String basePath;
-
-	@Value("${ontimize.report.type}")
-	private String type;
-
+	
+	@Value("${ontimize.report.engine}")
+	private String engine;
+		
 	@Bean("ReportStoreService")
 	public IReportStoreService ontimizeReportStoreService() {
 		return new ReportStoreServiceImpl();
@@ -46,7 +46,7 @@ public class OReportAutoConfigure {
 	}
 
 	@Bean("EngineService")
-	@ConditionalOnProperty(name = "ontimize.report.type", havingValue = "file", matchIfMissing = false)
+	@ConditionalOnProperty(name = "ontimize.report.engine", havingValue = "file", matchIfMissing = false)
 	public IReportStoreEngine reportStoreEngine() {
 		FileReportStoreEngine fileReportStoreEngine = new FileReportStoreEngine();
 		fileReportStoreEngine.setBasePath(basePath);
@@ -66,7 +66,7 @@ public class OReportAutoConfigure {
 	}
 
 	@Bean("EngineService")
-	@ConditionalOnProperty(name = "ontimize.report.type", havingValue = "database", matchIfMissing = false)
+	@ConditionalOnProperty(name = "ontimize.report.engine", havingValue = "database", matchIfMissing = false)
 	public IReportStoreEngine databaseReportStoreEngine() {
 		DatabaseReportStoreEngine dbReportStoreEngine = new DatabaseReportStoreEngine();
 		return dbReportStoreEngine;
