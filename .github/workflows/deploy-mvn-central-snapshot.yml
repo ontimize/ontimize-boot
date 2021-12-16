@@ -10,7 +10,7 @@ jobs:
       - name : Checkout repository code
         uses: actions/checkout@v2
       - name: Setup Java JDK
-        uses: actions/setup-java@v2
+        uses: ontimize/setup-java-maven-gitAction@v2.4.2
         with:
           distribution: 'temurin'
           java-version: '11'
@@ -19,15 +19,6 @@ jobs:
           server-password: MAVEN_CENTRAL_TOKEN
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
-      - name: Set up Maven
-        uses: stCarolas/setup-maven@v4.2
-        with:
-          maven-version: 3.6.3
-      - name: Check files
-        run: |
-          mvn -v
-          java -version
-          cat $HOME/.m2/settings.xml
       - name: Publish to Apache Maven Central
         run: mvn -U clean deploy -Pgenerate-version
         env:
