@@ -356,3 +356,27 @@ ontimize:
       keepalive: 1000
       timeout: true
 ```
+## Preferences
+- **ontimize:save-config:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| save-config | *true*, *false* | Allows save preferences in database |
+
+- **ontimize:save-config-dao:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| save-config-dao | *String* | The name of the DAO for save preferences |
+
+[comment]: <> (Reactivar cuando salga la release 3.9.0)
+
+[comment]: <> (The configuration of the rest of the Preferences System is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/preferences/).)
+
+**Example**
+
+```yaml
+ontimize:
+   save-config: true
+   save-config-dao: ConfigsDao
+``` 
