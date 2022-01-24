@@ -48,6 +48,25 @@ ontimize:
       base-path: file:/C:/applications/projectwiki/dms
 ```
 
+## Export
+- **ontimize:export:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| url | *String* | Specifies the path to use the export system. |
+| extension | *String* | Specifies the file extension to use. This *String* will append to the *url* path as a additional path.  |
+
+The configuration of exporting system is done through autoconfigurators and dependencies. To see how to use and configure, check [this link](/ontimize-boot/basics/excelexport).
+
+**Example**
+```yaml
+ontimize:
+   export:
+      url: /export
+      extension: xlsx
+```
+
+
 ## I18n
 
 **ontimize:i18n:**
