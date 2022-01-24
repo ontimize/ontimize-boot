@@ -15,6 +15,7 @@ The **L**ightweight **D**irectory **A**ccess **P**rotocol (**LDAP**) is an open 
 # Prerequisites
 
 You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service.
+{: .notice--info}
 
 There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.
 
