@@ -1,6 +1,7 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.ontimize.boot.autoconfigure.rest.RestAutoConfiguration,\
 com.ontimize.boot.autoconfigure.jdbc.JdbcAutoConfiguration,\
+com.ontimize.boot.autoconfigure.jdbc.MultipleDatasourcesAutoConfiguration,\
 com.ontimize.boot.autoconfigure.mail.MailAutoConfiguration,\
 com.ontimize.boot.autoconfigure.i18n.I18nAutoConfiguration,\
 com.ontimize.boot.autoconfigure.security.DefaultSecurityAutoConfiguration,\
