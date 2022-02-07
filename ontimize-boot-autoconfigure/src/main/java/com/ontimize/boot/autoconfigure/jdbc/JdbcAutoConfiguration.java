@@ -4,7 +4,6 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.jdbc.DataSourceBuilder;
@@ -14,7 +13,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 
 import com.ontimize.jee.common.db.SQLStatementBuilder.ExtendedSQLConditionValuesProcessor;
-import com.ontimize.jee.common.db.handler.DefaultSQLStatementHandler;
 import com.ontimize.jee.common.db.handler.HSQLDBSQLStatementHandler;
 import com.ontimize.jee.common.db.handler.Oracle12cSQLStatementHandler;
 import com.ontimize.jee.common.db.handler.SQLStatementHandler;
@@ -39,11 +37,10 @@ public class JdbcAutoConfiguration {
 	@ConfigurationProperties(prefix = "spring.datasource")
 	@ConditionalOnProperty(name = "ontimize.jdbc.datasource.enabled", havingValue = "true", matchIfMissing = true)
 	public DataSource mainDataSource() {
-		DataSource dataSource = DataSourceBuilder.create().build();
-		return dataSource;
+		return DataSourceBuilder.create().build();
 	}
 
-
+	@Deprecated
 	@Bean("dbSQLStatementHandler")
 	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "postgres")
 	public SQLStatementHandler postgresSQLStatementHandler() {
@@ -52,6 +49,7 @@ public class JdbcAutoConfiguration {
 		return handler;
 	}
 
+	@Deprecated
 	@Bean("dbSQLStatementHandler")
 	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "oracle")
 	public SQLStatementHandler oracleSQLStatementHandler() {
@@ -60,6 +58,7 @@ public class JdbcAutoConfiguration {
 		return handler;
 	}
 
+	@Deprecated
 	@Bean("dbSQLStatementHandler")
 	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "oracle12")
 	public SQLStatementHandler oracle12SQLStatementHandler() {
@@ -68,6 +67,7 @@ public class JdbcAutoConfiguration {
 		return handler;
 	}
 
+	@Deprecated
 	@Bean("dbSQLStatementHandler")
 	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "sqlserver")
 	public SQLStatementHandler sqlServerSQLStatementHandler() {
@@ -76,6 +76,7 @@ public class JdbcAutoConfiguration {
 		return handler;
 	}
 
+	@Deprecated
 	@Bean("dbSQLStatementHandler")
 	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "hsqldb")
 	public SQLStatementHandler hsqldbSQLStatementHandler() {
@@ -84,18 +85,20 @@ public class JdbcAutoConfiguration {
 		return handler;
 	}
 
-	@Bean("dbSQLStatementHandler")
-	@ConditionalOnMissingBean
-	public SQLStatementHandler defaultSQLStatementHandler() {
-		SQLStatementHandler handler = new DefaultSQLStatementHandler();
-		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
-		return handler;
-	}
+	//	@Deprecated
+	//	@Bean("dbSQLStatementHandler")
+	//	@ConditionalOnMissingBean
+	//	public SQLStatementHandler defaultSQLStatementHandler() {
+	//		SQLStatementHandler handler = new DefaultSQLStatementHandler();
+	//		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
+	//		return handler;
+	//	}
 
 	@Bean
+	@Deprecated
 	public ExtendedSQLConditionValuesProcessor extendedSQLConditionValuesProcessor() {
-		return new ExtendedSQLConditionValuesProcessor(upperStrings,
-			upperLike);
+		return new ExtendedSQLConditionValuesProcessor(this.upperStrings,
+				this.upperLike);
 	}
 
 	@Bean("name_convention")
