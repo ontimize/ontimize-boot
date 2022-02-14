@@ -948,9 +948,9 @@ At this point more data sources can be queried, as shown in the example, but the
               <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>CandidateDao.xml</li>
               <li data-jstree='{"icon":"fas fa-file"}'>placeholders.properties</li>
               <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>RoleDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>RoleServerPermissionDao.xml</li>
               <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>ServerPermissionDao.xml</li>
-              <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>UserDao.xml</li>
+              <li data-jstree='{"icon":"fas fa-file"}'>UserDao.xml</li>
               <li data-jstree='{"selected": true, "icon":"fas fa-file"}'>UserRoleDao.xml</li>
             </ul>
             </li>
