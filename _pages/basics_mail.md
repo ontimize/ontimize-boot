@@ -6,6 +6,9 @@ toc: true
 toc_label: "Table of Contents"
 toc_sticky: true
 breadcrumbs: true
+sidebar:
+  title: "Ontimize Basics"
+  nav: sidebar-basics
 ---
 
 ## Introduction

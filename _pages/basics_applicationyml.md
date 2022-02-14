@@ -6,6 +6,9 @@ toc: true
 toc_label: "Table of Contents"
 toc_sticky: true
 breadcrumbs: true
+sidebar:
+  title: "Ontimize Basics"
+  nav: sidebar-basics
 ---
 
 ## Introduction
@@ -110,8 +113,6 @@ ontimize:
 
 - **ontimize:jdbc:sql-condition-processor:**
 
-SQL handler
-
 | Attribute | Values | Meaning |
 |--|--|--|
 | upper-string | true, false | Use of uppercase |
@@ -127,6 +128,73 @@ jdbc:
          upper-like: true
 ```
 
+{::comment}
+### JDBC 
+
+- **ontimize:jdbc:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| name-convention | upper, lower, database | Convention of data columns name |
+
+There are multiple SQL handlers that are created by default. They are as follows: 
+
+<table>
+<thead>
+  <tr>
+    <th>Handler</th>
+    <th>Value</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>default</td>
+    <td>sql-condition-processor</td>
+  </tr>
+  <tr>
+    <td>postgres</td>
+    <td>postgres-sql-condition-processor</td>
+  </tr>
+  <tr>
+    <td>oracle</td>
+    <td>oracle-sql-condition-processor</td>
+  </tr>
+  <tr>
+    <td>oracle12</td>
+    <td>oracle12-sql-condition-processor</td>
+  </tr>
+  <tr>
+    <td>sqlserver</td>
+    <td>sqlserver-sql-condition-processor</td>
+  </tr>
+  <tr>
+    <td>hsqldb</td>
+    <td>hsqldb-sql-condition-processor</td>
+  </tr>
+  <tr>
+    <td>mysql</td>
+    <td>mysql-sql-condition-processor</td>
+  </tr>
+</tbody>
+</table>
+
+- **ontimize:jdbc:\*-sql-condition-processor:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| upper-string | true, false | Use of uppercase |
+| upper-like | true, false | String comparision using LIKE in uppercase |
+
+**Example**
+```yaml
+ontimize:
+   jdbc:
+      name-convention: upper
+      hsqldb-sql-condition-processor:
+         upper-string: true
+         upper-like: true
+```
+{:/comment}
 
 ### Security
 

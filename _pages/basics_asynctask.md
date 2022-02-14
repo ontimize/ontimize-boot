@@ -6,9 +6,12 @@ toc: true
 toc_label: "Table of Contents"
 toc_sticky: true
 breadcrumbs: true
+sidebar:
+  title: "Ontimize Basics"
+  nav: sidebar-basics
 ---
 
-**Important:** This module works only for Ontimize Boot version 3.8.0 or above.
+**Important:** This module works only for Ontimize Boot version 3.8.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
 {: .notice--warning}
 
 # Introduction

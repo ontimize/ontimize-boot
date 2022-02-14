@@ -15,3 +15,43 @@ versions:
     active: true
   - title: "1.x.x"
     url: /ontimize-boot/v1
+
+
+sidebar-basics:
+  - title: "Basics"
+    children:
+      - title: "Autoconfigurators"
+        url: /basics/autoconfigurators/
+      - title: "Complex Queries"
+        url: /basics/complexqueries/
+      - title: "Export data to *.xlsx file"
+        url: /basics/excelexport/
+      - title: "Migration from Ontimize 1.x.x to 3.x.x"
+        url: /basics/migration/
+      - title: "Multiple DataSources"
+        url: /basics/multipledatasources/
+      - title: "Understanding application.yml file"
+        url: /basics/applicationyml/
+  - title: "Systems"
+    children:
+      - title: "Async Tasks"
+        url: /basics/asynctask/
+      - title: "DMS"
+        url: /basics/dms/
+      - title: "I18N"
+        url: /basics/i18n/
+      - title: "LDAP"
+        url: /basics/ldap/
+      - title: "Mail"
+        url: /basics/mail/
+      - title: "Preferences"
+        url: /basics/preferences/
+      - title: "Report"
+        url: /basics/reports/
+      - title: "Security"
+        url: /basics/security/
+  - title: "Meta"
+    children:
+      - title: "Versions"
+        url: /basics/versions/
+    

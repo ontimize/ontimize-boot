@@ -6,6 +6,9 @@ toc: true
 toc_label: "Table of Contents"
 toc_sticky: true
 breadcrumbs: true
+sidebar:
+  title: "Ontimize Basics"
+  nav: sidebar-basics
 ---
 Autoconfigurators are an easy way to indicate common elements that need minimal customization in applications, such as database connection. These configurations are used within the **application.yml** file located inside the **boot** folder.
 
@@ -49,6 +52,8 @@ ontimize:
 ```
 
 ## Export
+**Important:** This module works only for Ontimize Boot version 3.7.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
+{: .notice--warning}
 - **ontimize:export:**
 
 | Attribute | Values | Meaning |
@@ -202,6 +207,10 @@ ontimize:
 ```
 
 ## Report
+
+**Important:** This module works only for Ontimize Boot version 3.7.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
+{: .notice--warning}
+
 - **ontimize:report:**
 
 | Attribute | Values | Meaning |
@@ -376,6 +385,8 @@ ontimize:
       timeout: true
 ```
 ## Preferences
+**Important:** This module works only for Ontimize Boot version 3.9.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20Boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
+{: .notice--warning}
 - **ontimize:save-config:**
 
 | Attribute | Values | Meaning |
@@ -388,9 +399,7 @@ ontimize:
 |--|--|--|
 | save-config-dao | *String* | The name of the DAO for save preferences |
 
-[comment]: <> (Reactivar cuando salga la release 3.9.0)
-
-[comment]: <> (The configuration of the rest of the Preferences System is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/preferences/).)
+The configuration of the rest of the Preferences System is done by setting up the necessary DAOs for that system. To see the configuration, check [this link](/ontimize-boot/basics/preferences/).
 
 **Example**
 
