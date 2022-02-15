@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -97,6 +98,7 @@ public class SQLJdbcAutoConfiguration {
 	}
 
 	@Bean("dbSQLStatementHandler")
+	@ConditionalOnMissingBean
 	public SQLStatementHandler defaultSQLStatementHandler() {
 		SQLStatementHandler handler = new DefaultSQLStatementHandler();
 		handler.setSQLConditionValuesProcessor(this.extendedDefaultSQLConditionValuesProcessor());
