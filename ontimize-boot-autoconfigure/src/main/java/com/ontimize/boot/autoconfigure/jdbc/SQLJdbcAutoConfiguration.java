@@ -98,7 +98,7 @@ public class SQLJdbcAutoConfiguration {
 	}
 
 	@Bean("dbSQLStatementHandler")
-	@ConditionalOnMissingBean
+	@ConditionalOnMissingBean(name = "dbSQLStatementHandler")
 	public SQLStatementHandler defaultSQLStatementHandler() {
 		SQLStatementHandler handler = new DefaultSQLStatementHandler();
 		handler.setSQLConditionValuesProcessor(this.extendedDefaultSQLConditionValuesProcessor());
