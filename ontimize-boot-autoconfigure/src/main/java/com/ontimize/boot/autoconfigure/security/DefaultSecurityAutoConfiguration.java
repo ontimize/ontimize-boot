@@ -5,10 +5,11 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.AccessDecisionManager;
@@ -54,19 +55,22 @@ import com.ontimize.jee.server.security.authentication.basic.BasicAuthentication
 import com.ontimize.jee.server.security.authentication.jwt.DefaultJwtService;
 import com.ontimize.jee.server.security.authentication.jwt.IJwtService;
 import com.ontimize.jee.server.security.authentication.jwt.JwtAuthenticationMechanism;
+import com.ontimize.jee.server.security.authentication.ldap.LdapAuthenticationMechanism;
 import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizator;
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter;
 
 @Configuration
 @EnableWebSecurity
-@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "default", matchIfMissing = false)
 public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	@Value("${ontimize.security.service-path:/**}")
 	private String servicePath;
 
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
+
+	@Autowired
+	private ApplicationContext appContext;
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -86,12 +90,13 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**");
 		web.ignoring().antMatchers("/ontimize/**");
-		if (ignorePaths!=null && ignorePaths.length >0){
-			web.ignoring().antMatchers(ignorePaths);
+		if ((this.ignorePaths != null) && (this.ignorePaths.length > 0)) {
+			web.ignoring().antMatchers(this.ignorePaths);
 		}
 	}
 
-	// @Bean no puede ser un bean porque se configuraria para todos los websecurity de la aplicacion
+	// @Bean no puede ser un bean porque se configuraria para todos los websecurity
+	// de la aplicacion
 	public OntimizeAuthenticationFilter preAuthFilterOntimize() throws Exception {
 		OntimizeAuthenticationFilter filter = new OntimizeAuthenticationFilter(this.servicePath);
 		filter.setUserDetailsService(this.userDetailsService());
@@ -102,7 +107,14 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		filter.setAuthenticationEntryPoint(this.authenticationEntryPoint());
 		filter.setAuthenticationMechanismList(new ArrayList<>());
 		filter.getAuthenticationMechanismList().add(this.jwtAuthenticator());
-		filter.getAuthenticationMechanismList().add(this.basicAuthenticator());
+		if (this.appContext.containsBean("ldapAuthenticator")) {
+			filter.getAuthenticationMechanismList()
+					.add((IAuthenticationMechanism) this.appContext.getBean("ldapAuthenticator"));
+		}
+		if (this.appContext.containsBean("basicAuthenticator")) {
+			filter.getAuthenticationMechanismList()
+			.add((IAuthenticationMechanism) this.appContext.getBean("basicAuthenticator"));
+		}
 		filter.setAuthenticationSuccessHandler(new OntimizeAuthenticationSuccessHandler());
 		filter.afterPropertiesSet();
 		return filter;
@@ -115,10 +127,12 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		DatabaseUserInformationService databaseUserInformationService = new DatabaseUserInformationService();
 		databaseUserInformationService.setUserQueryId(userInformationServiceConfig.getQueryId());
 		databaseUserInformationService.setUserLoginColumn(userInformationServiceConfig.getUserLoginColumn());
-		databaseUserInformationService.setUserNeedCheckPassColumn(userInformationServiceConfig.getUserNeedCheckPassColumn());
+		databaseUserInformationService
+		.setUserNeedCheckPassColumn(userInformationServiceConfig.getUserNeedCheckPassColumn());
 		databaseUserInformationService.setUserPasswordColumn(userInformationServiceConfig.getUserPasswordColumn());
 		if (userInformationServiceConfig.getOtherData() != null) {
-			databaseUserInformationService.setUserOtherDataColumns(String.join(";", userInformationServiceConfig.getOtherData()));
+			databaseUserInformationService
+			.setUserOtherDataColumns(String.join(";", userInformationServiceConfig.getOtherData()));
 		}
 
 		Object userDao = this.getApplicationContext().getBean(userInformationServiceConfig.getUserRepository());
@@ -171,7 +185,8 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		UserRoleInformationServiceConfig userRoleInformationServiceConfig = this.userRoleInformationServiceConfig();
 		DatabaseUserRoleInformationService userRoleInformationService = new DatabaseUserRoleInformationService();
 
-		Object userRoleDao = this.getApplicationContext().getBean(userRoleInformationServiceConfig.getUserRoleRepository());
+		Object userRoleDao = this.getApplicationContext()
+				.getBean(userRoleInformationServiceConfig.getUserRoleRepository());
 		if (userRoleDao instanceof IOntimizeDaoSupport) {
 			userRoleInformationService.setUserRolesRepository((IOntimizeDaoSupport) userRoleDao);
 		}
@@ -210,15 +225,32 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		JWTConfig jwtConfig = this.jwtConfig();
 		JwtAuthenticationMechanism jwtAuthenticator = new JwtAuthenticationMechanism();
 		jwtAuthenticator.setJwtService(this.jwtService());
-		jwtAuthenticator.setTokenExpirationTime(jwtConfig.getExpirationTime() == null ? 0 : jwtConfig.getExpirationTime());
+		jwtAuthenticator
+		.setTokenExpirationTime(jwtConfig.getExpirationTime() == null ? 0 : jwtConfig.getExpirationTime());
 		jwtAuthenticator.setRefreshToken(jwtConfig.getRefreshToken() == null ? false : jwtConfig.getRefreshToken());
 		return jwtAuthenticator;
 	}
 
 	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "default", matchIfMissing = false)
 	public IAuthenticationMechanism basicAuthenticator() {
-		BasicAuthenticationMechanism basicAuthenticator = new BasicAuthenticationMechanism();
-		return basicAuthenticator;
+		return new BasicAuthenticationMechanism();
+	}
+
+	@Bean
+	@ConfigurationProperties(prefix = "ontimize.security.mode.ldap")
+	@ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "ldap", matchIfMissing = false)
+	public IAuthenticationMechanism ldapAuthenticator(
+
+			@Value(value = LdapAuthenticationMechanism.HOST_PROPERTY) String hostProperty,
+			@Value(value = LdapAuthenticationMechanism.PORT_PROPERTY) int portProperty,
+			@Value(value = LdapAuthenticationMechanism.LOGINTYPE_PROPERTY) String loginTypeProperty,
+			@Value(value = LdapAuthenticationMechanism.BINDDN_PROPERTY) String bindDnProperty,
+			@Value(value = LdapAuthenticationMechanism.BASEDN_PROPERTY) String baseDnProperty,
+			@Value(value = LdapAuthenticationMechanism.DOMAIN_PROPERTY) String domainProperty) {
+		return new LdapAuthenticationMechanism(hostProperty, portProperty, loginTypeProperty, bindDnProperty,
+				baseDnProperty, domainProperty);
+
 	}
 
 	@Override
@@ -282,9 +314,8 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>>();
 		requestMap.put(new AntPathRequestMatcher("/**/*"), SecurityConfig.createList("NONE_ENTER_WITHOUT_AUTH"));
 
-		ExpressionBasedFilterInvocationSecurityMetadataSource filterSecurityMetadataSource = new ExpressionBasedFilterInvocationSecurityMetadataSource(requestMap,
+		return new ExpressionBasedFilterInvocationSecurityMetadataSource(requestMap,
 				new DefaultWebSecurityExpressionHandler());
-		return filterSecurityMetadataSource;
 	}
 
 	@Bean
@@ -299,7 +330,6 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 
 	@Bean
 	public AuthenticationEntryPoint authenticationEntryPoint() {
-		BasicAuthenticationEntryPoint authenticationEntryPoint = new BasicAuthenticationEntryPoint();
-		return authenticationEntryPoint;
+		return new BasicAuthenticationEntryPoint();
 	}
 }
