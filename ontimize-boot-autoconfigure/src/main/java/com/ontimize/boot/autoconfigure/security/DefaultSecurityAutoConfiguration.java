@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -62,6 +63,7 @@ import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVote
 
 @Configuration
 @EnableWebSecurity
+@ConditionalOnExpression("'${ontimize.security.mode}'.equals('default') or '${ontimize.security.mode}'.equals('ldap')")
 public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
 	@Value("${ontimize.security.service-path:/**}")
 	private String servicePath;
