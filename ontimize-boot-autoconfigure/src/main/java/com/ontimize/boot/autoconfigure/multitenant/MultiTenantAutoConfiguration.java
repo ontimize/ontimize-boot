@@ -20,9 +20,10 @@ public class MultiTenantAutoConfiguration {
 		return new OntimizeBootMultiTenantFilter();
 	}
 
-	@Bean
+	@Bean(name = "tenantManager")
 	@ConditionalOnProperty(name = "ontimize.multitenant.enabled", havingValue = "true", matchIfMissing = false)
-	IMultiTenantManager tenantManager() {
+	@ConditionalOnMissingBean(name = "tenantManager")
+	IMultiTenantManager multiTenantManager() {
 		return new MultiTenantManager();
 	}
 
