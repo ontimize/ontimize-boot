@@ -1,29 +1,27 @@
 package com.ontimize.boot.report;
 
-import java.util.concurrent.Executor;
-
+import com.ontimize.jee.report.common.services.IDynamicJasperService;
+import com.ontimize.jee.report.common.services.IPreferencesService;
+import com.ontimize.jee.report.common.services.IReportStoreService;
+import com.ontimize.jee.report.rest.DynamicJasperRestController;
+import com.ontimize.jee.report.rest.PreferencesRestController;
+import com.ontimize.jee.report.rest.ReportStoreRestController;
+import com.ontimize.jee.report.rest.util.JsonServicePreferencesDtoConversor;
+import com.ontimize.jee.report.server.reportstore.DatabaseReportStoreEngine;
+import com.ontimize.jee.report.server.reportstore.FileReportStoreEngine;
+import com.ontimize.jee.report.server.reportstore.IReportStoreEngine;
+import com.ontimize.jee.report.server.reportstore.ReportStoreConfiguration;
+import com.ontimize.jee.report.server.reportstore.ReportStoreServiceImpl;
+import com.ontimize.jee.report.server.services.DynamicJasperService;
+import com.ontimize.jee.report.server.services.PreferencesService;
+import com.ontimize.jee.report.spring.namespace.OntimizeReportConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import com.ontimize.jee.common.services.reportstore.IReportStoreService;
-import com.ontimize.jee.common.services.reportstore.IDynamicJasperService;
-import com.ontimize.jee.common.services.reportstore.IPreferencesService;
-import com.ontimize.jee.report.rest.ReportStoreRestController;
-import com.ontimize.jee.report.rest.PreferencesRestController;
-import com.ontimize.jee.report.rest.DynamicJasperRestController;
-import com.ontimize.jee.server.services.reportstore.DatabaseReportStoreEngine;
-import com.ontimize.jee.server.services.reportstore.DynamicJasperService;
-import com.ontimize.jee.server.services.reportstore.FileReportStoreEngine;
-import com.ontimize.jee.server.services.reportstore.IReportStoreEngine;
-import com.ontimize.jee.server.services.reportstore.PreferencesService;
-import com.ontimize.jee.server.services.reportstore.ReportStoreConfiguration;
-import com.ontimize.jee.server.services.reportstore.ReportStoreServiceImpl;
-import com.ontimize.jee.server.spring.namespace.OntimizeReportConfiguration;
-
-import util.JsonServicePreferencesDtoConversor;
+import java.util.concurrent.Executor;
 
 @Configuration
 @ConditionalOnProperty(name = "ontimize.report.enable", havingValue = "true", matchIfMissing = false)
