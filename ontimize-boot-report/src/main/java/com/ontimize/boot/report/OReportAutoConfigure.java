@@ -6,7 +6,6 @@ import com.ontimize.jee.report.common.services.IReportStoreService;
 import com.ontimize.jee.report.rest.DynamicJasperRestController;
 import com.ontimize.jee.report.rest.PreferencesRestController;
 import com.ontimize.jee.report.rest.ReportStoreRestController;
-import com.ontimize.jee.report.rest.util.JsonServicePreferencesDtoConversor;
 import com.ontimize.jee.report.server.reportstore.DatabaseReportStoreEngine;
 import com.ontimize.jee.report.server.reportstore.FileReportStoreEngine;
 import com.ontimize.jee.report.server.reportstore.IReportStoreEngine;
@@ -76,11 +75,6 @@ public class OReportAutoConfigure {
 	public PreferencesRestController PreferencesController() {
 		PreferencesRestController preferencesController = new PreferencesRestController();
 		return preferencesController;
-	}
-	@Bean("JsonServicePreferencesDtoConversor")
-	public JsonServicePreferencesDtoConversor Conversor() {
-		JsonServicePreferencesDtoConversor conversor = new JsonServicePreferencesDtoConversor();
-		return conversor;
 	}
 	@Bean("EngineService")
 	@ConditionalOnProperty(name = "ontimize.report.engine", havingValue = "database", matchIfMissing = false)
