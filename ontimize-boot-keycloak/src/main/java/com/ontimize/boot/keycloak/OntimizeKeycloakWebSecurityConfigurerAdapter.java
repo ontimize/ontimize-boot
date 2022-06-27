@@ -25,17 +25,12 @@ import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistryImpl;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
 import com.ontimize.jee.server.dao.IOntimizeDaoSupport;
 import com.ontimize.jee.server.security.DatabaseRoleInformationService;
-import com.ontimize.jee.server.security.DatabaseUserInformationService;
-import com.ontimize.jee.server.security.DatabaseUserRoleInformationService;
 import com.ontimize.jee.server.security.ISecurityRoleInformationService;
-import com.ontimize.jee.server.security.ISecurityUserInformationService;
-import com.ontimize.jee.server.security.ISecurityUserRoleInformationService;
 import com.ontimize.jee.server.security.SecurityConfiguration;
 import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizator;
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
@@ -125,18 +120,6 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean
-	@ConfigurationProperties(prefix = "ontimize.security.user-information-service")
-	public UserInformationServiceConfig userInformationServiceConfig() {
-		return new UserInformationServiceConfig();
-	}
-
-	@Bean
-	@ConfigurationProperties(prefix = "ontimize.security.user-role-information-service")
-	public UserRoleInformationServiceConfig userRoleInformationServiceConfig() {
-		return new UserRoleInformationServiceConfig();
-	}
-
-	@Bean
 	@ConfigurationProperties(prefix = "ontimize.security.role-information-service")
 	public RoleInformationServiceConfig roleInformationServiceConfig() {
 		return new RoleInformationServiceConfig();
@@ -166,52 +149,8 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean
-	public ISecurityUserRoleInformationService userRoleInformationService() {
-		UserRoleInformationServiceConfig userRoleInformationServiceConfig = this.userRoleInformationServiceConfig();
-		DatabaseUserRoleInformationService userRoleInformationService = new DatabaseUserRoleInformationService();
-
-		Object userRoleDao = this.getApplicationContext().getBean(userRoleInformationServiceConfig.getUserRoleRepository());
-		if (userRoleDao instanceof IOntimizeDaoSupport) {
-			userRoleInformationService.setUserRolesRepository((IOntimizeDaoSupport) userRoleDao);
-		}
-
-		userRoleInformationService.setRoleQueryId(userRoleInformationServiceConfig.getQueryId());
-		userRoleInformationService.setRoleLoginColumn(userRoleInformationServiceConfig.getRoleLoginColumn());
-		userRoleInformationService.setRoleNameColumn(userRoleInformationServiceConfig.getRoleNameColumn());
-		return userRoleInformationService;
-	}
-
-	@Bean
-	@Override
-	public UserDetailsService userDetailsServiceBean() throws Exception {
-		return this.userDetailsService();
-	}
-
-	@Override
-	protected ISecurityUserInformationService userDetailsService() {
-		UserInformationServiceConfig userInformationServiceConfig = this.userInformationServiceConfig();
-		DatabaseUserInformationService databaseUserInformationService = new DatabaseUserInformationService();
-		databaseUserInformationService.setUserQueryId(userInformationServiceConfig.getQueryId());
-		databaseUserInformationService.setUserLoginColumn(userInformationServiceConfig.getUserLoginColumn());
-		databaseUserInformationService.setUserNeedCheckPassColumn(userInformationServiceConfig.getUserNeedCheckPassColumn());
-		databaseUserInformationService.setUserPasswordColumn(userInformationServiceConfig.getUserPasswordColumn());
-		if (userInformationServiceConfig.getOtherData() != null) {
-			databaseUserInformationService.setUserOtherDataColumns(String.join(";", userInformationServiceConfig.getOtherData()));
-		}
-
-		Object userDao = this.getApplicationContext().getBean(userInformationServiceConfig.getUserRepository());
-		if (userDao instanceof IOntimizeDaoSupport) {
-			databaseUserInformationService.setUserRepository((IOntimizeDaoSupport) userDao);
-		}
-
-		return databaseUserInformationService;
-	}
-
-	@Bean
 	public SecurityConfiguration securityConfiguration() {
 		SecurityConfiguration securityConfiguration = new SecurityConfiguration();
-		securityConfiguration.setUserInformationService(this.userDetailsService());
-		securityConfiguration.setUserRoleInformationService(this.userRoleInformationService());
 		securityConfiguration.setRoleInformationService(this.roleInformationService());
 		securityConfiguration.setAuthorizator(this.ontimizeAuthorizator());
 		return securityConfiguration;
