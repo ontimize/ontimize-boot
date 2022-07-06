@@ -11,6 +11,9 @@ sidebar:
   nav: sidebar-basics
 ---
 
+**Important:** This module works only for Ontimize Boot version 3.9.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
+{: .notice--warning}
+
 # Prerequisites
 You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service.
 
@@ -587,7 +590,7 @@ A specific DAO will be created for each of both tables in the reports system, an
 </div>
 <div class="multiColumn multiColumnGrow">
 
-{{ "**ReportDao.xml**" | markdownify}}
+{{ "**PreferencesDao.xml**" | markdownify}}
 {% highlight xml linenos %}
 <?xml version="1.0" encoding="UTF-8"?>
 <JdbcEntitySetup xmlns="http://www.ontimize.com/schema/jdbc"
@@ -604,7 +607,7 @@ A specific DAO will be created for each of both tables in the reports system, an
 </JdbcEntitySetup>
 {% endhighlight %}
 
-{{ "**ReportDao.java**" | markdownify}}
+{{ "**PreferencesDao.java**" | markdownify}}
 {% highlight java linenos %}
 package com.ontimize.projectwiki.model.core.dao;
 
