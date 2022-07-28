@@ -12,7 +12,7 @@ import com.ontimize.jee.webclient.export.base.ExcelExportService;
 public class ExcelExportAutoConfigure{
 	
 	@Bean("ExcelExportRestController")
-	public ExcelExportRestController exportRestController() {
+	public ExcelExportRestController excelExportRestController() {
 		return new ExcelExportRestController();
 	}
 
