@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 @ConditionalOnProperty(name = "ontimize.export.enable", havingValue = "true", matchIfMissing = false)
 public class OExportAutoConfigure {
 	
-	@Bean
+	@Bean("ExportRestController")
 	public ExportRestController exportRestController() {
 		return new ExportRestController();
 	}
