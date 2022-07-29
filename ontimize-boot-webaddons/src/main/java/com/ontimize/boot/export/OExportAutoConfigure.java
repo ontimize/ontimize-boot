@@ -1,5 +1,6 @@
 package com.ontimize.boot.export;
 
+import com.ontimize.jee.webclient.export.base.CsvExportService;
 import com.ontimize.jee.webclient.export.base.ExcelExportService;
 import com.ontimize.jee.webclient.export.base.ExportRestController;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -17,7 +18,12 @@ public class OExportAutoConfigure {
 
 
 	@Bean("ExcelExportService")
-	public ExcelExportService exportService() {
+	public ExcelExportService ExcelExportService() {
 		return new ExcelExportService();
+	}
+	
+	@Bean("CsvExportService")
+	public CsvExportService csvExportService() {
+		return new CsvExportService();
 	}
 }
