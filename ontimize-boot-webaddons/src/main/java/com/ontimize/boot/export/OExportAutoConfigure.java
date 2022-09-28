@@ -3,6 +3,7 @@ package com.ontimize.boot.export;
 import com.ontimize.jee.webclient.export.base.CsvExportService;
 import com.ontimize.jee.webclient.export.base.ExcelExportService;
 import com.ontimize.jee.webclient.export.base.ExportRestController;
+import com.ontimize.jee.webclient.export.base.PdfExportService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,5 +26,10 @@ public class OExportAutoConfigure {
 	@Bean("CsvExportService")
 	public CsvExportService csvExportService() {
 		return new CsvExportService();
+	}
+
+	@Bean("PdfExportService")
+	public PdfExportService pdfExportService() {
+		return new PdfExportService();
 	}
 }
