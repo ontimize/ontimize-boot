@@ -705,10 +705,10 @@ An application such as **Postman** will be used to execute the REST export reque
 After click in *Send* button, click in *Save Response ^* and save it to a file. Then, open the *\*.csv* file in your editor.
 
 **Postman**
-![postman](/../assets/images/export/export_postman_query_csv.png)
+![postman](/../../assets/images/export_postman_query_csv.png)
 
-**Excel**
-![export](/../assets/images/export/csvexport.png)
+**CSV**
+![export](/../../assets/images/csvexport.png)
 
 # Creating the JSON for exporting data
 

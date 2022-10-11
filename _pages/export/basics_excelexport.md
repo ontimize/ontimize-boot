@@ -726,10 +726,10 @@ An application such as **Postman** will be used to execute the REST export reque
 After click in *Send* button, click in *Save Response ^* and save it to a file. Then, open the *\*.xlsx* file in your editor.
 
 **Postman**
-![postman](/../assets/images/export/export_postman_query.png)
+![postman](/../../assets/images/export_postman_query.png)
 
 **Excel**
-![export](/../assets/images/export/excelexport.png)
+![export](/../../assets/images/excelexport.png)
 
 # Creating the JSON for exporting data
 

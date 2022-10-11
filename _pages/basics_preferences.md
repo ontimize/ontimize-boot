@@ -18,7 +18,7 @@ sidebar:
 The Ontimize preferences allow you to save the settings that are stored in the localstorage (window size, tables preferences, graphics, or reports) into the database.
 
 # Prerequisites
-You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service. 
+You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service.
 
 There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.
 
@@ -26,9 +26,9 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 <div class="multiColumn multiColumnGrow" >
   {{ "**Initial project**
 
-    /$ git clone https://github.com/ontimize/ontimize-examples 
+    /$ git clone https://github.com/ontimize/ontimize-examples
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-preferences-initial" 
+    /ontimize-examples$ git checkout boot-preferences-initial"
     | markdownify }}
 </div>
 <div class="verticalDivider"></div>
@@ -36,9 +36,9 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 
   {{ "**Final example**
 
-    /$ git clone https://github.com/ontimize/ontimize-examples 
+    /$ git clone https://github.com/ontimize/ontimize-examples
     /ontimize-examples$ cd ontimize-examples
-    /ontimize-examples$ git checkout boot-preferences" 
+    /ontimize-examples$ git checkout boot-preferences"
     | markdownify }}
 
 </div>
@@ -655,12 +655,12 @@ The body of the request needs to have the following structure:
 {
 "user":"demo",
 
-"components":{ 
+"components":{
 
   "lang":"es",
 
   . . .
-  
+
   "theme":{"primary":"#242424","accent":"#ffcc00","href":"ontimize-black-yellow.css","href_dark":"ontimize-black-yellow-dark.css","isDefault":true,"isDark":false},
 }
 }
