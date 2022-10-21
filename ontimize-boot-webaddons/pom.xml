@@ -82,6 +82,9 @@
 		<url>https://github.com/ontimize/ontimize-boot/tree/master</url>
 	</scm>
 
+	<properties>
+		<itextpdf.version>7.2.3</itextpdf.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -121,9 +124,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.lowagie</groupId>
-			<artifactId>itext</artifactId>
-			<version>2.1.7</version>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>kernel</artifactId>
+			<version>${itextpdf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>layout</artifactId>
+			<version>${itextpdf.version}</version>
 		</dependency>
 
 		<dependency>
