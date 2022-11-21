@@ -104,6 +104,10 @@
             <groupId>com.ontimize.jee.report</groupId>
             <artifactId>ontimize-jee-report-server</artifactId>
         </dependency>
+        <dependency>
+        	<groupId>com.ontimize.jee</groupId>
+        	<artifactId>ontimize-jee-webclient-addons</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
