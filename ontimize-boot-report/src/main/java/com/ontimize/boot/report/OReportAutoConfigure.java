@@ -1,10 +1,10 @@
 package com.ontimize.boot.report;
 
+
+import com.ontimize.jee.common.services.preferences.IPreferencesService;
 import com.ontimize.jee.report.common.services.IDynamicJasperService;
-import com.ontimize.jee.report.common.services.IPreferencesService;
 import com.ontimize.jee.report.common.services.IReportStoreService;
 import com.ontimize.jee.report.rest.DynamicJasperRestController;
-import com.ontimize.jee.report.rest.PreferencesRestController;
 import com.ontimize.jee.report.rest.ReportStoreRestController;
 import com.ontimize.jee.report.server.reportstore.DatabaseReportStoreEngine;
 import com.ontimize.jee.report.server.reportstore.FileReportStoreEngine;
@@ -12,8 +12,9 @@ import com.ontimize.jee.report.server.reportstore.IReportStoreEngine;
 import com.ontimize.jee.report.server.reportstore.ReportStoreConfiguration;
 import com.ontimize.jee.report.server.reportstore.ReportStoreServiceImpl;
 import com.ontimize.jee.report.server.services.DynamicJasperService;
-import com.ontimize.jee.report.server.services.PreferencesService;
 import com.ontimize.jee.report.spring.namespace.OntimizeReportConfiguration;
+import com.ontimize.jee.server.rest.PreferencesRestController;
+import com.ontimize.jee.server.services.preferences.PreferencesService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -93,5 +94,4 @@ public class OReportAutoConfigure {
 		executor.initialize();
 		return executor;
 	}
-	
 }
