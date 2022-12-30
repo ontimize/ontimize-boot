@@ -54,6 +54,7 @@ With the database started, we create the new tables that will store the charts i
 CREATE TABLE PREFERENCES(ID INTEGER NOT NULL PRIMARY KEY,NAME VARCHAR(255),DESCRIPTION VARCHAR(255),PREFERENCES VARCHAR(5000),ENTITY VARCHAR(100), TYPE BIT)
 {% endhighlight %}
 
+## Server
 ### Add Preferences DAOs
 A specific DAO will be created for each of both tables in the system, and each of them will implement a different interface.
 
@@ -370,9 +371,9 @@ Execute the following request: **http://localhost:33333/preferences/preferences?
 | localhost:33333 | Indicates the host |
 | /preferences | Indicates the service to be queried |
 | /preferences | Indicates the method of the service that is going to be executed |
-| {{entity}} | Indicates the entity to filter the preferences |
-| {{service}} | Indicates the service to filter the preferences |
-| {{type}} | Indicates the type to filter the preferences |
+| ?entity=**ENTITY** | Indicates the entity to filter the preferences |
+| &service=**SERVICE** | Indicates the service to filter the preferences |
+| &type=CHART | Indicates the type to filter the preferences |
 
 ## Save preferences
 
