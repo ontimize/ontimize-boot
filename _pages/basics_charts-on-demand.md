@@ -13,6 +13,36 @@ sidebar:
 
 **Important:** This module works only for Ontimize Boot version 3.9.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
 {: .notice--warning}
+# Prerequisites
+**Note:** You can follow this tutorial using your own application, although for this example we will use an application created using the archetype that can be found [on this page](https://ontimize.github.io/ontimize-boot/getting_started/) and with a REST service.
+{: .notice--info}
+
+There are 2 options to follow this tutorial, clone the repository with the initial state and follow the tutorial step by step, or download the final example and see which files are new and which have been updated.
+
+<div class="multiColumnRow multiColumnRowJustify">
+<div class="multiColumn multiColumnGrow" >
+  {{ "**Initial project**
+
+    /$ git clone https://github.com/ontimize/ontimize-examples
+    /ontimize-examples$ cd ontimize-examples
+    /ontimize-examples$ git checkout boot-charts-initial"
+    | markdownify }}
+</div>
+<div class="verticalDivider"></div>
+<div class="multiColumn multiColumnGrow" >
+
+  {{ "**Final example**
+
+    /$ git clone https://github.com/ontimize/ontimize-examples
+    /ontimize-examples$ cd ontimize-examples
+    /ontimize-examples$ git checkout boot-charts"
+    | markdownify }}
+
+</div>
+</div>
+
+**Note:** To simplify the code being written, three dots (...) may appear in some parts of the code. This indicates that there may be previous code before and after those dots.
+{: .notice--info}
 
 # Steps
 ## Database
@@ -346,7 +376,10 @@ Execute the following request: **http://localhost:33333/preferences/preferences?
 
 ## Save preferences
 
-Execute the following request: **http://localhost:33333/preferences/save**.
+- **URL**: http://localhost:33333/preferences/save
+- **HTTP Method**: POST
+- **Authorization**: *User:* demo, *Password*: demouser
+- **Body**: JSON
 
 | Element | Meaning |
 |--|--|

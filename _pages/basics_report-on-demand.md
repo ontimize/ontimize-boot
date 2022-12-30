@@ -28,6 +28,17 @@ Clone the repository with the initial state and follow the tutorial step by step
     /ontimize-examples$ git checkout boot-report-initial"
     | markdownify }}
 </div>
+<div class="verticalDivider"></div>
+<div class="multiColumn multiColumnGrow" >
+
+  {{ "**Final example**
+
+    /$ git clone https://github.com/ontimize/ontimize-examples
+    /ontimize-examples$ cd ontimize-examples
+    /ontimize-examples$ git checkout boot-report"
+    | markdownify }}
+
+</div>
 </div>
 
 **Note:** To simplify the code being written, three dots (...) may appear in some parts of the code. This indicates that there may be previous code before and after those dots.
@@ -931,7 +942,10 @@ Once the reports system is already configured and the server and the database ar
 
 ## Generate report
 
-Execute the following request: **http://localhost:33333/dynamicjasper/report**.
+- **URL**: http://localhost:33333/dynamicjasper/report
+- **HTTP Method**: POST
+- **Authorization**: *User:* demo, *Password*: demouser
+- **Body**: JSON
 
 | Element | Meaning |
 |--|--|
@@ -972,7 +986,10 @@ Execute the following request: **http://localhost:33333/preferences/preferences?
 
 ## Save preferences
 
-Execute the following request: **http://localhost:33333/preferences/save**.
+- **URL**: http://localhost:33333/preferences/save
+- **HTTP Method**: POST
+- **Authorization**: *User:* demo, *Password*: demouser
+- **Body**: JSON
 
 | Element | Meaning |
 |--|--|
