@@ -404,8 +404,8 @@ Execute the following request: **http://localhost:33333/preferences/preferences?
 | localhost:33333 | Indicates the host |
 | /preferences | Indicates the service to be queried |
 | /preferences | Indicates the method of the service that is going to be executed |
-| ?entity=**ENTITY** | **ENTITY** Indicates the entity to filter the preferences |
-| &service=**SERVICE** | **SERVICE** Indicates the service to filter the preferences |
+| ?entity=**ENTITY** | **ENTITY** indicates the entity to filter the preferences |
+| &service=**SERVICE** | **SERVICE** indicates the service to filter the preferences |
 | &type=CHART | Indicates the type to filter the preferences |
 
 
