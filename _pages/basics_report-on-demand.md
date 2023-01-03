@@ -971,20 +971,8 @@ Once the reports system is already configured and the server and the database ar
 }
   {% endhighlight %}
 
-## Get preferences
-
-Execute the following request: **http://localhost:33333/preferences/preferences?entity=*ENTITY*&service=*SERVICE*&type=REPORT**.
-
-| Element | Meaning |
-|--|--|
-| localhost:33333 | Indicates the host |
-| /preferences | Indicates the service to be queried |
-| /preferences | Indicates the method of the service that is going to be executed |
-| ?entity=**ENTITY** | **ENTITY** Indicates the entity to filter the preferences |
-| &service=**SERVICE** | **SERVICE** Indicates the service to filter the preferences |
-| &type=REPORT | Indicates the type to filter the preferences |
-
 ## Save preferences
+Allows to save the configuration of a report in the database to do it again quickly
 
 - **URL**: http://localhost:33333/preferences/save
 - **HTTP Method**: POST
@@ -1021,6 +1009,20 @@ Execute the following request: **http://localhost:33333/preferences/preferences?
     }
 }
 {% endhighlight %}
+
+## Get preferences
+
+Execute the following request: **http://localhost:33333/preferences/preferences?entity=*ENTITY*&service=*SERVICE*&type=REPORT**.
+
+| Element | Meaning |
+|--|--|
+| localhost:33333 | Indicates the host |
+| /preferences | Indicates the service to be queried |
+| /preferences | Indicates the method of the service that is going to be executed |
+| ?entity=**ENTITY** | **ENTITY** Indicates the entity to filter the preferences |
+| &service=**SERVICE** | **SERVICE** Indicates the service to filter the preferences |
+| &type=REPORT | Indicates the type to filter the preferences |
+
 
 The authorization used for these requests is authorization of the type **BASIC**.
 
