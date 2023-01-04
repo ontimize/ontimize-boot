@@ -12,7 +12,7 @@ sidebar:
 ---
 
 
-**Important:** This module works only for Ontimize Boot version 3.9.0-SNAPSHOT or above.
+**Important:** This module works only for Ontimize Boot version 3.9.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
 {: .notice--warning}
 
 # Introduction
