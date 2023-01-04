@@ -28,6 +28,17 @@ Clone the repository with the initial state and follow the tutorial step by step
     /ontimize-examples$ git checkout boot-report-initial"
     | markdownify }}
 </div>
+<div class="verticalDivider"></div>
+<div class="multiColumn multiColumnGrow" >
+
+  {{ "**Final example**
+
+    /$ git clone https://github.com/ontimize/ontimize-examples
+    /ontimize-examples$ cd ontimize-examples
+    /ontimize-examples$ git checkout boot-report"
+    | markdownify }}
+
+</div>
 </div>
 
 **Note:** To simplify the code being written, three dots (...) may appear in some parts of the code. This indicates that there may be previous code before and after those dots.
@@ -43,7 +54,7 @@ Clone the repository with the initial state and follow the tutorial step by step
 With the database started, we create the new tables that will store the reports information. We're going to need to create two different tables, one for the report itself and one for the report custom parameters.
 
 {% highlight sql linenos %}
-CREATE TABLE PREFERENCES(ID INTEGER NOT NULL PRIMARY KEY,NAME VARCHAR(255),DESCRIPTION VARCHAR(255),PREFERENCES VARCHAR(5000),ENTITY VARCHAR(100))
+CREATE TABLE PREFERENCES(ID INTEGER NOT NULL PRIMARY KEY,NAME VARCHAR(255),DESCRIPTION VARCHAR(255),PREFERENCES VARCHAR(5000),ENTITY VARCHAR(100), TYPE BIT)
 {% endhighlight %}
 
 ## Server
@@ -334,8 +345,8 @@ CREATE TABLE PREFERENCES(ID INTEGER NOT NULL PRIMARY KEY,NAME VARCHAR(255),DESCR
 
 </div>
 
-### Add Report DAOs
-A specific DAO will be created for each of both tables in the reports system, and each of them will implement a different interface.
+### Add Preferences DAOs
+A specific DAO will be created for each of both tables in the system, and each of them will implement a different interface.
 
 <div class="multiColumnRow">
 <div class="multiColumn jstreeloader">
@@ -593,42 +604,46 @@ A specific DAO will be created for each of both tables in the reports system, an
 {{ "**PreferencesDao.xml**" | markdownify}}
 {% highlight xml linenos %}
 <?xml version="1.0" encoding="UTF-8"?>
-<JdbcEntitySetup xmlns="http://www.ontimize.com/schema/jdbc"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
-	table="REPORTS" datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
-	<DeleteKeys>
-		<Column>ID</Column>
-	</DeleteKeys>
-	<UpdateKeys>
-		<Column>ID</Column>
-	</UpdateKeys>
-	<GeneratedKey>ID</GeneratedKey>
+<JdbcEntitySetup
+ xmlns="http://www.ontimize.com/schema/jdbc"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://www.ontimize.com/schema/jdbc http://www.ontimize.com/schema/jdbc/ontimize-jdbc-dao.xsd"
+ catalog="" schema="${mainschema}" table="PREFERENCES"
+ datasource="mainDataSource" sqlhandler="dbSQLStatementHandler">
+ <DeleteKeys>
+  <Column>ID</Column>
+ </DeleteKeys>
+ <UpdateKeys>
+  <Column>ID</Column>
+ </UpdateKeys>
+ <GeneratedKey>ID</GeneratedKey>
 </JdbcEntitySetup>
 {% endhighlight %}
 
 {{ "**PreferencesDao.java**" | markdownify}}
 {% highlight java linenos %}
-package com.ontimize.projectwiki.model.core.dao;
+package com.imatia.qsallcomponents.model.dao;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Repository;
 
+import com.ontimize.jee.server.dao.IPreferencesDao;
 import com.ontimize.jee.server.dao.common.ConfigurationFile;
 import com.ontimize.jee.server.dao.jdbc.OntimizeJdbcDaoSupport;
-import com.ontimize.jee.server.services.reportstore.dao.IReportDao;
 
 @Lazy
 @Repository(value = "PreferencesDao")
 @ConfigurationFile(configurationFile = "base-dao/PreferencesDao.xml", configurationFilePlaceholder = "base-dao/placeholders.properties")
 public class PreferencesDao extends OntimizeJdbcDaoSupport implements IPreferencesDao {
 
-	public static final String ATTR_ID = "ID";
-	public static final String ATTR_NAME = "NAME";
-	public static final String ATTR_DESCRIPTION = "DESCRIPTION";
-	public static final String ATTR_PREFERENCES = "PREFERENCES";
+    public static final String ATTR_ID = "ID";
+    public static final String ATTR_NAME = "NAME";
+    public static final String ATTR_DESCRIPTION = "DESCRIPTION";
+    public static final String ATTR_PREFERENCES = "PREFERENCES";
+    public static final String ATTR_TYPE = "TYPE";
 
 }
+
 
 {% endhighlight %}
 
@@ -927,7 +942,10 @@ Once the reports system is already configured and the server and the database ar
 
 ## Generate report
 
-Execute the following request: **http://localhost:33333/dynamicjasper/report**.
+- **URL**: http://localhost:33333/dynamicjasper/report
+- **HTTP Method**: POST
+- **Authorization**: *User:* demo, *Password*: demouser
+- **Body**: JSON
 
 | Element | Meaning |
 |--|--|
@@ -953,21 +971,13 @@ Execute the following request: **http://localhost:33333/dynamicjasper/report**.
 }
   {% endhighlight %}
 
-## Get preferences
-
-Execute the following request: **http://localhost:33333/preferences/preferences?entity={{entity}}&service={{service}}**.
-
-| Element | Meaning |
-|--|--|
-| localhost:33333 | Indicates the host |
-| /preferences | Indicates the service to be queried |
-| /preferences | Indicates the method of the service that is going to be executed |
-| {{entity}} | Indicates the entity to filter the preferences |
-| {{service}} | Indicates the service to filter the preferences |
-
 ## Save preferences
+Allows to save the configuration of a report in the database to do it again quickly
 
-Execute the following request: **http://localhost:33333/preferences/save**.
+- **URL**: http://localhost:33333/preferences/save
+- **HTTP Method**: POST
+- **Authorization**: Basic Auth with parameters *User:* demo, *Password*: demouser
+- **Body**: JSON
 
 | Element | Meaning |
 |--|--|
@@ -982,7 +992,8 @@ Execute the following request: **http://localhost:33333/preferences/save**.
     "description":"PreferencesDescription",
     "entity": "customer",
     "service": "Customer",
-    "reportParams": {
+    "type":"REPORT",
+    "params": {
       "title": "Report on demand",
       "groups": [],
       "entity": "customer",
@@ -998,6 +1009,20 @@ Execute the following request: **http://localhost:33333/preferences/save**.
     }
 }
 {% endhighlight %}
+
+## Get preferences
+
+Execute the following request: **http://localhost:33333/preferences/preferences?entity=*ENTITY*&service=*SERVICE*&type=REPORT**.
+
+| Element | Meaning |
+|--|--|
+| localhost:33333 | Indicates the host |
+| /preferences | Indicates the service to be queried |
+| /preferences | Indicates the method of the service that is going to be executed |
+| ?entity=**ENTITY** | **ENTITY** indicates the entity to filter the preferences |
+| &service=**SERVICE** | **SERVICE** indicates the service to filter the preferences |
+| &type=REPORT | Indicates the type to filter the preferences |
+
 
 The authorization used for these requests is authorization of the type **BASIC**.
 
