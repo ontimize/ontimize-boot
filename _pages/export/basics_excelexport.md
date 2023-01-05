@@ -1,7 +1,7 @@
 ---
-title: "Export data to *.xlsx file"
+title: "Export data to xlsx"
 layout: single
-permalink: /basics/excelexport/
+permalink: /basics/export/exportdata/export-data-to-xlsx
 toc: true
 toc_label: "Table of Contents"
 toc_sticky: true
@@ -11,7 +11,7 @@ sidebar:
   nav: sidebar-basics
 ---
 
-**Important:** This module works only for Ontimize Boot version 3.7.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
+**Important:** This module works only for Ontimize Boot version 3.9.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
 {: .notice--warning}
 
 # Introduction
@@ -26,18 +26,18 @@ There are 2 options to follow this tutorial, clone the repository with the initi
 <div class="multiColumnRow multiColumnRowJustify">
   <div class="multiColumn multiColumnGrow" >
   {{ "**Initial project**
- 
+
     /$ git clone https://github.com/ontimize/ontimize-examples
     /ontimize-examples$ cd ontimize-examples
     /ontimize-examples$ git checkout boot-export-initial"
     | markdownify }}
-   
+
 </div>
 <div class="verticalDivider"></div>
 <div class="multiColumn multiColumnGrow">
 
   {{ "**Final example**
-    
+
     /$ git clone https://github.com/ontimize/ontimize-examples
     /ontimize-examples$ cd ontimize-examples
     /ontimize-examples$ git checkout boot-export"
@@ -313,7 +313,7 @@ Two dependencies need to be added, one to the ws module containing the controlle
   </div>
   <div class="multiColumn multiColumnGrow" >
 
-{{ "**projectwiki-boot/pom.xml**" | markdownify }}   
+{{ "**projectwiki-boot/pom.xml**" | markdownify }}
 {% highlight xml %}
     <dependencies>
         ...
@@ -325,7 +325,7 @@ Two dependencies need to be added, one to the ws module containing the controlle
     </dependencies>
 {% endhighlight %}
 
-{{ "**projectwiki-ws/pom.xml**" | markdownify }}   
+{{ "**projectwiki-ws/pom.xml**" | markdownify }}
 {% highlight xml %}
     <dependencies>
         ...
@@ -605,7 +605,7 @@ In the application.yml file, a configuration will be added to allow indicating t
 | Attribute | Values | Meaning |
 |--|--|--|
 | url | *String* | Specifies the path to use the export system. |
-| extension | *String* | Specifies the file extension to use. This *String* will append to the *url* path as a additional path.  |
+| enable | *Boolean* | Indicates when export is enabled.  |
 
 **Example**
 ```yaml
@@ -614,7 +614,7 @@ ontimize:
 ...
    export:
       url: /export
-      extension: xlsx
+      enable: true
 ...
 ```
 "| markdownify }}
@@ -656,13 +656,14 @@ An application such as **Postman** will be used to execute the REST export reque
             "SPECIALTIES": 12,
             "NAME": 12
         }
+        "offset": -1,
+        "pageSize": 25
     },
     "service": "CandidateService",
     "dao": "candidate",
-    "offset": -1,
-    "pageSize": 25,
+    "path": "/candidates",
     "advQuery": false,
-    "excelColumns": {
+    "columns": {
         "ID": {},
         "DNI": {},
         "NAME": {},
@@ -725,10 +726,10 @@ An application such as **Postman** will be used to execute the REST export reque
 After click in *Send* button, click in *Save Response ^* and save it to a file. Then, open the *\*.xlsx* file in your editor.
 
 **Postman**
-![postman](/../assets/images/export_postman_query.png)
+![postman](/../../assets/images/export_postman_query.png)
 
 **Excel**
-![export](/../assets/images/excelexport.png)
+![export](/../../assets/images/excelexport.png)
 
 # Creating the JSON for exporting data
 
@@ -736,13 +737,12 @@ This is the list of values accepted by the JSON request to generate the export f
 
 | Attribute | Values | Meaning |
 |--|--|--|
-| queryParam | *JSON Object* | A JSON object defining the *columns* and *sqltypes* elements. {::nomarkdown}<table style="font-size: 1em"><thead><tr><td>Attribute</td><td>Values</td><td>Meaning</td></tr></thead><tbody><tr><td>columns</td><td>JSON Array</td><td>An array that indicates which columns to query in the database.</td></tr><tr><td>sqltypes</td><td>JSON Object</td><td>An object containing the key-value pairs for the data type contained in the database. As a key, the column name and as a value, the integer corresponding to the database data type, which can be found at this {:/}[link](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/java/sql/Types.html).{::nomarkdown}</td></tr></tbody></table>{:/} |
+| queryParam | *JSON Object* | A JSON object defining the *columns* and *sqltypes* elements. {::nomarkdown}<table style="font-size: 1em"><thead><tr><td>Attribute</td><td>Values</td><td>Meaning</td></tr></thead><tbody><tr><td>columns</td><td>JSON Array</td><td>An array that indicates which columns to query in the database.</td></tr><tr><td>sqltypes</td><td>JSON Object</td><td>An object containing the key-value pairs for the data type contained in the database. As a key, the column name and as a value, the integer corresponding to the database data type, which can be found at this {:/}[link](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/java/sql/Types.html).{::nomarkdown}</td></tr><tr><td>offset</td><td> *Integer* </td><td>Integer to especify a page to query. -1 if don't want it</td><tr><td>pageSize</td><td> *Integer* </td><td>The size of the page for advanced query. Useless with *advQuery: false*</td></tbody></table>{:/} |
 | service | *String* |This is the bean name of the service you want to query. (The name that appears inside the @Service() annotation, e.g.: *@Service("SERVICE_NAME")* = **SERVICE_NAME**)|
 | dao | *String* |Name of the query method of the service to be queried **without** the suffix *Query* or *PaginationQuery*, e.g.: *customerQuery* = **customer**|
-| offset | *Integer* | Integer to especify a page to query. -1 if don't want it |
-| pageSize | *Integer* | The size of the page for advanced query. Useless with *advQuery: false* |
+| path | *String* |Name of the path to be queried|
 | advQuery | *Boolean* | Determines whether the DAO query method is *Query* or *PaginationQuery*. |
-| excelColumns | *JSON Object* |Determines the order of the columns in the export|
+| columns | *JSON Object* |Determines the order of the columns in the export|
 | columnTitles | *JSON Object* |Translates the name of the column to be exported, replacing it with the value of the key.|
 | columnTypes | *JSON Object* |Key-value pairs that indicate how the data will be treated within the cell, e.g.: String, Date, Integer, etc. These data types are those corresponding to the database data type, which can be found at this [link](https://docs.oracle.com/en/java/javase/11/docs/api/java.sql/java/sql/Types.html)|
 | styles | *JSON Object* |JSON objects used to indicate the styles that the cell will have, grouped under the same name. Only the following styles are supported: {::nomarkdown}<table style="font-size: 1em"><thead><tr><td>Attribute</td><td>Values</td><td>Meaning</td></tr></thead><tbody><tr><td>dataFormatString</td><td>*String*</td><td>Format string for some formatter, like decimals, e.g.: #,##0.00</td></tr><tr><td>alignment</td><td>*String*</td><td>These are the possible values for the horizontal alignment: GENERAL, LEFT, CENTER, RIGHT, FILL, JUSTIFY, CENTER_SELECTION, DISTRIBUTED</td></tr><tr><td>verticalAlignment</td><td>*String*</td><td>These are the possible values for the horizontal alignment: TOP, CENTER, BOTTOM, JUSTIFY, DISTRIBUTED</td></tr><tr><td>fillBackgroundColor</td><td>*String*</td><td>These are the possible values for the background colors: BLACK1, WHITE1, RED1, BRIGHT_GREEN1, BLUE1, YELLOW1, PINK1, TURQUOISE1, BLACK, WHITE, RED, BRIGHT_GREEN, BLUE, YELLOW, PINK, TURQUOISE, DARK_RED, GREEN, DARK_BLUE, DARK_YELLOW, VIOLET, TEAL, GREY_25_PERCENT, GREY_50_PERCENT, CORNFLOWER_BLUE, MAROON, LEMON_CHIFFON, LIGHT_TURQUOISE1, ORCHID, CORAL, ROYAL_BLUE, LIGHT_CORNFLOWER_BLUE, SKY_BLUE, LIGHT_TURQUOISE, LIGHT_GREEN, LIGHT_YELLOW, PALE_BLUE, ROSE, LAVENDER, TAN, LIGHT_BLUE, AQUA, LIME, GOLD, LIGHT_ORANGE, ORANGE, BLUE_GREY, GREY_40_PERCENT, DARK_TEAL, SEA_GREEN, DARK_GREEN, OLIVE_GREEN, BROWN, PLUM</td></tr></tbody></table>{:/} |

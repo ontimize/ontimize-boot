@@ -24,8 +24,8 @@ sidebar-basics:
         url: /basics/autoconfigurators/
       - title: "Complex Queries"
         url: /basics/complexqueries/
-      - title: "Export data to *.xlsx file"
-        url: /basics/excelexport/
+      - title: "Export data"
+        url: /basics/export/exportdata/
       - title: "Migration from Ontimize 1.x.x to 3.x.x"
         url: /basics/migration/
       - title: "Multiple DataSources"
@@ -54,4 +54,3 @@ sidebar-basics:
     children:
       - title: "Versions"
         url: /basics/versions/
-    

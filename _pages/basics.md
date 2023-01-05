@@ -10,7 +10,7 @@ This section pretends to show the basic elements for the development of an appli
 
 - [Autoconfigurators](/ontimize-boot/basics/autoconfigurators)
 - [Complex Queries](/ontimize-boot/basics/complexqueries)
-- [Export data to *.xlsx file](/ontimize-boot/basics/excelexport)
+- [Export data](/ontimize-boot/basics/exportdata)
 - [Migration from Ontimize 1.x.x to 3.x.x](/ontimize-boot/basics/migration)
 - [Multiple Datasources](/ontimize-boot/basics/multipledatasources)
 - [Understanding application.yml file](/ontimize-boot/basics/applicationyml)
