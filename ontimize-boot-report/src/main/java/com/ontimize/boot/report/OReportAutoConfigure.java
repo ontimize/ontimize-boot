@@ -1,21 +1,27 @@
 package com.ontimize.boot.report;
 
-import java.util.concurrent.Executor;
 
+import com.ontimize.jee.common.services.preferences.IPreferencesService;
+import com.ontimize.jee.report.common.services.IDynamicJasperService;
+import com.ontimize.jee.report.common.services.IReportStoreService;
+import com.ontimize.jee.report.rest.DynamicJasperRestController;
+import com.ontimize.jee.report.rest.ReportStoreRestController;
+import com.ontimize.jee.report.server.reportstore.DatabaseReportStoreEngine;
+import com.ontimize.jee.report.server.reportstore.FileReportStoreEngine;
+import com.ontimize.jee.report.server.reportstore.IReportStoreEngine;
+import com.ontimize.jee.report.server.reportstore.ReportStoreConfiguration;
+import com.ontimize.jee.report.server.reportstore.ReportStoreServiceImpl;
+import com.ontimize.jee.report.server.services.DynamicJasperService;
+import com.ontimize.jee.report.spring.namespace.OntimizeReportConfiguration;
+import com.ontimize.jee.server.rest.PreferencesRestController;
+import com.ontimize.jee.server.services.preferences.PreferencesService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import com.ontimize.jee.common.services.reportstore.IReportStoreService;
-import com.ontimize.jee.report.rest.ReportStoreRestController;
-import com.ontimize.jee.server.services.reportstore.DatabaseReportStoreEngine;
-import com.ontimize.jee.server.services.reportstore.FileReportStoreEngine;
-import com.ontimize.jee.server.services.reportstore.IReportStoreEngine;
-import com.ontimize.jee.server.services.reportstore.ReportStoreConfiguration;
-import com.ontimize.jee.server.services.reportstore.ReportStoreServiceImpl;
-import com.ontimize.jee.server.spring.namespace.OntimizeReportConfiguration;
+import java.util.concurrent.Executor;
 
 @Configuration
 @ConditionalOnProperty(name = "ontimize.report.enable", havingValue = "true", matchIfMissing = false)
@@ -31,7 +37,14 @@ public class OReportAutoConfigure {
 	public IReportStoreService ontimizeReportStoreService() {
 		return new ReportStoreServiceImpl();
 	}
-	
+	@Bean("DynamicJasperService")
+	public IDynamicJasperService ontimizeDynamicJasperService() {
+		return new DynamicJasperService();
+	}
+	@Bean("PreferencesService")
+	public IPreferencesService ontimizePreferencesService() {
+		return new PreferencesService();
+	}
 	@Bean
 	public OntimizeReportConfiguration ontimizeReportConfiguration(IReportStoreEngine reportStoreEngine) {
 		ReportStoreConfiguration reportConfiguration = new ReportStoreConfiguration();
@@ -54,7 +67,16 @@ public class OReportAutoConfigure {
 		ReportStoreRestController reportController = new ReportStoreRestController();
 		return reportController;
 	}
-	
+	@Bean("DynamicReportControllerService")
+	public DynamicJasperRestController DynamicJasperController() {
+		DynamicJasperRestController reportController = new DynamicJasperRestController();
+		return reportController;
+	}
+	@Bean("PreferencesControllerService")
+	public PreferencesRestController PreferencesController() {
+		PreferencesRestController preferencesController = new PreferencesRestController();
+		return preferencesController;
+	}
 	@Bean("EngineService")
 	@ConditionalOnProperty(name = "ontimize.report.engine", havingValue = "database", matchIfMissing = false)
 	public IReportStoreEngine databaseReportStoreEngine() {
@@ -72,5 +94,4 @@ public class OReportAutoConfigure {
 		executor.initialize();
 		return executor;
 	}
-	
 }

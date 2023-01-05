@@ -1,194 +1,194 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>ontimize-boot-dependencies</artifactId>
-	<packaging>pom</packaging>
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>ontimize-boot-dependencies</artifactId>
+    <packaging>pom</packaging>
 
-	<parent>
-		<groupId>com.ontimize.boot</groupId>
-		<artifactId>ontimize-boot</artifactId>
-		<version>3.8.1</version>
-	</parent>
+    <parent>
+        <groupId>com.ontimize.boot</groupId>
+        <artifactId>ontimize-boot</artifactId>
+        <version>3.9.0</version>
+    </parent>
 
-	<organization>
-		<name>Imatia Innovation</name>
-		<url>http://imatia.com</url>
-	</organization>
+    <organization>
+        <name>Imatia Innovation</name>
+        <url>http://imatia.com</url>
+    </organization>
 
-	<name>Ontimize Boot (Dependencies module)</name>
-	<description>Ontimize Boot (Dependencies module)</description>
-	<url>https://www.ontimize.com</url>
+    <name>Ontimize Boot (Dependencies module)</name>
+    <description>Ontimize Boot (Dependencies module)</description>
+    <url>https://www.ontimize.com</url>
 
-	<developers>
-		<developer>
-			<name>Cristóbal Miguel Vázquez Carde</name>
-			<email>cmiguel.vazquez@imatia.com</email>
-			<organization>Imatia Innovation</organization>
-			<organizationUrl>http://imatia.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Enrique Álvarez Pereira</name>
-			<email>enrique.alvarez@imatia.com</email>
-			<organization>Imatia Innovation</organization>
-			<organizationUrl>http://imatia.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Faustino Lage Rego</name>
-			<email>faustino.lage@imatia.com</email>
-			<organization>Imatia Innovation</organization>
-			<organizationUrl>http://imatia.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Joaquín Romero Riveiro</name>
-			<email>joaquin.romero@imatia.com</email>
-			<organization>Imatia Innovation</organization>
-			<organizationUrl>http://imatia.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Lucía Fernández Núñez</name>
-			<email>lucia.fernandez@imatia.com</email>
-			<organization>Imatia Innovation</organization>
-			<organizationUrl>http://imatia.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Manuel Cid Rodríguez</name>
-			<email>manuel.cid@imatia.com</email>
-			<organization>Imatia Innovation</organization>
-			<organizationUrl>http://imatia.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Pablo Martínez Kirsten</name>
-			<email>pablo.martinez@imatia.com</email>
-			<organization>Imatia Innovation</organization>
-			<organizationUrl>http://imatia.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Xoán Loureiro Santamaría</name>
-			<email>xoan.loureiro@imatia.com</email>
-			<organization>Imatia Innovation</organization>
-			<organizationUrl>http://imatia.com</organizationUrl>
-		</developer>
-	</developers>
+    <developers>
+        <developer>
+            <name>Daniel Graña Cousido</name>
+            <email>daniel.grana@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Enrique Alvarez Pereira</name>
+            <email>enrique.alvarez@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Faustino Lage Rego</name>
+            <email>faustino.lage@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Joaquín Romero Riveiro</name>
+            <email>joaquin.romero@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Jorge Díaz Seijo</name>
+            <email>jorge.diaz@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Pablo Martínez Kirsten</name>
+            <email>pablo.martinez@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Tomás Fuentes Facal</name>
+            <email>tomas.fuentes@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Xoán Loureiro Santamaría</name>
+            <email>xoan.loureiro@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+    </developers>
 
-	<licenses>
-		<license>
-			<name>The Apache License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-		</license>
-	</licenses>
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
-	<scm>
-		<connection>scm:git:git://github.com/ontimize/ontimize-boot.git</connection>
-		<developerConnection>scm:git:ssh://github.com:ontimize/ontimize-boot.git</developerConnection>
-		<url>https://github.com/ontimize/ontimize-boot/tree/master</url>
-	</scm>
+    <scm>
+        <connection>scm:git:git://github.com/ontimize/ontimize-boot.git</connection>
+        <developerConnection>scm:git:ssh://github.com:ontimize/ontimize-boot.git</developerConnection>
+        <url>https://github.com/ontimize/ontimize-boot/tree/master</url>
+    </scm>
 
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.ontimize.jee</groupId>
-				<artifactId>ontimize-jee-server-jdbc</artifactId>
-				<version>${project.dependency.ontimize-jee.version}</version>
-			</dependency>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.ontimize.jee</groupId>
+                <artifactId>ontimize-jee-server-jdbc</artifactId>
+                <version>${project.dependency.ontimize-jee.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.jee</groupId>
-				<artifactId>ontimize-jee-server</artifactId>
-				<version>${project.dependency.ontimize-jee.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.jee</groupId>
+                <artifactId>ontimize-jee-server</artifactId>
+                <version>${project.dependency.ontimize-jee.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.jee</groupId>
-				<artifactId>ontimize-jee-common</artifactId>
-				<version>${project.dependency.ontimize-jee.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.jee</groupId>
+                <artifactId>ontimize-jee-common</artifactId>
+                <version>${project.dependency.ontimize-jee.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.jee</groupId>
-				<artifactId>ontimize-jee-server-rest</artifactId>
-				<version>${project.dependency.ontimize-jee.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.jee</groupId>
+                <artifactId>ontimize-jee-server-rest</artifactId>
+                <version>${project.dependency.ontimize-jee.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.jee.dms</groupId>
-				<artifactId>ontimize-jee-dms-server</artifactId>
-				<version>${project.dependency.ontimize-jee-dms.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.jee.dms</groupId>
+                <artifactId>ontimize-jee-dms-server</artifactId>
+                <version>${project.dependency.ontimize-jee-dms.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.jee.dms</groupId>
-				<artifactId>ontimize-jee-dms-rest</artifactId>
-				<version>${project.dependency.ontimize-jee-dms.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.jee.dms</groupId>
+                <artifactId>ontimize-jee-dms-rest</artifactId>
+                <version>${project.dependency.ontimize-jee-dms.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-autoconfigure</artifactId>
-				<version>${project.dependency.ontimize.boot.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-autoconfigure</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-core</artifactId>
-				<version>${project.dependency.ontimize.boot.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-core</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-core</artifactId>
-				<version>${project.dependency.ontimize.boot.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-starter-core</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-common</artifactId>
-				<version>${project.dependency.ontimize.boot.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-starter-common</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-jdbc</artifactId>
-				<version>${project.dependency.ontimize.boot.version}</version>
-				<exclusions>
-					<exclusion>
-						<groupId>org.springframework.session</groupId>
-						<artifactId>spring-session-data-redis</artifactId>
-					</exclusion>
-				</exclusions>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-starter-jdbc</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.springframework.session</groupId>
+                        <artifactId>spring-session-data-redis</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-rest</artifactId>
-				<version>${project.dependency.ontimize.boot.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-starter-rest</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-keycloak</artifactId>
-				<version>${project.dependency.ontimize.boot.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-keycloak</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-keycloak</artifactId>
-        <version>${project.dependency.ontimize.boot.version}</version>
-      </dependency>
-      
-      <dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-report</artifactId>
-        <version>${project.dependency.ontimize.boot.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-starter-keycloak</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
 
-			<dependency>
-				<groupId>com.ontimize.boot</groupId>
-				<artifactId>ontimize-boot-starter-webaddons</artifactId>
-				<version>${project.dependency.ontimize.boot.version}</version>
-			</dependency>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-starter-report</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
 
-		</dependencies>
-	</dependencyManagement>
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-starter-webaddons</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
 </project>

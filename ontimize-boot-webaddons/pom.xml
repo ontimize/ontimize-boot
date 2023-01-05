@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>com.ontimize.boot</groupId>
 		<artifactId>ontimize-boot</artifactId>
-		<version>3.8.1</version>
+		<version>3.9.0</version>
 	</parent>
 	<artifactId>ontimize-boot-webaddons</artifactId>
 
@@ -20,13 +20,13 @@
 
 	<developers>
 		<developer>
-			<name>Cristóbal Miguel Vázquez Carde</name>
-			<email>cmiguel.vazquez@imatia.com</email>
+			<name>Daniel Graña Cousido</name>
+			<email>daniel.grana@imatia.com</email>
 			<organization>Imatia Innovation</organization>
 			<organizationUrl>http://imatia.com</organizationUrl>
 		</developer>
 		<developer>
-			<name>Enrique Álvarez Pereira</name>
+			<name>Enrique Alvarez Pereira</name>
 			<email>enrique.alvarez@imatia.com</email>
 			<organization>Imatia Innovation</organization>
 			<organizationUrl>http://imatia.com</organizationUrl>
@@ -44,20 +44,20 @@
 			<organizationUrl>http://imatia.com</organizationUrl>
 		</developer>
 		<developer>
-			<name>Lucía Fernández Núñez</name>
-			<email>lucia.fernandez@imatia.com</email>
-			<organization>Imatia Innovation</organization>
-			<organizationUrl>http://imatia.com</organizationUrl>
-		</developer>
-		<developer>
-			<name>Manuel Cid Rodríguez</name>
-			<email>manuel.cid@imatia.com</email>
+			<name>Jorge Díaz Seijo</name>
+			<email>jorge.diaz@imatia.com</email>
 			<organization>Imatia Innovation</organization>
 			<organizationUrl>http://imatia.com</organizationUrl>
 		</developer>
 		<developer>
 			<name>Pablo Martínez Kirsten</name>
 			<email>pablo.martinez@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Tomás Fuentes Facal</name>
+			<email>tomas.fuentes@imatia.com</email>
 			<organization>Imatia Innovation</organization>
 			<organizationUrl>http://imatia.com</organizationUrl>
 		</developer>
@@ -82,6 +82,9 @@
 		<url>https://github.com/ontimize/ontimize-boot/tree/master</url>
 	</scm>
 
+	<properties>
+		<itextpdf.version>7.2.3</itextpdf.version>
+	</properties>
 
 	<dependencies>
 		<dependency>
@@ -121,9 +124,15 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.lowagie</groupId>
-			<artifactId>itext</artifactId>
-			<version>2.1.7</version>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>kernel</artifactId>
+			<version>${itextpdf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.itextpdf</groupId>
+			<artifactId>layout</artifactId>
+			<version>${itextpdf.version}</version>
 		</dependency>
 
 		<dependency>
