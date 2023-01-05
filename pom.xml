@@ -28,13 +28,13 @@
 
     <developers>
         <developer>
-            <name>Cristóbal Miguel Vázquez Carde</name>
-            <email>cmiguel.vazquez@imatia.com</email>
+            <name>Daniel Graña Cousido</name>
+            <email>daniel.grana@imatia.com</email>
             <organization>Imatia Innovation</organization>
             <organizationUrl>http://imatia.com</organizationUrl>
         </developer>
         <developer>
-            <name>Enrique Álvarez Pereira</name>
+            <name>Enrique Alvarez Pereira</name>
             <email>enrique.alvarez@imatia.com</email>
             <organization>Imatia Innovation</organization>
             <organizationUrl>http://imatia.com</organizationUrl>
@@ -52,14 +52,8 @@
             <organizationUrl>http://imatia.com</organizationUrl>
         </developer>
         <developer>
-            <name>Lucía Fernández Núñez</name>
-            <email>lucia.fernandez@imatia.com</email>
-            <organization>Imatia Innovation</organization>
-            <organizationUrl>http://imatia.com</organizationUrl>
-        </developer>
-        <developer>
-            <name>Manuel Cid Rodríguez</name>
-            <email>manuel.cid@imatia.com</email>
+            <name>Jorge Díaz Seijo</name>
+            <email>jorge.diaz@imatia.com</email>
             <organization>Imatia Innovation</organization>
             <organizationUrl>http://imatia.com</organizationUrl>
         </developer>
