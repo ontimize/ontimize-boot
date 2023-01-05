@@ -1,16 +1,21 @@
-name: Generate a snapshot in MVNCentral
-on: 
-  push:
-    branches:    
-      - 'develop'
+name: Generate a version in MVNCentral
+on:
+  pull_request:
+    types: [closed]
+    branches: [develop]
 jobs:
   Generate-a-snapshot-in-MVNCentral:
+    if: github.event.pull_request.merged
     runs-on: ubuntu-latest
+    env:
+      MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
+      MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
+      MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
     steps:
       - name : Checkout repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Setup Java JDK and Maven
-        uses: ontimize/setup-java-maven-gitAction@v2.4.2
+        uses: ontimize/setup-java-maven-gitAction@v2.4.4
         with:
           distribution: 'temurin'
           java-version: '11'
@@ -18,10 +23,6 @@ jobs:
           server-username: MAVEN_USERNAME
           server-password: MAVEN_CENTRAL_TOKEN
           gpg-private-key: ${{ secrets.MAVEN_GPG_PRIVATE_KEY }}
-          gpg-passphrase: MAVEN_GPG_PASSPHRASE       
+          gpg-passphrase: MAVEN_GPG_PASSPHRASE
       - name: Publish to Apache Maven Central
-        run: mvn -U clean deploy -Pgenerate-version
-        env:
-          MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
-          MAVEN_CENTRAL_TOKEN: ${{ secrets.MAVEN_CENTRAL_TOKEN }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+        run: mvn -B -U clean deploy -Pgenerate-version
