@@ -646,7 +646,7 @@ The type of the request is POST.
 | Element | Meaning |
 |--|--|
 | localhost:33333 | Indicates the host |
-| /configuration | Indicates the service to be queried |
+| /configuration | Indicates the service |
 | /preferences | Indicates the type of configuration that you're going to save. You can write the name you want. |
 
 The body of the request needs to have the following structure:
@@ -672,7 +672,7 @@ The body of the request needs to have the following structure:
 
 ### Query preferences
 
-To query preferences of the database, we will execute the following REST Request: **http://localhost:8080/qsallcomponents-jee/configuration/preferences?user=demo**
+To query preferences of the database, we will execute the following REST Request: **http://localhost:33333/configuration/preferences?user=demo**
 
 The type of the request is GET.
 {: .notice--warning}
@@ -681,5 +681,5 @@ The type of the request is GET.
 |--|--|
 | localhost:33333 | Indicates the host. |
 | /configuration | Indicates the service to be queried. |
-| /preferences | Indicates the type of configuration that you're going to save. You can write the name you want. |
+| /preferences | Indicates the type of configuration that will be queried.|
 | ?user=demo | Indicates the user. |
