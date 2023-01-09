@@ -11,31 +11,31 @@ This page allows you to know how to start developing an application with Ontimiz
 
 ## Prerequisites
 
- - [Java JDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
- - [Maven](https://maven.apache.org/download.cgi)
- - Any IDE that supports Spring Boot ([Eclipse](https://www.eclipse.org/downloads/packages/release/2020-09/r/eclipse-ide-enterprise-java-developers), [IntelliJ](https://www.jetbrains.com/es-es/idea/download/#section=windows)...)
- - [Git](https://git-scm.com/) (Optional)
+- [Java JDK 11](https://adoptopenjdk.net/?variant=openjdk11&jvmVariant=hotspot)
+- [Maven](https://maven.apache.org/download.cgi)
+- Any IDE that supports Spring Boot ([Eclipse](https://www.eclipse.org/downloads/packages/release/2020-09/r/eclipse-ide-enterprise-java-developers), [IntelliJ](https://www.jetbrains.com/es-es/idea/download/#section=windows)...)
+- [Git](https://git-scm.com/) (Optional)
 
 ## Create application from archetype
 
 Open a console and type the next command:
 
-    mvn archetype:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -Dpackage=YOUR.GROUPID.ARTIFACTID -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-backend-archetype -DarchetypeVersion=1.0.2 -DinteractiveMode=false
+    mvn archetype:generate -DgroupId=YOUR_GROUP_ID -DartifactId=YOUR_ARTIFACT_ID -Dversion=YOUR_VERSION -Dpackage=YOUR.GROUPID.ARTIFACTID -DarchetypeGroupId=com.ontimize -DarchetypeArtifactId=ontimize-boot-backend-archetype -DarchetypeVersion=1.0.3 -DinteractiveMode=false
 
 ### Command explanation
 
-| Argument | Meaning |
-|--|--|
-| mvn | Maven CLI |
-| archetype:generate | Use the Maven Archetype Plugin for create a new project from an archetype|
-|-DgroupId=YOUR_GROUP_ID|Your project **groupId**|
-|-DartifactId=YOUR_ARTIFACT_ID|Your project **artifactId**|
-|-Dversion=YOUR_VERSION|Your project **version**|
-|-Dpackage=YOUR.GROUPID.ARTIFACTID|Sets the package on which the project will be based (e.g.: In our examples, this will be com.ontimize.projectwiki)
-|-DarchetypeGroupId=com.ontimize|**groupId** of the Ontimize Boot archetype|
-|-DarchetypeArtifactId=ontimize-boot-backend-archetype|**artifactId** of the Ontimize Boot archetype|
-|-DarchetypeVersion=1.0.0|**version** of the Ontimize Boot archetype|
-|-DinteractiveMode=false| Forced to **skip interactive mode** and use the paramaters in the command|
+| Argument                                              | Meaning                                                                                                            |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| mvn                                                   | Maven CLI                                                                                                          |
+| archetype:generate                                    | Use the Maven Archetype Plugin for create a new project from an archetype                                          |
+| -DgroupId=YOUR_GROUP_ID                               | Your project **groupId**                                                                                           |
+| -DartifactId=YOUR_ARTIFACT_ID                         | Your project **artifactId**                                                                                        |
+| -Dversion=YOUR_VERSION                                | Your project **version**                                                                                           |
+| -Dpackage=YOUR.GROUPID.ARTIFACTID                     | Sets the package on which the project will be based (e.g.: In our examples, this will be com.ontimize.projectwiki) |
+| -DarchetypeGroupId=com.ontimize                       | **groupId** of the Ontimize Boot archetype                                                                         |
+| -DarchetypeArtifactId=ontimize-boot-backend-archetype | **artifactId** of the Ontimize Boot archetype                                                                      |
+| -DarchetypeVersion=1.0.3                              | **version** of the Ontimize Boot archetype                                                                         |
+| -DinteractiveMode=false                               | Forced to **skip interactive mode** and use the paramaters in the command                                          |
 
 ## Start the project
 
@@ -241,7 +241,9 @@ The first thing to do is to execute the `mvn install` command inside the project
 
     $ cd app
     /app$ mvn install
+
 " | markdownify }}
+
   </div>
 </div>
 
@@ -448,7 +450,9 @@ The first thing to do is to execute the `mvn install` command inside the project
 
     /app$ cd model
     /app/model$ mvn exec:java -Prun_database
+
 " | markdownify }}
+
   </div>
 </div>
 
@@ -655,7 +659,9 @@ The first thing to do is to execute the `mvn install` command inside the project
 
     /app$ cd boot
     /app/boot$ mvn spring-boot:run
+
 " | markdownify }}
+
   </div>
 </div>
 
