@@ -68,4 +68,4 @@ jobs:
       - name: Create pull request
         run: |
           version=${{ steps.tag.outputs.version }}
-          gh pr create -B develop -H sync/$version --title "Backmerge from release/$version into develop" --body "Created by a GitHub Action → Resync develop branch with main branch and increase project version"
+          gh pr create -B develop -H sync/$version --title "Backmerge from main into develop" --body "Created by a GitHub Action → Resync develop branch with main branch and increase project version"
