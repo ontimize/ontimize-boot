@@ -108,13 +108,11 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		super.configure(http);
-		// Configure the session management as stateless. We use REST.
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.anyRequest().authenticated()
 				.and().csrf().ignoringAntMatchers(this.servicePath)
+				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and().addFilter(this.filterInvocationInterceptor());
 	}
 
