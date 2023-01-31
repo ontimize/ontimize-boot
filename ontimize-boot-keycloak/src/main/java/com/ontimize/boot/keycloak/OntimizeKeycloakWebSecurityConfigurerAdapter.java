@@ -12,6 +12,7 @@ import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -58,6 +59,8 @@ import com.ontimize.jee.server.security.keycloak.UserManagementKeycloakImpl;
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class,
 		excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "org.keycloak.adapters.springsecurity.management.HttpSessionManager"))
 public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSecurityConfigurerAdapter {
+	@Value("${ontimize.security.service-path:/**}")
+	private String servicePath;
 
 	@Autowired
 	private IOntimizeKeycloakConfiguration config;
@@ -111,8 +114,8 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.anyRequest().authenticated()
-				.and().csrf().disable().anonymous().disable() // Anonymous disable
-				.addFilter(this.filterInvocationInterceptor());
+				.and().csrf().ignoringAntMatchers(this.servicePath)
+				.and().addFilter(this.filterInvocationInterceptor());
 	}
 
 	@Override
