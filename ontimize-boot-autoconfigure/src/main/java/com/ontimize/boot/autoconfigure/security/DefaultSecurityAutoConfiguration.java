@@ -1,9 +1,12 @@
 package com.ontimize.boot.autoconfigure.security;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -37,6 +40,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import com.ontimize.jee.server.dao.IOntimizeDaoSupport;
+import com.ontimize.jee.server.requestfilter.OntimizePathMatcher;
 import com.ontimize.jee.server.security.DatabaseRoleInformationService;
 import com.ontimize.jee.server.security.DatabaseUserInformationService;
 import com.ontimize.jee.server.security.DatabaseUserRoleInformationService;
@@ -333,5 +337,17 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	@Bean
 	public AuthenticationEntryPoint authenticationEntryPoint() {
 		return new BasicAuthenticationEntryPoint();
+	}
+
+	@Bean()
+	public OntimizePathMatcher pathMatcherIgnorePaths() {
+		String[] paths = { "/resources/**", "/ontimize/**" };
+
+		if (this.ignorePaths != null && this.ignorePaths.length > 0) {
+			paths = Stream.concat(Arrays.stream(paths), Arrays.stream(this.ignorePaths))
+		      .toArray(size -> (String[]) Array.newInstance(String.class, size));
+		}
+
+		return new OntimizePathMatcher(paths);
 	}
 }
