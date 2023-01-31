@@ -111,7 +111,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.anyRequest().authenticated()
-				.and().csrf().disable()
+				.and().csrf().disable().anonymous().disable() // Anonymous disable
 				.addFilter(this.filterInvocationInterceptor());
 	}
 
