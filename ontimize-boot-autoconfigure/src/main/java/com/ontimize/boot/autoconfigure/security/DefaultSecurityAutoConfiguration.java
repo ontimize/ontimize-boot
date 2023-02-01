@@ -233,7 +233,7 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		jwtAuthenticator.setJwtService(this.jwtService());
 		jwtAuthenticator
 		.setTokenExpirationTime(jwtConfig.getExpirationTime() == null ? 0 : jwtConfig.getExpirationTime());
-		jwtAuthenticator.setRefreshToken(jwtConfig.getRefreshToken() == null ? false : jwtConfig.getRefreshToken());
+		jwtAuthenticator.setRefreshToken(jwtConfig.getRefreshToken() == null ? Boolean.FALSE : jwtConfig.getRefreshToken());
 		return jwtAuthenticator;
 	}
 
@@ -278,7 +278,7 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	}
 
 	@Bean
-	public AccessDecisionVoter ontimizeAccessDecisionVoter() {
+	public AccessDecisionVoter<Object> ontimizeAccessDecisionVoter() {
 		OntimizeAccessDecisionVoter ontimizeVoter = new OntimizeAccessDecisionVoter();
 		ontimizeVoter.setDefaultVoter(this.defaultVoter());
 		return ontimizeVoter;
@@ -317,7 +317,7 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 
 	@Bean
 	public FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSource() {
-		LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>>();
+		LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
 		requestMap.put(new AntPathRequestMatcher("/**/*"), SecurityConfig.createList("NONE_ENTER_WITHOUT_AUTH"));
 
 		return new ExpressionBasedFilterInvocationSecurityMetadataSource(requestMap,

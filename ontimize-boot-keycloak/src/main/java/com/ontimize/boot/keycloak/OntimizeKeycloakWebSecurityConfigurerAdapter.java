@@ -158,7 +158,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean
-	public AccessDecisionVoter ontimizeAccessDecisionVoter() {
+	public AccessDecisionVoter<Object> ontimizeAccessDecisionVoter() {
 		OntimizeAccessDecisionVoter ontimizeVoter = new OntimizeAccessDecisionVoter();
 		ontimizeVoter.setDefaultVoter(this.defaultVoter());
 		return ontimizeVoter;
@@ -220,7 +220,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 
 	@Bean
 	public FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSource() {
-		LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>>();
+		LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
 		requestMap.put(new AntPathRequestMatcher("/**/*"), SecurityConfig.createList("NONE_ENTER_WITHOUT_AUTH"));
 
 		return new ExpressionBasedFilterInvocationSecurityMetadataSource(requestMap,
