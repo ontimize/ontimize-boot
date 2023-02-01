@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.ontimize.boot.keycloak.OntimizeKeycloakAutoConfiguration,\
 com.ontimize.boot.keycloak.OntimizeKeycloakWebSecurityConfigurerAdapter

@@ -6,13 +6,16 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import org.keycloak.adapters.KeycloakConfigResolver;
-import org.keycloak.adapters.springboot.KeycloakSpringBootConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
+import org.keycloak.adapters.springsecurity.filter.KeycloakAuthenticationProcessingFilter;
+import org.keycloak.adapters.springsecurity.filter.KeycloakPreAuthActionsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +33,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistryImpl;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.ExpressionBasedFilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
@@ -40,6 +44,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import com.ontimize.jee.server.dao.IOntimizeDaoSupport;
+import com.ontimize.jee.server.requestfilter.OntimizePathMatcher;
 import com.ontimize.jee.server.security.DatabaseRoleInformationService;
 import com.ontimize.jee.server.security.ISecurityRoleInformationService;
 import com.ontimize.jee.server.security.SecurityConfiguration;
@@ -47,10 +52,10 @@ import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizato
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter;
 import com.ontimize.jee.server.security.keycloak.IOntimizeKeycloakConfiguration;
-import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakConfiguration;
-import com.ontimize.jee.server.security.keycloak.OntimizeMultitenantKeycloakConfigResolver;
-import com.ontimize.jee.server.security.keycloak.IUserManagement;
-import com.ontimize.jee.server.security.keycloak.UserManagementKeycloakImpl;
+import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakConfigResolver;
+import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakUserDetailsAuthenticationProvider;
+import com.ontimize.jee.server.security.keycloak.admin.IUserManagement;
+import com.ontimize.jee.server.security.keycloak.admin.UserManagementKeycloakImpl;
 
 @KeycloakConfiguration
 @PropertySource("classpath:ontimize-security-keycloak.properties")
@@ -58,14 +63,36 @@ import com.ontimize.jee.server.security.keycloak.UserManagementKeycloakImpl;
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class,
 		excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "org.keycloak.adapters.springsecurity.management.HttpSessionManager"))
 public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSecurityConfigurerAdapter {
+	@Value("${ontimize.security.ignore-paths:}")
+	private String[] ignorePaths;
 
 	@Autowired
-	private IOntimizeKeycloakConfiguration config;
+	@Qualifier("pathMatcherIgnorePaths")
+	private OntimizePathMatcher pathMatcherIgnorePaths;
+
+	@Override
+	protected AuthenticationEntryPoint authenticationEntryPoint() throws Exception {
+		return new OntimizeKeycloakAuthenticationEntryPoint(adapterDeploymentContext(), this.pathMatcherIgnorePaths);
+	}
 
 	@Bean
 	@Override
-	public KeycloakAuthenticationProvider keycloakAuthenticationProvider() {
+	protected KeycloakAuthenticationProvider keycloakAuthenticationProvider() {
 		return new OntimizeKeycloakUserDetailsAuthenticationProvider();
+	}
+
+	@Bean
+	@Override
+	protected KeycloakPreAuthActionsFilter keycloakPreAuthActionsFilter() {
+		return new OntimizeKeycloakPreAuthActionsFilter(httpSessionManager());
+	}
+
+	@Bean
+	@Override
+	protected KeycloakAuthenticationProcessingFilter keycloakAuthenticationProcessingFilter() throws Exception {
+		KeycloakAuthenticationProcessingFilter filter = new OntimizeKeycloakAuthenticationProcessingFilter(authenticationManagerBean());
+		filter.setSessionAuthenticationStrategy(sessionAuthenticationStrategy());
+		return filter;
 	}
 
 	/**
@@ -80,20 +107,26 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean("KeycloakConfigResolver")
-	@ConditionalOnProperty(name = "ontimize.multitenant.enabled", havingValue = "true", matchIfMissing = false)
-	public KeycloakConfigResolver createOntimizeMultitenantKeycloakConfigResolver() {
-		return new OntimizeMultitenantKeycloakConfigResolver();
-	}
-
-	@Bean("KeycloakConfigResolver")
-	@ConditionalOnMissingBean(name = "KeycloakConfigResolver")
-	public KeycloakConfigResolver createKeycloakConfigResolver() {
-		return new KeycloakSpringBootConfigResolver();
+	public KeycloakConfigResolver createOntimizeKeycloakConfigResolver() {
+		return new OntimizeKeycloakConfigResolver();
 	}
 
 	@Bean
+	@ConditionalOnExpression("${ontimize.multitenant.enabled:false} and '${ontimize.security.keycloak.realms-provider:config}'.equals('custom')")
 	public IOntimizeKeycloakConfiguration createOntimizeKeycloakConfiguration() {
 		return new OntimizeKeycloakConfiguration();
+	}
+
+	@Bean
+	@ConditionalOnExpression("${ontimize.multitenant.enabled:false} and '${ontimize.security.keycloak.realms-provider:config}'.equals('config')")
+	public IOntimizeKeycloakConfiguration createOntimizeKeycloakMultiTenantConfiguration() {
+		return new OntimizeKeycloakMultiTenantConfiguration();
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.multitenant.enabled", havingValue = "false", matchIfMissing = true)
+	public IOntimizeKeycloakConfiguration createOntimizeKeycloakSingleTenantConfiguration() {
+		return new OntimizeKeycloakSingleTenantConfiguration();
 	}
 
 	@Bean
@@ -119,13 +152,13 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/resources/**");
 		web.ignoring().antMatchers("/ontimize/**");
-		if (this.config.getIgnorePaths() != null && this.config.getIgnorePaths().length > 0) {
-			web.ignoring().antMatchers(this.config.getIgnorePaths());
+		if (this.ignorePaths != null && this.ignorePaths.length > 0) {
+			web.ignoring().antMatchers(this.ignorePaths);
 		}
 	}
 
 	@Bean
-	public AccessDecisionVoter ontimizeAccessDecisionVoter() {
+	public AccessDecisionVoter<Object> ontimizeAccessDecisionVoter() {
 		OntimizeAccessDecisionVoter ontimizeVoter = new OntimizeAccessDecisionVoter();
 		ontimizeVoter.setDefaultVoter(this.defaultVoter());
 		return ontimizeVoter;
@@ -187,7 +220,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 
 	@Bean
 	public FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSource() {
-		LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>>();
+		LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
 		requestMap.put(new AntPathRequestMatcher("/**/*"), SecurityConfig.createList("NONE_ENTER_WITHOUT_AUTH"));
 
 		return new ExpressionBasedFilterInvocationSecurityMetadataSource(requestMap,
