@@ -4,8 +4,6 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.keycloak.adapters.springboot.KeycloakAutoConfiguration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -26,16 +24,10 @@ public class OntimizeKeycloakAutoConfiguration extends KeycloakAutoConfiguration
 	@Bean
 	@Override
 	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> getKeycloakContainerCustomizer() {
-		return new WebServerFactoryCustomizer<ConfigurableServletWebServerFactory>() {
-			protected final Log logger = LogFactory.getLog(getClass());
-			
-			@Override
-			public void customize(ConfigurableServletWebServerFactory configurableServletWebServerFactory) {
-				logger.info("customize");
-				TomcatServletWebServerFactory container = (TomcatServletWebServerFactory) configurableServletWebServerFactory;
-				container.addContextValves(new OntimizeKeycloakAuthenticatorValve(pathMatcherIgnorePaths()));
-				container.addContextCustomizers(tomcatKeycloakContextCustomizer());
-			}
+		return configurableServletWebServerFactory -> {
+			TomcatServletWebServerFactory container = (TomcatServletWebServerFactory) configurableServletWebServerFactory;
+			container.addContextValves(new OntimizeKeycloakAuthenticatorValve(pathMatcherIgnorePaths()));
+			container.addContextCustomizers(tomcatKeycloakContextCustomizer());
 		};
 	}
 

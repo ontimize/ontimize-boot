@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.keycloak.adapters.AdapterDeploymentContext;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationEntryPoint;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.core.AuthenticationException;
 
 import com.ontimize.jee.server.requestfilter.OntimizePathMatcher;
@@ -23,7 +24,7 @@ public class OntimizeKeycloakAuthenticationEntryPoint extends KeycloakAuthentica
 
 	@Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
-		if (!this.pathMatcherIgnorePaths.matches(request)) {
+		if (!HttpMethod.OPTIONS.name().equals(request.getMethod()) && !this.pathMatcherIgnorePaths.matches(request)) {
 			if (request.getHeader("X-Tenant") == null) {
 				response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No tenant provided");
 			} else {

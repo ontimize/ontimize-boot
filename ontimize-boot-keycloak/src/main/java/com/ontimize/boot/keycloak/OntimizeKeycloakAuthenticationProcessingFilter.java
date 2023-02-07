@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.keycloak.adapters.springsecurity.filter.KeycloakAuthenticationProcessingFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 
 import com.ontimize.jee.server.requestfilter.OntimizePathMatcher;
@@ -32,7 +33,7 @@ public class OntimizeKeycloakAuthenticationProcessingFilter extends KeycloakAuth
 	    	HttpServletRequest httpServletRequest = (HttpServletRequest) request;
 	    	HttpServletResponse httpServletResponse = (HttpServletResponse) response;
 
-			if (this.pathMatcherIgnorePaths.matches(httpServletRequest)) {
+			if (HttpMethod.OPTIONS.name().equals(httpServletRequest.getMethod()) || this.pathMatcherIgnorePaths.matches(httpServletRequest)) {
 				chain.doFilter(request, response);
 		    } else if (httpServletRequest.getHeader("X-Tenant") == null) {
 				httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No tenant provided");
