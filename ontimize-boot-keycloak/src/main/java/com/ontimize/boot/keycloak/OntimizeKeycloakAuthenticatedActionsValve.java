@@ -11,6 +11,7 @@ import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.keycloak.adapters.AdapterDeploymentContext;
 import org.keycloak.adapters.tomcat.AuthenticatedActionsValve;
+import org.springframework.http.HttpMethod;
 
 import com.ontimize.jee.server.requestfilter.OntimizePathMatcher;
 
@@ -25,7 +26,7 @@ public class OntimizeKeycloakAuthenticatedActionsValve extends AuthenticatedActi
 
     @Override
     public void invoke(Request request, Response response) throws IOException, ServletException {
-		if (this.pathMatcherIgnorePaths.matches(request)) {
+		if (HttpMethod.OPTIONS.name().equals(request.getMethod()) || this.pathMatcherIgnorePaths.matches(request)) {
 			getNext().invoke(request, response);
 	    } else if (request.getHeader("X-Tenant") == null) {
 	    	response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No tenant provided");
