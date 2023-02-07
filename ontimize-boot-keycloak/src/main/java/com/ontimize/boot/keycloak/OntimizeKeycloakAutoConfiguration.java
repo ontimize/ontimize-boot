@@ -24,13 +24,10 @@ public class OntimizeKeycloakAutoConfiguration extends KeycloakAutoConfiguration
 	@Bean
 	@Override
 	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> getKeycloakContainerCustomizer() {
-		return new WebServerFactoryCustomizer<ConfigurableServletWebServerFactory>() {
-			@Override
-			public void customize(ConfigurableServletWebServerFactory configurableServletWebServerFactory) {
-				TomcatServletWebServerFactory container = (TomcatServletWebServerFactory) configurableServletWebServerFactory;
-				container.addContextValves(new OntimizeKeycloakAuthenticatorValve(pathMatcherIgnorePaths()));
-				container.addContextCustomizers(tomcatKeycloakContextCustomizer());
-			}
+		return configurableServletWebServerFactory -> {
+			TomcatServletWebServerFactory container = (TomcatServletWebServerFactory) configurableServletWebServerFactory;
+			container.addContextValves(new OntimizeKeycloakAuthenticatorValve(pathMatcherIgnorePaths()));
+			container.addContextCustomizers(tomcatKeycloakContextCustomizer());
 		};
 	}
 
