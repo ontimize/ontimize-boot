@@ -15,7 +15,6 @@ import org.keycloak.adapters.springsecurity.filter.KeycloakPreAuthActionsFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -112,19 +111,19 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean
-	@ConditionalOnExpression("${ontimize.multitenant.enabled:false} and '${ontimize.security.keycloak.realms-provider:config}'.equals('custom')")
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "custom", matchIfMissing = false)
 	public IOntimizeKeycloakConfiguration createOntimizeKeycloakConfiguration() {
 		return new OntimizeKeycloakConfiguration();
 	}
 
 	@Bean
-	@ConditionalOnExpression("${ontimize.multitenant.enabled:false} and '${ontimize.security.keycloak.realms-provider:config}'.equals('config')")
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "list", matchIfMissing = false)
 	public IOntimizeKeycloakConfiguration createOntimizeKeycloakMultiTenantConfiguration() {
 		return new OntimizeKeycloakMultiTenantConfiguration();
 	}
 
 	@Bean
-	@ConditionalOnProperty(name = "ontimize.multitenant.enabled", havingValue = "false", matchIfMissing = true)
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "default", matchIfMissing = true)
 	public IOntimizeKeycloakConfiguration createOntimizeKeycloakSingleTenantConfiguration() {
 		return new OntimizeKeycloakSingleTenantConfiguration();
 	}
@@ -196,16 +195,18 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 		RoleInformationServiceConfig config = this.roleInformationServiceConfig();
 		DatabaseRoleInformationService roleInformationService = new DatabaseRoleInformationService();
 
-		Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
-		if (roleDao instanceof IOntimizeDaoSupport) {
-			roleInformationService.setProfileRepository((IOntimizeDaoSupport) roleDao);
-		}
+		if (config.getRoleRepository() != null) {
+			Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
+			if (roleDao instanceof IOntimizeDaoSupport) {
+				roleInformationService.setProfileRepository((IOntimizeDaoSupport) roleDao);
+			}
 
-		roleInformationService.setRoleNameColumn(config.getRoleNameColumn());
-		roleInformationService.setServerPermissionQueryId(config.getServerPermissionQueryId());
-		roleInformationService.setServerPermissionKeyColumn(config.getServerPermissionNameColumn());
-		roleInformationService.setClientPermissionQueryId(config.getClientPermissionQueryId());
-		roleInformationService.setClientPermissionColumn(config.getClientPermissionColumn());
+			roleInformationService.setRoleNameColumn(config.getRoleNameColumn());
+			roleInformationService.setServerPermissionQueryId(config.getServerPermissionQueryId());
+			roleInformationService.setServerPermissionKeyColumn(config.getServerPermissionNameColumn());
+			roleInformationService.setClientPermissionQueryId(config.getClientPermissionQueryId());
+			roleInformationService.setClientPermissionColumn(config.getClientPermissionColumn());
+		}
 		return roleInformationService;
 	}
 
