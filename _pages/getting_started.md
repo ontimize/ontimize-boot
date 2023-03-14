@@ -34,7 +34,7 @@ Open a console and type the next command:
 | -Dpackage=YOUR.GROUPID.ARTIFACTID                     | Sets the package on which the project will be based (e.g.: In our examples, this will be com.ontimize.projectwiki) |
 | -DarchetypeGroupId=com.ontimize                       | **groupId** of the Ontimize Boot archetype                                                                         |
 | -DarchetypeArtifactId=ontimize-boot-backend-archetype | **artifactId** of the Ontimize Boot archetype                                                                      |
-| -DarchetypeVersion=1.0.3                              | **version** of the Ontimize Boot archetype                                                                         |
+| -DarchetypeVersion=1.0.4                              | **version** of the Ontimize Boot archetype                                                                         |
 | -DinteractiveMode=false                               | Forced to **skip interactive mode** and use the paramaters in the command                                          |
 
 ## Start the project
