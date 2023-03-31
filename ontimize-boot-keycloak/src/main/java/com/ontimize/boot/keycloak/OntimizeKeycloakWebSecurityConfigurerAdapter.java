@@ -50,7 +50,6 @@ import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizato
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter;
 import com.ontimize.jee.server.security.keycloak.IOntimizeKeycloakConfiguration;
-import com.ontimize.jee.server.security.keycloak.IOntimizeMultitenantKeycloakConfigResolver;
 import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakConfigResolver;
 import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakUserDetailsAuthenticationProvider;
 import com.ontimize.jee.server.security.keycloak.admin.IUserManagement;
