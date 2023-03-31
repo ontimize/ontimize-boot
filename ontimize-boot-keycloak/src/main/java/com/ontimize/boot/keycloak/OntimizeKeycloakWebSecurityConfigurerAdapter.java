@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
@@ -51,6 +50,7 @@ import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizato
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter;
 import com.ontimize.jee.server.security.keycloak.IOntimizeKeycloakConfiguration;
+import com.ontimize.jee.server.security.keycloak.IOntimizeMultitenantKeycloakConfigResolver;
 import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakConfigResolver;
 import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakUserDetailsAuthenticationProvider;
 import com.ontimize.jee.server.security.keycloak.admin.IUserManagement;
@@ -106,7 +106,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean("KeycloakConfigResolver")
-	public KeycloakConfigResolver createOntimizeKeycloakConfigResolver() {
+	public OntimizeKeycloakConfigResolver createOntimizeKeycloakConfigResolver() {
 		return new OntimizeKeycloakConfigResolver();
 	}
 
