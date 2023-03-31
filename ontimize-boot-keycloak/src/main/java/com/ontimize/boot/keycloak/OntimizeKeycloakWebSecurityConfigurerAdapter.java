@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-import org.keycloak.adapters.KeycloakConfigResolver;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
@@ -106,7 +105,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean("KeycloakConfigResolver")
-	public KeycloakConfigResolver createOntimizeKeycloakConfigResolver() {
+	public OntimizeKeycloakConfigResolver createOntimizeKeycloakConfigResolver() {
 		return new OntimizeKeycloakConfigResolver();
 	}
 
