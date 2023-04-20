@@ -1,3 +1,7 @@
+## 3.10.0 - 20/04/2023
+### 🚀 Features:
+* **Keycloack and Multitennant**: Unlink keycloak from multitenant functionality.
+<!-- ### 🔧 Bug fixes: -->
 ## 3.9.0 - **05/01/2023**
 ### 🚀 Features:
 * **Keycloak:** Keycloak added to enable single sign-on to applications and services.
