@@ -4,7 +4,7 @@
 ## 3.10.0 - 20/04/2023
 ### 🚀 Features:
 * **Keycloack and Multitennant**: Unlink keycloak from multitenant functionality.
-* * **OpenApi:** Allow to embed the Swagger interface when OpenApi is enabled. (Ontimize Boot Parent)
+* **OpenApi:** Allow to embed the Swagger interface when OpenApi is enabled. (Ontimize Boot Parent)
 <!-- ### 🔧 Bug fixes: -->
 ## 3.9.0 - **05/01/2023**
 ### 🚀 Features:
