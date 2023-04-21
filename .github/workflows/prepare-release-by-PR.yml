@@ -1,5 +1,11 @@
 name: Prepare a release by a pull request
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Optional. Enter a new custom version instead of default existing one.'
+        type: string
+        required: false
 jobs:
   Prepare-a-release-by-a-pull-request:
     runs-on: ubuntu-latest
@@ -21,7 +27,12 @@ jobs:
       - name: Get framework version to release
         id: version
         run: |
-          var_version=$(mvn help:evaluate -q -Dexpression=project.version -DforceStdout) 
+          var_version=""
+          if  ${{ github.event.inputs.version != '' }}; then
+            var_version=${{ github.event.inputs.version }}
+          else
+            var_version=$(mvn help:evaluate -q -Dexpression=project.version -DforceStdout) 
+          fi
           echo "version=$var_version" >> $GITHUB_OUTPUT
       - name: Set author identity
         run: |
