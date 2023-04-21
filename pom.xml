@@ -104,7 +104,7 @@
     <properties>
         <project.dependency.spring.boot.version>2.5.0</project.dependency.spring.boot.version>
         <project.dependency.spring.security.version>5.5.1</project.dependency.spring.security.version>
-        <project.dependency.ontimize.boot.version>3.10.1</project.dependency.ontimize.boot.version>
+        <project.dependency.ontimize.boot.version>3.11.0-SNAPSHOT</project.dependency.ontimize.boot.version>
         <project.dependency.ontimize-jee.version>5.7.0</project.dependency.ontimize-jee.version>
         <project.dependency.ontimize-jee-dms.version>3.1.0</project.dependency.ontimize-jee-dms.version>
         <project.dependency.keycloak.version>9.0.3</project.dependency.keycloak.version>
