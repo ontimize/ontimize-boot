@@ -44,10 +44,7 @@ jobs:
           version=$(echo "${{ steps.version.outputs.version }}" | sed 's/-SNAPSHOT//' )
           git checkout -b release/$version
           mvn -B versions:use-releases
-          if  ${{ github.event.inputs.version != '' }}; then
-            mvn -B versions:set -DnewVersion=$version versions:commit
-          fi
-          mvn -B versions:set -DremoveSnapshot versions:commit
+          mvn -B versions:set -DnewVersion=$version -DremoveSnapshot versions:commit
           mvn -B -N versions:update-child-modules versions:commit
           git ls-files | grep -e 'pom.xml' | xargs git add || true
           echo "version=$version" >> $GITHUB_OUTPUT
