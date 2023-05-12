@@ -64,13 +64,18 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
 
+	@Value("${ontimize.security.keycloak.realms-provider:}")
+	private String realmsProvider;
+
 	@Autowired
 	@Qualifier("pathMatcherIgnorePaths")
 	private OntimizePathMatcher pathMatcherIgnorePaths;
 
 	@Override
 	protected AuthenticationEntryPoint authenticationEntryPoint() throws Exception {
-		return new OntimizeKeycloakAuthenticationEntryPoint(adapterDeploymentContext(), this.pathMatcherIgnorePaths);
+		final OntimizeKeycloakTenantValidator tenantValidator = new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths,
+				"list".equals(this.realmsProvider) || "custom".equals(this.realmsProvider));
+		return new OntimizeKeycloakAuthenticationEntryPoint(adapterDeploymentContext(), tenantValidator);
 	}
 
 	@Bean
@@ -125,6 +130,24 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "default", matchIfMissing = true)
 	public IOntimizeKeycloakConfiguration createOntimizeKeycloakSingleTenantConfiguration() {
 		return new OntimizeKeycloakSingleTenantConfiguration();
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "custom", matchIfMissing = false)
+	public OntimizeKeycloakTenantValidator createOntimizeKeycloakTenantValidator() {
+		return new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths, true);
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "list", matchIfMissing = false)
+	public OntimizeKeycloakTenantValidator createOntimizeKeycloakMultiTenantValidator() {
+		return new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths, true);
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "default", matchIfMissing = true)
+	public OntimizeKeycloakTenantValidator createOntimizeKeycloakSingleTenantValidator() {
+		return new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths, false);
 	}
 
 	@Bean

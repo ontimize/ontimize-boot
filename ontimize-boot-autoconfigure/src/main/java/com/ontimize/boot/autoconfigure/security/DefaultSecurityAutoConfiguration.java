@@ -339,7 +339,7 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		return new BasicAuthenticationEntryPoint();
 	}
 
-	@Bean()
+	@Bean
 	public OntimizePathMatcher pathMatcherIgnorePaths() {
 		String[] paths = { "/resources/**", "/ontimize/**" };
 

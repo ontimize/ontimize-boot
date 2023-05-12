@@ -3,7 +3,6 @@ package com.ontimize.boot.keycloak;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.catalina.Container;
 import org.apache.catalina.Valve;
@@ -11,27 +10,26 @@ import org.apache.catalina.connector.Request;
 import org.apache.catalina.connector.Response;
 import org.keycloak.adapters.AdapterDeploymentContext;
 import org.keycloak.adapters.tomcat.AuthenticatedActionsValve;
-import org.springframework.http.HttpMethod;
 
-import com.ontimize.jee.server.requestfilter.OntimizePathMatcher;
+import com.ontimize.boot.keycloak.OntimizeKeycloakTenantValidator.ValidationResult;
 
 public class OntimizeKeycloakAuthenticatedActionsValve extends AuthenticatedActionsValve {
-	private OntimizePathMatcher pathMatcherIgnorePaths;
+	private OntimizeKeycloakTenantValidator tenantValidator;
 
-	public OntimizeKeycloakAuthenticatedActionsValve(AdapterDeploymentContext deploymentContext, Valve next, Container container, OntimizePathMatcher pathMatcherIgnorePaths) {
+	public OntimizeKeycloakAuthenticatedActionsValve(AdapterDeploymentContext deploymentContext, Valve next, Container container,
+			OntimizeKeycloakTenantValidator tenantValidator) {
 		super(deploymentContext, next, container);
 
-		this.pathMatcherIgnorePaths = pathMatcherIgnorePaths;
+		this.tenantValidator = tenantValidator;
 	}
 
-    @Override
-    public void invoke(Request request, Response response) throws IOException, ServletException {
-		if (HttpMethod.OPTIONS.name().equals(request.getMethod()) || this.pathMatcherIgnorePaths.matches(request)) {
-			getNext().invoke(request, response);
-	    } else if (request.getHeader("X-Tenant") == null) {
-	    	response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No tenant provided");
-		} else {
+	@Override
+	public void invoke(Request request, Response response) throws IOException, ServletException {
+		final ValidationResult result = this.tenantValidator.validate(request, response);
+		if (result == ValidationResult.APPLY) {
 			super.invoke(request, response);
+		} else if (result == ValidationResult.SKIP) {
+			getNext().invoke(request, response);
 		}
-    }
+	}
 }
