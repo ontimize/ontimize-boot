@@ -1,5 +1,6 @@
 ## 3.11.0 - In progress
 ### 🚀 Features:
+* **Keycloak**: Allow to configure roles without a database.
 <!-- ### 🔧 Bug fixes: -->
 ## 3.10.1 - 21/04/2023
 ### 🔧 Bug fixes:
