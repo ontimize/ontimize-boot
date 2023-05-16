@@ -13,6 +13,8 @@ import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticatio
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.keycloak.adapters.springsecurity.filter.KeycloakAuthenticationProcessingFilter;
 import org.keycloak.adapters.springsecurity.filter.KeycloakPreAuthActionsFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -67,6 +69,8 @@ import com.ontimize.jee.server.security.keycloak.admin.UserManagementKeycloakImp
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class,
 		excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "org.keycloak.adapters.springsecurity.management.HttpSessionManager"))
 public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSecurityConfigurerAdapter {
+	private static final Logger logger = LoggerFactory.getLogger(OntimizeKeycloakWebSecurityConfigurerAdapter.class);
+	
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
 
@@ -249,7 +253,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 					try {
 						clientPermissions = XMLClientUtilities.buildClientPermissions(new StringBuffer(roleConfig.getClientPermissions()));
 					} catch (Exception e) {
-						e.printStackTrace();
+						OntimizeKeycloakWebSecurityConfigurerAdapter.logger.error("Error loading client permissions for role {}", roleConfig.getName(), e);
 					}
 				}
 
