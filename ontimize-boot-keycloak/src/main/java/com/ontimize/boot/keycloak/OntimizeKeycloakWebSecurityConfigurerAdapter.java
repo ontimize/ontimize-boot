@@ -73,7 +73,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
-
+	
 	@Autowired
 	private OntimizeKeycloakConfiguration keycloakConfiguration;
 
@@ -223,21 +223,22 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean
-	@ConditionalOnProperty(name = "ontimize.security.role-information-service")
 	public ISecurityRoleInformationService roleInformationService() {
 		final RoleInformationServiceConfig config = this.roleInformationServiceConfig();
 		final DatabaseRoleInformationService roleInformationService = new DatabaseRoleInformationService();
 
-		final Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
-		if (roleDao instanceof IOntimizeDaoSupport) {
-			roleInformationService.setProfileRepository((IOntimizeDaoSupport) roleDao);
-		}
+		if (config.getRoleRepository() != null) {
+			final Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
+			if (roleDao instanceof IOntimizeDaoSupport) {
+				roleInformationService.setProfileRepository((IOntimizeDaoSupport) roleDao);
+			}
 
-		roleInformationService.setRoleNameColumn(config.getRoleNameColumn());
-		roleInformationService.setServerPermissionQueryId(config.getServerPermissionQueryId());
-		roleInformationService.setServerPermissionKeyColumn(config.getServerPermissionNameColumn());
-		roleInformationService.setClientPermissionQueryId(config.getClientPermissionQueryId());
-		roleInformationService.setClientPermissionColumn(config.getClientPermissionColumn());
+			roleInformationService.setRoleNameColumn(config.getRoleNameColumn());
+			roleInformationService.setServerPermissionQueryId(config.getServerPermissionQueryId());
+			roleInformationService.setServerPermissionKeyColumn(config.getServerPermissionNameColumn());
+			roleInformationService.setClientPermissionQueryId(config.getClientPermissionQueryId());
+			roleInformationService.setClientPermissionColumn(config.getClientPermissionColumn());
+		}
 
 		return roleInformationService;
 	}
