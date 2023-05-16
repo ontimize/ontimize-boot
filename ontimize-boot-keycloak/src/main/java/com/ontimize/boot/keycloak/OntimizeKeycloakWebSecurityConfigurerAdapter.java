@@ -2,8 +2,10 @@ package com.ontimize.boot.keycloak;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
@@ -11,6 +13,8 @@ import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticatio
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.keycloak.adapters.springsecurity.filter.KeycloakAuthenticationProcessingFilter;
 import org.keycloak.adapters.springsecurity.filter.KeycloakPreAuthActionsFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -41,17 +45,21 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
+import com.ontimize.jee.common.security.XMLClientUtilities;
 import com.ontimize.jee.server.dao.IOntimizeDaoSupport;
 import com.ontimize.jee.server.requestfilter.OntimizePathMatcher;
 import com.ontimize.jee.server.security.DatabaseRoleInformationService;
 import com.ontimize.jee.server.security.ISecurityRoleInformationService;
 import com.ontimize.jee.server.security.SecurityConfiguration;
 import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizator;
+import com.ontimize.jee.server.security.authorization.IRoleProvider;
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter;
+import com.ontimize.jee.server.security.authorization.Role;
 import com.ontimize.jee.server.security.keycloak.IOntimizeKeycloakConfiguration;
 import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakConfigResolver;
 import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakUserDetailsAuthenticationProvider;
+import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakRoleProvider;
 import com.ontimize.jee.server.security.keycloak.admin.IUserManagement;
 import com.ontimize.jee.server.security.keycloak.admin.UserManagementKeycloakImpl;
 
@@ -61,11 +69,13 @@ import com.ontimize.jee.server.security.keycloak.admin.UserManagementKeycloakImp
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class,
 		excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "org.keycloak.adapters.springsecurity.management.HttpSessionManager"))
 public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSecurityConfigurerAdapter {
+	private static final Logger logger = LoggerFactory.getLogger(OntimizeKeycloakWebSecurityConfigurerAdapter.class);
+	
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
 
-	@Value("${ontimize.security.keycloak.realms-provider:}")
-	private String realmsProvider;
+	@Autowired
+	private OntimizeKeycloakConfiguration keycloakConfiguration;
 
 	@Autowired
 	@Qualifier("pathMatcherIgnorePaths")
@@ -74,8 +84,26 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	@Override
 	protected AuthenticationEntryPoint authenticationEntryPoint() throws Exception {
 		final OntimizeKeycloakTenantValidator tenantValidator = new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths,
-				"list".equals(this.realmsProvider) || "custom".equals(this.realmsProvider));
+				"list".equals(this.keycloakConfiguration.getRealmsProvider()) || "custom".equals(this.keycloakConfiguration.getRealmsProvider()));
 		return new OntimizeKeycloakAuthenticationEntryPoint(adapterDeploymentContext(), tenantValidator);
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "custom", matchIfMissing = false)
+	public IOntimizeKeycloakConfiguration createOntimizeKeycloakConfiguration() {
+		return new OntimizeKeycloakConfiguration();
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "list", matchIfMissing = false)
+	public IOntimizeKeycloakConfiguration createOntimizeKeycloakMultiTenantConfiguration() {
+		return new OntimizeKeycloakMultiTenantConfiguration();
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "default", matchIfMissing = true)
+	public IOntimizeKeycloakConfiguration createOntimizeKeycloakSingleTenantConfiguration() {
+		return new OntimizeKeycloakSingleTenantConfiguration();
 	}
 
 	@Bean
@@ -112,24 +140,6 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	@Bean("KeycloakConfigResolver")
 	public OntimizeKeycloakConfigResolver createOntimizeKeycloakConfigResolver() {
 		return new OntimizeKeycloakConfigResolver();
-	}
-
-	@Bean
-	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "custom", matchIfMissing = false)
-	public IOntimizeKeycloakConfiguration createOntimizeKeycloakConfiguration() {
-		return new OntimizeKeycloakConfiguration();
-	}
-
-	@Bean
-	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "list", matchIfMissing = false)
-	public IOntimizeKeycloakConfiguration createOntimizeKeycloakMultiTenantConfiguration() {
-		return new OntimizeKeycloakMultiTenantConfiguration();
-	}
-
-	@Bean
-	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "default", matchIfMissing = true)
-	public IOntimizeKeycloakConfiguration createOntimizeKeycloakSingleTenantConfiguration() {
-		return new OntimizeKeycloakSingleTenantConfiguration();
 	}
 
 	@Bean
@@ -213,27 +223,49 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.role-information-service")
 	public ISecurityRoleInformationService roleInformationService() {
-		RoleInformationServiceConfig config = this.roleInformationServiceConfig();
-		DatabaseRoleInformationService roleInformationService = new DatabaseRoleInformationService();
+		final RoleInformationServiceConfig config = this.roleInformationServiceConfig();
+		final DatabaseRoleInformationService roleInformationService = new DatabaseRoleInformationService();
 
-		if (config.getRoleRepository() != null) {
-			Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
-			if (roleDao instanceof IOntimizeDaoSupport) {
-				roleInformationService.setProfileRepository((IOntimizeDaoSupport) roleDao);
-			}
-
-			roleInformationService.setRoleNameColumn(config.getRoleNameColumn());
-			roleInformationService.setServerPermissionQueryId(config.getServerPermissionQueryId());
-			roleInformationService.setServerPermissionKeyColumn(config.getServerPermissionNameColumn());
-			roleInformationService.setClientPermissionQueryId(config.getClientPermissionQueryId());
-			roleInformationService.setClientPermissionColumn(config.getClientPermissionColumn());
+		final Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
+		if (roleDao instanceof IOntimizeDaoSupport) {
+			roleInformationService.setProfileRepository((IOntimizeDaoSupport) roleDao);
 		}
+
+		roleInformationService.setRoleNameColumn(config.getRoleNameColumn());
+		roleInformationService.setServerPermissionQueryId(config.getServerPermissionQueryId());
+		roleInformationService.setServerPermissionKeyColumn(config.getServerPermissionNameColumn());
+		roleInformationService.setClientPermissionQueryId(config.getClientPermissionQueryId());
+		roleInformationService.setClientPermissionColumn(config.getClientPermissionColumn());
+
 		return roleInformationService;
 	}
 
+	@Bean
+	public IRoleProvider roleProvider() {
+		final OntimizeKeycloakRoleProvider roleProvider = new OntimizeKeycloakRoleProvider();
+
+		if (this.keycloakConfiguration.getRoles() != null) {
+			for (final OntimizeKeycloakRoleConfig roleConfig : this.keycloakConfiguration.getRoles()) {
+				Map<String, String> clientPermissions = new HashMap<>();
+				if (roleConfig.getClientPermissions() != null) {
+					try {
+						clientPermissions = XMLClientUtilities.buildClientPermissions(new StringBuffer(roleConfig.getClientPermissions()));
+					} catch (Exception e) {
+						OntimizeKeycloakWebSecurityConfigurerAdapter.logger.error("Error loading client permissions for role {}", roleConfig.getName(), e);
+					}
+				}
+
+				roleProvider.addRole(new Role(roleConfig.getName(), roleConfig.getServerPermissions(), clientPermissions));
+			}
+		}
+
+		return roleProvider;
+	}
+
 	public FilterSecurityInterceptor filterInvocationInterceptor() throws Exception {
-		FilterSecurityInterceptor filterInvocationInterceptor = new FilterSecurityInterceptor();
+		final FilterSecurityInterceptor filterInvocationInterceptor = new FilterSecurityInterceptor();
 		filterInvocationInterceptor.setObserveOncePerRequest(true);
 		filterInvocationInterceptor.setAuthenticationManager(this.authenticationManager());
 		filterInvocationInterceptor.setAccessDecisionManager(this.accessDecisionManager());
@@ -243,7 +275,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 
 	@Bean
 	public FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSource() {
-		LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
+		final LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
 		requestMap.put(new AntPathRequestMatcher("/**/*"), SecurityConfig.createList("NONE_ENTER_WITHOUT_AUTH"));
 
 		return new ExpressionBasedFilterInvocationSecurityMetadataSource(requestMap,
@@ -252,8 +284,10 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 
 	@Bean
 	public SecurityConfiguration securityConfiguration() {
-		SecurityConfiguration securityConfiguration = new SecurityConfiguration();
-		securityConfiguration.setRoleInformationService(this.roleInformationService());
+		final SecurityConfiguration securityConfiguration = new SecurityConfiguration();
+		if (this.keycloakConfiguration.getRoles() == null) {
+			securityConfiguration.setRoleInformationService(this.roleInformationService());
+		}
 		securityConfiguration.setAuthorizator(this.ontimizeAuthorizator());
 		return securityConfiguration;
 	}
