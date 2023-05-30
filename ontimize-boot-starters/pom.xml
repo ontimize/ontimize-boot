@@ -68,6 +68,12 @@
 			<organization>Imatia Innovation</organization>
 			<organizationUrl>http://imatia.com</organizationUrl>
 		</developer>
+		<developer>
+			<name>Ángel Herce Soto</name>
+			<email>angel.herce@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
 	</developers>
 
 	<licenses>
@@ -96,5 +102,6 @@
 		<module>ontimize-boot-starter-keycloak</module>
 		<module>ontimize-boot-starter-webaddons</module>
     	<module>ontimize-boot-starter-report</module>
-  </modules>
+		<module>ontimize-boot-starter-sdms</module>
+	</modules>
 </project>

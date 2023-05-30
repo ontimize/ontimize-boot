@@ -70,6 +70,12 @@
 			<organization>Imatia Innovation</organization>
 			<organizationUrl>http://imatia.com</organizationUrl>
 		</developer>
+		<developer>
+			<name>Ángel Herce Soto</name>
+			<email>angel.herce@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
 	</developers>
 
 	<licenses>
