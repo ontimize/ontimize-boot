@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
@@ -52,6 +53,7 @@ import com.ontimize.jee.server.security.DatabaseRoleInformationService;
 import com.ontimize.jee.server.security.ISecurityRoleInformationService;
 import com.ontimize.jee.server.security.SecurityConfiguration;
 import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizator;
+import com.ontimize.jee.server.security.authorization.DefaultRoleProvider;
 import com.ontimize.jee.server.security.authorization.IRoleProvider;
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter;
@@ -223,31 +225,31 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean
-	public ISecurityRoleInformationService roleInformationService() {
-		final RoleInformationServiceConfig config = this.roleInformationServiceConfig();
+	@ConditionalOnProperty(name = "ontimize.security.role-information-service.role-repository")
+	public ISecurityRoleInformationService roleInformationService(final RoleInformationServiceConfig config) {
 		final DatabaseRoleInformationService roleInformationService = new DatabaseRoleInformationService();
 
-		if (config.getRoleRepository() != null) {
-			final Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
-			if (roleDao instanceof IOntimizeDaoSupport) {
-				roleInformationService.setProfileRepository((IOntimizeDaoSupport) roleDao);
-			}
-
-			roleInformationService.setRoleNameColumn(config.getRoleNameColumn());
-			roleInformationService.setServerPermissionQueryId(config.getServerPermissionQueryId());
-			roleInformationService.setServerPermissionKeyColumn(config.getServerPermissionNameColumn());
-			roleInformationService.setClientPermissionQueryId(config.getClientPermissionQueryId());
-			roleInformationService.setClientPermissionColumn(config.getClientPermissionColumn());
+		final Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
+		if (roleDao instanceof IOntimizeDaoSupport) {
+			roleInformationService.setProfileRepository((IOntimizeDaoSupport) roleDao);
 		}
+
+		roleInformationService.setRoleNameColumn(config.getRoleNameColumn());
+		roleInformationService.setServerPermissionQueryId(config.getServerPermissionQueryId());
+		roleInformationService.setServerPermissionKeyColumn(config.getServerPermissionNameColumn());
+		roleInformationService.setClientPermissionQueryId(config.getClientPermissionQueryId());
+		roleInformationService.setClientPermissionColumn(config.getClientPermissionColumn());
 
 		return roleInformationService;
 	}
 
 	@Bean
-	public IRoleProvider roleProvider() {
-		final OntimizeKeycloakRoleProvider roleProvider = new OntimizeKeycloakRoleProvider();
+	public IRoleProvider roleProvider(final ApplicationContext context, final RoleInformationServiceConfig config) {
+		if (config.getRoleRepository() != null) {
+			return new DefaultRoleProvider(context);
+		} else {
+			final OntimizeKeycloakRoleProvider roleProvider = new OntimizeKeycloakRoleProvider();
 
-		if (this.keycloakConfiguration.getRoles() != null) {
 			for (final OntimizeKeycloakRoleConfig roleConfig : this.keycloakConfiguration.getRoles()) {
 				Map<String, String> clientPermissions = new HashMap<>();
 				if (roleConfig.getClientPermissions() != null) {
@@ -260,9 +262,9 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 
 				roleProvider.addRole(new Role(roleConfig.getName(), roleConfig.getServerPermissions(), clientPermissions));
 			}
-		}
 
-		return roleProvider;
+			return roleProvider;
+		}
 	}
 
 	public FilterSecurityInterceptor filterInvocationInterceptor() throws Exception {
@@ -284,10 +286,10 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean
-	public SecurityConfiguration securityConfiguration() {
+	public SecurityConfiguration securityConfiguration(final RoleInformationServiceConfig config) {
 		final SecurityConfiguration securityConfiguration = new SecurityConfiguration();
-		if (this.keycloakConfiguration.getRoles() == null) {
-			securityConfiguration.setRoleInformationService(this.roleInformationService());
+		if (config.getRoleRepository() != null) {
+			securityConfiguration.setRoleInformationService(this.roleInformationService(config));
 		}
 		securityConfiguration.setAuthorizator(this.ontimizeAuthorizator());
 		return securityConfiguration;
