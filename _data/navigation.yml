@@ -38,6 +38,8 @@ sidebar-basics:
         url: /basics/asynctask/
       - title: "DMS"
         url: /basics/dms/
+      - title: "SDMS"
+        url: /basics/sdms/
       - title: "I18N"
         url: /basics/i18n/
       - title: "LDAP"

@@ -51,6 +51,41 @@ ontimize:
       base-path: file:/C:/applications/projectwiki/dms
 ```
 
+## SDMS
+- **ontimize:sdms:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| engine |s3 | Indicates that the implementation that handles documents via the Amazon AWS S3 service API will be used. |
+
+**Example**
+```yaml
+ontimize:
+   dms:
+      engine: s3
+```
+### SDMS - S3 Engine
+- **ontimize:sdms:s3:**
+
+| Attribute | Values | Meaning |
+|--|--|--|
+| access-key | String | Indicates the `access-key` parámeter required to authenticate to the Amazon AWS S3 service API. |
+| secret-key | String | Indicates the `secret-key` parámeter required to authenticate to the Amazon AWS S3 service API. |
+| bucket | String | Indicates the `bucket` parámeter required to establish the S3 bucket into the SDMS. |
+| region | String | Indicates the `region` parámeter required to establish the region where the S3 bucket is located. |
+
+**Example**
+```yaml
+ontimize:
+   dms:
+     access-key: s3
+   s3:
+     access-key: ${S3_ACCESS_KEY}
+     secret-key: ${S3_SECRET_KEY}
+     bucket: ${S3_BUCKET}
+     region: ${S3_REGION}
+```
+
 ## Export
 **Important:** This module works only for Ontimize Boot version 3.7.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
 {: .notice--warning}
