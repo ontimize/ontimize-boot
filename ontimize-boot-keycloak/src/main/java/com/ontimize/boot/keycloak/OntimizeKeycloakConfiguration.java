@@ -1,5 +1,6 @@
 package com.ontimize.boot.keycloak;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -18,7 +19,7 @@ public class OntimizeKeycloakConfiguration implements IOntimizeKeycloakConfigura
 	@Value("${ontimize.security.keycloak.realms-provider:}")
 	private String realmsProvider;
 
-	private List<OntimizeKeycloakRoleConfig> roles;
+	private List<OntimizeKeycloakRoleConfig> roles = new ArrayList<>();
 
 	@Override
 	public Boolean isPublicClient() {
