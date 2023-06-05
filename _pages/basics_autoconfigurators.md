@@ -52,6 +52,10 @@ ontimize:
 ```
 
 ## SDMS
+
+**Important:** This module works only for Ontimize Boot version 3.11.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
+{: .notice--warning}
+
 - **ontimize:sdms:**
 
 | Attribute | Values | Meaning |

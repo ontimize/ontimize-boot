@@ -11,6 +11,9 @@ sidebar:
   nav: sidebar-basics
 ---
 
+**Important:** This module works only for Ontimize Boot version 3.11.0 or above. Actual release version: [![Ontimize Boot](https://img.shields.io/maven-central/v/com.ontimize.boot/ontimize-boot?label=Ontimize%20boot&style=plastic)](https://maven-badges.herokuapp.com/maven-central/com.ontimize.boot/ontimize-boot)
+{: .notice--warning}
+
 # Introduction
 The **S**torage **D**ocument **M**anagement **S**ystem (**SDMS**) is a system that allows you to manage documents related to an entity in your project. Ontimize Boot provides a DMS that allows to store files in external services according to the engine set in its configuration.
 
@@ -968,9 +971,9 @@ EntityResult candidateSdmsDelete( OSdmsRestDataDto data );
 </div>
 
 Now in the implementation of the service we **implement the methods** with the help of the `IOSdmsService` component of the SDMS system and by calling the corresponding method.  
-We will also **establish the workspace** where the entity will store and manage the files. We will do this via the `OSdmsWorkspace` annotation which admits 2 parameters::
+We will also **establish the workspace** where the entity will store and manage the files. We will do this via the `OSdmsWorkspace` annotation which admits 2 parameters:
 - `name`: Sets the name of the workspace. If this parameter is not set, the value will be `default`.
-- value`: Sets the path to the workspace, and can be set to variable between braces.
+- `value`: Sets the path to the workspace, and can be set to variable between braces.
 
 The annotation can be set at **class level** by enabling the workspace for all SDMS methods, and/or at **method level** by setting its scope to the annotated method. It can also be set as many workspaces as required.
 
