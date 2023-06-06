@@ -8,4 +8,4 @@ All documentation related to how to use it in a project, tutorials and details o
 ## 👁️‍🗨️ Versions and dependencies
 All the versions and dependencies of the artifacts contained in this project can be downloaded from [Maven Central](https://central.sonatype.dev/namespace/com.ontimize.boot), as well as knowing each of its dependencies.
 ## :gear: Changelog
-You can consult our changelog at the following [link](CHANGELOG.md).
+You can consult our changelog at the following [link](CHANGELOG.md)
