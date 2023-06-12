@@ -22,6 +22,12 @@
 
     <developers>
         <developer>
+            <name>Ángel Herce Soto</name>
+            <email>angel.herce@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
             <name>Daniel Graña Cousido</name>
             <email>daniel.grana@imatia.com</email>
             <organization>Imatia Innovation</organization>
@@ -186,6 +192,12 @@
             <dependency>
                 <groupId>com.ontimize.boot</groupId>
                 <artifactId>ontimize-boot-starter-webaddons</artifactId>
+                <version>${project.dependency.ontimize.boot.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ontimize.boot</groupId>
+                <artifactId>ontimize-boot-starter-sdms</artifactId>
                 <version>${project.dependency.ontimize.boot.version}</version>
             </dependency>
 

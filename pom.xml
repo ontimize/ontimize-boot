@@ -28,6 +28,12 @@
 
     <developers>
         <developer>
+            <name>Ángel Herce Soto</name>
+            <email>angel.herce@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
             <name>Daniel Graña Cousido</name>
             <email>daniel.grana@imatia.com</email>
             <organization>Imatia Innovation</organization>
@@ -109,6 +115,8 @@
         <project.dependency.ontimize-jee-dms.version>3.1.0</project.dependency.ontimize-jee-dms.version>
         <project.dependency.keycloak.version>15.0.2</project.dependency.keycloak.version>
         <project.dependency.ontimize-jee-report.version>3.2.0</project.dependency.ontimize-jee-report.version>
+        <project.dependency.ontimize-jee-sdms.version>1.0.0</project.dependency.ontimize-jee-sdms.version>
+
         <!-- =========================================================== -->
         <!-- Plugin versions -->
         <!-- =========================================================== -->
@@ -223,6 +231,37 @@
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-spring-boot-starter</artifactId>
                 <version>${project.dependency.keycloak.version}</version>
+            </dependency>
+
+            <!-- Storage DMS -->
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-common</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-event</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-rest</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-server</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-engine-s3</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
