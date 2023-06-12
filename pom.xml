@@ -12,7 +12,7 @@
 
     <groupId>com.ontimize.boot</groupId>
     <artifactId>ontimize-boot</artifactId>
-    <version>3.10.1</version>
+    <version>3.11.0</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -27,6 +27,12 @@
     <url>https://www.ontimize.com</url>
 
     <developers>
+        <developer>
+            <name>Ángel Herce Soto</name>
+            <email>angel.herce@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
         <developer>
             <name>Daniel Graña Cousido</name>
             <email>daniel.grana@imatia.com</email>
@@ -104,11 +110,13 @@
     <properties>
         <project.dependency.spring.boot.version>2.5.0</project.dependency.spring.boot.version>
         <project.dependency.spring.security.version>5.5.1</project.dependency.spring.security.version>
-        <project.dependency.ontimize.boot.version>3.10.1</project.dependency.ontimize.boot.version>
-        <project.dependency.ontimize-jee.version>5.7.0</project.dependency.ontimize-jee.version>
+        <project.dependency.ontimize.boot.version>3.11.0</project.dependency.ontimize.boot.version>
+        <project.dependency.ontimize-jee.version>5.8.0</project.dependency.ontimize-jee.version>
         <project.dependency.ontimize-jee-dms.version>3.1.0</project.dependency.ontimize-jee-dms.version>
-        <project.dependency.keycloak.version>9.0.3</project.dependency.keycloak.version>
+        <project.dependency.keycloak.version>15.0.2</project.dependency.keycloak.version>
         <project.dependency.ontimize-jee-report.version>3.2.0</project.dependency.ontimize-jee-report.version>
+        <project.dependency.ontimize-jee-sdms.version>1.0.0</project.dependency.ontimize-jee-sdms.version>
+
         <!-- =========================================================== -->
         <!-- Plugin versions -->
         <!-- =========================================================== -->
@@ -223,6 +231,37 @@
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-spring-boot-starter</artifactId>
                 <version>${project.dependency.keycloak.version}</version>
+            </dependency>
+
+            <!-- Storage DMS -->
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-common</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-event</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-rest</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-server</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.ontimize.jee.sdms</groupId>
+                <artifactId>ontimize-jee-sdms-engine-s3</artifactId>
+                <version>${project.dependency.ontimize-jee-sdms.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -339,6 +378,18 @@
         </profile>
         <profile>
             <id>generate-version</id>
+			<repositories>
+                <repository>
+                    <id>sonatype-snapshot</id>
+                    <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
             <build>
                 <plugins>
                     <!-- Source -->

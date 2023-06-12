@@ -21,12 +21,17 @@ public class OntimizeKeycloakAutoConfiguration extends KeycloakAutoConfiguration
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
 
+	@Value("${ontimize.security.keycloak.realms-provider:}")
+	private String realmsProvider;
+
 	@Bean
 	@Override
 	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> getKeycloakContainerCustomizer() {
 		return configurableServletWebServerFactory -> {
-			TomcatServletWebServerFactory container = (TomcatServletWebServerFactory) configurableServletWebServerFactory;
-			container.addContextValves(new OntimizeKeycloakAuthenticatorValve(pathMatcherIgnorePaths()));
+			final TomcatServletWebServerFactory container = (TomcatServletWebServerFactory) configurableServletWebServerFactory;
+			final OntimizeKeycloakTenantValidator tenantValidator = new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths(),
+					"list".equals(this.realmsProvider) || "custom".equals(this.realmsProvider));
+			container.addContextValves(new OntimizeKeycloakAuthenticatorValve(tenantValidator));
 			container.addContextCustomizers(tomcatKeycloakContextCustomizer());
 		};
 	}
@@ -34,12 +39,12 @@ public class OntimizeKeycloakAutoConfiguration extends KeycloakAutoConfiguration
 	@Bean()
 	public OntimizePathMatcher pathMatcherIgnorePaths() {
 		String[] paths = { "/auth/**", "/resources/**", "/ontimize/**" };
-		
+
 		if (this.ignorePaths != null && this.ignorePaths.length > 0) {
 			paths = Stream.concat(Arrays.stream(paths), Arrays.stream(this.ignorePaths))
-		      .toArray(size -> (String[]) Array.newInstance(String.class, size));
+				.toArray(size -> (String[]) Array.newInstance(String.class, size));
 		}
-		
+
 		return new OntimizePathMatcher(paths);
 	}
 }

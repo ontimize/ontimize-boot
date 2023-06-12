@@ -1,5 +1,7 @@
-## 3.11.0 - In progress
+## 3.11.0 - 12/06/2023
 ### 🚀 Features:
+* **Keycloak**: Allow to configure roles without a database.
+* **[SDMS](https://ontimize.github.io/ontimize-boot/basics/sdms/)**: Add Ontimize SDMS (Amazon S3) support.
 <!-- ### 🔧 Bug fixes: -->
 ## 3.10.1 - 21/04/2023
 ### 🔧 Bug fixes:

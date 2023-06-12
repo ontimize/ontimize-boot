@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>ontimize-boot-starters</artifactId>
 		<groupId>com.ontimize.boot</groupId>
-		<version>3.10.1</version>
+		<version>3.11.0</version>
 	</parent>
 	
 	<artifactId>ontimize-boot-starter-report</artifactId>
@@ -22,6 +22,12 @@
 	<url>https://www.ontimize.com</url>
 
 	<developers>
+		<developer>
+			<name>Ángel Herce Soto</name>
+			<email>angel.herce@imatia.com</email>
+			<organization>Imatia Innovation</organization>
+			<organizationUrl>http://imatia.com</organizationUrl>
+		</developer>
 		<developer>
 			<name>Daniel Graña Cousido</name>
 			<email>daniel.grana@imatia.com</email>
