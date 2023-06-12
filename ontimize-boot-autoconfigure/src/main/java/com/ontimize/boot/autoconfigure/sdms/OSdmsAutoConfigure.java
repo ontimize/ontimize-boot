@@ -17,6 +17,10 @@ import org.springframework.context.annotation.Configuration;
 })
 public class OSdmsAutoConfigure {
 
+    public static void main( final String[] args ) {
+        //Do nothing
+    }
+
     @Configuration
     @Conditional( OSdmsS3EngineAutoConfigureConditional.class )
     @ComponentScan( "com.ontimize.jee.sdms.engine.s3" )
