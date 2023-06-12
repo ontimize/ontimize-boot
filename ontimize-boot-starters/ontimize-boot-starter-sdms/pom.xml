@@ -27,6 +27,54 @@
             <organization>Imatia Innovation</organization>
             <organizationUrl>http://imatia.com</organizationUrl>
         </developer>
+        <developer>
+            <name>Daniel Graña Cousido</name>
+            <email>daniel.grana@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Enrique Alvarez Pereira</name>
+            <email>enrique.alvarez@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Faustino Lage Rego</name>
+            <email>faustino.lage@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Joaquín Romero Riveiro</name>
+            <email>joaquin.romero@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Jorge Díaz Seijo</name>
+            <email>jorge.diaz@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Pablo Martínez Kirsten</name>
+            <email>pablo.martinez@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Tomás Fuentes Facal</name>
+            <email>tomas.fuentes@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
+            <name>Xoán Loureiro Santamaría</name>
+            <email>xoan.loureiro@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
     </developers>
 
     <licenses>

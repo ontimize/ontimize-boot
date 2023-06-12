@@ -22,6 +22,12 @@
 
     <developers>
         <developer>
+            <name>Ángel Herce Soto</name>
+            <email>angel.herce@imatia.com</email>
+            <organization>Imatia Innovation</organization>
+            <organizationUrl>http://imatia.com</organizationUrl>
+        </developer>
+        <developer>
             <name>Daniel Graña Cousido</name>
             <email>daniel.grana@imatia.com</email>
             <organization>Imatia Innovation</organization>
@@ -66,12 +72,6 @@
         <developer>
             <name>Xoán Loureiro Santamaría</name>
             <email>xoan.loureiro@imatia.com</email>
-            <organization>Imatia Innovation</organization>
-            <organizationUrl>http://imatia.com</organizationUrl>
-        </developer>
-        <developer>
-            <name>Ángel Herce Soto</name>
-            <email>angel.herce@imatia.com</email>
             <organization>Imatia Innovation</organization>
             <organizationUrl>http://imatia.com</organizationUrl>
         </developer>
