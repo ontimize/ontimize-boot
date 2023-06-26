@@ -10,7 +10,7 @@
 
 ## [Unreleased]
 ### Changed 🛠️
-* **SDMS**: Ontimize EE SDMS has been updated to version 1.1.0
+* **[SDMS](https://github.com/ontimize/ontimize-jee-sdms/blob/develop/CHANGELOG.md#120---2023-06-23)**: Ontimize EE SDMS has been updated to version 1.2.0
 * **Changelog**: The structure of the CHANGELOG.md file has been modified so that it follows the structure shown at [keepachangelog](https://keepachangelog.com/).
 ## [3.11.0] - 2023-06-12
 ### Added ✔️
