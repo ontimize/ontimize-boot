@@ -9,6 +9,7 @@
 
 
 ## [Unreleased]
+## [3.12.0] - 2023-08-01
 ### Changed 🛠️
 * **[SDMS](https://github.com/ontimize/ontimize-jee-sdms/blob/develop/CHANGELOG.md#131---2023-06-28)**: Ontimize EE SDMS has been updated to version `1.3.1`.
 * **[Ontimize EE Report](https://github.com/ontimize/ontimize-jee-report/blob/develop/CHANGELOG.md#330---2023-07-31)**: Ontimize EE Report has been updated to version `3.3.0`.
@@ -36,6 +37,7 @@
 
 
 [unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.11.0...HEAD
+[3.12.0]: https://github.com/ontimize/ontimize-boot/compare/3.11.0...3.12.0
 [3.11.0]: https://github.com/ontimize/ontimize-boot/compare/3.10.1...3.11.0
 [3.10.1]: https://github.com/ontimize/ontimize-boot/compare/3.10.0...3.10.1
 [3.10.0]: https://github.com/ontimize/ontimize-boot/compare/3.9.0...3.10.0
