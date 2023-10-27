@@ -1,9 +1,7 @@
 package com.ontimize.boot.keycloak;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -28,8 +26,6 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
-import org.springframework.security.access.ConfigAttribute;
-import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.access.vote.AffirmativeBased;
 import org.springframework.security.access.vote.RoleVoter;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -37,14 +33,8 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
-import org.springframework.security.web.access.expression.ExpressionBasedFilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
-import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import com.ontimize.jee.common.security.XMLClientUtilities;
 import com.ontimize.jee.server.dao.IOntimizeDaoSupport;
@@ -56,12 +46,12 @@ import com.ontimize.jee.server.security.authorization.DefaultOntimizeAuthorizato
 import com.ontimize.jee.server.security.authorization.DefaultRoleProvider;
 import com.ontimize.jee.server.security.authorization.IRoleProvider;
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
-import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVoter;
 import com.ontimize.jee.server.security.authorization.Role;
 import com.ontimize.jee.server.security.keycloak.IOntimizeKeycloakConfiguration;
+import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakAccessDecisionVoter;
 import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakConfigResolver;
-import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakUserDetailsAuthenticationProvider;
 import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakRoleProvider;
+import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakUserDetailsAuthenticationProvider;
 import com.ontimize.jee.server.security.keycloak.admin.IUserManagement;
 import com.ontimize.jee.server.security.keycloak.admin.UserManagementKeycloakImpl;
 
@@ -123,7 +113,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	@Bean
 	@Override
 	protected KeycloakAuthenticationProcessingFilter keycloakAuthenticationProcessingFilter() throws Exception {
-		KeycloakAuthenticationProcessingFilter filter = new OntimizeKeycloakAuthenticationProcessingFilter(authenticationManagerBean());
+		final KeycloakAuthenticationProcessingFilter filter = new OntimizeKeycloakAuthenticationProcessingFilter(authenticationManagerBean());
 		filter.setSessionAuthenticationStrategy(sessionAuthenticationStrategy());
 		return filter;
 	}
@@ -177,8 +167,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 		http.authorizeRequests()
 				.antMatchers(HttpMethod.OPTIONS).permitAll()
 				.anyRequest().authenticated()
-				.and().csrf().disable()
-				.addFilter(this.filterInvocationInterceptor());
+				.and().csrf().disable();
 	}
 
 	@Override
@@ -192,23 +181,23 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 
 	@Bean
 	public AccessDecisionVoter<Object> ontimizeAccessDecisionVoter() {
-		OntimizeAccessDecisionVoter ontimizeVoter = new OntimizeAccessDecisionVoter();
+		final OntimizeKeycloakAccessDecisionVoter ontimizeVoter = new OntimizeKeycloakAccessDecisionVoter();
 		ontimizeVoter.setDefaultVoter(this.defaultVoter());
 		return ontimizeVoter;
 	}
 
 	@Bean
 	public RoleVoter defaultVoter() {
-		RoleVoter roleVoter = new RoleVoter();
+		final RoleVoter roleVoter = new RoleVoter();
 		roleVoter.setRolePrefix("");
 		return roleVoter;
 	}
 
 	@Bean
 	public AccessDecisionManager accessDecisionManager() {
-		List<AccessDecisionVoter<?>> decisionVoters = new ArrayList<>();
+		final List<AccessDecisionVoter<?>> decisionVoters = new ArrayList<>();
 		decisionVoters.add(this.ontimizeAccessDecisionVoter());
-		AffirmativeBased accessDecisionManager = new AffirmativeBased(decisionVoters);
+		final AffirmativeBased accessDecisionManager = new AffirmativeBased(decisionVoters);
 		accessDecisionManager.setAllowIfAllAbstainDecisions(false);
 		return accessDecisionManager;
 	}
@@ -265,24 +254,6 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 
 			return roleProvider;
 		}
-	}
-
-	public FilterSecurityInterceptor filterInvocationInterceptor() throws Exception {
-		final FilterSecurityInterceptor filterInvocationInterceptor = new FilterSecurityInterceptor();
-		filterInvocationInterceptor.setObserveOncePerRequest(true);
-		filterInvocationInterceptor.setAuthenticationManager(this.authenticationManager());
-		filterInvocationInterceptor.setAccessDecisionManager(this.accessDecisionManager());
-		filterInvocationInterceptor.setSecurityMetadataSource(this.filterInvocationSecurityMetadataSource());
-		return filterInvocationInterceptor;
-	}
-
-	@Bean
-	public FilterInvocationSecurityMetadataSource filterInvocationSecurityMetadataSource() {
-		final LinkedHashMap<RequestMatcher, Collection<ConfigAttribute>> requestMap = new LinkedHashMap<>();
-		requestMap.put(new AntPathRequestMatcher("/**/*"), SecurityConfig.createList("NONE_ENTER_WITHOUT_AUTH"));
-
-		return new ExpressionBasedFilterInvocationSecurityMetadataSource(requestMap,
-				new DefaultWebSecurityExpressionHandler());
 	}
 
 	@Bean

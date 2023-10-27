@@ -9,6 +9,7 @@
 
 
 ## [Unreleased]
+* **Keycloak**: Allow to use the Keycloak authentication on non-http calls
 ## [3.12.0] - 2023-08-01
 ### Changed 🛠️
 * **[SDMS](https://github.com/ontimize/ontimize-jee-sdms/blob/develop/CHANGELOG.md#131---2023-06-28)**: Ontimize EE SDMS has been updated to version `1.3.1`.
