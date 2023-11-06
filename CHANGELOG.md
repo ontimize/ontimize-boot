@@ -9,6 +9,9 @@
 
 
 ## [Unreleased]
+## [3.13.0] - 2023-11-06
+### Added ✔️
+* **Keycloak**: Allow to use the Keycloak authentication on non-http calls
 ## [3.12.0] - 2023-08-01
 ### Changed 🛠️
 * **[SDMS](https://github.com/ontimize/ontimize-jee-sdms/blob/develop/CHANGELOG.md#131---2023-06-28)**: Ontimize EE SDMS has been updated to version `1.3.1`.
@@ -36,7 +39,8 @@
 * **[Export services](https://ontimize.github.io/ontimize-boot/basics/export/exportdata):** System to export the DAO data of a service and dump it directly to a file.
 
 
-[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.11.0...HEAD
+[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.12.0...HEAD
+[3.13.0]: https://github.com/ontimize/ontimize-boot/compare/3.12.0...3.13.0
 [3.12.0]: https://github.com/ontimize/ontimize-boot/compare/3.11.0...3.12.0
 [3.11.0]: https://github.com/ontimize/ontimize-boot/compare/3.10.1...3.11.0
 [3.10.1]: https://github.com/ontimize/ontimize-boot/compare/3.10.0...3.10.1
