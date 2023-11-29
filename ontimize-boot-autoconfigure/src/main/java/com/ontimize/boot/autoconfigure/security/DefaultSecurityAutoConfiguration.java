@@ -75,8 +75,14 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
 
+	private final ApplicationContext appContext;
+
 	@Autowired
-	private ApplicationContext appContext;
+	public DefaultSecurityAutoConfiguration(final ApplicationContext appContext) {
+		super();
+
+		this.appContext = appContext;
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
