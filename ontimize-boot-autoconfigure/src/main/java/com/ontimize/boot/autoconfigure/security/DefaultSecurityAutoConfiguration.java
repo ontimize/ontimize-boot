@@ -341,11 +341,11 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 
 	@Bean
 	public OntimizePathMatcher pathMatcherIgnorePaths() {
-		String[] paths = { "/resources/**", "/ontimize/**" };
+		String[] paths = { "/", "/resources/**", "/ontimize/**" };
 
 		if (this.ignorePaths != null && this.ignorePaths.length > 0) {
 			paths = Stream.concat(Arrays.stream(paths), Arrays.stream(this.ignorePaths))
-		      .toArray(size -> (String[]) Array.newInstance(String.class, size));
+					.toArray(size -> (String[]) Array.newInstance(String.class, size));
 		}
 
 		return new OntimizePathMatcher(paths);

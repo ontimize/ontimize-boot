@@ -9,6 +9,8 @@
 
 
 ## [Unreleased]
+### Fixed 🐛
+* **Multitenant:** Fix an authorization issue when accessing to the application root path
 ## [3.13.0] - 2023-11-06
 ### Added ✔️
 * **Keycloak**: Allow to use the Keycloak authentication on non-http calls
