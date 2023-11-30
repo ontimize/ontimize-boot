@@ -10,7 +10,9 @@
 
 ## [Unreleased]
 ### Fixed 🐛
-* **Multitenant:** Fix an authorization issue when accessing to the application root path
+* **Multi tenant:** Fix an authorization issue when accessing to the application root path
+### Added ✔️
+* **Multi tenant**: Ask the tenant provider to load a tenant when it can not be found.
 ## [3.13.0] - 2023-11-06
 ### Added ✔️
 * **Keycloak**: Allow to use the Keycloak authentication on non-http calls
@@ -29,7 +31,7 @@
 * **Versions:** Remove SNAPSHOT tag from versions
 ## [3.10.0] - 2023-04-20
 ### Added ✔️
-* **Keycloack and Multitennant**: Unlink keycloak from multitenant functionality.
+* **Keycloack and Multi tenant**: Unlink keycloak from multitenant functionality.
 <!-- ### 🔧 Bug fixes: -->
 ## [3.9.0] - 2023-01-05
 ### Added ✔️

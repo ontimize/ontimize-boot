@@ -30,12 +30,7 @@ public class MultiTenantAutoConfiguration {
 
 	@Bean("tenantDataSource")
 	public DataSource multitenantDataSource(IMultiTenantManager tenantManager) {
-		MultiTenantRoutingDataSource tenantRoutingDataSource = new MultiTenantRoutingDataSource();
-		tenantRoutingDataSource.setTargetDataSources(tenantManager.getDataSourceHashMap());
-
-		tenantManager.setTenantRoutingDataSource(tenantRoutingDataSource);
-
-		return tenantRoutingDataSource;
+		return new MultiTenantRoutingDataSource(tenantManager);
 	}
 
 	@Bean("tenantTransactionManager")
