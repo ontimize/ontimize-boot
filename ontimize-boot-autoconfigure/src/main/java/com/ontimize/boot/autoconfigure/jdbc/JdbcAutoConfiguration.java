@@ -2,6 +2,7 @@ package com.ontimize.boot.autoconfigure.jdbc;
 
 import javax.sql.DataSource;
 
+import com.ontimize.jee.common.db.handler.MySQLSQLStatementHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -45,6 +46,15 @@ public class JdbcAutoConfiguration {
 	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "postgres")
 	public SQLStatementHandler postgresSQLStatementHandler() {
 		SQLStatementHandler handler = new PostgresSQLStatementHandler();
+		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
+		return handler;
+	}
+
+	@Deprecated
+	@Bean("dbSQLStatementHandler")
+	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "mysql")
+	public SQLStatementHandler MySQLSQLStatementHandler() {
+		SQLStatementHandler handler = new MySQLSQLStatementHandler();
 		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
 		return handler;
 	}
