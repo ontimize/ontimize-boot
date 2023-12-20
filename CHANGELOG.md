@@ -11,6 +11,7 @@
 ## [Unreleased]
 ### Fixed 🐛
 * **Multi tenant:** Fix an authorization issue when accessing to the application root path
+* **JdbcAutoConfiguration:** Added configuration for the MySQL SQLStatementHandler in the application.yml
 ### Added ✔️
 * **Multi tenant**: Ask the tenant provider to load a tenant when it can not be found.
 ## [3.13.0] - 2023-11-06

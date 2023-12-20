@@ -95,15 +95,6 @@ public class JdbcAutoConfiguration {
 		return handler;
 	}
 
-	//	@Deprecated
-	//	@Bean("dbSQLStatementHandler")
-	//	@ConditionalOnMissingBean
-	//	public SQLStatementHandler defaultSQLStatementHandler() {
-	//		SQLStatementHandler handler = new DefaultSQLStatementHandler();
-	//		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
-	//		return handler;
-	//	}
-
 	@Bean
 	@Deprecated
 	public ExtendedSQLConditionValuesProcessor extendedSQLConditionValuesProcessor() {
