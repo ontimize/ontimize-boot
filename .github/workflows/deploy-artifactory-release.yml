@@ -65,6 +65,15 @@ jobs:
           git add .
           git commit -m "New develop version → $version_dev"
           git push origin sync/$version
+      - name: Create release on Github
+        uses: ncipollo/release-action@2792aea87063cfd0d27953ac38e3ab45afacc154
+        with:
+          commit: ${{ env.BRANCH }}
+          tag: ${{ steps.tag.outputs.version }}
+          name: ${{ steps.tag.outputs.version }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          body: |
+            Check out the [changelog](CHANGELOG.md) for version ${{ steps.tag.outputs.version }}
       - name: Create pull request
         run: |
           version=${{ steps.tag.outputs.version }}
