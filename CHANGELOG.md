@@ -24,7 +24,7 @@
 * **Changelog**: The structure of the CHANGELOG.md file has been modified so that it follows the structure shown at [keepachangelog](https://keepachangelog.com/).
 ## [3.11.0] - 2023-06-12
 ### Added ✔️
-* **[SDMS](https://ontimize.github.io/ontimize-boot/basics/sdms/)**: Add Ontimize SDMS (Amazon S3) support.
+* **[SDMS](https://ontimize.github.io/docs/v3/systems/sdms/)**: Add Ontimize SDMS (Amazon S3) support.
 * **Keycloak**: Allow to configure roles without a database.
 <!-- ### 🔧 Bug fixes: -->
 ## [3.10.1] - 2023-04-21
@@ -39,9 +39,9 @@
 * **Keycloak:** Keycloak added to enable single sign-on to applications and services.
 * **Multi-tenant:** Multitennat capability is added for applications.
 * **Async Tasks:** The possibility to create asynchronous tasks is added. This is required for data export and on-demand reporting.
-* **[Multiple DataSources](https://ontimize.github.io/ontimize-boot/basics/multipledatasources):** Multiple data sources are allowed for the application to work with.
-* **[Dynamic Report](https://ontimize.github.io/ontimize-boot/basics/reports/report-on-demand):** Allow the final users  define, view and store reports from any table available in the application.
-* **[Export services](https://ontimize.github.io/ontimize-boot/basics/export/exportdata):** System to export the DAO data of a service and dump it directly to a file.
+* **[Multiple DataSources](https://ontimize.github.io/docs/v3/basics/multipledatasources/):** Multiple data sources are allowed for the application to work with.
+* **[Dynamic Report](https://ontimize.github.io/docs/v3/systems/reports/report-on-demand):** Allow the final users  define, view and store reports from any table available in the application.
+* **[Export services](https://ontimize.github.io/docs/v3/basics/exportdata/):** System to export the DAO data of a service and dump it directly to a file.
 
 
 [unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.12.0...HEAD
