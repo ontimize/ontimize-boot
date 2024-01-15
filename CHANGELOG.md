@@ -10,8 +10,10 @@
 
 ## [Unreleased]
 ### Fixed 🐛
+* **OReportAutoConfigure**: Removed requirement for preferences to use the reporting system. Although on-demand reports require it, it is not necessary for the storage of reports, so the requirement that it must always exist is removed.
 * **Multi tenant:** Fix an authorization issue when accessing to the application root path
 * **JdbcAutoConfiguration:** Added configuration for the MySQL SQLStatementHandler in the application.yml
+* **Sonar**: Solve some issues. 
 ### Added ✔️
 * **Multi tenant**: Ask the tenant provider to load a tenant when it can not be found.
 ## [3.13.0] - 2023-11-06
