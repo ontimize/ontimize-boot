@@ -294,7 +294,7 @@
         <module>ontimize-boot-starters</module>
         <module>ontimize-boot-webaddons</module>
         <module>ontimize-boot-report</module>
-        <module>ontimize-boot-jacoco</module>
+<!--        <module>ontimize-boot-jacoco</module>-->
     </modules>
 
     <build>
