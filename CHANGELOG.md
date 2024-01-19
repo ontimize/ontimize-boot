@@ -9,13 +9,16 @@
 
 
 ## [Unreleased]
+### Added ✔️
+* **JaCoCo**: Add JaCoCo coverage on Sonar
+* **Multi tenant**: Ask the tenant provider to load a tenant when it can not be found.
+### Changed 🛠️
+* **Sonar**: Upgrade Java version on Sonar action
 ### Fixed 🐛
 * **OReportAutoConfigure**: Removed requirement for preferences to use the reporting system. Although on-demand reports require it, it is not necessary for the storage of reports, so the requirement that it must always exist is removed.
 * **Multi tenant:** Fix an authorization issue when accessing to the application root path
 * **JdbcAutoConfiguration:** Added configuration for the MySQL SQLStatementHandler in the application.yml
-* **Sonar**: Solve some issues. 
-### Added ✔️
-* **Multi tenant**: Ask the tenant provider to load a tenant when it can not be found.
+* **Sonar**: Solve some issues.
 ## [3.13.0] - 2023-11-06
 ### Added ✔️
 * **Keycloak**: Allow to use the Keycloak authentication on non-http calls
@@ -46,7 +49,7 @@
 * **[Export services](https://ontimize.github.io/docs/v3/basics/exportdata/):** System to export the DAO data of a service and dump it directly to a file.
 
 
-[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.12.0...HEAD
+[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.13.0...HEAD
 [3.13.0]: https://github.com/ontimize/ontimize-boot/compare/3.12.0...3.13.0
 [3.12.0]: https://github.com/ontimize/ontimize-boot/compare/3.11.0...3.12.0
 [3.11.0]: https://github.com/ontimize/ontimize-boot/compare/3.10.1...3.11.0
