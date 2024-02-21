@@ -229,7 +229,7 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	@Bean
 	public IJwtService jwtService() {
 		JWTConfig jwtConfig = this.jwtConfig();
-		return new DefaultJwtService(jwtConfig.getPassword() == null ? "ld.a,#82xyz" : jwtConfig.getPassword());
+		return new DefaultJwtService(jwtConfig.getPassword());
 	}
 
 	@Bean

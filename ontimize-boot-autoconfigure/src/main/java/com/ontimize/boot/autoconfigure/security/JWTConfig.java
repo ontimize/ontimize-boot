@@ -1,7 +1,13 @@
 package com.ontimize.boot.autoconfigure.security;
 
+import javax.validation.constraints.NotBlank;
+
+import org.springframework.validation.annotation.Validated;
+
+@Validated
 public class JWTConfig {
 
+	@NotBlank(message = "Password must not be null or empty and should contain upper and lower case letters, numbers and symbols.")
 	private String	password;
 	private Long	expirationTime;
 	private Boolean	refreshToken;
