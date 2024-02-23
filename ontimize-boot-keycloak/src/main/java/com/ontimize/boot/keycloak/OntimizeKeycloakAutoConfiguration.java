@@ -38,7 +38,7 @@ public class OntimizeKeycloakAutoConfiguration extends KeycloakAutoConfiguration
 
 	@Bean()
 	public OntimizePathMatcher pathMatcherIgnorePaths() {
-		String[] paths = { "/auth/**", "/resources/**", "/ontimize/**" };
+		String[] paths = { "/", "/auth/**", "/resources/**", "/ontimize/**" };
 
 		if (this.ignorePaths != null && this.ignorePaths.length > 0) {
 			paths = Stream.concat(Arrays.stream(paths), Arrays.stream(this.ignorePaths))

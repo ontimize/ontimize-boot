@@ -75,8 +75,14 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
 
+	private final ApplicationContext appContext;
+
 	@Autowired
-	private ApplicationContext appContext;
+	public DefaultSecurityAutoConfiguration(final ApplicationContext appContext) {
+		super();
+
+		this.appContext = appContext;
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -223,7 +229,7 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	@Bean
 	public IJwtService jwtService() {
 		JWTConfig jwtConfig = this.jwtConfig();
-		return new DefaultJwtService(jwtConfig.getPassword() == null ? "ld.a,#82xyz" : jwtConfig.getPassword());
+		return new DefaultJwtService(jwtConfig.getPassword());
 	}
 
 	@Bean
@@ -341,11 +347,11 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 
 	@Bean
 	public OntimizePathMatcher pathMatcherIgnorePaths() {
-		String[] paths = { "/resources/**", "/ontimize/**" };
+		String[] paths = { "/", "/resources/**", "/ontimize/**" };
 
 		if (this.ignorePaths != null && this.ignorePaths.length > 0) {
 			paths = Stream.concat(Arrays.stream(paths), Arrays.stream(this.ignorePaths))
-		      .toArray(size -> (String[]) Array.newInstance(String.class, size));
+					.toArray(size -> (String[]) Array.newInstance(String.class, size));
 		}
 
 		return new OntimizePathMatcher(paths);

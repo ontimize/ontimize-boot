@@ -2,6 +2,7 @@ package com.ontimize.boot.autoconfigure.jdbc;
 
 import javax.sql.DataSource;
 
+import com.ontimize.jee.common.db.handler.MySQLSQLStatementHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -51,6 +52,15 @@ public class JdbcAutoConfiguration {
 
 	@Deprecated
 	@Bean("dbSQLStatementHandler")
+	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "mysql")
+	public SQLStatementHandler MySQLSQLStatementHandler() {
+		SQLStatementHandler handler = new MySQLSQLStatementHandler();
+		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
+		return handler;
+	}
+
+	@Deprecated
+	@Bean("dbSQLStatementHandler")
 	@ConditionalOnProperty(name = "ontimize.jdbc.sqlhandler", havingValue = "oracle")
 	public SQLStatementHandler oracleSQLStatementHandler() {
 		SQLStatementHandler handler = new OracleSQLStatementHandler();
@@ -84,15 +94,6 @@ public class JdbcAutoConfiguration {
 		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
 		return handler;
 	}
-
-	//	@Deprecated
-	//	@Bean("dbSQLStatementHandler")
-	//	@ConditionalOnMissingBean
-	//	public SQLStatementHandler defaultSQLStatementHandler() {
-	//		SQLStatementHandler handler = new DefaultSQLStatementHandler();
-	//		handler.setSQLConditionValuesProcessor(this.extendedSQLConditionValuesProcessor());
-	//		return handler;
-	//	}
 
 	@Bean
 	@Deprecated
