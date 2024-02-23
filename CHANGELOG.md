@@ -9,6 +9,7 @@
 
 
 ## [Unreleased]
+## [3.14.0] - 2024-02-23
 ### Added ✔️
 * **JaCoCo**: Add JaCoCo coverage on Sonar
 * **Multi tenant**: Ask the tenant provider to load a tenant when it can not be found.
@@ -49,7 +50,8 @@
 * **[Export services](https://ontimize.github.io/docs/v3/basics/exportdata/):** System to export the DAO data of a service and dump it directly to a file.
 
 
-[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.13.0...HEAD
+[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.14.0...HEAD
+[3.14.0]: https://github.com/ontimize/ontimize-boot/compare/3.13.0...3.14.0
 [3.13.0]: https://github.com/ontimize/ontimize-boot/compare/3.12.0...3.13.0
 [3.12.0]: https://github.com/ontimize/ontimize-boot/compare/3.11.0...3.12.0
 [3.11.0]: https://github.com/ontimize/ontimize-boot/compare/3.10.1...3.11.0
