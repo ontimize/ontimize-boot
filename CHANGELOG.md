@@ -9,6 +9,8 @@
 
 
 ## [Unreleased]
+### Added ✔️
+* **Multi tenant**: Allow to configure tenants using the preferences.
 ## [3.14.0] - 2024-02-23
 ### Added ✔️
 * **JaCoCo**: Add JaCoCo coverage on Sonar
