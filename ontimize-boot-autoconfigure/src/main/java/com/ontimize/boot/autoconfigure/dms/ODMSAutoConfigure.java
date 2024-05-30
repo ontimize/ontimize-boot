@@ -1,5 +1,8 @@
 package com.ontimize.boot.autoconfigure.dms;
 
+import com.ontimize.jee.server.dao.common.INameConvention;
+import com.ontimize.jee.server.services.dms.DMSColumnHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -21,7 +24,10 @@ import com.ontimize.jee.server.spring.namespace.OntimizeDMSConfiguration;
 @ConditionalOnClass({ IDMSService.class })
 @ConditionalOnProperty(name = "ontimize.dms.engine", havingValue = "odms", matchIfMissing = false)
 public class ODMSAutoConfigure {
-	
+
+	@Autowired
+	private INameConvention nameConvention;
+
 	@Value("${ontimize.dms.base-path}")
 	private String basePath;
 
@@ -57,6 +63,11 @@ public class ODMSAutoConfigure {
 		OntimizeDMSConfiguration ontimizeDMSConfiguration = new OntimizeDMSConfiguration();
 		ontimizeDMSConfiguration.setDmsConfiguration(dmsConfiguration);
 		return ontimizeDMSConfiguration;
+	}
+
+	@Bean
+	public DMSColumnHelper dmsColumnHelper(){
+		return new DMSColumnHelper(nameConvention);
 	}
 
 	@Bean
