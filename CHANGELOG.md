@@ -11,6 +11,8 @@
 ## [Unreleased]
 ### Added ✔️
 * **Multi tenant**: Allow to configure tenants using the preferences.
+### Fixed 🐛
+* **ODMSAutoConfigure**: Allows the dmsColumnHelper to get the nameConvention from the application.
 ## [3.14.0] - 2024-02-23
 ### Added ✔️
 * **JaCoCo**: Add JaCoCo coverage on Sonar
