@@ -10,7 +10,7 @@ assignees: ''
 >Note:
 >Can be written in Spanish
 
-**Is your feature request related to a problem? Please describe.** (*¿Su solicitud está relacionada con un problema? Por favor, descríbalo.*)
+**Is your feature request related to a problem? Please describe.** (*¿Su solicitud está relacionada con un problema? Por favor, descríbelo.*)
 A clear and concise description of what the problem is. (*Una descripción clara y concisa del problema.*)
 
 **Describe the solution you'd like** (*Describa la solución que le gustaría*)
