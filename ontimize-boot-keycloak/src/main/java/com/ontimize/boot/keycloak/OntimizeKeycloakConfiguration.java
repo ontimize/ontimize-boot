@@ -29,6 +29,10 @@ public class OntimizeKeycloakConfiguration implements IOntimizeKeycloakConfigura
 		this.useClientRoleMappings = useClientRoleMappings;
 	}
 
+	/**
+	 * @see OntimizeKeycloakConfiguration#setUseClientRoleMappings
+	 * @deprecated Use:
+	 */
 	@Deprecated(since = "3.15", forRemoval = true)
 	public void setUseResourceRoleMappings(final Boolean useResourceRoleMappings) {
 		this.useClientRoleMappings = useResourceRoleMappings;
