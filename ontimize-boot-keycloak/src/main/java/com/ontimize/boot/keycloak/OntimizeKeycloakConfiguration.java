@@ -1,23 +1,13 @@
 package com.ontimize.boot.keycloak;
 
+import com.ontimize.jee.server.security.keycloak.IOntimizeKeycloakConfiguration;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
-
-import com.ontimize.jee.server.security.keycloak.IOntimizeKeycloakConfiguration;
-
-@ConfigurationProperties(prefix = "ontimize.security.keycloak")
 public class OntimizeKeycloakConfiguration implements IOntimizeKeycloakConfiguration {
-	@Value("${ontimize.security.keycloak.public-client:false}")
 	private Boolean publicClient;
-
-	@Value("${ontimize.security.keycloak.use-resource-role-mappings:false}")
-	private Boolean useResourceRoleMappings;
-
-	@Value("${ontimize.security.keycloak.realms-provider:}")
-	private String realmsProvider;
+	private Boolean useClientRoleMappings;
 
 	private List<OntimizeKeycloakRoleConfig> roles = new ArrayList<>();
 
@@ -31,27 +21,28 @@ public class OntimizeKeycloakConfiguration implements IOntimizeKeycloakConfigura
 	}
 
 	@Override
-	public Boolean isUseResourceRoleMappings() {
-		return this.useResourceRoleMappings;
+	public Boolean isUseClientRoleMappings() {
+		return this.useClientRoleMappings;
 	}
 
-	public void setUseResourceRoleMappings(Boolean useResourceRoleMappings) {
-		this.useResourceRoleMappings = useResourceRoleMappings;
+	public void setUseClientRoleMappings(final Boolean useClientRoleMappings) {
+		this.useClientRoleMappings = useClientRoleMappings;
 	}
 
-	public String getRealmsProvider() {
-		return realmsProvider;
-	}
-
-	public void setRealmsProvider(String realmsProvider) {
-		this.realmsProvider = realmsProvider;
+	/**
+	 * @see OntimizeKeycloakConfiguration#setUseClientRoleMappings
+	 * @deprecated Use:
+	 */
+	@Deprecated(since = "3.15", forRemoval = true)
+	public void setUseResourceRoleMappings(final Boolean useResourceRoleMappings) {
+		this.useClientRoleMappings = useResourceRoleMappings;
 	}
 
 	public List<OntimizeKeycloakRoleConfig> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<OntimizeKeycloakRoleConfig> roles) {
+	public void setRoles(final List<OntimizeKeycloakRoleConfig> roles) {
 		this.roles = roles;
 	}
 }
