@@ -259,9 +259,10 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 			@Value(value = LdapAuthenticationMechanism.LOGINTYPE_PROPERTY) String loginTypeProperty,
 			@Value(value = LdapAuthenticationMechanism.BINDDN_PROPERTY) String bindDnProperty,
 			@Value(value = LdapAuthenticationMechanism.BASEDN_PROPERTY) String baseDnProperty,
-			@Value(value = LdapAuthenticationMechanism.DOMAIN_PROPERTY) String domainProperty) {
+			@Value(value = LdapAuthenticationMechanism.DOMAIN_PROPERTY) String domainProperty,
+			@Value(value = LdapAuthenticationMechanism.SSL_PROPERTY) boolean sslProperty) {
 		return new LdapAuthenticationMechanism(hostProperty, portProperty, loginTypeProperty, bindDnProperty,
-				baseDnProperty, domainProperty);
+				baseDnProperty, domainProperty, sslProperty);
 
 	}
 
