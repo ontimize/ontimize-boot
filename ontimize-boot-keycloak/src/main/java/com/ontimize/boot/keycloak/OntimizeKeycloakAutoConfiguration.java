@@ -21,22 +21,31 @@ public class OntimizeKeycloakAutoConfiguration extends KeycloakAutoConfiguration
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
 
-	@Value("${ontimize.security.keycloak.realms-provider:}")
+	/**
+	 * @see OntimizeKeycloakAutoConfiguration#tenantsProvider
+	 * @deprecated Use:
+	 */
+	@Deprecated(since = "3.15", forRemoval = true)
+	@Value("${ontimize.security.keycloak.realms-provider:default}")
 	private String realmsProvider;
+
+	@Value("${ontimize.security.keycloak.tenants-provider:default}")
+	private String tenantsProvider;
 
 	@Bean
 	@Override
 	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> getKeycloakContainerCustomizer() {
 		return configurableServletWebServerFactory -> {
+			final String provider =  "default".equals(this.realmsProvider) ? this.tenantsProvider : this.realmsProvider;
 			final TomcatServletWebServerFactory container = (TomcatServletWebServerFactory) configurableServletWebServerFactory;
 			final OntimizeKeycloakTenantValidator tenantValidator = new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths(),
-					"list".equals(this.realmsProvider) || "custom".equals(this.realmsProvider));
+					"list".equals(provider) || "custom".equals(provider));
 			container.addContextValves(new OntimizeKeycloakAuthenticatorValve(tenantValidator));
 			container.addContextCustomizers(tomcatKeycloakContextCustomizer());
 		};
 	}
 
-	@Bean()
+	@Bean
 	public OntimizePathMatcher pathMatcherIgnorePaths() {
 		String[] paths = { "/", "/auth/**", "/resources/**", "/ontimize/**" };
 

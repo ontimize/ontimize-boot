@@ -1,4 +1,5 @@
 <!-- ## [Unreleased] -->
+<!-- ### Breaking changes ⚠ -->
 <!-- ### Added ✔️-->
 <!-- ### Changed 🛠️-->
 <!-- ### Deprecated 🛑-->
@@ -9,6 +10,11 @@
 
 
 ## [Unreleased]
+### Added ✔️
+* **Multi tenant**: Allow to configure tenants using the preferences.
+* **DefaultSecurityAutoConfiguration**: Allow to use SSL in LDAP connections.
+### Fixed 🐛
+* **ODMSAutoConfigure**: Allows the dmsColumnHelper to get the nameConvention from the application.
 ## [3.14.0] - 2024-02-23
 ### Added ✔️
 * **JaCoCo**: Add JaCoCo coverage on Sonar

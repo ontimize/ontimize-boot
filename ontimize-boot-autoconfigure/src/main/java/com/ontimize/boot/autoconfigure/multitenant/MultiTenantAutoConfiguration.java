@@ -2,8 +2,12 @@ package com.ontimize.boot.autoconfigure.multitenant;
 
 import javax.sql.DataSource;
 
+import com.ontimize.jee.common.multitenant.ITenantStore;
+import com.ontimize.jee.server.multitenant.store.jdbc.TenantStoreDao;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.support.JdbcTransactionManager;
@@ -20,6 +24,19 @@ public class MultiTenantAutoConfiguration {
 	@Bean
 	public OntimizeBootMultiTenantFilter tenantFilterChain() {
 		return new OntimizeBootMultiTenantFilter();
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.multitenant.configuration.tenant-repository")
+	public ITenantStore tenantStoreDao() {
+		return new TenantStoreDao();
+	}
+
+	@Bean
+	@ConfigurationProperties(prefix = "ontimize.multitenant.configuration")
+	@ConditionalOnMissingBean(ITenantStore.class)
+	public ITenantStore defaultTenantStore() {
+		return new DefaultTenantStore();
 	}
 
 	@Bean(name = "tenantManager")

@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.ontimize.jee.server.security.keycloak.*;
+import com.ontimize.jee.server.security.keycloak.store.ITenantAuthenticationStore;
+import com.ontimize.jee.server.security.keycloak.store.jdbc.TenantAuthenticationStoreDao;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
@@ -16,6 +19,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
@@ -47,11 +51,6 @@ import com.ontimize.jee.server.security.authorization.DefaultRoleProvider;
 import com.ontimize.jee.server.security.authorization.IRoleProvider;
 import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.Role;
-import com.ontimize.jee.server.security.keycloak.IOntimizeKeycloakConfiguration;
-import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakAccessDecisionVoter;
-import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakConfigResolver;
-import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakRoleProvider;
-import com.ontimize.jee.server.security.keycloak.OntimizeKeycloakUserDetailsAuthenticationProvider;
 import com.ontimize.jee.server.security.keycloak.admin.IUserManagement;
 import com.ontimize.jee.server.security.keycloak.admin.UserManagementKeycloakImpl;
 
@@ -62,10 +61,21 @@ import com.ontimize.jee.server.security.keycloak.admin.UserManagementKeycloakImp
 		excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "org.keycloak.adapters.springsecurity.management.HttpSessionManager"))
 public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSecurityConfigurerAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(OntimizeKeycloakWebSecurityConfigurerAdapter.class);
-	
+
+	/**
+	 * @see OntimizeKeycloakWebSecurityConfigurerAdapter#tenantsProvider
+	 * @deprecated Use:
+	 */
+	@Deprecated(since = "3.15", forRemoval = true)
+	@Value("${ontimize.security.keycloak.realms-provider:default}")
+	private String realmsProvider;
+
+	@Value("${ontimize.security.keycloak.tenants-provider:default}")
+	private String tenantsProvider;
+
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
-	
+
 	@Autowired
 	private OntimizeKeycloakConfiguration keycloakConfiguration;
 
@@ -75,27 +85,57 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 
 	@Override
 	protected AuthenticationEntryPoint authenticationEntryPoint() throws Exception {
+		final String provider =  "default".equals(this.realmsProvider) ? this.tenantsProvider : this.realmsProvider;
 		final OntimizeKeycloakTenantValidator tenantValidator = new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths,
-				"list".equals(this.keycloakConfiguration.getRealmsProvider()) || "custom".equals(this.keycloakConfiguration.getRealmsProvider()));
+				"list".equals(provider) || "custom".equals(provider));
 		return new OntimizeKeycloakAuthenticationEntryPoint(adapterDeploymentContext(), tenantValidator);
 	}
 
+	/**
+	 * @see OntimizeKeycloakWebSecurityConfigurerAdapter#createOntimizeKeycloakConfiguration
+	 * @deprecated Use:
+	 */
+	@Deprecated(since = "3.15", forRemoval = true)
 	@Bean
 	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "custom", matchIfMissing = false)
+	@ConfigurationProperties(prefix = "ontimize.security.keycloak")
+	public IOntimizeKeycloakConfiguration createOntimizeKeycloakConfigurationOld() {
+		logger.warn("The property ontimize.security.keycloak.realms-provider has been deprecated, use ontimize.security.keycloak.tenants-provider instead");
+		return new OntimizeKeycloakConfiguration();
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.tenants-provider", havingValue = "custom", matchIfMissing = false)
+	@ConfigurationProperties(prefix = "ontimize.security.keycloak")
 	public IOntimizeKeycloakConfiguration createOntimizeKeycloakConfiguration() {
 		return new OntimizeKeycloakConfiguration();
 	}
 
 	@Bean
-	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "list", matchIfMissing = false)
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.tenants-provider", havingValue = "list", matchIfMissing = false)
+	@ConfigurationProperties(prefix = "ontimize.security.keycloak")
 	public IOntimizeKeycloakConfiguration createOntimizeKeycloakMultiTenantConfiguration() {
 		return new OntimizeKeycloakMultiTenantConfiguration();
 	}
 
 	@Bean
-	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "default", matchIfMissing = true)
+	@ConditionalOnMissingBean(IOntimizeKeycloakConfiguration.class)
+	@ConfigurationProperties(prefix = "ontimize.security.keycloak")
 	public IOntimizeKeycloakConfiguration createOntimizeKeycloakSingleTenantConfiguration() {
 		return new OntimizeKeycloakSingleTenantConfiguration();
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.tenant-repository")
+	public ITenantAuthenticationStore tenantStoreDao() {
+		return new TenantAuthenticationStoreDao();
+	}
+
+	@Bean
+	@ConfigurationProperties(prefix = "ontimize.security.keycloak")
+	@ConditionalOnMissingBean(ITenantAuthenticationStore.class)
+	public ITenantAuthenticationStore defaultTenantAuthenticationStore() {
+		return new DefaultTenantAuthenticationStore();
 	}
 
 	@Bean
@@ -134,20 +174,31 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 		return new OntimizeKeycloakConfigResolver();
 	}
 
+	/**
+	 * @see OntimizeKeycloakWebSecurityConfigurerAdapter#createOntimizeKeycloakTenantValidator
+	 * @deprecated Use:
+	 */
+	@Deprecated(since = "3.15", forRemoval = true)
 	@Bean
 	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "custom", matchIfMissing = false)
+	public OntimizeKeycloakTenantValidator createOntimizeKeycloakTenantValidatorOld() {
+		return new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths, true);
+	}
+
+	@Bean
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.tenants-provider", havingValue = "custom", matchIfMissing = false)
 	public OntimizeKeycloakTenantValidator createOntimizeKeycloakTenantValidator() {
 		return new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths, true);
 	}
 
 	@Bean
-	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "list", matchIfMissing = false)
+	@ConditionalOnProperty(name = "ontimize.security.keycloak.tenants-provider", havingValue = "list", matchIfMissing = false)
 	public OntimizeKeycloakTenantValidator createOntimizeKeycloakMultiTenantValidator() {
 		return new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths, true);
 	}
 
 	@Bean
-	@ConditionalOnProperty(name = "ontimize.security.keycloak.realms-provider", havingValue = "default", matchIfMissing = true)
+	@ConditionalOnMissingBean(OntimizeKeycloakTenantValidator.class)
 	public OntimizeKeycloakTenantValidator createOntimizeKeycloakSingleTenantValidator() {
 		return new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths, false);
 	}
