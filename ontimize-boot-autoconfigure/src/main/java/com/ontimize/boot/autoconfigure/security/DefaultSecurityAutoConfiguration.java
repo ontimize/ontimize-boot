@@ -8,6 +8,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Stream;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
@@ -22,15 +23,21 @@ import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
 import org.springframework.security.access.vote.AffirmativeBased;
 import org.springframework.security.access.vote.RoleVoter;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserCache;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.expression.DefaultWebSecurityExpressionHandler;
 import org.springframework.security.web.access.expression.ExpressionBasedFilterInvocationSecurityMetadataSource;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
@@ -68,7 +75,7 @@ import com.ontimize.jee.server.security.authorization.OntimizeAccessDecisionVote
 @Configuration
 @EnableWebSecurity
 @ConditionalOnExpression("'${ontimize.security.mode}'.equals('default') or '${ontimize.security.mode}'.equals('ldap')")
-public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapter {
+public class DefaultSecurityAutoConfiguration {
 	@Value("${ontimize.security.service-path:/**}")
 	private String servicePath;
 
@@ -78,34 +85,68 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 	private final ApplicationContext appContext;
 
 	@Autowired
+	private AuthenticationConfiguration authenticationConfiguration;
+
+	@Autowired
 	public DefaultSecurityAutoConfiguration(final ApplicationContext appContext) {
 		super();
 
 		this.appContext = appContext;
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.antMatcher(this.servicePath) //
-		.exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint())//
-		// private
-		.and().csrf().disable().anonymous().disable() // Anonymous disable
-		.authorizeRequests().antMatchers(this.servicePath).permitAll().anyRequest().authenticated()
-		// no create sessions
-		.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
-		// ontimize filters
-		.and().addFilterBefore(this.preAuthFilterOntimize(), UsernamePasswordAuthenticationFilter.class) //
-		.addFilter(this.filterInvocationInterceptor());
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		http.antMatcher(this.servicePath) //
+//				.exceptionHandling().authenticationEntryPoint(this.authenticationEntryPoint())//
+//				// private
+//				.and().csrf().disable().anonymous().disable() // Anonymous disable
+//				.authorizeRequests().antMatchers(this.servicePath).permitAll().anyRequest().authenticated()
+//				// no create sessions
+//				.and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER)
+//				// ontimize filters
+//				.and().addFilterBefore(this.preAuthFilterOntimize(), UsernamePasswordAuthenticationFilter.class) //
+//				.addFilter(this.filterInvocationInterceptor());
+//	}
+
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http
+				.exceptionHandling(exception -> exception.authenticationEntryPoint(this.authenticationEntryPoint()))
+				.csrf(csrf -> csrf.disable())
+				.anonymous(anonymous -> anonymous.disable())
+				.authorizeHttpRequests( auth -> auth.requestMatchers(this.servicePath).permitAll().anyRequest().authenticated())
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.NEVER))
+				.addFilterBefore(this.preAuthFilterOntimize(), UsernamePasswordAuthenticationFilter.class)
+				.addFilter(this.filterInvocationInterceptor());
+
+		return http.build();
 	}
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**");
-		web.ignoring().antMatchers("/ontimize/**");
-		if ((this.ignorePaths != null) && (this.ignorePaths.length > 0)) {
-			web.ignoring().antMatchers(this.ignorePaths);
-		}
+//	@Override
+//	public void configure(WebSecurity web) throws Exception {
+//		web.ignoring().antMatchers("/resources/**");
+//		web.ignoring().antMatchers("/ontimize/**");
+//		if ((this.ignorePaths != null) && (this.ignorePaths.length > 0)) {
+//			web.ignoring().antMatchers(this.ignorePaths);
+//		}
+//	}
+
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		return (web) -> {
+			web.ignoring().requestMatchers("/resources/**","/ontimize/**");
+
+			if ((this.ignorePaths != null) && (this.ignorePaths.length > 0)){
+				web.ignoring().requestMatchers(this.ignorePaths);
+			}
+		};
 	}
+
+	@Bean
+	public AuthenticationManager authenticationManager() throws Exception {
+		return this.authenticationConfiguration.getAuthenticationManager();
+	}
+
 
 	// @Bean no puede ser un bean porque se configuraria para todos los websecurity
 	// de la aplicacion
@@ -132,7 +173,6 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		return filter;
 	}
 
-	@Override
 	@Bean
 	public ISecurityUserInformationService userDetailsService() {
 		UserInformationServiceConfig userInformationServiceConfig = this.userInformationServiceConfig();
@@ -153,6 +193,10 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 		}
 
 		return databaseUserInformationService;
+	}
+
+	private ApplicationContext getApplicationContext() {
+		return this.appContext;
 	}
 
 	@Bean
@@ -265,10 +309,10 @@ public class DefaultSecurityAutoConfiguration extends WebSecurityConfigurerAdapt
 
 	}
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(this.authenticationProvider());
-	}
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.authenticationProvider(this.authenticationProvider());
+//	}
 
 	// @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
 	// @Override

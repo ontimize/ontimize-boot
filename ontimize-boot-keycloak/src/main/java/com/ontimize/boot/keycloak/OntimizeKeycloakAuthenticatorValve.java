@@ -2,7 +2,7 @@ package com.ontimize.boot.keycloak;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletException;
 
 import org.apache.catalina.Container;
 import org.apache.catalina.Valve;
@@ -22,7 +22,7 @@ public class OntimizeKeycloakAuthenticatorValve extends KeycloakAuthenticatorVal
 	}
 
 	@Override
-	public void invoke(Request request, Response response) throws IOException, ServletException {
+	public void invoke(Request request, Response response) throws IOException {
 		final ValidationResult result = this.tenantValidator.validate(request, response);
 		if (result == ValidationResult.APPLY) {
 			super.invoke(request, response);

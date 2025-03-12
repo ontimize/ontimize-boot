@@ -1,6 +1,6 @@
 package com.ontimize.boot.autoconfigure.security;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 import org.springframework.validation.annotation.Validated;
 

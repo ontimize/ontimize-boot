@@ -8,12 +8,22 @@ import java.util.Map;
 import com.ontimize.jee.server.security.keycloak.*;
 import com.ontimize.jee.server.security.keycloak.store.ITenantAuthenticationStore;
 import com.ontimize.jee.server.security.keycloak.store.jdbc.TenantAuthenticationStoreDao;
+import org.keycloak.adapters.AdapterDeploymentContext;
+import org.keycloak.adapters.KeycloakConfigResolver;
+import org.keycloak.adapters.KeycloakDeployment;
+import org.keycloak.adapters.springsecurity.AdapterDeploymentContextFactoryBean;
 import org.keycloak.adapters.springsecurity.KeycloakConfiguration;
 import org.keycloak.adapters.springsecurity.KeycloakSecurityComponents;
 import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticationProvider;
+import org.keycloak.adapters.springsecurity.authentication.KeycloakLogoutHandler;
+import org.keycloak.adapters.springsecurity.config.KeycloakSpringConfigResolverWrapper;
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
+import org.keycloak.adapters.springsecurity.filter.KeycloakAuthenticatedActionsFilter;
 import org.keycloak.adapters.springsecurity.filter.KeycloakAuthenticationProcessingFilter;
+import org.keycloak.adapters.springsecurity.filter.KeycloakCsrfRequestMatcher;
 import org.keycloak.adapters.springsecurity.filter.KeycloakPreAuthActionsFilter;
+import org.keycloak.adapters.springsecurity.filter.KeycloakSecurityContextRequestFilter;
+import org.keycloak.adapters.springsecurity.management.HttpSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,16 +37,22 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.access.AccessDecisionManager;
 import org.springframework.security.access.AccessDecisionVoter;
 import org.springframework.security.access.vote.AffirmativeBased;
 import org.springframework.security.access.vote.RoleVoter;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.web.AuthenticationEntryPoint;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.session.RegisterSessionAuthenticationStrategy;
 import org.springframework.security.web.authentication.session.SessionAuthenticationStrategy;
 
@@ -53,13 +69,14 @@ import com.ontimize.jee.server.security.authorization.ISecurityAuthorizator;
 import com.ontimize.jee.server.security.authorization.Role;
 import com.ontimize.jee.server.security.keycloak.admin.IUserManagement;
 import com.ontimize.jee.server.security.keycloak.admin.UserManagementKeycloakImpl;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter;
 
 @KeycloakConfiguration
 @PropertySource("classpath:ontimize-security-keycloak.properties")
 @ConditionalOnProperty(name = "ontimize.security.mode", havingValue = "keycloak", matchIfMissing = false)
 @ComponentScan(basePackageClasses = KeycloakSecurityComponents.class,
 		excludeFilters = @ComponentScan.Filter(type = FilterType.REGEX, pattern = "org.keycloak.adapters.springsecurity.management.HttpSessionManager"))
-public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSecurityConfigurerAdapter {
+public class OntimizeKeycloakWebSecurityConfigurerAdapter {
 	private static final Logger logger = LoggerFactory.getLogger(OntimizeKeycloakWebSecurityConfigurerAdapter.class);
 
 	/**
@@ -76,6 +93,11 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	@Value("${ontimize.security.ignore-paths:}")
 	private String[] ignorePaths;
 
+	@Value("${keycloak.configurationFile:WEB-INF/keycloak.json}")
+	private Resource keycloakConfigFileResource;
+	@Autowired(required = false)
+	private KeycloakConfigResolver keycloakConfigResolver;
+
 	@Autowired
 	private OntimizeKeycloakConfiguration keycloakConfiguration;
 
@@ -83,12 +105,32 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	@Qualifier("pathMatcherIgnorePaths")
 	private OntimizePathMatcher pathMatcherIgnorePaths;
 
-	@Override
+	@Autowired
+	private AuthenticationConfiguration authenticationConfiguration;
+
+	@Autowired
+	private ApplicationContext applicationContext;
+
+
+	@Bean
 	protected AuthenticationEntryPoint authenticationEntryPoint() throws Exception {
 		final String provider =  "default".equals(this.realmsProvider) ? this.tenantsProvider : this.realmsProvider;
 		final OntimizeKeycloakTenantValidator tenantValidator = new OntimizeKeycloakTenantValidator(this.pathMatcherIgnorePaths,
 				"list".equals(provider) || "custom".equals(provider));
 		return new OntimizeKeycloakAuthenticationEntryPoint(adapterDeploymentContext(), tenantValidator);
+	}
+
+	@Bean
+	public AdapterDeploymentContext adapterDeploymentContext() throws Exception {
+		AdapterDeploymentContextFactoryBean factoryBean;
+		if (keycloakConfigResolver != null) {
+			factoryBean = new AdapterDeploymentContextFactoryBean(new KeycloakSpringConfigResolverWrapper(keycloakConfigResolver));
+		}
+		else {
+			factoryBean = new AdapterDeploymentContextFactoryBean(keycloakConfigFileResource);
+		}
+		factoryBean.afterPropertiesSet();
+		return factoryBean.getObject();
 	}
 
 	/**
@@ -139,22 +181,19 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	}
 
 	@Bean
-	@Override
 	protected KeycloakAuthenticationProvider keycloakAuthenticationProvider() {
 		return new OntimizeKeycloakUserDetailsAuthenticationProvider();
 	}
 
 	@Bean
-	@Override
 	protected KeycloakPreAuthActionsFilter keycloakPreAuthActionsFilter() {
-		return new OntimizeKeycloakPreAuthActionsFilter(httpSessionManager());
+		return new OntimizeKeycloakPreAuthActionsFilter(new HttpSessionManager());
 	}
 
 	@Bean
-	@Override
 	protected KeycloakAuthenticationProcessingFilter keycloakAuthenticationProcessingFilter() throws Exception {
-		final KeycloakAuthenticationProcessingFilter filter = new OntimizeKeycloakAuthenticationProcessingFilter(authenticationManagerBean());
-		filter.setSessionAuthenticationStrategy(sessionAuthenticationStrategy());
+		final KeycloakAuthenticationProcessingFilter filter = new OntimizeKeycloakAuthenticationProcessingFilter(this.authenticationManager());
+		filter.setSessionAuthenticationStrategy(this.sessionAuthenticationStrategy());
 		return filter;
 	}
 
@@ -164,7 +203,6 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	 * @return The produced SessionAuthenticationStrategy instance.
 	 */
 	@Bean
-	@Override
 	protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
 		return new RegisterSessionAuthenticationStrategy(new SessionRegistryImpl());
 	}
@@ -209,25 +247,64 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 		return new UserManagementKeycloakImpl();
 	}
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		super.configure(http);
-		// Configure the session management as stateless. We use REST.
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//	@Override
+//	protected void configure(HttpSecurity http) throws Exception {
+//		super.configure(http);
+//		// Configure the session management as stateless. We use REST.
+//		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//
+//		http.authorizeRequests()
+//				.antMatchers(HttpMethod.OPTIONS).permitAll()
+//				.anyRequest().authenticated()
+//				.and().csrf().disable();
+//	}
 
-		http.authorizeRequests()
-				.antMatchers(HttpMethod.OPTIONS).permitAll()
-				.anyRequest().authenticated()
-				.and().csrf().disable();
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+		http
+				.csrf(csrf -> csrf.requireCsrfProtectionMatcher(new KeycloakCsrfRequestMatcher()))
+				.sessionManagement(session -> session.sessionAuthenticationStrategy(this.sessionAuthenticationStrategy()))
+				.addFilterBefore(new KeycloakPreAuthActionsFilter(new HttpSessionManager()), LogoutFilter.class)
+				.addFilterBefore(this.keycloakAuthenticationProcessingFilter(), LogoutFilter.class)
+				.addFilterAfter(new KeycloakSecurityContextRequestFilter(), SecurityContextHolderAwareRequestFilter.class)
+				.addFilterAfter(new KeycloakAuthenticatedActionsFilter(), KeycloakSecurityContextRequestFilter.class)
+				.exceptionHandling(exception -> {
+                    try {
+                        exception.authenticationEntryPoint(authenticationEntryPoint());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                })
+				.logout(logout -> {
+                    try {
+                        logout
+                                .addLogoutHandler(keycloakLogoutHandler())
+								.logoutUrl("/sso/logout")
+								.permitAll()
+								.logoutSuccessUrl("/");
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+
+		return http.build();
 	}
 
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**");
-		web.ignoring().antMatchers("/ontimize/**");
-		if (this.ignorePaths != null && this.ignorePaths.length > 0) {
-			web.ignoring().antMatchers(this.ignorePaths);
-		}
+	@Bean
+	public WebSecurityCustomizer webSecurityCustomizer() {
+		return (web) -> {
+			web.ignoring()
+					.requestMatchers("/resources/**", "/ontimize/**");
+			if ((this.ignorePaths != null) && (this.ignorePaths.length > 0)) {
+				web.ignoring().requestMatchers(this.ignorePaths);
+			}
+		};
+	}
+
+
+	@Bean
+	protected KeycloakLogoutHandler keycloakLogoutHandler() throws Exception {
+		return new KeycloakLogoutHandler(this.adapterDeploymentContext());
 	}
 
 	@Bean
@@ -269,7 +346,7 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 	public ISecurityRoleInformationService roleInformationService(final RoleInformationServiceConfig config) {
 		final DatabaseRoleInformationService roleInformationService = new DatabaseRoleInformationService();
 
-		final Object roleDao = this.getApplicationContext().getBean(config.getRoleRepository());
+		final Object roleDao = this.applicationContext.getBean(config.getRoleRepository());
 		if (roleDao instanceof IOntimizeDaoSupport) {
 			roleInformationService.setProfileRepository((IOntimizeDaoSupport) roleDao);
 		}
@@ -315,5 +392,9 @@ public class OntimizeKeycloakWebSecurityConfigurerAdapter extends KeycloakWebSec
 		}
 		securityConfiguration.setAuthorizator(this.ontimizeAuthorizator());
 		return securityConfiguration;
+	}
+
+	public AuthenticationManager authenticationManager() throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
 	}
 }

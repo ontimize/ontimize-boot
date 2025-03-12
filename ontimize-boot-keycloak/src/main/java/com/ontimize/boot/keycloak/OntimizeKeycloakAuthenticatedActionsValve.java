@@ -2,7 +2,7 @@ package com.ontimize.boot.keycloak;
 
 import java.io.IOException;
 
-import javax.servlet.ServletException;
+import jakarta.servlet.ServletException;
 
 import org.apache.catalina.Container;
 import org.apache.catalina.Valve;
