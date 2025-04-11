@@ -11,6 +11,7 @@
 
 ## [Unreleased]
 ## [3.15.1] - 2025-04-11
+### Changed 🛠️
 * **EE Version**: Update Ontimize EE version to 5.12.1
 ## [3.15.0] - 2025-03-12
 ### Added ✔️
