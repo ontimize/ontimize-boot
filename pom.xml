@@ -12,7 +12,7 @@
 
     <groupId>com.ontimize.boot</groupId>
     <artifactId>ontimize-boot</artifactId>
-    <version>3.15.0</version>
+    <version>3.15.1</version>
     <packaging>pom</packaging>
 
     <organization>
@@ -111,7 +111,7 @@
         <project.dependency.spring.boot.version>2.5.0</project.dependency.spring.boot.version>
         <project.dependency.spring.security.version>5.5.1</project.dependency.spring.security.version>
         <project.dependency.ontimize.boot.version>3.15.0</project.dependency.ontimize.boot.version>
-        <project.dependency.ontimize-jee.version>5.12.0</project.dependency.ontimize-jee.version>
+        <project.dependency.ontimize-jee.version>5.12.1</project.dependency.ontimize-jee.version>
         <project.dependency.ontimize-jee-dms.version>3.2.0</project.dependency.ontimize-jee-dms.version>
         <project.dependency.keycloak.version>15.0.2</project.dependency.keycloak.version>
         <project.dependency.ontimize-jee-report.version>3.4.0</project.dependency.ontimize-jee-report.version>
