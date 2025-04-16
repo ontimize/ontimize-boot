@@ -6,7 +6,7 @@
 <!-- ### Removed 🗑️-->
 <!-- ### Fixed 🐛-->
 <!-- ### Security 🛡️-->
-<!-- Este fichero sigue el formato de https://keepachangelog.com -->
+<!--  Este fichero sigue el formato de https://keepachangelog.com -->
 
 
 ## [Unreleased]
