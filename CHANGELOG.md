@@ -10,6 +10,9 @@
 
 
 ## [Unreleased]
+## [3.15.2] - 2025-04-11
+### Changed 🛠️
+* **Ontimize JEE Report**: Update version 3.4.0 to 3.5.0
 ## [3.15.1] - 2025-04-11
 ### Changed 🛠️
 * **EE Version**: Update Ontimize EE version to 5.12.1
