@@ -63,7 +63,8 @@
 * **[Export services](https://ontimize.github.io/docs/v3/basics/exportdata/):** System to export the DAO data of a service and dump it directly to a file.
 
 
-[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.15.1...HEAD
+[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.15.2...HEAD
+[3.15.2]: https://github.com/ontimize/ontimize-boot/compare/3.15.1...3.15.2
 [3.15.1]: https://github.com/ontimize/ontimize-boot/compare/3.15.0...3.15.1
 [3.15.0]: https://github.com/ontimize/ontimize-boot/compare/3.14.0...3.15.0
 [3.14.0]: https://github.com/ontimize/ontimize-boot/compare/3.13.0...3.14.0
