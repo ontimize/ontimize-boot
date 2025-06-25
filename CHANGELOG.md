@@ -11,6 +11,7 @@
 
 ## [Unreleased]
 ## [3.15.3] - 2025-06-25
+* New version for the use of Ontimize EE Report version 3.6.0 in Ontimize Boot Parent
 ## [3.15.2] - 2025-04-11
 ### Changed 🛠️
 * **Ontimize JEE Report**: Update version 3.4.0 to 3.5.0
