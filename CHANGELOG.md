@@ -10,6 +10,9 @@
 
 
 ## [Unreleased]
+### Changed 🛠️
+* **Ontimize EE**: Update version to 5.13.0
+* **JasperReports**: Add JasperReports repository for Jasper dependencies.
 ## [3.15.3] - 2025-06-25
 * **Ontimize EE Report version**: Now use Ontimize EE Report version 3.6.0
 ## [3.15.2] - 2025-04-11
