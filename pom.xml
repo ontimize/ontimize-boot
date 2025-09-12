@@ -102,7 +102,7 @@
         <project.dependency.spring.boot.version>2.5.0</project.dependency.spring.boot.version>
         <project.dependency.spring.security.version>5.5.1</project.dependency.spring.security.version>
         <project.dependency.ontimize.boot.version>3.16.0-SNAPSHOT</project.dependency.ontimize.boot.version>
-        <project.dependency.ontimize-jee.version>5.13.0-SNAPSHOT</project.dependency.ontimize-jee.version>
+        <project.dependency.ontimize-jee.version>5.13.0</project.dependency.ontimize-jee.version>
         <project.dependency.ontimize-jee-dms.version>3.2.0</project.dependency.ontimize-jee-dms.version>
         <project.dependency.keycloak.version>15.0.2</project.dependency.keycloak.version>
         <project.dependency.ontimize-jee-report.version>3.6.0</project.dependency.ontimize-jee-report.version>
@@ -365,7 +365,17 @@
                         <enabled>true</enabled>
                     </snapshots>
                 </repository>
+                <repository>
+                    <id>jaspersoft-third-party</id>
+                    <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+                </repository>
             </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>jaspersoft-third-party</id>
+                    <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+                </pluginRepository>
+            </pluginRepositories>
         </profile>
         <profile>
             <id>generate-local-version</id>
@@ -397,7 +407,17 @@
                         <enabled>true</enabled>
                     </snapshots>
                 </repository>
+                <repository>
+                    <id>jaspersoft-third-party</id>
+                    <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+                </repository>
             </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>jaspersoft-third-party</id>
+                    <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+                </pluginRepository>
+            </pluginRepositories>
             <build>
                 <plugins>
                     <!-- Source -->
@@ -460,7 +480,17 @@
                         <enabled>true</enabled>
                     </snapshots>
                 </repository>
+                <repository>
+                    <id>jaspersoft-third-party</id>
+                    <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+                </repository>
             </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>jaspersoft-third-party</id>
+                    <url>https://jaspersoft.jfrog.io/jaspersoft/third-party-ce-artifacts/</url>
+                </pluginRepository>
+            </pluginRepositories>
             <activation>
                 <property>
                     <name>jacoco</name>
