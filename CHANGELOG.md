@@ -10,6 +10,11 @@
 
 
 ## [Unreleased]
+## [3.16.0] - 2025-09-12
+### Changed 🛠️
+* **Ontimize EE**: Update version to 5.13.0
+* **Ontimize SDMS**: Update version to 1.4.0
+* **JasperReports**: Add JasperReports repository for Jasper dependencies.
 ## [3.15.3] - 2025-06-25
 * **Ontimize EE Report version**: Now use Ontimize EE Report version 3.6.0
 ## [3.15.2] - 2025-04-11
@@ -65,7 +70,8 @@
 * **[Export services](https://ontimize.github.io/docs/v3/basics/exportdata/):** System to export the DAO data of a service and dump it directly to a file.
 
 
-[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.15.3...HEAD
+[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.16.0...HEAD
+[3.16.0]: https://github.com/ontimize/ontimize-boot/compare/3.15.3...3.16.0
 [3.15.3]: https://github.com/ontimize/ontimize-boot/compare/3.15.2...3.15.3
 [3.15.2]: https://github.com/ontimize/ontimize-boot/compare/3.15.1...3.15.2
 [3.15.1]: https://github.com/ontimize/ontimize-boot/compare/3.15.0...3.15.1
