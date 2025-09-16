@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConditionalOnProperty(name = "ontimize.openai.apikey", matchIfMissing = false)
-public class OpenAiClientAutoConfigure {
+public class OpenAIClientAutoConfigure {
 
     @Value("${ontimize.openai.apikey}")
     private String apiKey;
