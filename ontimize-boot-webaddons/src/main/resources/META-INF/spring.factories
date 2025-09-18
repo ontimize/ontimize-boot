@@ -2,4 +2,4 @@ org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.ontimize.boot.export.OExportAutoConfigure,\
 com.ontimize.boot.export.excel.ExcelExportAutoConfigure,\
 com.ontimize.boot.remoteconfiguration.RemoteConfigurationAutoConfigure,\
-com.ontimize.boot.openai.OpenAiClientAutoConfigure
+com.ontimize.boot.openai.OpenAIClientAutoConfigure
