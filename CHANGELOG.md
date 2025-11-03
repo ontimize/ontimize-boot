@@ -10,6 +10,7 @@
 
 
 ## [Unreleased]
+## [3.17.0] - 2025-11-03
 ## [3.16.0] - 2025-09-12
 ### Changed 🛠️
 * **Ontimize EE**: Update version to 5.13.0
@@ -70,7 +71,8 @@
 * **[Export services](https://ontimize.github.io/docs/v3/basics/exportdata/):** System to export the DAO data of a service and dump it directly to a file.
 
 
-[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.16.0...HEAD
+[unreleased]: https://github.com/ontimize/ontimize-boot/compare/3.17.0...HEAD
+[3.17.0]: https://github.com/ontimize/ontimize-boot/compare/3.16.0...3.17.0
 [3.16.0]: https://github.com/ontimize/ontimize-boot/compare/3.15.3...3.16.0
 [3.15.3]: https://github.com/ontimize/ontimize-boot/compare/3.15.2...3.15.3
 [3.15.2]: https://github.com/ontimize/ontimize-boot/compare/3.15.1...3.15.2
