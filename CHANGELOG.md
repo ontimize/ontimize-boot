@@ -10,6 +10,8 @@
 
 
 ## [Unreleased]
+### Added ✔️
+* **OpenAIClient AutoConfigure **: Allow to configure OpenIA Client token for Ontimize EE OpenAI image service.
 ## [3.16.0] - 2025-09-12
 ### Changed 🛠️
 * **Ontimize EE**: Update version to 5.13.0
